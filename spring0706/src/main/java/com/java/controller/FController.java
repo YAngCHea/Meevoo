@@ -28,9 +28,10 @@ public class FController {
 	
 	@RequestMapping("/chart_data")
 	@ResponseBody
-	public ArrayList<IncomeDto> chart_data() {
+	public ArrayList<IncomeDto> chart_data(int year) {
+		System.out.println("년도 : "+year);
 		//매출액리스트 전체 가져오기
-		ArrayList<IncomeDto> list = incomeService.selectAll();
+		ArrayList<IncomeDto> list = incomeService.selectAll(year);
 		return list;
 	}
 

@@ -4,7 +4,7 @@
 
 <mapper namespace="com.java.mapper.IncomeMapper">
 	<select id="selectAll" resultType="com.java.dto.IncomeDto">
-		select * from income
+		select * from income where iyear=#{year}
 	</select>
 
 </mapper>

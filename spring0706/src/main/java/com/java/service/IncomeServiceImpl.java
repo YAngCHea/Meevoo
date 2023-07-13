@@ -15,8 +15,8 @@ public class IncomeServiceImpl implements IncomeService{
 	IncomeMapper incomeMapper;
 	
 	@Override //매출액 전체 가져오기
-	public ArrayList<IncomeDto> selectAll() {
-		ArrayList<IncomeDto> list = incomeMapper.selectAll();
+	public ArrayList<IncomeDto> selectAll(int year) {
+		ArrayList<IncomeDto> list = incomeMapper.selectAll(year);
 		return list;
 	}
 
