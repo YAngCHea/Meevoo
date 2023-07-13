@@ -20,5 +20,10 @@ public class FController {
 	public String elements() {
 		return "elements";
 	}
+	
+	@RequestMapping("/main")
+	public String main() {
+		return "main";
+	}
 
 }
