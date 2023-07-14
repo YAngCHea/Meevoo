@@ -7,6 +7,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main_kim.css" />
+		<link rel="icon" href="../images/main/logo2.png">
 	</head>
 	<body class="is-preload">
 
@@ -41,33 +42,55 @@
 								</section>
 
 							<!-- Section -->
+								<!-- Section -->
 								<section>
 									<header class="major">
-										<h2>모임 장소</h2>
+										<h2>모임 정보</h2>
 									</header>
-									<div class="posts">
-										<article>
-											<div class="sfinfo">
-											  <a href="#" class="image"><img src="../images/운동시설/고척근린공원 테니스장.jpg" alt="" /></a>
-											  <p>모임장소 : 고척근린공원 테니스장</p>
-											  <p>모임주소 : 서울특별시 구로구 고척로39길 48-11</p>
-											  <p>편의시설</p>
-											  <span>
-											    <img src="../images/facilities/wifiIconX.png" style="width:150px; " />
-											    <img src="../images/facilities/petIconO.png" style="width:150px; " />
-											    <img src="../images/facilities/parkingIconO.png" style="width:150px; " />
-											    <img src="../images/facilities/rampIconO.png" style="width:150px; "  />
-											  </span>
-											</div>
-										</article>
-										
+									<div style="margin-bottom: 5em;">
+										 <div style="display: flex; flex-direction: row; width: 100%; margin-bottom: 5em;" >
+										  <div style="width: 40%; padding: 1em;">
+									        <span class="sfinfo" style="width: 40%; ">
+									          <a href="#" class="image" style="width:100%;">
+									            <img src="../images/운동시설/고척근린공원 테니스장.jpg" style="width:100%;"/>
+									          </a>
+									        </span>
+									       </div>
+	 									  <div class="content" style=" width: 55%; padding: 1.5em 0.5em 0.1em 3em;" >
+	 									    <div>
+										      <p style="margin-bottom: 1em;">모임장소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;고척근린공원 테니스장</p>
+										      <p style="margin-bottom: 1em;">모임주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서울특별시 구로구 고척로39길 48-11</p>
+										      <p style="margin: 0;">편의시설</p>
+	 									    </div>
+	 									    <div>
+	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
+										          <figure><img src="../images/facilities/wifiIconX.png" style="width:70px;" /></figure>
+										          <p style="font-size: 10px;">와이파이</p>
+	 									        </div>
+	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
+										          <figure><img src="../images/facilities/petIconO.png" style="width:70px" /></figure>
+										          <p style="font-size: 10px;">반려동물</p>
+	 									        </div>
+	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
+										          <figure><img src="../images/facilities/parkingIconO.png" style="width:70px;" /></figure>
+										          <p style="font-size: 10px;">주차장</p>
+	 									        </div>
+	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
+										          <figure><img src="../images/facilities/rampIconO.png" style="width:70px;" /></figure>
+										          <p style="font-size: 10px;">입구경사로</p>
+	 									        </div>
+	 									    </div>
+	 									  </div>
+	 									 </div>
+	 									 
+	 									 <div class="col-12"; style="postion:flex; width: 100%;">
+										   <ul class="actions" style="justify-content: flex-end;">
+											 <li><input type="reset" value="다음에 작성" /></li>
+											 <li><input type="submit" value="작성하러 가기" class="primary" /></li>
+										   </ul>
+									     </div>
+									  
 									</div>
-								<div class="col-12">
-									<ul class="actions">
-										<li><input type="reset" value="다음에 작성" /></li>
-										<li><input type="submit" value="작성하러 가기" class="primary" /></li>
-									</ul>
-								  </div>
 								</section>
 								
 

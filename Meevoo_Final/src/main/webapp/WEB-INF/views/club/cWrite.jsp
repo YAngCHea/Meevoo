@@ -8,6 +8,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main_kim.css" />
+		<link rel="icon" href="../images/main/logo2.png">
 	</head>
 	<body class="is-preload">
 

@@ -8,6 +8,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main_kim.css" />
+		<link rel="icon" href="../images/main/logo2.png">
 	</head>
 	<body class="is-preload">
 
@@ -319,8 +320,8 @@
 									  <br>
 									  <hr>
 									  <br>
-									  <div class="col-12" style="margin: 100px auto;">
-										<ul class="actions">
+									  <div class="col-12"; style="postion:flex; width: 100%;">
+										<ul class="actions" style="justify-content: flex-end;">
 											<li><input type="reset" value="초기화" /></li>
 											<li><input type="submit" value="등록" class="primary" /></li>
 										</ul>

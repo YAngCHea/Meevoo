@@ -7,6 +7,26 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main_kim.css" />
+		<link rel="icon" href="../images/main/logo2.png">
+		<style>
+			.dropdown-content {
+			  display: none;
+			  position: absolute;
+			  background-color: rgba(255,255,255,0.1);
+			  text-decoration: none;
+			  min-width: 160px;
+			  padding: 8px;
+			  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+			}
+			.dropdown-content a {
+			  padding: 12px 16px;
+			  text-decoration: none;
+			  display: block;
+			  color: inherit;
+			}
+			.dropdown-content a:hover {background-color: #f1f1f1 opacity: 0.3;}
+			.dropdown:hover .dropdown-content {display: block;}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -14,6 +34,7 @@
 			<div id="wrapper">
 
 				<!-- Main -->
+				
 					<div id="main">
 						<div class="inner">
 
@@ -30,58 +51,195 @@
 								</header>
 
 							<!-- Banner -->
-								<section id="banner">
-									<div class="content">
+								<section id="banner" style="box-sizing: border-box; margin:0.5em; padding:2em 2em 2em 0; height: 250px; ">
+									<span class="content">
 										<header>
-											<h1>조고비치가 되어 봅시다</h1>
-											<span>찜한수 10</span>
-											<span>모집중</span>
-										</header>
-									</div>
-								</section>
-
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>작성자 정보</h2>
-									</header>
-									<div class="features">
-										<article>
-											<span class="image">
-											  <img src="../images/profile/profile1.jpeg" style="width:150px; border-radius: 50%;" />
-											</span>
-											<div class="content">
-												<h3>honghong111</h3>
-												<p>체력은 국력</p>
-											</div>
-										</article>
-									</div>
-								</section>
-
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>모임글 정보</h2>
-									</header>
-									<div class="posts">
-										<article>
-											<h3>D-2</h3>
-											<p>모임일자 : 2023.07.09. sun. PM 12:13</p>
-											<div class="sfinfo">
-											  <a href="#" class="image"><img src="../images/운동시설/고척근린공원 테니스장.jpg" alt="" /></a>
-											  <p>모임장소 : 고척근린공원 테니스장</p>
-											  <p>모임주소 : 서울특별시 구로구 고척로39길 48-11</p>
-											  <p>편의시설</p>
-											  <span>
-											    <img src="../images/facilities/wifiIconX.png" style="width:150px; " />
-											    <img src="../images/facilities/petIconO.png" style="width:150px; " />
-											    <img src="../images/facilities/parkingIconO.png" style="width:150px; " />
-											    <img src="../images/facilities/rampIconO.png" style="width:150px; "  />
-											  </span>
-											</div>
-										</article>
+										  <div class="dropdown" style="position: relative; display: inline-block; float: right; ">
+										    <input type="image" name="button" src="../images/general/ellipsisVertical.png" style="width: 30px; display: flex; float:right;" >
+										      <div class="dropdown-content" style="top:-15px; left: -160px; background-color: #ffffff;">
+										         <div>
+										          <span>
+										            <a href="#">
+										              <img src="../images/general/previousPage.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;뒤로 가기
+										            </a>
+										          </span>
+										         </div>
+										         <div>
+										          <span>
+										            <a href="#">
+										              <img src="../images/general/index.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;저장 가기
+										            </a>
+										          </span>
+										         </div>
+										         <div>
+										          <span>
+										            <a href="#">
+										              <img src="../images/general/report.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;신고 하기
+										            </a>
+										          </span>
+										         </div>
+										         <div>
+										          <span>
+										            <a href="#">
+										              <img src="../images/general/write.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;수정 하기
+										            </a>
+										          </span>
+										         </div>
+										         <div>
+										          <span>
+										            <a href="#">
+										              <img src="../images/general/delete.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;삭제 하기
+										            </a>
+										          </span>
+										         </div>
+										      </div>
+										  </div>
 										
+											<h1>조고비치가 되어 봅시다</h1>
+										    <div style="width:70%; margin: 0 0 2em 0; padding: 1em 0 0 0;">
+	  									       <span style="display inline-block; padding: 10px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); ">
+												  <img src="../images/sports/tennisIcon.png" style="width: 30px; vertical-align: middle;" />
+											      &nbsp;&nbsp;
+											      <span style="font-size:1em; font-weight: bold; text-align: center;">테니스</span>
+										       </span>
+										       &nbsp;&nbsp;&nbsp;
+	 										   <span style="display inline-block; padding: 10px; border: 1px; border-radius: 10%; background-color: rgba(189, 183, 107, 0.25); ">
+												  <img src="../images/general/index.png" style="width:30px; vertical-align: middle;" />
+											      &nbsp;
+											      <span style="font-size:1em; font-weight: bold; text-align: center;">저장&nbsp;&nbsp;10</span>
+										       </span>
+										       &nbsp;&nbsp;&nbsp;
+											   <span style="display inline-block; padding: 10px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); ">
+												  <img src="../images/general/memberAdd.png" style="width:30px; vertical-align: middle;" />
+											      &nbsp;&nbsp;
+											      <span style="font-size:1em; font-weight: bold; text-align: center;">모집중</span>
+										       </span>
+											</div>
+										</header>
+									</span>
+								</section>
+								
+							<!-- Section -->
+								<section style="padding: 0; vertical-align: center;">
+									<header class="major">
+									</header>
+									<div class="features" style="margin: 0;">
+									    <article style="margin: 0;">
+											<span style="margin: 25px;">
+											  <img src="../images/profile/profile1.jpeg" style="width:110px; border-radius: 50%;" />
+											</span>
+											<div class="content" style="margin:  0, 0, 100px, 0;">
+												<h3 style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; margin:0.5em;">honghong111</h3>
+												<p style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; margin:0.5em;">체력은 국력</p>
+											</div>
+										</article>
 									</div>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>모임 정보</h2>
+									</header>
+									<div>
+										 <div style="display: flex; flex-direction: row; width: 100%;" >
+										  <div style="width: 40%; padding: 1em;">
+									        <span class="sfinfo" style="width: 40%; ">
+									          <a href="#" class="image" style="width:100%;">
+									            <img src="../images/운동시설/고척근린공원 테니스장.jpg" style="width:100%;"/>
+									          </a>
+									        </span>
+									       </div>
+	 									  <div class="content" style=" width: 55%; padding: 1.5em 0.5em 0.1em 3em;" >
+	 									    <div>
+										      <p style="margin-bottom: 1em;">모임일자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold; color: #f56a6a">D-2</span>&nbsp;&nbsp;2023.07.09. sun. PM 12:13</p>
+										      <p style="margin-bottom: 1em;">모임장소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;고척근린공원 테니스장</p>
+										      <p style="margin-bottom: 1em;">모임주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서울특별시 구로구 고척로39길 48-11</p>
+										      <p style="margin: 0;">편의시설</p>
+	 									    </div>
+	 									    <div>
+	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
+										          <figure><img src="../images/facilities/wifiIconX.png" style="width:70px;" /></figure>
+										          <p style="font-size: 10px;">와이파이</p>
+	 									        </div>
+	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
+										          <figure><img src="../images/facilities/petIconO.png" style="width:70px" /></figure>
+										          <p style="font-size: 10px;">반려동물</p>
+	 									        </div>
+	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
+										          <figure><img src="../images/facilities/parkingIconO.png" style="width:70px;" /></figure>
+										          <p style="font-size: 10px;">주차장</p>
+	 									        </div>
+	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
+										          <figure><img src="../images/facilities/rampIconO.png" style="width:70px;" /></figure>
+										          <p style="font-size: 10px;">입구경사로</p>
+	 									        </div>
+	 									    </div>
+	 									  </div>
+	 									 </div>
+									</div>
+								</section>
+								
+						<!-- Section -->
+								<section>
+								   <div class="recruit-member">
+									  <div class="top clear" style= "margin-bottom: 0.5em;">
+										<header class="major">
+											<h2 style= "margin-bottom: 0.5em;">모집 인원</h2>
+										</header>
+									  </div>
+										  <div style="float: right; margin-bottom: 1.5em;">
+											<div class="fr" style="display: flex; flex-direction: row; float: right;">
+											  <div class="red">
+											    <span style="color: #f56a6a; margin-right: 5px;">■</span>
+											    <span>확정</span>
+											  </div>
+											</div>
+									      </div>
+									      
+									  <style>
+									    #progress {appearance: none; width: 100%; height: 20px; border: 1px solid #8f8f8f; border-radius: 50px; }
+									    #progress::-webkit-progress-bar {background:#ffffff; border-radius:10px; }
+									    #progress::-webkit-progress-value {border-radius:10px; background: #f56a6a; }
+									  </style>    
+									  <div class="progress" style="clear:both; margin-bottom: 2em ;">
+									    <progress id="progress" value="71.4" min="0" max="100" style="margin-bottom: 0.7em;"></progress>
+									      <div style="display: flex; justify-content: space-between; width: 100%; hight: 100%; font-weight: bold;">
+									        <div>
+									          <span style="color: #f56a6a;">5</span>
+									          <span>명</span>
+									        </div>
+									        <div>
+									          <span>7</span>
+									          <span>명</span>
+									        </div>
+									      </div>
+									  </div>
+								   
+								   <div class="col-12">
+								     <button type="button" onclick="" id="apply-btn" class="button primary fit">신청하기</button>
+								   </div>
+								   
+								   <!-- 모임글 상태에 따른 버튼 적용
+								   <div class="col-12">
+								     <button type="button" onclick="" id="apply-btn" class="button primary fit">모집완료</button>
+								   </div>
+								   &nbsp;
+								   <div class="col-12" style="text-align: center;">
+								     <button type="button" onclick="" id="apply-btn" class="button fit" style="width: 49.5%">취소하기</button>
+								     <button type="button" onclick="" id="apply-btn" class="button primary fit" style="width: 49.5%">신청승인 대기중</button>
+								   </div>
+								   &nbsp;
+								   <div class="col-12" style="text-align: center;">
+								     <button type="button" onclick="" id="apply-btn" class="button fit" style="width: 49.5%">취소하기</button>
+								     <button type="button" onclick="" id="apply-btn" class="button primary fit" style="width: 49.5%">승인완료</button>
+								   </div>
+								   &nbsp;
+								   <div class="col-12">
+								     <button type="button" onclick="" id="apply-btn" class="button primary fit">모임완료</button>
+								   </div>
+								   -->
+									
 								</section>
 								
 						<!-- Section -->
@@ -89,23 +247,64 @@
 							<header class="major">
 								<h2>댓글</h2>
 							</header>
-							<div class="replyWrite">
-							  <ul>
+							<div class="replyWrite" style="width: 100%; overflow: hidden;">
+							  <ul style="list-style: none;">
 								<li class="in">
-									<p class="txt">총 3 개의 댓글이 달려있습니다.</p>
+								  <p class="txt" style="font-weight: bold;">총 <span style="color: #f56a6a; ">3</span> 개의 댓글이 달려있습니다.</p>
 								</li>
-								<input type="text" name="cComContent" placeholder="댓글을 입력해 주세요">
-								<li><input type="submit" value="등록" class="replyBtn" /></li>
+								  <div style="display: flex;">
+								    <textarea class="replyType" placeholder="댓글을 입력해 주세요" style="margin-right: 0.5em;"></textarea>
+								    <input type="submit" value="등록" class="primary" style="height: 100%" />
+								  </div>
 							  </ul>
 							</div>
-							<div class="replyBox">
-							  <ul>
-							    <li>honghong111<span>7.9(일) 오후 1:00 </span></li>
-							    <li class="text">안녕하세여 모임글 작성자 입니다. 많은 관심 부탁해요!</li>
+							<div class="replyBox" style="width:100%; border-top: 1px solid rgba(210, 215, 217, 0.75); overflow: hidden;">
+							  <ul style="position: flex; border-bottom: 1px solid; rgba(210, 215, 217, 0.75); margin: 1em 0 1em 0; padding: 1em 20px 0px 20px;list-style: none;">
+							    <li style="font-weight: 600; color: #555; padding: 0 0 10px 0;">honghong111 <span style="color:#888; font-weight:normal;">[ 7.9(일) 오후 1:00 ]</span></li>
+							    <li style="width: 100%; color: #888; line-height:1.5; word-break:keep-all; padding: 0;">안녕하세여 모임글 작성자 입니다. 많은 관심 부탁해요!</li>
+							    <li>
+							      <div class="col-12" style="width: 100%; margin-bottom: 2em; postion: flex;">
+									<ul class="actions" style="flex-direction: row-reverse;">
+									  <li style="">
+										<li><input type="button" value="수정" /></li>
+										<li><input type="button" value="삭제" /></li>
+									  </li>
+									</ul>
+								  </div>
+							    </li>
+							  </ul>
+							  <ul style="position: flex; border-bottom: 1px solid; rgba(210, 215, 217, 0.75); margin: 1em 0 1em 0; padding: 1em 20px 0px 20px;list-style: none;">
+							    <li style="font-weight: 600; color: #555; padding: 0 0 10px 0;">honghong111 <span style="color:#888; font-weight:normal;">[ 7.9(일) 오후 1:00 ]</span></li>
+							    <li style="width: 100%; color: #888; line-height:1.5; word-break:keep-all; padding: 0;">안녕하세여 모임글 작성자 입니다. 많은 관심 부탁해요!</li>
+							    <li>
+							      <div class="col-12" style="width: 100%; margin-bottom: 2em; postion: flex;">
+									<ul class="actions" style="flex-direction: row-reverse;">
+									  <li style="">
+										<li><input type="button" value="신고" /></li>
+									  </li>
+									</ul>
+								  </div>
+							    </li>
+							  </ul>
+							  <ul style="position: flex; border-bottom: 1px solid; rgba(210, 215, 217, 0.75); margin: 1em 0 1em 0; padding: 1em 20px 0px 20px;list-style: none;">
+							    <li style="font-weight: 600; color: #555; padding: 0 0 10px 0;">honghong111 <span style="color:#888; font-weight:normal;">[ 7.9(일) 오후 1:00 ]</span></li>
+							    <li style="width: 100%; color: #888; line-height:1.5; word-break:keep-all; padding: 0;">안녕하세여 모임글 작성자 입니다. 많은 관심 부탁해요!</li>
+							    <li>
+							      <div class="col-12" style="width: 100%; margin-bottom: 2em; postion: flex;">
+									<ul class="actions" style="flex-direction: row-reverse;">
+									  <li style="">
+										<li><input type="button" value="수정" /></li>
+										<li><input type="button" value="삭제" /></li>
+									  </li>
+									</ul>
+								  </div>
+							    </li>
 							  </ul>
 							
 							</div>
 						</section>
+						
+						
 
 						</div>
 					</div>

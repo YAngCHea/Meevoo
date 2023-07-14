@@ -8,6 +8,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main_kim.css" />
+		<link rel="icon" href="../images/main/logo2.png">
 	</head>
 	<body class="is-preload">
 
@@ -31,21 +32,20 @@
 								</header>
 
 							<!-- Banner -->
-								<section id="banner" style="box-sizing: border-box; height: 20%;">
-									<div class="content" style="box-sizing: border-box; weidth: 557px;">
-										<header>
+								<section id="banner" style="box-sizing: border-box; margin:0.5em; padding:2em 2em 2em 0; height: 250px;">
+									<div class="content" style="box-sizing: border-box; weidth: 60%;">
+										<header style="vertical-align: center;">
 											<h1>운동 모임</h1>
 											<h3>나에게 맞는 모임을 찾아보세요.</h3>
 											<h4>좌측 사이드 바에서 관심 운동과 관심 지역을 선택할 수 있습니다.</h4>
 										</header>
 									</div>
-									<span class="image object" style="text-align: center; width: 450px;">
-										<img src="../images/main/club2.png" style="width:350px; "/>
+									<span class="image object" style="text-align: center; width: 40%; margin: 0;">
+										<img src="../images/main/club2.png" style="width: 300px; margin: 0;"/>
 									</span>
 								</section>
 
 							<!-- Section -->
-							    						
 								<section>
 									<header class="major">
 										<h2>회원님을 위한 모임 추천</h2>
@@ -57,17 +57,20 @@
 											</span>
 											<div class="content" style="margin:  0, 0, 100px, 0;">
 											 <div style="width:287px;">
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); ">테니스</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); ">D-2</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); ">모집중</span>
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); font-weight: bold; ">테니스</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); font-weight: bold; ">D-2</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); font-weight: bold; ">모집중</span>
 											 </div>
 											    <br>
 												<h3>조고비치가 되어 봅시다</h3>
 												<span>
 												  <img src="../images/general/locationPin.png" style="width:10px" />
 												</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">구로동</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">7.9(일) 오후 2:20</span>
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">구로동</span>
+												&nbsp;
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">7.9(일) 오후 2:20</span>
 											</div>
 										</article>
 										<article>
@@ -76,17 +79,20 @@
 											</span>
 											<div class="content" style="margin:  0, 0, 100px, 0;">
 											 <div style="width:287px;">
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); ">클라이밍</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); ">D-5</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); ">모집중</span>
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); font-weight: bold; ">클라이밍</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); font-weight: bold; ">D-5</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); font-weight: bold; ">모집중</span>
 											 </div>
 											    <br>
 												<h3>롯데월드 타워 오를 사람!</h3>
 												<span>
 												  <img src="../images/general/locationPin.png" style="width:10px" />
 												</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">구로동</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">7.12(수) 오후 12:30</span>
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">구로동</span>
+												&nbsp;
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">7.12(수) 오후 12:30</span>
 											</div>
 										</article>
 										
@@ -100,23 +106,26 @@
 										<h2>회원님을 기다리는 모임들</h2>
 									</header>
 									<div class="features">
-										<article>
+									  <article>
 											<span style="margin: 25px;">
 											  <img src="../images/sports/tennisIcon.png" style="width:150px;" />
 											</span>
 											<div class="content" style="margin:  0, 0, 100px, 0;">
 											 <div style="width:287px;">
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); ">테니스</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); ">D-2</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); ">모집중</span>
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); font-weight: bold; ">테니스</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); font-weight: bold; ">D-2</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); font-weight: bold; ">모집중</span>
 											 </div>
 											    <br>
 												<h3>조고비치가 되어 봅시다</h3>
 												<span>
 												  <img src="../images/general/locationPin.png" style="width:10px" />
 												</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">구로동</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">7.9(일) 오후 2:20</span>
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">구로동</span>
+												&nbsp;
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">7.9(일) 오후 2:20</span>
 											</div>
 										</article>
 										<article>
@@ -125,36 +134,42 @@
 											</span>
 											<div class="content" style="margin:  0, 0, 100px, 0;">
 											 <div style="width:287px;">
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); ">클라이밍</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); ">D-5</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); ">모집중</span>
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); font-weight: bold; ">클라이밍</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); font-weight: bold; ">D-5</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); font-weight: bold; ">모집중</span>
 											 </div>
 											    <br>
 												<h3>롯데월드 타워 오를 사람!</h3>
 												<span>
 												  <img src="../images/general/locationPin.png" style="width:10px" />
 												</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">구로동</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">7.12(수) 오후 12:30</span>
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">구로동</span>
+												&nbsp;
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">7.12(수) 오후 12:30</span>
 											</div>
 										</article>
-										<article>
+									  <article>
 											<span style="margin: 25px;">
 											  <img src="../images/sports/tennisIcon.png" style="width:150px;" />
 											</span>
 											<div class="content" style="margin:  0, 0, 100px, 0;">
 											 <div style="width:287px;">
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); ">테니스</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); ">D-2</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); ">모집중</span>
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); font-weight: bold; ">테니스</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); font-weight: bold; ">D-2</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); font-weight: bold; ">모집중</span>
 											 </div>
 											    <br>
 												<h3>조고비치가 되어 봅시다</h3>
 												<span>
 												  <img src="../images/general/locationPin.png" style="width:10px" />
 												</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">구로동</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">7.9(일) 오후 2:20</span>
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">구로동</span>
+												&nbsp;
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">7.9(일) 오후 2:20</span>
 											</div>
 										</article>
 										<article>
@@ -163,36 +178,42 @@
 											</span>
 											<div class="content" style="margin:  0, 0, 100px, 0;">
 											 <div style="width:287px;">
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); ">클라이밍</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); ">D-5</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); ">모집중</span>
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); font-weight: bold; ">클라이밍</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); font-weight: bold; ">D-5</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); font-weight: bold; ">모집중</span>
 											 </div>
 											    <br>
 												<h3>롯데월드 타워 오를 사람!</h3>
 												<span>
 												  <img src="../images/general/locationPin.png" style="width:10px" />
 												</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">구로동</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">7.12(수) 오후 12:30</span>
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">구로동</span>
+												&nbsp;
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">7.12(수) 오후 12:30</span>
 											</div>
 										</article>
-										<article>
+									  <article>
 											<span style="margin: 25px;">
 											  <img src="../images/sports/tennisIcon.png" style="width:150px;" />
 											</span>
 											<div class="content" style="margin:  0, 0, 100px, 0;">
 											 <div style="width:287px;">
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); ">테니스</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); ">D-2</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); ">모집중</span>
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); font-weight: bold; ">테니스</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); font-weight: bold; ">D-2</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); font-weight: bold; ">모집중</span>
 											 </div>
 											    <br>
 												<h3>조고비치가 되어 봅시다</h3>
 												<span>
 												  <img src="../images/general/locationPin.png" style="width:10px" />
 												</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">구로동</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">7.9(일) 오후 2:20</span>
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">구로동</span>
+												&nbsp;
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">7.9(일) 오후 2:20</span>
 											</div>
 										</article>
 										<article>
@@ -201,36 +222,42 @@
 											</span>
 											<div class="content" style="margin:  0, 0, 100px, 0;">
 											 <div style="width:287px;">
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); ">클라이밍</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); ">D-5</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); ">모집중</span>
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); font-weight: bold; ">클라이밍</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); font-weight: bold; ">D-5</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); font-weight: bold; ">모집중</span>
 											 </div>
 											    <br>
 												<h3>롯데월드 타워 오를 사람!</h3>
 												<span>
 												  <img src="../images/general/locationPin.png" style="width:10px" />
 												</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">구로동</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">7.12(수) 오후 12:30</span>
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">구로동</span>
+												&nbsp;
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">7.12(수) 오후 12:30</span>
 											</div>
 										</article>
-										<article>
+									  <article>
 											<span style="margin: 25px;">
 											  <img src="../images/sports/tennisIcon.png" style="width:150px;" />
 											</span>
 											<div class="content" style="margin:  0, 0, 100px, 0;">
 											 <div style="width:287px;">
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); ">테니스</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); ">D-2</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); ">모집중</span>
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); font-weight: bold; ">테니스</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); font-weight: bold; ">D-2</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); font-weight: bold; ">모집중</span>
 											 </div>
 											    <br>
 												<h3>조고비치가 되어 봅시다</h3>
 												<span>
 												  <img src="../images/general/locationPin.png" style="width:10px" />
 												</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">구로동</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">7.9(일) 오후 2:20</span>
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">구로동</span>
+												&nbsp;
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">7.9(일) 오후 2:20</span>
 											</div>
 										</article>
 										<article>
@@ -239,36 +266,42 @@
 											</span>
 											<div class="content" style="margin:  0, 0, 100px, 0;">
 											 <div style="width:287px;">
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); ">클라이밍</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); ">D-5</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); ">모집중</span>
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); font-weight: bold; ">클라이밍</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); font-weight: bold; ">D-5</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); font-weight: bold; ">모집중</span>
 											 </div>
 											    <br>
 												<h3>롯데월드 타워 오를 사람!</h3>
 												<span>
 												  <img src="../images/general/locationPin.png" style="width:10px" />
 												</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">구로동</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">7.12(수) 오후 12:30</span>
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">구로동</span>
+												&nbsp;
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">7.12(수) 오후 12:30</span>
 											</div>
 										</article>
-										<article>
+									  <article>
 											<span style="margin: 25px;">
 											  <img src="../images/sports/tennisIcon.png" style="width:150px;" />
 											</span>
 											<div class="content" style="margin:  0, 0, 100px, 0;">
 											 <div style="width:287px;">
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); ">테니스</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); ">D-2</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); ">모집중</span>
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); font-weight: bold; ">테니스</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); font-weight: bold; ">D-2</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); font-weight: bold; ">모집중</span>
 											 </div>
 											    <br>
 												<h3>조고비치가 되어 봅시다</h3>
 												<span>
 												  <img src="../images/general/locationPin.png" style="width:10px" />
 												</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">구로동</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">7.9(일) 오후 2:20</span>
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">구로동</span>
+												&nbsp;
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">7.9(일) 오후 2:20</span>
 											</div>
 										</article>
 										<article>
@@ -277,23 +310,28 @@
 											</span>
 											<div class="content" style="margin:  0, 0, 100px, 0;">
 											 <div style="width:287px;">
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); ">클라이밍</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); ">D-5</span>
-											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); ">모집중</span>
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); font-weight: bold; ">클라이밍</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(144, 238, 144, 0.25); font-weight: bold; ">D-5</span>
+											    &nbsp;
+											    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); font-weight: bold; ">모집중</span>
 											 </div>
 											    <br>
 												<h3>롯데월드 타워 오를 사람!</h3>
 												<span>
 												  <img src="../images/general/locationPin.png" style="width:10px" />
 												</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">구로동</span>
-												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; ">7.12(수) 오후 12:30</span>
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">구로동</span>
+												&nbsp;
+												<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">7.12(수) 오후 12:30</span>
 											</div>
 										</article>
+									  
 										
 										
 										
-										<div class="col-12" style="margin: 100px auto;">
+										
+										<div class="col-12" style="margin: 150px auto;">
 											<ul class="pagination">
 												<li><span class="button">Prev</span></li>
 												<li><a href="#" class="page active">1</a></li>
