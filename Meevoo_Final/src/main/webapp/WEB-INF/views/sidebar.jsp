@@ -37,9 +37,9 @@
 					<li>
 						<span class="opener">내 페이지</span>
 						<ul>
-							<li><a href="index">내 프로필</a></li>
-							<li><a href="index">내 운동모임</a></li>
-							<li><a href="index">내 체육시설</a></li>
+							<li><a href="/mypage/myProfil">내 정보</a></li>
+							<li><a href="/mypage/myClub">내 운동모임</a></li>
+							<li><a href="/mypage/mySport">내 체육시설</a></li>
 						</ul>
 					</li>
 					<li>

@@ -2,14 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
-/* if("${loginCheck}"== "success"){
+if("${loginCheck}"== "success"){
 	alert("${sessionName}님 로그인 되었습니다.");
 }
 
 function logoutBtn(){
 	alert("로그아웃이 되었습니다.");
 	location.href="/member/logout";
-} */
+}
 
 </script>
 

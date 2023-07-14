@@ -40,7 +40,7 @@
 											<p>관심사 기반 커뮤니티, <strong>Meevoo</strong></p>
 										</header>
 										<ul class="actions">
-											<li><a href="#" class="button big">더 알아보기</a></li>
+											<li><a href="/member/agree" class="button big">더 알아보기</a></li>
 										</ul>
 									</div>
 									<span class="image object">
