@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,9 +60,9 @@
 							 <li>
 							   <span class="opener">운동모임</span>
 								 <ul>
-									 <li><a href="/club/club">모임목록</a></li>
-									 <li><a href="/club/club">모임 검색하기</a></li>
-								 	 <li><a href="/club/cWrite">모임 작성하기</a></li>
+									 <li><a href="adminStatic">운동모임 홈</a></li>
+									 <li><a href="index">운동모임 게시판</a></li>
+								 	 <li><a href="index">운동모임 작성</a></li>
 								 </ul>
 						     </li>
 							 <li>
@@ -74,17 +75,17 @@
 							 <li>
 							   <span class="opener">내 페이지</span>
 								 <ul>
-									<li><a href="/mypage/myprofil">내 프로필</a></li>
-									<li><a href="/mypage/myprofil2">내 운동모임</a></li>
-									<li><a href="/mypage/myprofiltest">내 체육시설</a></li>
+									<li><a href="index">내 프로필</a></li>
+									<li><a href="index">내 운동모임</a></li>
+									<li><a href="index">내 체육시설</a></li>
 								</ul>
 							 </li>
 								<li>
 								<span class="opener">고객센터</span>
 									<ul>
-										<li><a href="/notice/notice">공지사항</a></li>
-										<li><a href="/notice/FAQ">FAQ</a></li>
-										<li><a href="/notice/QnA">Q&A</a></li>
+										<li><a href="notice">공지사항</a></li>
+										<li><a href="FAQ">FAQ</a></li>
+										<li><a href="QnA">Q&A</a></li>
 									</ul>
 								</li>
 								<li>
@@ -99,7 +100,7 @@
 								<li>
 								<span class="opener">게시글 관리</span>
 									<ul>
-										<li><a href="/admin/totalUser">전체 게시글 리스트</a></li>
+										<li><a href="/admin/totalWrite">전체 게시글 리스트</a></li>
 										<li>가능하면 게시글 / 후기 두개로 탭 나눠서 해보기</li>
 									</ul>
 								</li>
@@ -124,7 +125,7 @@
 							
 								<!-- Header Start -->
 									<header id="header">
-										<a href="adminStatic" class="logo"><strong>Meevoo</strong> by 채연</a>
+										<a href="/main" class="logo"><strong>Meevoo</strong> by 채연</a>
 										<ul class="icons">
 											<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
@@ -142,7 +143,7 @@
 						                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
 						                            <i class="fa fa-chart-line fa-3x text-primary"></i>
 						                            <div class="ms-3">
-						                                <p class="mb-2">접속자수</p>
+						                                <p class="mb-2">접속자</p>
 						                                <h6 class="mb-0">$1234</h6>
 						                            </div>
 						                        </div>
@@ -151,7 +152,7 @@
 						                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
 						                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
 						                            <div class="ms-3">
-						                                <p class="mb-2">신규가입자수</p>
+						                                <p class="mb-2">신규가입자</p>
 						                                <h6 class="mb-0">$1234</h6>
 						                            </div>
 						                        </div>
@@ -160,7 +161,7 @@
 						                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
 						                            <i class="fa fa-chart-area fa-3x text-primary"></i>
 						                            <div class="ms-3">
-						                                <p class="mb-2">최근게시물수</p>
+						                                <p class="mb-2">최근게시물</p>
 						                                <h6 class="mb-0">$1234</h6>
 						                            </div>
 						                        </div>
@@ -169,7 +170,7 @@
 						                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
 						                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
 						                            <div class="ms-3">
-						                                <p class="mb-2">최근댓글수</p>
+						                                <p class="mb-2">최근댓글</p>
 						                                <h6 class="mb-0">$1234</h6>
 						                            </div>
 						                        </div>
@@ -185,8 +186,8 @@
 						                    <div class="col-sm-12 col-xl-6">
 						                        <div class="bg-light text-center rounded p-4">
 						                            <div class="d-flex align-items-center justify-content-between mb-4">
-						                                <h6 class="mb-0">총 회원수 / 신규회원 / 탈퇴회원</h6>
-						                                <a href="totalUser">전체보기</a>
+						                                <h4 class="mb-0">총 회원수 / 신규회원 / 탈퇴회원</h6>
+						                                <a href="/admin/totalUser">전체보기</a>
 						                            </div>
 						                            <canvas id="worldwide-sales"></canvas>
 						                        </div>
@@ -194,8 +195,8 @@
 						                    <div class="col-sm-12 col-xl-6">
 						                        <div class="bg-light text-center rounded p-4">
 						                            <div class="d-flex align-items-center justify-content-between mb-4">
-						                                <h6 class="mb-0">모임게시글수 / 시설후기 게시글수</h6>
-						                                <a href="totalWrite">전체보기</a>
+						                                <h4 class="mb-0">모임게시글수 / 시설후기 게시글수</h6>
+						                                <a href="/admin/totalWrite">전체보기</a>
 						                            </div>
 						                            <canvas id="salse-revenue"></canvas>
 						                        </div>
@@ -212,7 +213,7 @@
 								             <div class="col-sm-12 col-md-6 col-xl-4">
 						                        <div class="h-100 bg-light rounded p-4">
 						                            <div class="d-flex align-items-center justify-content-between mb-4">
-						                                <h6 class="mb-0">신고 게시물</h6>
+						                                <h4 class="mb-0">신고 게시물</h6>
 						                                <a href="">전체 보기</a>
 						                            </div>
 						                            <div class="d-flex align-items-center border-bottom py-2">
@@ -268,7 +269,7 @@
 								             <div class="col-sm-12 col-md-6 col-xl-4">
 						                        <div class="h-100 bg-light rounded p-4">
 						                            <div class="d-flex align-items-center justify-content-between mb-4">
-						                                <h6 class="mb-0">최근 게시물</h6>
+						                                <h4 class="mb-0">최근 게시물</h6>
 						                                <a href="">전체 보기</a>
 						                            </div>
 						                            <div class="d-flex align-items-center border-bottom py-2">
@@ -390,10 +391,10 @@
 			<script src="../js/browser.min.js"></script>
 			<script src="../js/breakpoints.min.js"></script>
 			<script src="../js/util.js"></script>
-			<script src="../js/main_front.js"></script>
+			<script src="../js/main.js"></script>
 
     <!-- Template Javascript -->
-    <script src="../js/main.js"></script>
+    <script src="../js/main_yang.js"></script>
 </body>
 
 </html>

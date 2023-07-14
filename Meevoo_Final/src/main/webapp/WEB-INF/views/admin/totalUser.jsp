@@ -5,7 +5,7 @@
 <!DOCTYPE HTML>
 <html>
    <head>
-      <title>FAQ</title>
+      <title>전체 회원 목록</title>
       <!-- 제이쿼리 최신 -->
       <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
       <meta charset="utf-8" />
@@ -74,20 +74,20 @@
 							        				</div>
 						                        </div> -->
 						                        <div class="option_section" style="width:300px;">
-					                                <span class="first_tit" style="float:left;text-align : center" >가입 날짜 :</span>
+					                                <span class="first_tit" style="float:left;text-align : center" ><br>가입 날짜 :</span>
 					                                <input type="text" class="Datepicker cald_St hasDatepicker" id="dp1689135199476" style="width:100px; float:left;">
 					                                <span style="float:left;"> ~ </span>
 					                                <input type="text" class="Datepicker cald_St hasDatepicker" id="dp1689135199477" style="width:100px; float:left;">
 						                        </div>
 						                        <div class="option_section">
-					                                <span style="float:left;">현재 상태 :</span>
+					                                <span style="float:left;"><br>현재 상태 :</span>
 					                                <select style="width:100px; float:left;">
 					                                    <option>가입</option>
 					                                    <option>탈퇴</option>
 					                                </select>
 						                        </div>
 						                        <div class="option_section">
-					                            	<span style="float:left;">회원 이름 검색 :</span>
+					                            	<span style="float:left;"><br>회원 이름 검색 :</span>
 					                            	<input type="text" style="width:120px; float:left;">
 					                                <button class="btn_small btn_blue" style="float:left;">검색</button>
 						                        </div>
@@ -131,22 +131,36 @@
 						                                    <col width="*%">
 						                                </colgroup>
 						                                <thead>
-						                                    <tr>
-						                                        <th>ID</th>
-						                                        <th>Photo</th>
-						                                        <th>Name</th>
-						                                        <th>Application Type</th>
-						                                        <th>IF ID</th>
-						                                        <th>IP</th>
-						                                        <th>Select</th>
-						                                        <th>State</th>
-						                                        <th>Group</th>
+						                                    <!-- <tr> -->
+						                                        <th>아이디</th>
+						                                        <th>패스워드</th>
+						                                        <th>이름</th>
+						                                        <th>닉네임</th>
+						                                        <th>이메일</th>
+						                                        <th>회원가입일자</th>
+						                                        <th>회원온도</th>
+						                                        <th>탈퇴여부</th>
 						                                        <th>Edit</th>
-						                                    </tr>
+						                                    <!-- </tr> -->
 						                                </thead>
+						                                
 						                                <tbody>
-						                                    <tr>
-						                                    	<td>1</td>
+						                                <!-- userList 가져오기!! -->
+						                                <c:forEach var="userList" items="${list}">
+						                                   <tr>
+															  <td>${userList.id}</td>
+															  <td>${userList.pw}</td>
+															  <td><a href="/" class="lightgray">${userList.usernm}</a></td>
+															  <td>${userList.nicknm}</td>
+															  <td>${userList.email}</td>
+															  <td><fmt:formatDate value="${userList.joindate}" pattern="yyyy-MM-dd"/></td>
+															  <td>${userList.totaltemp}</td>
+															  <td>${userList.nowjoin}</td>
+						                                      <td><button class="btn_simple btn_blue">수정</button><button class="btn_simple btn_green">삭제</button></td>
+														    </tr>
+						                                </c:forEach>
+						                                
+						                                      <!-- <td>1</td>
 						                                        <td><div class="id_photo"><img src="./Admin Template - Light_files/icon_loginID.png"></div></td>
 						                                        <td>Data Name</td>
 						                                        <td>222</td>
@@ -155,45 +169,10 @@
 						                                        <td>OFF</td>
 						                                        <td>OFF</td>
 						                                        <td>AA</td>
-						                                        <td><button class="btn_simple btn_blue">확인</button><button class="btn_simple btn_green">수정</button></td>
-						                                    </tr>
-						                                    <tr>
-						                                    	<td>1</td>
-						                                        <td><div class="id_photo"><img src="./Admin Template - Light_files/icon_loginID.png"></div></td>
-						                                        <td>Data Name</td>
-						                                        <td>222</td>
-						                                        <td>v0.0.1</td>
-						                                        <td>20,840,512</td>
-						                                        <td>OFF</td>
-						                                        <td>OFF</td>
-						                                        <td>AA</td>
-						                                        <td><button class="btn_simple btn_blue">확인</button><button class="btn_simple btn_green">수정</button></td>
-						                                    </tr>
-						                                    <tr>
-						                                    	<td>1</td>
-						                                        <td><div class="id_photo"><img src="./Admin Template - Light_files/icon_loginID.png"></div></td>
-						                                        <td>Data Name</td>
-						                                        <td>222</td>
-						                                        <td>v0.0.1</td>
-						                                        <td>20,840,512</td>
-						                                        <td>OFF</td>
-						                                        <td>OFF</td>
-						                                        <td>AA</td>
-						                                        <td><button class="btn_simple btn_blue">확인</button><button class="btn_simple btn_green">수정</button></td>
-						                                    </tr>
-						                                    <tr>
-						                                    	<td>1</td>
-						                                        <td><div class="id_photo"><img src="./Admin Template - Light_files/icon_loginID.png"></div></td>
-						                                        <td>Data Name</td>
-						                                        <td>222</td>
-						                                        <td>v0.0.1</td>
-						                                        <td>20,840,512</td>
-						                                        <td>OFF</td>
-						                                        <td>OFF</td>
-						                                        <td>AA</td>
-						                                        <td><button class="btn_simple btn_blue">확인</button><button class="btn_simple btn_green">수정</button></td>
-						                                    </tr>
+						                                        <td><button class="btn_simple btn_blue">확인</button><button class="btn_simple btn_green">수정</button></td> -->
+						                                   
 						                                </tbody>
+						                                
 						                            </table>
 												</div>
 												<!--table-->
@@ -295,7 +274,7 @@
          <script src="../js/browser.min.js"></script>
          <script src="../js/breakpoints.min.js"></script>
          <script src="../js/util.js"></script>
-         <script src="../js/main_front.js"></script>
+         <script src="../js/main.js"></script>
          <script type="text/javascript" src="./Admin Template - Light_files/dataTables.checkboxes.min.js.다운로드"></script>
 
    </body>
