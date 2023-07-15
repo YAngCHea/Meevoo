@@ -29,5 +29,10 @@ public class SportDto {
 	private int stotalpeo;
 	private int savgstar;
 	private int stotalpick;
+	private String imgurl1;
+	private String imgurl2;
+	private String imgurl3;
+	private String imgurl4;
+	private String imgurl5;
 	
 }

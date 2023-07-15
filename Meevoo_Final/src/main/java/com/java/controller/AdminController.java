@@ -18,7 +18,8 @@ import com.java.service.AdminService;
 public class AdminController {
 
 	
-	@Autowired AdminService adminService;
+	@Autowired 
+	AdminService adminService;
 	
 	
 	@RequestMapping("/admin/adminStatic")

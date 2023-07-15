@@ -42,19 +42,4 @@
 		from sportlist order by sfno asc) where sfno=#{sfno})
 	</select>
 	
-	
-	<!--  -->
-	<!-- 게시글 전체 가져오기 -->
-	<!-- 
-	<select id="selectAll" resultType="com.java.dto.SportDto">
-		select * from sport order by fcltyno asc
-	</select> 
-	-->
-	
-	<!-- 게시글 1개 가져오기 -->
-	<!--
-	<select id="selectOne" resultType="com.java.dto.SportDto">
-		select * from sport where fcltyno=#{fcltyno}
-	</select>
-	-->
 </mapper>

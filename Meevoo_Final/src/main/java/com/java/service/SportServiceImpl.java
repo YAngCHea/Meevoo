@@ -23,7 +23,6 @@ public class SportServiceImpl implements SportService {
 		
 		//게시글 전체개수
 		int listCount = sportMapper.selectListCount();
-		System.out.println("selectAll listCount : "+listCount);
 
 		//최대페이지
 		int maxPage = (int)Math.ceil((double)listCount/10); // 최대페이지(전체 게시물/10 -> 4개page)
@@ -65,23 +64,4 @@ public class SportServiceImpl implements SportService {
 		return map;
 	}
 	
-	
-	
-	
-//	@Override
-//	public ArrayList<SportDto> selectAll() {
-//		ArrayList<SportDto> list = new ArrayList<>();
-//
-//		// 게시글 전체 가져오기
-//		list = sportMapper.selectAll();
-//		return list;
-//	}
-//
-//	@Override
-//	public SportDto selectOne(int fcltyno) {
-//		// 게시글 1개 가져오기 SportDto
-//		SportDto sdto = sportMapper.selectOne(fcltyno);
-//		return sdto;
-//	}
-
 }

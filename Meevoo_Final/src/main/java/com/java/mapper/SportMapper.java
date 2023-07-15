@@ -22,12 +22,4 @@ public interface SportMapper {
 	
 	//게시글 전체개수
 	int selectListCount();
-	
-//	//게시글 전체 가져오기
-//	ArrayList<SportDto> selectAll();
-//
-//	//게시글 1개 가져오기
-//	SportDto selectOne(int fcltyno);
-
-	
 }

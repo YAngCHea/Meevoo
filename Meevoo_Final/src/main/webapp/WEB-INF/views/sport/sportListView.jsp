@@ -71,30 +71,21 @@
 					<div id="main">
 						<div class="inner">
 
-							<!-- Header -->
-								<header id="header">
-									<a href="index" class="logo"><strong>Meevoo</strong> by ?</a>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
-									</ul>
-								</header>
+							<!-- Top -->
+							<%@ include file="../top.jsp" %>
 
 							<!-- Banner -->
-								<section id="banner">
+								<!-- <section id="banner">
 									<div class="content">
 										<header style="text-align: center;">
 											<h1>Meevoo 체육시설 상세 페이지</h1>
 											<p>section 있을때마다 아래와 같이 줄이 생김</p>
 										</header>
 									</div>
-								</section>
+								</section> -->
 
 							<!-- Section -->
-								<section>
+								<section class="sportlistview">
 									<!-- 상세설명 css -> main.css(63번째)  -->
 									<div class="viewHead">
 										<div class="subject">
@@ -102,11 +93,18 @@
 												<li>${sdto.sfno}. ${sdto.sfnm}</li>
 											</ul>
 										</div>
+										<div class="imgurl">
+											<ul>
+												<li><a href="${sdto.imgurl1}" target="_blank"><img src="${sdto.imgurl1}"></a></li>
+												<li><a href="${sdto.imgurl2}" target="_blank"><img src="${sdto.imgurl2}"></a></li>
+												<li><a href="${sdto.imgurl3}" target="_blank"><img src="${sdto.imgurl3}"></a></li>
+												<li><a href="${sdto.imgurl4}" target="_blank"><img src="${sdto.imgurl4}"></a></li>
+												<li><a href="${sdto.imgurl5}" target="_blank"><img src="${sdto.imgurl5}"></a></li>
+											</ul>
+										</div>
 										<div class="day">
 											<p class="txt">운동종목<span>${sdto.scate}</span></p>
 											<p class="txt">동이름<span>${sdto.dongcate}</span></p>
-										</div>
-										<div class="day">
 											<p class="txt">주소<span>${sdto.addr}</span></p>
 										</div>
 										<div class="day">
@@ -120,42 +118,57 @@
 												<p class="txt">홈페이지URL<span>X</span></p>
 											</c:if>
 											<c:if test="${sdto.homepage != null}">
-												<p class="txt">홈페이지URL<span><a href="${sdto.homepage}" style="color: blue;">${bdto.homepage}</a></span></p>
+												<p class="txt">홈페이지URL<span><a href="${sdto.homepage}">${sdto.homepage}</a></span></p>
 											</c:if>
-										</div>
-										<div class="day">
 											<p class="txt">별점<span>${sdto.savgstar}</span></p>
-											<p class="txt">별점<span>★★★★★</span></p>
 										</div>
-										<div class="day">
+										<div class="convenient">
 											<c:if test="${sdto.wifi == 'O'}">
-												<p class="txt">와이파이보유여부</br><span>dfdf</span></p>
+												<img src="/convenient/wifiO.png">
 											</c:if>
 											<c:if test="${sdto.wifi == 'X'}">
-												<p class="txt">와이파이보유여부</br><span>dfdf</span></p>
+												<img src="/convenient/wifiX.png">
 											</c:if>
-											<p class="txt">반려동물가능여부<span>${sdto.pet}</span></p>
-											<p class="txt">주차장존재여부<span>${sdto.parking}</span></p>
-											<p class="txt">주출입구경사여부<span>${sdto.slope}</span></p>
+											<c:if test="${sdto.pet == 'O'}">
+												<img src="/convenient/petO.png">
+											</c:if>
+											<c:if test="${sdto.pet == 'X'}">
+												<img src="/convenient/petX.png">
+											</c:if>
+											<c:if test="${sdto.parking == 'O'}">
+												<img src="/convenient/parkingO.png">
+											</c:if>
+											<c:if test="${sdto.parking == 'X'}">
+												<img src="/convenient/parkingX.png">
+											</c:if>
+											<c:if test="${sdto.slope == 'O'}">
+												<img src="/convenient/slopeO.png">
+											</c:if>
+											<c:if test="${sdto.slope == 'X'}">
+												<img src="/convenient/slopeX.png">
+											</c:if><br>
+											<p class="txt">와이파이</p>
+											<p class="txt">반려동물</p>
+											<p class="txt">주차장</p>
+											<p class="txt">출입구경사로</p>
 										</div>
-										<br>
 									<!-- 지도 데이터 불러오기 -->
-									<div id="map" style="width:70%;height:350px;"></div>
+									<div id="map"></div>
 									
 									</div>
 									<br>
 									<!-- Buttons 수정 ->  main.css (1294번째)-->
 									<ul class="actions">
-										<li><a class="button" onclick="sPickBtn()">찜하기</a></li>
-										<li><a href="sportnotice" class="button primary">시설 목록으로</a></li>
+										<li><a class="button" onclick="sPickBtn()">시설 찜하기</a></li>
+										<li><a href="sportList?&page=${page}" class="button primary">시설 목록으로</a></li>
 									</ul>
 								</section>
 								
 								<!-- 시설 리뷰 -->
 								<!-- 리뷰 css -> main.css (78번째) -->
-								<section>
+								<section class="sportreview">
 									<div class="content" style="text-align: center;">
-										<h4>${sdto.sfnm} 시설 리뷰</h4>
+										<li class="name">${sdto.sfnm} 시설 리뷰</li>
 									</div>
 									<div class="replyBox">
 										<br>
@@ -234,7 +247,8 @@
 										</ul>
 									</div>
 								</fieldset>
-									<!-- //댓글 -->
+								<!-- //댓글 -->
+								
 								</section>
 								<ul class="pagination" >
 									<li><span class="button disabled">Prev</span></li>
@@ -247,72 +261,17 @@
 									<li><a href="#" class="page">9</a></li>
 									<li><a href="#" class="button">Next</a></li>
 								</ul>
-
+								
+						<br>	
+						<!-- Footer -->
+						<%@ include file="../footer.jsp" %>
 						</div>
+						
 					</div>
 
+					
 				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
-
-							<!-- Search -->
-								<section id="search" class="alt">
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="Search" />
-									</form>
-								</section>
-
-							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>Menu</h2>
-									</header>
-									<ul>
-										<li><a href="/index">홈으로</a></li>
-										<li><a href="/elements">elements 페이지로</a></li>
-										<li><a href="/generic">generic 페이지로</a></li>
-										<!-- opener 옵션 1,2,3 -->
-										<li>
-											<span class="opener">운동모임</span>
-											<ul>
-												<li><a href="/index">운동모임 홈</a></li>
-												<li><a href="/index">운동모임 게시판</a></li>
-												<li><a href="/index">운동모임 작성</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">체육시설</span>
-											<ul>
-												<li><a href="sportnotice">체육시설 게시판</a></li>
-												<li>체육시설 게시판으로 이동하게 코드 설정하기</li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">마이페이지</span>
-											<ul>
-												<li><a href="/index">내 프로필</a></li>
-												<li><a href="/index">내 운동모임</a></li>
-												<li><a href="/index">내 체육시설</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">고객센터</span>
-											<ul>
-												<li><a href="/index">공지사항</a></li>
-												<li><a href="/index">FAQ / Q&A</a></li>
-											</ul>
-										</li>
-									</ul>
-								</nav>
-
-							<!-- Footer -->
-								<footer id="footer">
-									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-								</footer>
-
-						</div>
-					</div>
-
+				<%@ include file="../sidebar.jsp" %>
 			</div>
 			
 			<!-- 발급받은 APP KEY를 사용하여 지도 불러오기 -->
@@ -351,7 +310,25 @@
 			});
 			
 			// 마커가 지도 위에 표시되도록 설정합니다
-			marker.setMap(map);  
+			marker.setMap(map);
+			
+			// 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+			var content = '<div class="customoverlay">' +
+			    		  '<a>' +
+			    		  '<span class="title">${sdto.sfnm}</span>' +
+			    		  '</a>' +
+			    		  '</div>';
+
+			// 커스텀 오버레이가 표시될 위치입니다 
+			var position = new kakao.maps.LatLng('${sdto.lat}', '${sdto.lng}');  
+
+			// 커스텀 오버레이를 생성합니다
+			var customOverlay = new kakao.maps.CustomOverlay({
+			    map: map,
+			    position: position,
+			    content: content,
+			    yAnchor: 1 
+			});
 			</script>
 			<!-- Scripts -->
 			<script src="../js/jquery.min.js"></script>

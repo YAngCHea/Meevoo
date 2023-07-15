@@ -18,8 +18,8 @@ public class SportController {
 	@Autowired
 	SportService sportService;
 	
-	@RequestMapping("/sport/sportnotice")
-	public String sportnotice(@RequestParam(defaultValue ="1")int page,
+	@RequestMapping("/sport/sportList")
+	public String sportList(@RequestParam(defaultValue ="1")int page,
 			Model model) {
 
 		// 게시글 전체 가져오기
@@ -32,12 +32,12 @@ public class SportController {
 		model.addAttribute("endPage", map.get("endPage"));
 		model.addAttribute("maxPage", map.get("maxPage"));
 
-		return "/sport/sportnotice";
-	}
+		return "/sport/sportList";
+	} // sportList
 	
 	
-	@RequestMapping("/sport/sportnoticeView")
-	public String noticeView(@RequestParam(defaultValue = "1") int sfno,
+	@RequestMapping("/sport/sportListView")
+	public String sportListView(@RequestParam(defaultValue = "1") int sfno,
 			int page, Model model) {
 
 		// 게시글 1개 가져오기
@@ -48,30 +48,7 @@ public class SportController {
 		model.addAttribute("nextDto", map.get("nextDto"));
 		
 		model.addAttribute("page", page);
-		return "/sport/sportnoticeView";
-	} // noticeView
-
-	
-//	@RequestMapping("/sport/sportnotice")
-//	public String sportnotice(Model model) {
-//
-//		ArrayList<SportDto> list = new ArrayList<>();
-//
-//		// 게시글 전체 가져오기
-//		list = sportService.selectAll();
-//		model.addAttribute("list", list);
-//
-//		return "/sport/sportnotice";
-//	}
-//----------------------------------------------------------------
-//	@RequestMapping("/sport/sportnoticeView")
-//	public String noticeView(int sfno, Model model) {
-//
-//		// 게시글 1개 가져오기
-//		SportDto sdto = sportService.selectOne(sfno);
-//		model.addAttribute("sdto", sdto);
-//
-//		return "/sport/sportnoticeView";
-//	} // noticeView
+		return "/sport/sportListView";
+	} // sportListView
 
 }

@@ -30,7 +30,7 @@ footer, header, hgroup, menu, nav, section {
 body {
   line-height: 1; }
 /* li 넣어서 점 사라지게 하기 */
-ol, ul, li {
+ol, ul, li{
   list-style: none; }
 
 blockquote, q {
@@ -62,18 +62,92 @@ input, select, textarea {
   
 /*명호가 설정한 css*/
 
+/*sportreview */
+#main {
+  -moz-flex-grow: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-grow: 1;
+  flex-grow: 1;
+  -moz-flex-shrink: 1;
+  -webkit-flex-shrink: 1;
+  -ms-flex-shrink: 1;
+  flex-shrink: 1;
+  width: 100%; }
+  #main > .inner {
+    padding: 0 6em 0.1em 6em ;
+    margin: 0 auto;
+    max-width: 110em; }
+    #main > .inner > .sportreview {
+      padding: 4em 0 4em 0 ;
+      border-top: solid 2px rgba(210, 215, 217, 0.75); }
+      #main > .inner > .sportreview:first-of-type {
+        border-top: 0 !important; }
+  @media screen and (max-width: 1680px) {
+    #main > .inner {
+      padding: 0 5em 0.1em 5em ; }
+      #main > .inner > .sportreview {
+        padding: 3em 0 3em 0 ; } }
+  @media screen and (max-width: 1280px) {
+    #main > .inner {
+      padding: 0 4em 0.1em 4em ; }
+      #main > .inner > .sportreview {
+        padding: 2em 0 2em 0 ; } }
+  @media screen and (max-width: 736px) {
+    #main > .inner {
+      padding: 0 2em 0.1em 2em ; }
+      #main > .inner > .sportreview {
+        padding: 1em 0 1em 0 ; } }
+
+/*sportListView section부분 수정*/
+#main {
+  -moz-flex-grow: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-grow: 1;
+  flex-grow: 1;
+  -moz-flex-shrink: 1;
+  -webkit-flex-shrink: 1;
+  -ms-flex-shrink: 1;
+  flex-shrink: 1;
+  width: 100%; }
+  #main > .inner {
+    padding: 0 6em 0.1em 6em ;
+    margin: 0 auto;
+    max-width: 110em; }
+    #main > .inner > .sportlistview {
+      padding: 0 0 4em 0 ;
+      border-top: solid 2px rgba(210, 215, 217, 0.75); }
+      #main > .inner > .sportlistview:first-of-type {
+        border-top: 0 !important; }
+  @media screen and (max-width: 1680px) {
+    #main > .inner {
+      padding: 0 5em 0.1em 5em ; }
+      #main > .inner > .sportlistview {
+        padding: 0 0 3em 0 ; } }
+  @media screen and (max-width: 1280px) {
+    #main > .inner {
+      padding: 0 4em 0.1em 4em ; }
+      #main > .inner > .sportlistview {
+        padding: 0 0 2em 0 ; } }
+  @media screen and (max-width: 736px) {
+    #main > .inner {
+      padding: 0 2em 0.1em 2em ; }
+      #main > .inner > .sportlistview {
+        padding: 0 0 1em 0 ; } }
+
+.sportmain {text-align: center;}
+
 .center-table {
   display: flex;
   justify-content: center; /* 가로 중앙 정렬 */
   align-items: center; /* 세로 중앙 정렬 */
-}
+  padding: 0 0 0 0;}
 
 
 /*1. 상세 페이지 테이블 목록 부분*/
 .viewHead{position:relative; width:100%; overflow:hidden;}
-.viewHead .subject{border-top:1px #5b524d solid; border-bottom:1px #5b524d solid; background:#ebebeb; word-break:keep-all; overflow:hidden;}
-.viewHead .subject ul{width:100%; padding:11px 20px 10px 20px; overflow:hidden;}
-.viewHead .subject ul li{float:left; font-size:14px; color:#444; font-weight:600; line-height:1.3;}
+.viewHead .subject{background:#ebebeb; word-break:keep-all; overflow:hidden;}
+.viewHead .subject ul{width:100%; padding:13px 0 12px 20px;}
+.viewHead .subject ul li{float:left; font-size:20px; color:#444; font-weight:600; line-height:1.3;}
 .viewHead .subject ul li.cate{width:76px; font-size:14px; color:#f7703c; font-weight:600;}
 .viewHead .day{position:relative; width:100%; font-size:14px; font-weight:600; color:#666; border-bottom:1px #d9d9d9 solid; overflow:hidden;}
 .viewHead .day p.txt{float:left; padding:13px 0 12px 0; margin:0 0 0 20px; color:#666;}
@@ -83,7 +157,32 @@ input, select, textarea {
 .viewHead .day p.appraisal span{padding:0 18px 0 14px;}
 .viewHead .day p.appraisal span img{padding:3px 0 0 0;}
 
-/*2. 시설 리뷰 목록 부분 margin:50px 0 30px 0;*/
+/*사진 넣는 div설정 (1371,1366)*/ 
+.viewHead .imgurl{border-top:1px #5b524d solid;overflow:hidden; height:auto;}
+.viewHead .imgurl ul{width:100%; display: flex; list-style: none; padding: 0; margin: 0}
+.viewHead .imgurl ul li {flex: 1;}
+.viewHead .imgurl ul li a img{width: 100%; height: 100%; cursor: pointer;}
+.viewHead .imgurl ul li a img:hover{transform: scale(1.5);}
+
+/*편의시설 유무 div 설정*/
+.viewHead .convenient{position:relative; width:100%; font-size:14px; font-weight:600; color:#666; overflow:hidden; margin:13px 0 0 0;}
+.viewHead .convenient p.txt{float:left; padding:0 0 12px 0; margin:0 0 0 30px; color:#666; }
+.viewHead .convenient p.txt span{font-size:13px; color:#666; font-weight:normal; padding:0 18px 0 14px;}
+.viewHead .convenient p.btn{position:absolute; right:20px; top:10px;}
+.viewHead .convenient p.appraisal{position:absolute; right:20px; top:13px; color:#666;}
+.viewHead .convenient p.appraisal span{padding:0 18px 0 14px;}
+.viewHead .convenient p.appraisal span img{padding:3px 0 0 0;}
+.viewHead .convenient img{max-width: 50px; height: auto; position: relative; left: 35px; margin-right:29px;}
+
+/*2. 지도 css*/
+#map{width:70%;height:400px;}
+.customoverlay {position:relative;bottom:85px;left:27px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;}
+.customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
+.customoverlay a {cursor:pointer;display:block;text-decoration:none;color:#000;text-align:center;border-radius:6px;font-size:14px;font-weight:bold;overflow:hidden;background: red;}
+.customoverlay .title {display:block;text-align:center;background:#fff;margin-right:35px;padding:10px 15px;font-size:14px;font-weight:bold;}
+.customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+
+/*3. 시설 리뷰 목록 부분 margin:50px 0 30px 0;*/
 .replyWrite{width:100%; overflow:hidden; display: flex; justify-content: center; align-items: center;}
 .replyWrite ul li{float:left;}
 .replyWrite ul li.in{position:relative; width:82%; padding:25px 0 0 0;}
@@ -91,8 +190,6 @@ input, select, textarea {
 .replyWrite ul li.btn{margin:1px 0 0 10px;}
 .replyWrite p.ntic{clear:both; padding:5px 0;}
 .replyType{width:70%; height:58px; border:1px #d9d9d9 solid; padding:0; font-family:'Nanum Gothic';}
-.replyBtn{display:block; width:110px; height:85px; line-height:85px; color:#fff; font-size:14px; font-weight:600; background:#5a524c; text-align:center;}
-.replyBtn:hover{color:#fff; text-decoration:none;}
 .replyBox{width:100%; border-top:1px #d9d9d9 solid; overflow:hidden;}
 .replyBox ul{position:relative; border-bottom:1px #d9d9d9 solid; margin:15px 0 0 0; padding:0 20px 15px 20px;}
 .replyBox ul li.name{font-size:14px; font-weight:600; color:#555; padding:0 0 10px 0;}
@@ -101,36 +198,15 @@ input, select, textarea {
 .replyBox ul li.btn{text-align:right; height:20px; padding:3px 0 0 0;}
 .replyBox ul li.btn .rebtn{display:inline-block; width:43px; height:23px; line-height:22px; color:#777; font-weight:600; text-align:center; background:url('../images/btn/btn_daybtn.gif') left top no-repeat;}
 .replyBox ul li.btn .rebtn:hover{color:#777;}
-.replynum{width:82px; height:20px; line-height:20px; border:1px #d9d9d9 solid; padding:0 0 0 5px;}
-.finReply{margin:50px 0 0 0;}
 
 /*3. 리뷰 별점 달기*/
-#myform fieldset{
-    display: inline-block;
-    direction: rtl;
-    border:0;
-}
-#myform fieldset legend{
-    text-align: right;
-}
-#myform input[type=radio]{
-    display: none;
-}
-
-#myform label{
-    font-size: 20px;
-    color: transparent;
-    text-shadow: 0 0 0 #f0f0f0;
-}
-#myform label:hover{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#myform label:hover ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#myform input[type=radio]:checked ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
+#myform fieldset{display: inline-block; direction: rtl; border:0;}
+#myform fieldset legend{text-align: right;}
+#myform input[type=radio]{display: none;}
+#myform label{font-size: 20px; color: transparent; text-shadow: 0 0 0 #f0f0f0;}
+#myform label:hover{text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);}
+#myform label:hover ~ label{text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);}
+#myform input[type=radio]:checked ~ label{text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);}
 #reviewContents {
     width: 91%;
     height: 80px;
@@ -139,9 +215,7 @@ input, select, textarea {
     border: solid 1.5px #D3D3D3;
     border-radius: 5px;
     font-size: 13px;
-    resize: none;
-}
-
+    resize: none;}
 #fixContents {
     width: 100%;
     height: 80px;
@@ -150,13 +224,43 @@ input, select, textarea {
     border: solid 1.5px #D3D3D3;
     border-radius: 5px;
     font-size: 13px;
-    resize: none;
-}
+    resize: none;}
 
 .replyWrite ul li{float:none;}
 .replyWrite ul li.in{width:auto;}
 
 /*명호가 설정한 css 끝*/
+
+/*footer*/
+/*footer 부분 수정, 삽입-지원*/
+/******* footer ********/
+#footerWrap {
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  border-top: solid 5px #f56a6a;
+  /*padding: 6em 0 1em 0;*/
+  position: relative; }
+#footerWrap{width:100%; margin:56px 0 0 0; overflow:hidden;   
+    bottom: 0;
+    left: 0;
+    right: 0;}
+#footerWrap #footer{width:100%;  margin:0 auto;}
+#footerWrap #footer #fnb{width:100%; overflow:hidden;}
+#footerWrap #footer #fnb ul{max-width:860px; padding:0 40px 0 40px; margin:0 auto; border-left:1px #7b7470 solid; border-right:1px #7b7470 solid; overflow:hidden;}
+#footerWrap #footer #fnb ul li{float:left; height:43px; line-height:43px; padding:0 5% 0 15%;} /*padding: 0 100px 0 0; 수정-지원*/
+#footerWrap #footer #fnb ul li a{font-size:14px; color:rgb(0, 0, 0); font-weight:600;}
+#footerWrap #footer #fnb ul li.brand{padding:0;}
+#footerWrap #footer #fnb ul li.brand a{color:#fe6124; font-size:17px;}
+
+#footerWrap #footer #finfo{position:relative; max-width:900px; padding:30px 0; margin:0 auto; overflow:hidden;}
+#footerWrap #footer #finfo #flogo{float:left; padding:0 24px 0 27px;}
+#footerWrap #footer #finfo address{float:left; width:518px; padding:5px 0 0 40px;}
+#footerWrap #footer #finfo address ul li{float:left; font-size:11px; color:#666; line-height:1.7; padding:0 10px; background:url('../images/bg/bg_address.gif') right 3px no-repeat;}
+#footerWrap #footer #finfo address ul li.copy{color:#919191; background:url(none);}
+#footerWrap #footer #finfo address ul li.webnone{background:url(none);}
+#footerWrap #footer #finfo #inicis{bottom:0; float:right;}/* position:absolute; width:14px; height:14px; right:10px; top:10px; */
 
 
 
@@ -208,12 +312,13 @@ body, input, select, textarea {
     body, input, select, textarea {
       font-size: 9pt; } }
 
+/*a 밑에 도트점 안나오게 하기*/
 a {
   -moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
   -webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
   -ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-  border-bottom: dotted 1px;
+  /*border-bottom: dotted 1px;*/
   color: #f56a6a;
   text-decoration: none; }
   a:hover {
@@ -1111,7 +1216,7 @@ header.main > :last-child {
 /* Form */
 form {
   margin: 0 0 2em 0; }
-
+	
 label {
   color: #3d4449;
   display: block;
@@ -1371,12 +1476,13 @@ ol {
   ol li {
     padding-left: 0.25em; }
 
+/*시설 사진으로 인한 padding 주석*/
 ul {
   list-style: disc;
   margin: 0 0 2em 0;
-  padding-left: 1em; }
+  /*padding-left: 1em;*/ }
   ul li {
-    padding-left: 0.5em; }
+    /*padding-left: 0.5em;*/ }
   ul.alt {
     list-style: none;
     padding-left: 0; }
@@ -1975,7 +2081,7 @@ button,
     margin: 0 auto;
     max-width: 110em; }
     #main > .inner > section {
-      padding: 6em 0 4em 0 ;
+      padding: 1em 0 4em 0 ;
       border-top: solid 2px rgba(210, 215, 217, 0.75); }
       #main > .inner > section:first-of-type {
         border-top: 0 !important; }
@@ -1983,17 +2089,17 @@ button,
     #main > .inner {
       padding: 0 5em 0.1em 5em ; }
       #main > .inner > section {
-        padding: 5em 0 3em 0 ; } }
+        padding: 1em 0 3em 0 ; } }
   @media screen and (max-width: 1280px) {
     #main > .inner {
       padding: 0 4em 0.1em 4em ; }
       #main > .inner > section {
-        padding: 4em 0 2em 0 ; } }
+        padding: 1em 0 2em 0 ; } }
   @media screen and (max-width: 736px) {
     #main > .inner {
       padding: 0 2em 0.1em 2em ; }
       #main > .inner > section {
-        padding: 3em 0 1em 0 ; } }
+        padding: 1em 0 1em 0 ; } }
 
 /* Sidebar */
 #search form {
@@ -2265,8 +2371,8 @@ button,
     -ms-flex-shrink: 0;
     flex-shrink: 0;
     display: block;
-    margin: 0 0 2em 4em;
-    width: 50%; }
+    margin: 0 0 2em 10em;
+    width: 60%; }
     /*체육시설 아이콘 이미지 크기 설정 끝*/
     #banner .image img {
       height: 100%;
