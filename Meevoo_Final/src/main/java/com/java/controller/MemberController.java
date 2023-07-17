@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.dto.MemberDto;
 import com.java.service.MemberService;
@@ -42,12 +43,8 @@ public class MemberController {
 			 //loginCheck라는 변수에 fail 값을 넣어줌
 			 return "/member/login";
 		 }
-		 
-		 
-		
 		return "redirect:/main";
 	}
-	
 
 	@RequestMapping("/member/logout")
 	public String logout() {
@@ -57,10 +54,19 @@ public class MemberController {
 	}
 
 	@RequestMapping("/member/join")
-	public String join() {
+	public String join(Model model) {
+		String[] scate = memberService.selectscateAll();
+		for(int i=0;i<scate.length;i++) {
+			System.out.println("scate : "+scate[i]);
+		}
+		
+		model.addAttribute("scate", scate);
+		
 		return "member/join";
 	}
 
+	
+	
 	@RequestMapping("/member/agree")
 	public String agree() {
 		return "member/agree";

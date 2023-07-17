@@ -20,4 +20,14 @@ public class MemberServiceImpl implements MemberService {
 		return mdto;
 	}
 
+
+	@Override //scate 가져오기
+	public String[] selectscateAll() {
+		String[] scate = memberMapper.selectscateAll();
+		
+		return scate;
+	}
+
+
+
 }

@@ -68,7 +68,7 @@
 									    </label>
 									    <p class="forgot-pass">아이디/비밀번호를 잊으셨나요?</p>
 									    <button type="button" style="cursor:pointer;" onclick="loginBtn()" class="button">로그인</button><br>
-									    <button type="button" class="button"><a href="/member/join">회원가입</a></button><br>
+									    <a href="/member/agree"><button type="button" class="button">회원가입</button></a><br>
 									    <button type="button" class="button primary">소셜로그인 <span>구글</span></button>
 								    </form>
 								  </div>

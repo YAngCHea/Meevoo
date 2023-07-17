@@ -547,7 +547,7 @@
 .pta li.rc4{padding:0 4px 0 0;}
 .pta li.rcl4{padding:0 4px 0 0;}
 .pta li.r20{padding:0 20px 0 0;}
-.pta li.pt5{padding:5px 0 0 0; clear:both; float:none;}
+.pta li.pt5{width: 300px; padding:5px 0 0 0; clear:both; float:none;} /*원래 코드 width X 수정 - 지원*/
 .pta li.cb{clear:both; padding-right:40px;}
 .pta li span.valign{line-height:30px; font-size: 15px;}
 .pta li span.mvalign{font-size:12px; font-weight:600; line-height:20px; color:#999;}
