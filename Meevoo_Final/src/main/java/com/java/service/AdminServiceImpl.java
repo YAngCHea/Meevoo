@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.dto.ClubDto;
 import com.java.dto.MemberDto;
 import com.java.mapper.AdminMapper;
 
@@ -22,6 +23,15 @@ public class AdminServiceImpl implements AdminService {
 		list = adminMapper.selectAll();
 		
 		return list;
+	}
+
+	@Override
+	public ArrayList<ClubDto> selectClubAll() {
+		ArrayList<ClubDto> clublist = new ArrayList<>();
+		//게시물 전체 가져오기
+		clublist = adminMapper.selectClubAll();
+		
+		return clublist;
 	}
 
 	

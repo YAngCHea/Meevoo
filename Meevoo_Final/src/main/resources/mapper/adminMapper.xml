@@ -8,6 +8,11 @@
   <select id="selectAll" resultType="com.java.dto.MemberDto">
      select * from userList
   </select> 
+
+ <!--  모임 전체 가져오기  -->
+  <select id="selectClubAll" resultType="com.java.dto.ClubDto">
+     select * from clubList
+  </select>
    
    
    

@@ -2549,3 +2549,47 @@ button,
     border-top: 0;
     margin-top: 0;
     padding-top: 0; }
+
+/* 탭 메뉴 넣기 */
+body{
+  margin-top: 0px;
+  font-family: 'Trebuchet MS', serif;
+  line-height: 1.6
+}
+
+.container{
+  width: 500px;
+  margin: 0 auto;
+  padding-left: 0px;
+}
+
+ul.tabs{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+ul.tabs li{
+  background: none;
+  color: #222;
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+ul.tabs li.current{
+  background: #ededed;
+  color: #222;
+}
+
+.tab-content{
+  display: none;
+  background: #ededed;
+  padding: 15px;
+}
+
+.tab-content.current{
+  display: inherit;
+  float : left
+}
+
+

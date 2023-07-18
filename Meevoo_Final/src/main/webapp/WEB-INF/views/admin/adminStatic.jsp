@@ -33,6 +33,37 @@
 
     <!-- Template Stylesheet -->
     <link href="../css/style_yang.css" rel="stylesheet">
+
+	<!-- 도넛 그래프 그리기 -->
+	<!-- <script>
+		window.onload = function() {
+	
+			var chart = new CanvasJS.Chart("chartContainer", {
+				animationEnabled : true,
+				
+				data : [{
+					type : "doughnut",
+					startAngle : 60,
+					//innerRadius: 60,
+					indexLabelFontSize : 17,
+					indexLabel : "{label} - #percent%",
+					toolTipContent : "<b>{label}:</b> {y} (#percent%)",
+					dataPoints : [{y : 67,label : "Inbox"}, 
+								  {y : 28,label : "Archives"}, 
+								  {y : 10,label : "Labels"}, 
+								  {y : 7,label : "Drafts"}, 
+								  {y : 15,label : "Trash"},
+								  {y : 6,label : "Spam"}]
+				}]
+			});
+			chart.render();
+	
+		}
+	</script> -->
+	
+	
+	
+
 </head>
 
 <body class="is-preload">
@@ -83,9 +114,9 @@
 								<li>
 								<span class="opener">고객센터</span>
 									<ul>
-										<li><a href="notice">공지사항</a></li>
-										<li><a href="FAQ">FAQ</a></li>
-										<li><a href="QnA">Q&A</a></li>
+										<li><a href="/notice/notice">공지사항</a></li>
+										<li><a href="/notice/FAQ">FAQ</a></li>
+										<li><a href="/notice/QnA">Q&A</a></li>
 									</ul>
 								</li>
 								<li>
@@ -325,12 +356,33 @@
 						                    <div class="col-sm-12 col-md-6 col-xl-4">
 						                        <div class="h-100 bg-light rounded p-4">
 						                            <div class="d-flex align-items-center justify-content-between mb-4">
-						                                <h6 class="mb-0">Calender</h6>
+														<h6 class="mb-0">운동 종목별 %</h6>
 						                                <a href="">Show All</a>
 						                            </div>
-						                            <div id="calender"></div>
-						                        </div>
+						                            
+														<!-- 탭메뉴 넣기 Start -->
+														<div class="container">
+															<ul class="tabs" >
+																<li class="tab-link current" data-tab="tab-1">모임 게시글</li>
+																<li class="tab-link" data-tab="tab-2">시설 리뷰</li>
+															</ul>
+														</div>
+														<!-- 탭메뉴 넣기 End -->
+														
+													<!-- <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+													<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script> -->
+													
+													<%-- <canvas id="doughnut-chart"></canvas> --%>
+													
+												</div>
 						                    </div>
+						                    
+						                    
+						                    
+						                    
+						                   
+						                    
+						                    
 						                    <!-- 캘린더 만들기 end -->
 						                    
 						                </div>

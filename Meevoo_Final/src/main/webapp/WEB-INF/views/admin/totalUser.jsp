@@ -34,14 +34,14 @@
                         </header>
 
                      <!-- Banner -->
-                        <section id="banner">
+                        <!-- <section id="banner">
                            <div class="content">
                               <header style="text-align: center;">
                                  <h1>전체 회원목록을 볼 수 있을것이다!</h1>
                                  <p> 수정이랑 삭제 그리고 회원추가가 가능하지!!!</p>
                               </header>
                            </div>
-                        </section>
+                        </section> -->
 					 
 					 
 					 <!-- 회원관리 리스트 나오게! -->
@@ -76,7 +76,7 @@
 						                        <div class="option_section" style="width:300px;">
 					                                <span class="first_tit" style="float:left;text-align : center" ><br>가입 날짜 :</span>
 					                                <input type="text" class="Datepicker cald_St hasDatepicker" id="dp1689135199476" style="width:100px; float:left;">
-					                                <span style="float:left;"> ~ </span>
+					                                <span style="float:left;"><br> ~ </span>
 					                                <input type="text" class="Datepicker cald_St hasDatepicker" id="dp1689135199477" style="width:100px; float:left;">
 						                        </div>
 						                        <div class="option_section">
@@ -98,7 +98,7 @@
 										<!--회원 리스트-->
 										<div class="card card_border">
 											<!--card_title-->
-						        			<div class="card_title">
+						        			<!-- <div class="card_title"> -->
 						                        <!-- <div class="rightArea"> -->
 						                        	<!-- <button class="btn_small btn_red">Option</button> -->
 						                        	<!-- <div class="dropBtn"> -->
@@ -112,7 +112,7 @@
 							        					</div>
 							        				<!-- </div> -->
 						                        <!-- </div> -->
-						                    </div>
+						                    <!-- </div> -->
 						        			<!--card_title-->
 						        			<div class="card paddingnone">
 						        				<!--table-->

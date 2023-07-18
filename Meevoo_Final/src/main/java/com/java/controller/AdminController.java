@@ -1,6 +1,9 @@
 package com.java.controller;
 
+import java.net.URLEncoder;
+
 import java.util.ArrayList;
+
 
 
 
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.java.dto.ClubDto;
 import com.java.dto.MemberDto;
 import com.java.service.AdminService;
 
@@ -18,8 +22,7 @@ import com.java.service.AdminService;
 public class AdminController {
 
 	
-	@Autowired 
-	AdminService adminService;
+	@Autowired AdminService adminService;
 	
 	
 	@RequestMapping("/admin/adminStatic")
@@ -27,6 +30,7 @@ public class AdminController {
 		return "admin/adminStatic";
 	}
 
+	
 	
 	 @RequestMapping("/admin/totalUser") 
 	 public String totalUser(Model model) {
@@ -38,6 +42,18 @@ public class AdminController {
 	 model.addAttribute("list",list);
 	  
 	 	return "admin/totalUser"; 
+	 }
+
+	 @RequestMapping("/admin/totalWrite") 
+	 public String totalWrite(Model model) {
+		 ArrayList<ClubDto> clublist = new ArrayList<>();
+		 
+		 System.out.println("clublist 개수 : "+clublist.size());
+		 
+		 clublist = adminService.selectClubAll();
+		 model.addAttribute("clublist",clublist);
+		 
+		 return "admin/totalWrite"; 
 	 }
 	 
 	
@@ -51,24 +67,8 @@ public class AdminController {
 		return "admin/totalUserModify";
 	}
 
-	@RequestMapping("/admin/totalWrite")
-	public String totalWrite() {
-		return "admin/totalWrite";
-	}
-
-	@RequestMapping("/notice/notice")
-	public String notice() {
-		return "notice/notice";
-	}
-
-	@RequestMapping("/notice/FAQ")
-	public String FAQ() {
-		return "notice/FAQ";
-	}
 	
-	@RequestMapping("/notice/QnA")
-	public String QnA() {
-		return "notice/QnA";
-	}
+
+	
 
 }

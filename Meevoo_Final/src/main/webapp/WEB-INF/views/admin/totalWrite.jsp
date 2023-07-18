@@ -34,14 +34,14 @@
                         </header>
 
                      <!-- Banner -->
-                        <section id="banner">
+                        <!-- <section id="banner">
                            <div class="content">
                               <header style="text-align: center;">
                                  <h1>전체 게시글 목록을 볼 수 있을것이다!</h1>
                                  <p> 수정이랑 삭제가 가능하지!!!</p>
                               </header>
                            </div>
-                        </section>
+                        </section> -->
 					 
 					 
 					 <!-- 회원관리 리스트 나오게! -->
@@ -74,20 +74,20 @@
 							        				</div>
 						                        </div> -->
 						                        <div class="option_section" style="width:300px;">
-					                                <span class="first_tit" style="float:left;text-align : center" >가입 날짜 :</span>
+					                                <span class="first_tit" style="float:left;text-align : center" ><br>가입 날짜 :</span>
 					                                <input type="text" class="Datepicker cald_St hasDatepicker" id="dp1689135199476" style="width:100px; float:left;">
 					                                <span style="float:left;"> ~ </span>
 					                                <input type="text" class="Datepicker cald_St hasDatepicker" id="dp1689135199477" style="width:100px; float:left;">
 						                        </div>
 						                        <div class="option_section">
-					                                <span style="float:left;">현재 상태 :</span>
-					                                <select style="width:100px; float:left;">
+					                                <span style="float:left;"><br>현재 상태 :</span>
+					                                <select style="width:100px; float:left; hight : 45px;">
 					                                    <option>가입</option>
 					                                    <option>탈퇴</option>
 					                                </select>
 						                        </div>
 						                        <div class="option_section">
-					                            	<span style="float:left;">회원 이름 검색 :</span>
+					                            	<span style="float:left;"><br>회원 이름 검색 :</span>
 					                            	<input type="text" style="width:120px; float:left;">
 					                                <button class="btn_small btn_blue" style="float:left;">검색</button>
 						                        </div>
@@ -98,7 +98,7 @@
 										<!--회원 리스트-->
 										<div class="card card_border">
 											<!--card_title-->
-						        			<div class="card_title">
+						        			<!-- <div class="card_title"> -->
 						                        <!-- <div class="rightArea"> -->
 						                        	<!-- <button class="btn_small btn_red">Option</button> -->
 						                        	<!-- <div class="dropBtn"> -->
@@ -112,7 +112,7 @@
 							        					</div>
 							        				<!-- </div> -->
 						                        <!-- </div> -->
-						                    </div>
+						                    <!-- </div> -->
 						        			<!--card_title-->
 						        			<div class="card paddingnone">
 						        				<!--table-->
@@ -131,22 +131,34 @@
 						                                    <col width="*%">
 						                                </colgroup>
 						                                <thead>
-						                                    <tr>
-						                                        <th>ID</th>
-						                                        <th>Photo</th>
-						                                        <th>Name</th>
-						                                        <th>Application Type</th>
-						                                        <th>IF ID</th>
-						                                        <th>IP</th>
-						                                        <th>Select</th>
-						                                        <th>State</th>
-						                                        <th>Group</th>
+						                                    <!-- <tr> -->
+						                                        <th>번호</th>
+						                                        <th>작성자</th>
+						                                        <th>모임 이름</th>
+						                                        <th>작성일자</th>
+						                                        <th>모임일자</th>
+						                                        <th>모임장소</th>
+						                                        <th>모임시설</th>
 						                                        <th>Edit</th>
-						                                    </tr>
+						                                    <!-- </tr> -->
 						                                </thead>
+						                                
 						                                <tbody>
-						                                    <tr>
-						                                    	<td>1</td>
+						                                <!-- userList 가져오기!! -->
+						                               <c:forEach var="clublist" items="${clublist}">
+						                                   <tr>
+															  <td>${clublist.cno}</td>
+															  <td>${clublist.id}</td>
+															  <td><a href="/" class="lightgray">${clublist.cnm}</a></td>
+															  <td><fmt:formatDate value="${clublist.cwrdate}" pattern="yyyy-MM-dd"/></td>
+															  <td><fmt:formatDate value="${clublist.cdodate}" pattern="yyyy-MM-dd"/></td>
+															  <td>${clublist.cloc}</td>
+															  <td>${clublist.sfno}</td>
+						                                      <td><button class="btn_simple btn_blue">수정</button><button class="btn_simple btn_green">삭제</button></td>
+														    </tr>
+						                                </c:forEach>
+						                                
+						                                      <!-- <td>1</td>
 						                                        <td><div class="id_photo"><img src="./Admin Template - Light_files/icon_loginID.png"></div></td>
 						                                        <td>Data Name</td>
 						                                        <td>222</td>
@@ -155,44 +167,8 @@
 						                                        <td>OFF</td>
 						                                        <td>OFF</td>
 						                                        <td>AA</td>
-						                                        <td><button class="btn_simple btn_blue">확인</button><button class="btn_simple btn_green">수정</button></td>
-						                                    </tr>
-						                                    <tr>
-						                                    	<td>1</td>
-						                                        <td><div class="id_photo"><img src="./Admin Template - Light_files/icon_loginID.png"></div></td>
-						                                        <td>Data Name</td>
-						                                        <td>222</td>
-						                                        <td>v0.0.1</td>
-						                                        <td>20,840,512</td>
-						                                        <td>OFF</td>
-						                                        <td>OFF</td>
-						                                        <td>AA</td>
-						                                        <td><button class="btn_simple btn_blue">확인</button><button class="btn_simple btn_green">수정</button></td>
-						                                    </tr>
-						                                    <tr>
-						                                    	<td>1</td>
-						                                        <td><div class="id_photo"><img src="./Admin Template - Light_files/icon_loginID.png"></div></td>
-						                                        <td>Data Name</td>
-						                                        <td>222</td>
-						                                        <td>v0.0.1</td>
-						                                        <td>20,840,512</td>
-						                                        <td>OFF</td>
-						                                        <td>OFF</td>
-						                                        <td>AA</td>
-						                                        <td><button class="btn_simple btn_blue">확인</button><button class="btn_simple btn_green">수정</button></td>
-						                                    </tr>
-						                                    <tr>
-						                                    	<td>1</td>
-						                                        <td><div class="id_photo"><img src="./Admin Template - Light_files/icon_loginID.png"></div></td>
-						                                        <td>Data Name</td>
-						                                        <td>222</td>
-						                                        <td>v0.0.1</td>
-						                                        <td>20,840,512</td>
-						                                        <td>OFF</td>
-						                                        <td>OFF</td>
-						                                        <td>AA</td>
-						                                        <td><button class="btn_simple btn_blue">확인</button><button class="btn_simple btn_green">수정</button></td>
-						                                    </tr>
+						                                        <td><button class="btn_simple btn_blue">확인</button><button class="btn_simple btn_green">수정</button></td> -->
+						                                   
 						                                </tbody>
 						                            </table>
 												</div>

@@ -34,6 +34,7 @@
                         </header>
 
                      <!-- Banner -->
+                     <!-- 
                         <section id="banner">
                            <div class="content">
                               <header style="text-align: center;">
@@ -42,6 +43,7 @@
                               </header>
                            </div>
                         </section>
+                      -->
 
 					 <!-- 중간에 공지사항 탭 넣기 : 공지사항 템플릿 -->
 						<div id="container" class="container sub_container">
@@ -52,8 +54,8 @@
 									<div class="tab equal">
 										<ul class="nav">
 											<li><a href="notice"> 공지사항 </a></li>
-											<li class="active" title="선택된 탭"><a href="FAQ"> 자주 물어보는 질문(FAQ) </a></li>
 											<li><a href="QnA"> 질의응답(QnA) </a></li>
+											<li class="active" title="선택된 탭"><a href="FAQ"> 자주 물어보는 질문(FAQ) </a></li>
 											<!-- <li class="active" title="선택된 탭"><a href="QnA"> 질의응답(QnA) </a></li>  -->
 										</ul>
 									</div>
@@ -66,32 +68,25 @@
                            <div class="table-wrapper">
                               <table>
                                  <colgroup>
-                                    <col width="10%"  />
+                                    <col width="5%"  />
+                                    <col width="25%" />
                                     <col width="*" />
-                                    <col width="15%" />
-                                    <col width="15%"/>
-                                    <col width="10%"/>
+                                    
                                  </colgroup>
                                  <thead>
                                     <tr>
                                        <th>NO.</th>
                                        <th>제목</th>
-                                       <th>작성자</th>
-                                       <th>작성일</th>
-                                       <th>조회수</th>
+                                       <th>답변</th>
                                     </tr>
                                  </thead>
                                  <tbody>
-                                    <c:forEach var="sport" items="${list}">
+                                    <c:forEach var="faqlist" items="${faqlist}">
                                     <tr>
-                                       <td>${sport.fcltyno}</td>
-                                       <td><a
-                                          href="/sport/sportnoticeView?fcltyno=${sport.fcltyno}"
-                                          class="lightgray">${sport.fcltynm} </a></td>
-                                       <td>${sport.sportnm}</td>
-                                       <td>${sport.dongnm}</td>
-                                       <td>4.3</td>
-                                       <td>${sport.sporthit}</td>
+                                       <td>${faqlist.faqno}</td>
+                                       <!-- <td><a href="/sport/sportnoticeView?fcltyno=${faqlist.faqq}" class="lightgray">${faqlist.faqq} </a></td> -->
+                                       <td>${faqlist.faqq}</td>
+                                       <td>${faqlist.faqa}</td>
                                     </tr>
                                     </c:forEach>
                                  </tbody>

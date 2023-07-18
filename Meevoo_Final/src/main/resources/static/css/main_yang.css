@@ -1452,7 +1452,7 @@ table {
     table tbody tr:nth-child(2n + 1) {
       background-color: rgba(230, 235, 237, 0.25); }
   table td {
-    padding: 0.75em 0.75em; }
+    padding: 1em 1em; }
   table th {
     color: #3d4449;
     font-size: 0.9em;
@@ -2609,7 +2609,7 @@ text-align:center;}
 
 }
 
-html, body, div, ul, li, img, h2,h4,h5,nav,main,section,footer,header {margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;}
+html, body, div, ul, li, img, h2,h4,h5,nav,main,section,footer,header {margin:0;padding:0;padding-top:10px;border:0;outline:0;font-size:100%;vertical-align:baseline;}
 
 html, body, div, ul, li, img, h2,h4,h5,nav,main,section,footer,header {font-size: 10px !important;}
 
@@ -9748,8 +9748,8 @@ pre code {
 
 .container {
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 0px;
+    padding-left: 0px;
     margin-right: auto;
     margin-left: auto
 }

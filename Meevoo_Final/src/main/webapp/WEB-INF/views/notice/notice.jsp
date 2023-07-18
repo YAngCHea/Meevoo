@@ -34,6 +34,7 @@
                         </header>
 
                      <!-- Banner -->
+                     <!-- 
                         <section id="banner">
                            <div class="content">
                               <header style="text-align: center;">
@@ -42,6 +43,7 @@
                               </header>
                            </div>
                         </section>
+                      -->
                         
                         
 					 <!-- 중간에 공지사항 탭 넣기 : 공지사항 템플릿 -->
@@ -73,6 +75,7 @@
                                     <col width="15%"/>
                                     <col width="10%"/>
                                  </colgroup>
+                                 
                                  <thead>
                                     <tr>
                                        <th>NO.</th>
@@ -82,6 +85,21 @@
                                        <th>조회수</th>
                                     </tr>
                                  </thead>
+                                 
+                                 <tbody>
+	                                <!-- notice 공지사항 리스트 가져오기!! -->
+	                                <c:forEach var="notilist" items="${notilist}">
+	                                   <tr>
+										  <td>${notilist.notino}</td>
+										  <td><a href="/" class="lightgray">${notilist.notititle}</a></td>
+										  <td>${notilist.notiid}</td>
+										  <td><fmt:formatDate value="${notilist.notidate}" pattern="yyyy-MM-dd"/></td>
+										  <td>${notilist.notihit}</td>
+	                                      <td><button class="btn_simple btn_blue">수정</button><button class="btn_simple btn_green">삭제</button></td>
+									    </tr>
+	                                </c:forEach>
+	                                
+	                                </tbody>
                                  
                               </table>
                               <!-- 페이지 넘기는 버튼 -->

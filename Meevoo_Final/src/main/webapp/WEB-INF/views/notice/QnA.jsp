@@ -34,6 +34,7 @@
                         </header>
 
                      <!-- Banner -->
+                     <!-- 
                         <section id="banner">
                            <div class="content">
                               <header style="text-align: center;">
@@ -42,6 +43,7 @@
                               </header>
                            </div>
                         </section>
+                      -->
 
 					 <!-- 중간에 공지사항 탭 넣기 : 공지사항 템플릿 -->
 						<div id="container" class="container sub_container">
@@ -52,8 +54,8 @@
 									<div class="tab equal">
 										<ul class="nav">
 											<li><a href="notice"> 공지사항 </a></li>
-											<li><a href="FAQ"> 자주 물어보는 질문(FAQ) </a></li>
 											<li class="active" title="선택된 탭"><a href="QnA"> 질의응답(QnA) </a></li>
+											<li><a href="FAQ"> 자주 물어보는 질문(FAQ) </a></li>
 											<!-- <li class="active" title="선택된 탭"><a href="QnA"> 질의응답(QnA) </a></li>  -->
 										</ul>
 									</div>
@@ -68,9 +70,9 @@
                                  <colgroup>
                                     <col width="10%"  />
                                     <col width="*" />
-                                    <col width="15%" />
-                                    <col width="15%"/>
-                                    <col width="10%"/>
+                                    <col width="*" />
+                                    <col width="*"/>
+                                    <col width="*"/>
                                  </colgroup>
                                  <thead>
                                     <tr>
@@ -78,23 +80,25 @@
                                        <th>제목</th>
                                        <th>작성자</th>
                                        <th>작성일</th>
-                                       <th>조회수</th>
+                                       <th>답변현황</th>
                                     </tr>
                                  </thead>
+                                 
+                                 
                                  <tbody>
-                                    <c:forEach var="sport" items="${list}">
+                                    <c:forEach var="qnalist" items="${qnalist}">
                                     <tr>
-                                       <td>${sport.fcltyno}</td>
-                                       <td><a
-                                          href="/sport/sportnoticeView?fcltyno=${sport.fcltyno}"
-                                          class="lightgray">${sport.fcltynm} </a></td>
-                                       <td>${sport.sportnm}</td>
-                                       <td>${sport.dongnm}</td>
-                                       <td>4.3</td>
-                                       <td>${sport.sporthit}</td>
+                                       <td>${qnalist.qnano}</td>
+                                       <!-- <td><a href="/sport/sportnoticeView?fcltyno=${faqlist.faqq}" class="lightgray">${faqlist.faqq} </a></td> -->
+                                       <td>${qnalist.qnatitle}</td>
+                                       <td>${qnalist.id}</td>
+                                       <td>${qnalist.newdate}</td>
+                                       <td>${qnalist.qnastatus}</td>
                                     </tr>
                                     </c:forEach>
                                  </tbody>
+                                 
+                                 
                               </table>
                               <!-- 페이지 넘기는 버튼 -->
                               <ul class="pagination" >
