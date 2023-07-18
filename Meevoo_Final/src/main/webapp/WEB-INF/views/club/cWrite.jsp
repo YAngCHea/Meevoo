@@ -48,12 +48,12 @@
 								  <div class="inner">
 								    <div class="recruit-form">
 								      <div class="line subject">
-								        <input type="text" name="cnm" placeholder="제목">
+								        <input type="text" name="cnm" placeholder="제목" autofocus>
 								      </div>
 								      <br>
 								      <br>
 								      <div class="line select-date">
-								        <input type="text" id="select_Date" name="cdodate" value placeholder="모집일시" onfocus="this.blur()" class="hasDatePicker">
+								        <input type="text" id="select_Date" name="cdodate" placeholder="모집일시" onfocus="this.blur()" class="hasDatePicker">
 								      </div>
 								      <p class="txt">&nbsp;&nbsp;* 최대 30일까지 등록 가능</p>
 								      <div class="line member">
@@ -92,7 +92,7 @@
 								
 										</script>
 								      <br>
-								      <div="line sports">
+								      <div class="line sports">
 								        <div class="dropdown">
 								          <select name="sname">
 								            <option value="select" selected disabled>모집종목</option>

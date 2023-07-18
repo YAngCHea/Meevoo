@@ -22,9 +22,9 @@
 					<li>
 						<span class="opener">운동모임</span>
 						<ul>
-							<li><a href="index">운동모임 홈</a></li>
-							<li><a href="index">운동모임 게시판</a></li>
-							<li><a href="index">운동모임 작성</a></li>
+							<li><a href="/club/club">모임 목록</a></li>
+							<li><a href="index">모임 검색하기</a></li>
+							<li><a href="/club/cWrite">모임 작성하기</a></li>
 						</ul>
 					</li>
 					<li>
