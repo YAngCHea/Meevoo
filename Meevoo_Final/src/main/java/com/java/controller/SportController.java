@@ -1,6 +1,7 @@
 package com.java.controller;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,28 @@ public class SportController {
 		model.addAttribute("page", page);
 		return "/sport/sportListView";
 	} // sportListView
+	
+	
+//	@RequestMapping("/sport/sportnotice")
+//	public String sportnotice(Model model) {
+//
+//		ArrayList<SportDto> list = new ArrayList<>();
+//
+//		// 게시글 전체 가져오기
+//		list = sportService.selectAll();
+//		model.addAttribute("list", list);
+//
+//		return "/sport/sportnotice";
+//	}
+//----------------------------------------------------------------
+//	@RequestMapping("/sport/sportnoticeView")
+//	public String noticeView(int sfno, Model model) {
+//
+//		// 게시글 1개 가져오기
+//		SportDto sdto = sportService.selectOne(sfno);
+//		model.addAttribute("sdto", sdto);
+//
+//		return "/sport/sportnoticeView";
+//	} // noticeView
 
 }

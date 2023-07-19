@@ -97,6 +97,46 @@ input, select, textarea {
       padding: 0 2em 0.1em 2em ; }
       #main > .inner > .sportreview {
         padding: 1em 0 1em 0 ; } }
+        
+        
+/*시설 검색 input="txt"*/
+#search form {
+  text-decoration: none;
+  position: relative; }
+  #search form:before {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    text-transform: none !important;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900; }
+  #search form:before {
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+    color: #7f888f;
+    content: '\f002';
+    cursor: default;
+    display: block;
+    font-size: 1.5em;
+    height: 2em;
+    line-height: 2em;
+    opacity: 0.325;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 2em; }
+  #search form input[type="text"] {
+    padding-right: 2.75em; }
+
+
+/**/
 
 /*sportListView section부분 수정*/
 #main {
@@ -141,6 +181,54 @@ input, select, textarea {
   justify-content: center; /* 가로 중앙 정렬 */
   align-items: center; /* 세로 중앙 정렬 */
   padding: 0 0 0 0;}
+  
+  
+/*운동시설 검색 옵션 선택*/
+#main > .inner > .searchBar {
+      padding: 0 0 4em 0 ;
+      border-top: solid 2px rgba(210, 215, 217, 0.75); }
+      #main > .inner > .sportlistview:first-of-type {
+        border-top: 0 !important; }
+  @media screen and (max-width: 1680px) {
+    #main > .inner {
+      padding: 0 5em 0.1em 5em ; }
+      #main > .inner > .searchBar {
+        padding: 0 0 0 0 ; } }
+  @media screen and (max-width: 1280px) {
+    #main > .inner {
+      padding: 0 4em 0.1em 4em ; }
+      #main > .inner > .searchBar {
+        padding: 0 2em 0 2em ; } }
+  @media screen and (max-width: 736px) {
+    #main > .inner {
+      padding: 0 2em 0.1em 2em ; }
+      #main > .inner > .searchBar {
+        padding: 0 0 1em 0 ; } }
+
+.sportListSearch{position:relative; width:100%; overflow:hidden;}
+.sportListSearch .subject{background:#ebebeb; word-break:keep-all; overflow:hidden;}
+.sportListSearch .subject ul{width:100%; padding:13px 0 12px 20px;}
+.sportListSearch .subject ul li{float:left; font-size:20px; color:#444; font-weight:600; line-height:1.3;}
+.sportListSearch .subject ul li.cate{width:76px; font-size:14px; color:#f7703c; font-weight:600;}
+.sportListSearch .day{position:relative; width:100%; font-size:14px; font-weight:600; color:#666; border-bottom:1px #d9d9d9 solid; overflow:hidden;}
+.sportListSearch .day p.txt{float:left; padding:13px 0 ; margin:0 0 0 20px; color:#666; }
+.sportListSearch .day p.txt span{font-size:13px; color:#666; font-weight:normal; padding:0 18px 0 14px;}
+.sportListSearch .day p.btn{position:absolute; right:20px; top:10px;}
+.sportListSearch .day p.appraisal{position:absolute; right:20px; top:13px; color:#666;}
+.sportListSearch .day p label{padding:0 18px 0 20px;}
+.sportListSearch .day p.appraisal span img{padding:3px 0 0 0;}  
+
+
+/*시설물 검색 옵션*/
+#serachbutton11 .txt {display: inline-flex;}
+.searchbutton .day{position:relative; width:100%; font-size:14px; font-weight:600; color:#666; border-bottom:1px #d9d9d9 solid; overflow:hidden;}
+.searchbutton .day p.txt{float:left; padding:13px 0 ; margin:0 0 0 20px; color:#666; }
+.searchbutton .day p.txt span{font-size:13px; color:#666; font-weight:normal; padding:0 18px 0 14px;}
+.searchbutton .day p label{padding:0 18px 0 20px;}
+/*checkbox 선택*/
+#sport11 .txt input[type="checkbox"]:checked + label{color:#f56a6a;}
+#sport11 .txt input[type="checkbox"] + label:before {display: none;}
+
 
 
 /*1. 상세 페이지 테이블 목록 부분*/
@@ -202,7 +290,7 @@ input, select, textarea {
 /*3. 리뷰 별점 달기*/
 #myform fieldset{display: inline-block; direction: rtl; border:0;}
 #myform fieldset legend{text-align: right;}
-#myform input[type=radio]{display: none;}
+#myform input[type="radio"] + label:before {display: none;}
 #myform label{font-size: 20px; color: transparent; text-shadow: 0 0 0 #f0f0f0;}
 #myform label:hover{text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);}
 #myform label:hover ~ label{text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);}
@@ -1214,8 +1302,9 @@ header.main > :last-child {
   margin: 0 0 1em 0; }
 
 /* Form */
+/*시설 검색바*/
 form {
-  margin: 0 0 2em 0; }
+  margin: 13px 0;}
 	
 label {
   color: #3d4449;
@@ -1339,7 +1428,7 @@ input[type="radio"] {
       border: solid 1px rgba(210, 215, 217, 0.75);
       content: '';
       /*radio input 부분 없애고 별만 표시*/
-      display: none;
+      display: inline-block;
       font-size: 0.8em;
       height: 2.0625em;
       left: 0;

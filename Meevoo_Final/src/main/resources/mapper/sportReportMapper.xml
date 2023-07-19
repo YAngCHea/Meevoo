@@ -1,0 +1,66 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.java.mapper.SportReportMapper">
+	
+	<!-- 문의글 전체 개수 -->
+	<select id="selectListCount" resultType="int">
+		select count(*) from sportreport
+		<if test="category == 'all'">
+		   where srepcontent like '%'||#{srep_word}||'%' or srepcontent like '%'||#{srep_word}||'%'
+		</if>
+		<!-- <if test="category == 'sreptitle'">
+		   where sreptitle like '%'||#{srep_word}||'%'
+		</if> -->
+		<if test="category == 'srepcontent'">
+		   where srepcontent like '%'||#{srep_word}||'%'
+		</if>
+	</select>
+	
+	<!-- 문의글 전체 가져오기 -->
+	<select id="selectAll" resultType="com.java.dto.SportReportDto">
+		select * from (select rownum rnum, a.* from
+		(select * from sportreport
+		
+		<if test="category == 'all'">
+		   where srepcontent like '%'||#{srep_word}||'%' or srepcontent like '%'||#{srep_word}||'%'
+		</if>
+		<!-- <if test="category == 'sreptitle'">
+		   where sreptitle like '%'||#{srep_word}||'%'
+		</if> -->
+		<if test="category == 'srepcontent'">
+		   where srepcontent like '%'||#{srep_word}||'%'
+		</if>
+		
+		<!-- 아랫부분 공통영역 -->
+		<![CDATA[
+		   order by srepno asc) a)
+		   where rnum>=#{startRow} and rnum<=#{endRow}
+		]]>
+	</select>
+	
+	<!-- 문의글 1개 가져오기 -->
+	<select id="selectOne" resultType="com.java.dto.SportReportDto">
+		select * from sportreport where srepno=#{srepno}
+	</select>
+	
+	<!-- 문의글 1개 저장하기 -->
+	<insert id="insertOne">
+		insert into sportreport
+		values(sportreport_seq.nextval,#{id},#{sfno},#{srepcontent},
+		sysdate,#{srepinput},#{srepimg})
+	</insert>
+	
+	<!-- 문의글 1개 삭제하기 -->
+	<delete id="deleteOne">
+		delete sportreport where srepno=#{srepno}
+	</delete>
+	
+	
+	<!-- // 문의글,리뷰신고글 작성으로 인한 시설번호 전체 가져오기 -->
+	<select id="selectSfno" resultType="com.java.dto.SportDto">
+		select sfno from sportlist order by sfno
+	</select> 
+
+</mapper>

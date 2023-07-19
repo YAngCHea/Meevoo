@@ -38,6 +38,76 @@
 									</span>
 								</section>
 								<!-- // Banner -->
+								
+								
+								<!-- 시설 검색바  -->
+								<section class="searchBar">
+									<div class="sportListSearch" id="sport11" >
+									  <form class='searchbutton' method="post" action="/sport/sportList" enctype="multipart/form-data">
+										<div class="day">
+											<p class="txt">운동종목
+												<input type="checkbox" name="sport" id="golf" value="golf">
+												<label for="golf"class="golf">골프</label>
+												<input type="checkbox" name="sport" id="climbing" value="climbing">
+												<label for="climbing"class="climbing">클라이밍</label>
+												<input type="checkbox" name="sport" id="tennis" value="tennis">
+												<label for="tennis"class="tennis">테니스</label>
+												<input type="checkbox" name="sport" id="tabletennis" value="tabletennis">
+												<label for="tabletennis"class="tabletennis">탁구</label>
+												<input type="checkbox" name="sport" id="basketball" value="basketball">
+												<label for="basketball"class="basketball">농구</label>
+												<input type="checkbox" name="sport" id="bowling" value="bowling">
+												<label for="bowling"class="bowling">볼링</label>
+												<input type="checkbox" name="sport" id="badminton" value="badminton">
+												<label for="badminton"class="badminton">배드민턴</label>
+												<input type="checkbox" name="sport" id="futsal" value="futsal">
+												<label for="futsal"class="futsal">풋살</label>
+												<input type="checkbox" name="sport" id="skate" value="skate">
+												<label for="skate"class="skate">스케이트</label>
+											</p>
+										</div>
+										<div class="day">
+											<p class="txt">동이름
+												<input type="checkbox" name="dong" id="dong_1" value="dong_1">
+												<label for="dong_1"class="dong_1">구로동</label>
+												<input type="checkbox" name="dong" id="dong_2" value="dong_2">
+												<label for="dong_2"class="dong_2">개봉동</label>
+												<input type="checkbox" name="dong" id="dong_3" value="dong_3">
+												<label for="dong_3"class="dong_3">고척동</label>
+												<input type="checkbox" name="dong" id="dong_4" value="dong_4">
+												<label for="dong_4"class="dong_4">신도림동</label>
+												<input type="checkbox" name="dong" id="dong_5" value="dong_5">
+												<label for="dong_5"class="dong_5">항동</label>
+												<input type="checkbox" name="dong" id="dong_6" value="dong_6">
+												<label for="dong_6"class="dong_6">오류동</label>
+												<input type="checkbox" name="dong" id="dong_7" value="dong_7">
+												<label for="dong_7"class="dong_7">가리봉동</label>
+												<input type="checkbox" name="dong" id="dong_8" value="dong_8">
+												<label for="dong_8"class="dong_8">궁동</label>
+											</p>
+										</div>
+										<div class="day">
+											<p class="txt">편의시설
+												<input type="checkbox" name="convenient" id="wifi" value="wifi">
+												<label for="wifi"class="wifi">와이파이</label>
+												<input type="checkbox" name="convenient" id="pet" value="pet">
+												<label for="pet"class="pet">반려동물</label>
+												<input type="checkbox" name="parking" id="parking" value="parking">
+												<label for="parking"class="parking">주차장</label>
+												<input type="checkbox" name="convenient" id="slope" value="slope">
+												<label for="slope"class="slope">출입구경사로</label>
+											</p>
+										</div>
+										<div class="day" id="serachbutton11">
+											<p class="txt">
+												<input type="text" style="width:300px;" name="query" id="query" placeholder="검색어를 입력해주세요." />
+												<button class="button primary small">검색</button>
+												<button class="button small">취소</button>
+											</p>
+										</div>
+									  </form>
+									</div>
+								</section>
 
 								<!-- Section -->
 								<section>

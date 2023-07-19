@@ -59,7 +59,9 @@
 			<!-- 신고버튼 누르기  -->
 			<script>
 				function reportBtn(){
-					alert("리뷰글이 신고 되었습니다.");
+				 	if(confirm("리뷰글 신고 페이지로 이동하시겠습니까?")){
+						alert("리뷰글 신고 페이지로 이동합니다.");
+				 	}
 				}
 			</script>
 			
@@ -160,7 +162,8 @@
 									<!-- Buttons 수정 ->  main.css (1294번째)-->
 									<ul class="actions">
 										<li><a class="button" onclick="sPickBtn()">시설 찜하기</a></li>
-										<li><a href="sportList?&page=${page}" class="button primary">시설 목록으로</a></li>
+										<li><a href="sportReportWrite" class="button primary">시설 문의</a></li>
+										<li><a href="sportList?page=${page}" class="button primary">시설 목록으로</a></li>
 									</ul>
 								</section>
 								
@@ -230,7 +233,7 @@
 										 	</div>
 											<li class="btn">
 												<a onclick="saveBtn()" class="button primary small">저장</a>
-												<a onclick="cancleBtn()" class="button small">취소</a>
+												<a onclick="javascript:location.href='sportListView?sfno=${sdto.sfno}&page=${page}'" class="button small" >취소</button></a>
 											</li>
 										</ul> 
 										
@@ -242,7 +245,7 @@
 											<li class="txt"> 별점 ★ ★ ★ ★ ★</li>
 											<li class="txt"> 다른 사람이 쓴 글은 신고만 가능</li>
 											<li class="btn">
-												<a onclick="reportBtn()" class="button primary small">신고</a>
+												<a href="sportReviewReportWrite" onclick="reportBtn()" class="button primary small">신고</a>
 											</li>
 										</ul>
 									</div>

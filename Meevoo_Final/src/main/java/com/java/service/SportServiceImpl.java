@@ -1,6 +1,7 @@
 package com.java.service;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,4 +65,21 @@ public class SportServiceImpl implements SportService {
 		return map;
 	}
 	
+	
+//	@Override
+//	public ArrayList<SportDto> selectAll() {
+//		ArrayList<SportDto> list = new ArrayList<>();
+//
+//		// 게시글 전체 가져오기
+//		list = sportMapper.selectAll();
+//		return list;
+//	}
+//
+//	@Override
+//	public SportDto selectOne(int fcltyno) {
+//		// 게시글 1개 가져오기 SportDto
+//		SportDto sdto = sportMapper.selectOne(fcltyno);
+//		return sdto;
+//	}
+
 }

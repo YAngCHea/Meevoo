@@ -22,4 +22,18 @@ public interface SportMapper {
 	
 	//게시글 전체개수
 	int selectListCount();
+
+	
+	// 문의글,리뷰신고글 작성으로 인한 시설번호 전체 가져오기
+	ArrayList<SportDto> selectSfno();
+
+
+	
+//	//게시글 전체 가져오기
+//	ArrayList<SportDto> selectAll();
+//
+//	//게시글 1개 가져오기
+//	SportDto selectOne(int fcltyno);
+
+	
 }

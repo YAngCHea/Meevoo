@@ -31,7 +31,8 @@
 						<span class="opener">체육시설</span>
 						<ul>
 							<li><a href="/sport/sportList">체육시설 게시판</a></li>
-							<li>체육시설 게시판으로 이동하게 코드 설정하기</li>
+							<li><a href="/sportreport/sportReportList">체육시설 문의</a></li>
+							<li><a href="/sportreport/sportReportWrite">체육시설 문의글 작성</a></li>
 						</ul>
 					</li>
 					<li>
