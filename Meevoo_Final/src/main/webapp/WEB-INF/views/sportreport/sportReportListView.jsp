@@ -5,7 +5,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>체육시설 상세페이지</title>
+		<title>체육시설 문의글 상세페이지</title>
 		<!-- 제이쿼리 최신 -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<meta charset="utf-8" />

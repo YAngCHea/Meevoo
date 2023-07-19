@@ -162,7 +162,7 @@
 									<!-- Buttons 수정 ->  main.css (1294번째)-->
 									<ul class="actions">
 										<li><a class="button" onclick="sPickBtn()">시설 찜하기</a></li>
-										<li><a href="sportReportWrite" class="button primary">시설 문의</a></li>
+										<li><a href="/sportreport/sportReportWrite?sfno=${sdto.sfno}" class="button primary">시설 문의글 작성</a></li>
 										<li><a href="sportList?page=${page}" class="button primary">시설 목록으로</a></li>
 									</ul>
 								</section>

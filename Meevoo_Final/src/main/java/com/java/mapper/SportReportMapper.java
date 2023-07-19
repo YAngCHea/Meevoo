@@ -27,12 +27,13 @@ public interface SportReportMapper {
 
 	// 문의글 작성으로 인한 시설번호 전체 가져오기
 	ArrayList<SportDto> selectSfno();
-	
 	// 문의글 1개 저장하기
 	void insertOne(SportReportDto srdto);
 	
+	
 	// 문의글 삭제하기
 	void deleteOne(int srepno);
+	
 	
 
 }

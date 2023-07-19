@@ -5,7 +5,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>체육시설 문의사항</title>
+		<title>체육시설 문의글</title>
 		<!-- 제이쿼리 최신 -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<meta charset="utf-8" />
@@ -64,7 +64,7 @@
 											        <option value="srepcontent">문의유형</option>
 												</select>
 												<input type="text" style="width:400px; margin: 0 0 0 1px;" name="srep_word" id="srep_word" value="${srep_word}" placeholder="검색어를 입력해주세요." />
-												<button class="button primary small" onclick="repsearchBtn()" style="height: 40px; margin: 0 0 0 1px;">검색</button>
+												<button type="button" class="button primary small" onclick="repsearchBtn()" style="height: 40px; margin: 0 0 0 1px;">검색</button>
 											</form>
 										</div>
 									</div>
@@ -155,7 +155,9 @@
 									         <a class="button disabled"><li>>></li></a>
 									        </c:if>
 										</ul>
-										
+										<div style="text-align: right;">
+											<a href="sportReportWrite"><button type="button" class="button primary">문의글 작성</button></a>
+										</div>
 									</div>
 								</section>
 								<!-- // Section -->

@@ -45,6 +45,10 @@
 		select * from sportreport where srepno=#{srepno}
 	</select>
 	
+	<!-- 문의글 작성으로 인한 시설번호 전체 가져오기 -->
+	<select id="selectSfno" resultType="com.java.dto.SportDto">
+		select sfno from sportlist
+	</select>
 	<!-- 문의글 1개 저장하기 -->
 	<insert id="insertOne">
 		insert into sportreport
@@ -57,10 +61,5 @@
 		delete sportreport where srepno=#{srepno}
 	</delete>
 	
-	
-	<!-- // 문의글,리뷰신고글 작성으로 인한 시설번호 전체 가져오기 -->
-	<select id="selectSfno" resultType="com.java.dto.SportDto">
-		select sfno from sportlist order by sfno
-	</select> 
 
 </mapper>

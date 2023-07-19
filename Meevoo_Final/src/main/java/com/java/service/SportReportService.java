@@ -2,8 +2,10 @@ package com.java.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.SportDto;
 import com.java.dto.SportReportDto;
@@ -19,11 +21,13 @@ public interface SportReportService {
 
 	// 문의글 작성으로 인한 시설번호 전체 가져오기
 	ArrayList<SportDto> selectSfno();
-
 	// 문의글 1개 저장
-	void insertOne(SportReportDto srdto);
+	void insertOne(SportReportDto srDto, List<MultipartFile> files);
 
 	// 문의글 삭제하기
 	void deleteOne(int srepno);
+
+
+
 
 }

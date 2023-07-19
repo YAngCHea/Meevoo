@@ -1,10 +1,15 @@
 package com.java.service;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.SportDto;
 import com.java.dto.SportReportDto;
@@ -67,6 +72,7 @@ public class SportReportServiceImpl implements SportReportService {
 		return map;
 	}
 
+
 	@Override
 	public ArrayList<SportDto> selectSfno() {
 		ArrayList<SportDto> list = new ArrayList<>();
@@ -75,19 +81,57 @@ public class SportReportServiceImpl implements SportReportService {
 		list = sportReportMapper.selectSfno();
 		return list;
 	}
-
-	@Override
-	public void insertOne(SportReportDto srdto) {
-		// 문의글 1개 저장하기
-		sportReportMapper.insertOne(srdto);
-		System.out.println("쓴 글이 넘어 오는가? : "+srdto);
-	}
+	
 
 	@Override
 	public void deleteOne(int srepno) {
 		
 		// 문의글 삭제하기
 		sportReportMapper.deleteOne(srepno);
+	}
+
+	@Override
+	public void insertOne(SportReportDto srDto, List<MultipartFile> files) {
+
+		String srepimg = ""; //파일저장이름
+		String tempFile = ""; //임시사용이름
+		String oriFile = ""; //원본파일이름
+		String[] srepimgs = new String[3];
+		
+		for(int i=0;i<3;i++) {   //files.size()->이미지 등록개수만큼 저장
+			tempFile = ""; //초기화
+			if(!files.get(i).isEmpty()) {
+				oriFile = files.get(i).getOriginalFilename(); //원본파일이름저장
+				UUID uuid = UUID.randomUUID(); //랜덤번호
+				tempFile = uuid + "_" + oriFile;  // 38749379137_1.jpg
+				String uploadURL = "c:/upload/";  // 파일저장위치
+				File f = new File(uploadURL+tempFile);
+				try {
+					files.get(i).transferTo(f); //파일을 서버에 저장
+				} catch (Exception e) { e.printStackTrace(); }
+			}//if
+			
+			//파일이름을 1개로 묶음
+			if(i==0) srepimg = tempFile;
+			else srepimg += ","+tempFile;     //452424_1.jpg,324134_2.jpg,341413_3.jpg
+	
+			// srDto에 srepimg이름 저장
+			srDto.setSrepimg(srepimg);
+			
+		}//for
+		
+		//파일이름 출력
+		System.out.println("파일이름 1개로 묶은 이름 : "+srepimg);
+		
+		//파일이름 1개로 묶은 이름 String배열로 분리
+		srepimgs = srepimg.split(",");
+		
+		System.out.println("bfiles 배열 출력 : "+Arrays.toString(srepimgs));
+		System.out.println("bfiles 배열 개수 : "+srepimgs.length);
+		
+		//mapper 전송 - 게시글 1개 저장
+		sportReportMapper.insertOne(srDto);
+		
 	}
 
 
