@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.java.dto.SportDto;
+import com.java.dto.SportReviewDto;
 
 public interface SportService {
 	
@@ -13,6 +14,12 @@ public interface SportService {
 
 	// 게시글 1개 가져오기
 	HashMap<String, Object> selectOne(int sfno);
+
+//	// 게시글 하단 리뷰 전체 가져오기
+//	ArrayList<SportReviewDto> selectReAll(int sfno);
+//
+//	// 게시글 리뷰 저장하기
+//	SportReviewDto reviewInsert(SportReviewDto sreDto);
 
 	
 	

@@ -78,13 +78,49 @@ public class SportReportController {
 	
 	@PostMapping("/sportreport/sportReportWrite")
 	public String sportReportWrite(SportReportDto srDto,
-			List<MultipartFile> files, Model model) {
-		//게시글 1개저장
+		List<MultipartFile> files, Model model) {
+		//문의글 1개저장
 		sportReportService.insertOne(srDto,files);
 		String result="i_success";
 		
 		return "redirect:/sportreport/sportReportList?result="+result;
 	} // sportReportWrite
+	
+	
+	@GetMapping("/sportreport/sportReportUpdate")  //수정 창 보여주기
+	public String sportReportUpdate(int srepno,
+		int page, String category, String srep_word, Model model) {
+		
+		HashMap<String, Object> map = sportReportService.selectOne(srepno);
+		model.addAttribute("srdto", map.get("srdto"));
+		
+		ArrayList<SportDto> list = new ArrayList<>();
+
+		// 문의글 작성으로 인한 시설번호 전체 가져오기
+		list = sportReportService.selectSfno();
+		model.addAttribute("list", list);
+		
+		model.addAttribute("srepno", srepno);
+		model.addAttribute("category", category);
+		model.addAttribute("srep_word", srep_word);
+		model.addAttribute("page", page);
+		return "sportreport/sportReportUpdate";
+	} //sportReportUpdate
+	
+	
+	@PostMapping("/sportreport/sportReportUpdate") // sportReportUpdate 저장
+	public String sportReportUpdate(SportReportDto srDto,
+		List<MultipartFile> files, Model model) {
+		// 수정 내용 저장되는가
+//		System.out.println("sportReportUpdate : "+srDto.getSrepinput());
+//		System.out.println("sportReportUpdate : "+srDto.getSrepno());
+		//문의글 1개 수정 저장
+		sportReportService.updateOne(srDto,files);
+		String result="i_success";
+		
+		return "redirect:/sportreport/sportReportList?result="+result;
+	} // sportReportUpdate
+	
 	
 	
 	@RequestMapping("/sportreport/sportReportListDelete")
@@ -96,17 +132,5 @@ public class SportReportController {
 		return "redirect:sportReportList";
 	}// boardDelete
 	
-	
-//	@RequestMapping("/sport/sportReviewReportWrite")
-//	public String sportReviewReportWrite(Model model) {
-//		
-//		ArrayList<SportDto> list = new ArrayList<>();
-//
-//		// 리뷰신고글 작성으로 인한 시설번호 전체 가져오기
-//		list = sportReportService.selectSfno();
-//		model.addAttribute("list", list);
-//		
-//		return "/sport/sportReviewReportWrite";
-//	} // sportReviewReportWrite
 
 }

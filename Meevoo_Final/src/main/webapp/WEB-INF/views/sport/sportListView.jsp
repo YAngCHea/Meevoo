@@ -22,11 +22,56 @@
 			</script>
 			
 			<!-- 리뷰쓴거 등록하기  -->
-			<script>
+			<!-- <script>
 				function reviewBtn(){
-					alert("리뷰가 등록되었습니다.");
+					if("${sessionId}"==""){
+						alert("로그인을 하셔야 리뷰등록이 가능합니다.");
+						location.href="/member/login";
+						return false;
+					}
+					
+					//ajax구문
+              	  	$.ajax({
+              		  url:"/sport/reviewInsert",
+              		  type:"post",
+              		  data:{"id":"${sessionId}", //${sessionId}를 사용함.
+              			    "sfno":"${sdto.sfno}",
+              			    "scontent":$(".sreviewContent").val(),
+              			    "sstar":$(".sportstar").val()  
+              		  },
+              		  success:function(data){
+              			  var dataHtml="";
+              			  alert("리뷰 저장 성공");
+              			  //하단리뷰 1개 가져오기
+              			  console.log(data);
+              			  //하단에 리뷰추가코드
+              			  dataHtml += "<ul id='"+ data.cno +"'>";
+              			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp&nbsp[ "+ moment(data.cdate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
+              			  dataHtml += "<li class='txt'>"+ data.ccontent +"</li>";
+              			  dataHtml += "<li class='btn'>";
+              			  dataHtml += "<a onclick=\"updateBtn("+data.cno+",'"+data.id+"','"+data.cdate+"','"+data.ccontent+"')\" class='rebtn'>수정</a>&nbsp";
+              			  dataHtml += "<a onclick=\"deleteBtn("+data.cno+")\" class='rebtn'>삭제</a>";
+              			  dataHtml += "</li>";
+              			  dataHtml += "</ul>";
+              			  
+              			  $(".replyBox").prepend(dataHtml);  //prepend(위),append(아래),html(모두삭제후 추가)
+              			  
+              			  //글자삭제
+              			  $(".sreviewContent").val("");
+              			  $(".sportstar").val("");
+              			  
+              			  //총개수 수정
+	                    	  var cnum = Number($("#cnum").text())+1;
+	                    	  $("#cnum").text(cnum);
+              			  
+              			  
+              		  },
+              		  error:function(){
+              			  alert("실패");
+              		  }
+              	  });//ajax
 				}
-			</script>
+			</script> -->
 			
 			<!-- 리뷰쓴거 수정하기  -->
 			<script>
@@ -179,7 +224,7 @@
 											<li class="in">
 												<li class="name">총 <span>${comList.size() }</span> 3개의 댓글이 달려있습니다.</li>
 												<form name="myform" id="myform" method="post" >
-													<fieldset>
+													<fieldset class="sportstar">
 														<!-- 별점 수정 main.css 1192번 -->
 														<span class="text-bold">별점을 선택해주세요</span>
 														<input type="radio" name="star" value="5" id="star1"><label
@@ -194,10 +239,10 @@
 															for="star5">★</label>
 													</fieldset>
 													<div style="display: flex;">
-														<textarea class="col-auto form-control" type="text" id="reviewContents"
+														<textarea class="col-auto form-control" type="text" class="sreviewContent"
 																  placeholder="시설 리뷰글을 작성해주세요!" ></textarea>
 																  <!-- 버튼 크기 수정 main.css 1644번째 -->
-													    <li class="btn"><a onclick="reviewBtn()" class="button primary large">등록</a></li>
+													    <li class="btn"><a onclick="reviewBtn()" id="swrite"  class="button primary large">등록</a></li>
 													</div>
 												</form>	
 											</li>

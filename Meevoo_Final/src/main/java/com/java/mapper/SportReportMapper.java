@@ -29,7 +29,9 @@ public interface SportReportMapper {
 	ArrayList<SportDto> selectSfno();
 	// 문의글 1개 저장하기
 	void insertOne(SportReportDto srdto);
-	
+
+	// 문의글 수정하기
+	void updateOne(SportReportDto srDto);
 	
 	// 문의글 삭제하기
 	void deleteOne(int srepno);

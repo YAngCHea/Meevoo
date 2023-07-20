@@ -23,16 +23,6 @@
 
 							<!-- Top -->
 							<%@ include file="../top.jsp" %>
-
-							<!-- Banner -->
-								<!-- <section id="banner">
-									<div class="content">
-										<header style="text-align: center;">
-											<h1>Meevoo 체육시설 상세 페이지</h1>
-											<p>section 있을때마다 아래와 같이 줄이 생김</p>
-										</header>
-									</div>
-								</section> -->
 							
 							<script>
 								function srepwriteBtn(){
@@ -43,6 +33,7 @@
 									}
 									if($("#srepinput").val() == ""){
 										alert("내용을 입력해주셔야 합니다.");
+										$("#srepinput").focus();
 										return false;
 									}
 									alert("작성한 문의글을 저장합니다.");
@@ -54,7 +45,7 @@
 								<section class="sportlistview">
 									<!-- 상세설명 css -> main.css(63번째)  -->
 									<div class="viewHead">
-									  <form action="/sportreport/sportReportWrite" name="srpwrite" id="srpwrite" method="post" enctype="multipart/form-data">
+									  <form action="sportReportWrite" name="srpwrite" id="srpwrite" method="post" enctype="multipart/form-data">
 										<div class="day">
 											<p class="txt">작성자
 											  <span>${sessionId}
@@ -64,7 +55,7 @@
 										</div>
 										<div class="day">
 											<p class="txt">제목
-												<input type="text" placeholder="검색어를 입력해주세요." />
+												<input type="text" placeholder="제목을 입력해주세요." />
 											</p>
 										</div>
 										<div class="day">
@@ -82,16 +73,14 @@
 											<p class="txt">해당시설번호
 												<select name="sfno">
 													<c:forEach var="sportlist" items="${list}">
-														<option value="${sportlist.sfno}" th:selected="${sportlist.sfno == selectedValue}">${sportlist.sfno}</option>
-														<%-- <option value="${sportlist.sfno}">${sportlist.sfno}</option> --%>
+														<option value="${sportlist.sfno}">${sportlist.sfno}</option>
 													</c:forEach>
 												</select>
-												<!-- <input type="text" name="sfno" class="sfno" placeholder="1" /> -->
 											</p>
 										</div>
 										<div class="day">
 											<p class="txt">내용
-												<textarea name="srepinput" id="srepinput" cols="110" rows="10" style="resize:none;"></textarea>
+												<textarea name="srepinput" id="srepinput" cols="110" rows="10" style="resize:none;" placeholder="내용을 입력해주세요."></textarea>
 											</p>
 										</div>
 										<div class="day">

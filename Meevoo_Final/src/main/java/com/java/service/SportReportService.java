@@ -24,8 +24,12 @@ public interface SportReportService {
 	// 문의글 1개 저장
 	void insertOne(SportReportDto srDto, List<MultipartFile> files);
 
+	// 문의글 1개 수정
+	void updateOne(SportReportDto srDto, List<MultipartFile> files);
+	
 	// 문의글 삭제하기
 	void deleteOne(int srepno);
+
 
 
 

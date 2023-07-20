@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.java.dto.SportDto;
+import com.java.dto.SportReviewDto;
 
 @Mapper
 public interface SportMapper {
@@ -26,6 +27,16 @@ public interface SportMapper {
 	
 	// 문의글,리뷰신고글 작성으로 인한 시설번호 전체 가져오기
 	ArrayList<SportDto> selectSfno();
+
+	
+//	// 게시글 하단 리뷰 전체 가져오기
+//	ArrayList<SportReviewDto> selectReAll(int sfno);
+//
+//	// 게시글 하단 리뷰 저장하기
+//	void reviewInsert(SportReviewDto sreDto);
+//
+//	// 게시글 하단 리뷰 1개 가져오기
+//	SportReviewDto selectReOne(SportReviewDto sreDto);
 
 
 	

@@ -68,7 +68,6 @@ public class SportReportServiceImpl implements SportReportService {
 //		//다음글 1개 가져오기
 //		SportReportDto nextDto = sportReportMapper.selectNextOne(srepno);
 //		map.put("nextDto", nextDto);
-		
 		return map;
 	}
 
@@ -76,7 +75,7 @@ public class SportReportServiceImpl implements SportReportService {
 	@Override
 	public ArrayList<SportDto> selectSfno() {
 		ArrayList<SportDto> list = new ArrayList<>();
-
+		
 		// 문의글 작성으로 인한 시설번호 전체 가져오기
 		list = sportReportMapper.selectSfno();
 		return list;
@@ -85,7 +84,6 @@ public class SportReportServiceImpl implements SportReportService {
 
 	@Override
 	public void deleteOne(int srepno) {
-		
 		// 문의글 삭제하기
 		sportReportMapper.deleteOne(srepno);
 	}
@@ -117,7 +115,6 @@ public class SportReportServiceImpl implements SportReportService {
 	
 			// srDto에 srepimg이름 저장
 			srDto.setSrepimg(srepimg);
-			
 		}//for
 		
 		//파일이름 출력
@@ -129,9 +126,55 @@ public class SportReportServiceImpl implements SportReportService {
 		System.out.println("bfiles 배열 출력 : "+Arrays.toString(srepimgs));
 		System.out.println("bfiles 배열 개수 : "+srepimgs.length);
 		
-		//mapper 전송 - 게시글 1개 저장
+		//mapper 전송 - 문의글 1개 저장
 		sportReportMapper.insertOne(srDto);
+	}
+	
+	
+	@Override
+	public void updateOne(SportReportDto srDto, List<MultipartFile> files) {
+
+		String srepimg = ""; //파일저장이름
+		String tempFile = ""; //임시사용이름
+		String oriFile = ""; //원본파일이름
+		String[] srepimgs = new String[3];
 		
+		for(int i=0;i<3;i++) {   //files.size()->이미지 등록개수만큼 저장
+			tempFile = ""; //초기화
+			if(!files.get(i).isEmpty()) {
+				oriFile = files.get(i).getOriginalFilename(); //원본파일이름저장
+				UUID uuid = UUID.randomUUID(); //랜덤번호
+				tempFile = uuid + "_" + oriFile;  // 38749379137_1.jpg
+				String uploadURL = "c:/upload/";  // 파일저장위치
+				File f = new File(uploadURL+tempFile);
+				try {
+					files.get(i).transferTo(f); //파일을 서버에 저장
+				} catch (Exception e) { e.printStackTrace(); }
+			}//if
+			
+			//파일이름을 1개로 묶음
+			if(i==0) srepimg = tempFile;
+			else srepimg += ","+tempFile;     //452424_1.jpg,324134_2.jpg,341413_3.jpg
+	
+			// srDto에 srepimg이름 저장
+			srDto.setSrepimg(srepimg);
+		}//for
+		
+		//파일이름 출력
+		System.out.println("파일이름 1개로 묶은 이름 : "+srepimg);
+		
+		//파일이름 1개로 묶은 이름 String배열로 분리
+		srepimgs = srepimg.split(",");
+		
+		System.out.println("bfiles 배열 출력 : "+Arrays.toString(srepimgs));
+		System.out.println("bfiles 배열 개수 : "+srepimgs.length);
+		System.out.println("service srepno updateOne : "+srDto.getSrepno());
+		System.out.println("service id updateOne : "+srDto.getId());
+		System.out.println("service sfno updateOne : "+srDto.getSfno());
+		System.out.println("service srepcontent updateOne : "+srDto.getSrepcontent());
+		System.out.println("service srepinput updateOne : "+srDto.getSrepinput());
+		//mapper 전송 - 문의글 1개 수정
+		sportReportMapper.updateOne(srDto);
 	}
 
 

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -24,78 +25,95 @@
 							<!-- Top -->
 							<%@ include file="../top.jsp" %>
 
-							<!-- Banner -->
-								<!-- <section id="banner">
-									<div class="content">
-										<header style="text-align: center;">
-											<h1>Meevoo 체육시설 상세 페이지</h1>
-											<p>section 있을때마다 아래와 같이 줄이 생김</p>
-										</header>
-									</div>
-								</section> -->
-							
 							<script>
-								function srepwriteBtn(){
-									if("${sessionId}"== ""){
-										alert("로그인을 하셔야 댓글입력이 가능합니다.");
-										location.href="/member/login";
-										return false;
-									}
+								function srepupdateBtn(){
 									if($("#srepinput").val() == ""){
-										alert("내용을 입력해주셔야 합니다.");
+										alert("내용을 입력해주세요.");
+										$("#srepinput").focus();
 										return false;
 									}
-									alert("작성한 문의글을 저장합니다.");
-									$("#srpwrite").submit();
+									$("#srpupdate").submit();
 					          	  
-					            }// 문의글 저장
+					            }// 문의글 수정
 							</script>
 							<!-- Section -->
 								<section class="sportlistview">
 									<!-- 상세설명 css -> main.css(63번째)  -->
 									<div class="viewHead">
-									  <form action="/sportreport/sportReportWrite" name="srpwrite" id="srpwrite" method="post" enctype="multipart/form-data">
+									  <form action="/sportreport/sportReportUpdate" name="srpupdate" id="srpupdate" method="post" enctype="multipart/form-data">
+									  	<input type="hidden" name="srepno" value="${srdto.srepno}">
 										<div class="day">
 											<p class="txt">작성자
 											  <span>${sessionId}
-												<input type="hidden" name="id" value="${sessionId}" placeholder="ID가 표시됨" />
+												<input type="hidden" name="id" value="${sessionId}"/>
 											  </span>
 											</p>
 										</div>
 										<div class="day">
 											<p class="txt">제목
-												<input type="text" placeholder="검색어를 입력해주세요." />
+												<input type="text" placeholder="제목을 입력해주세요."/>
 											</p>
 										</div>
 										<div class="day">
 											<p class="txt">문의유형
 												<select name="srepcontent">
-														<option value="폐업한 시설입니다.">폐업한 시설입니다.</option>
+													<c:if test="${srdto.srepcontent == '폐업한 시설입니다.'}">
+														<option value="폐업한 시설입니다." selected>폐업한 시설입니다.</option>
 														<option value="전화번호가 변경되었습니다.">전화번호가 변경되었습니다.</option>
 														<option value="영업시간이 변경되었습니다.">영업시간이 변경되었습니다.</option>
 														<option value="위치가 달라졌습니다.">위치가 달라졌습니다.</option>
 														<option value="기타 요청사항">기타 요청사항</option>
+													</c:if>
+													<c:if test="${srdto.srepcontent == '전화번호가 변경되었습니다.'}">
+														<option value="폐업한 시설입니다.">폐업한 시설입니다.</option>
+														<option value="전화번호가 변경되었습니다." selected>전화번호가 변경되었습니다.</option>
+														<option value="영업시간이 변경되었습니다.">영업시간이 변경되었습니다.</option>
+														<option value="위치가 달라졌습니다.">위치가 달라졌습니다.</option>
+														<option value="기타 요청사항">기타 요청사항</option>
+													</c:if>
+													<c:if test="${srdto.srepcontent == '영업시간이 변경되었습니다.'}">
+														<option value="폐업한 시설입니다.">폐업한 시설입니다.</option>
+														<option value="전화번호가 변경되었습니다.">전화번호가 변경되었습니다.</option>
+														<option value="영업시간이 변경되었습니다." selected>영업시간이 변경되었습니다.</option>
+														<option value="위치가 달라졌습니다.">위치가 달라졌습니다.</option>
+														<option value="기타 요청사항">기타 요청사항</option>
+													</c:if>
+													<c:if test="${srdto.srepcontent == '위치가 달라졌습니다.'}">
+														<option value="폐업한 시설입니다.">폐업한 시설입니다.</option>
+														<option value="전화번호가 변경되었습니다.">전화번호가 변경되었습니다.</option>
+														<option value="영업시간이 변경되었습니다.">영업시간이 변경되었습니다.</option>
+														<option value="위치가 달라졌습니다." selected>위치가 달라졌습니다.</option>
+														<option value="기타 요청사항">기타 요청사항</option>
+													</c:if>
+													<c:if test="${srdto.srepcontent == '기타 요청사항'}">
+														<option value="폐업한 시설입니다.">폐업한 시설입니다.</option>
+														<option value="전화번호가 변경되었습니다.">전화번호가 변경되었습니다.</option>
+														<option value="영업시간이 변경되었습니다.">영업시간이 변경되었습니다.</option>
+														<option value="위치가 달라졌습니다.">위치가 달라졌습니다.</option>
+														<option value="기타 요청사항" selected>기타 요청사항</option>
+													</c:if>
 												</select>
 											</p>
 										</div>
 										<div class="day" >
-											<p class="txt">해당시설번호
+											<p class="txt">해당시설번호 
 												<select name="sfno">
-													<c:forEach var="sportlist" items="${list}">
-														<option value="${sportlist.sfno}" th:selected="${sportlist.sfno == selectedValue}">${sportlist.sfno}</option>
-														<%-- <option value="${sportlist.sfno}">${sportlist.sfno}</option> --%>
-													</c:forEach>
+													<option value="${srdto.sfno}" selected>${srdto.sfno}</option>
 												</select>
-												<!-- <input type="text" name="sfno" class="sfno" placeholder="1" /> -->
 											</p>
 										</div>
 										<div class="day">
 											<p class="txt">내용
-												<textarea name="srepinput" id="srepinput" cols="110" rows="10" style="resize:none;"></textarea>
+												<textarea name="srepinput" id="srepinput" cols="110" rows="10" style="resize:none;">${srdto.srepinput}</textarea>
 											</p>
 										</div>
 										<div class="day">
-											<p class="txt">이미지
+											<p class="txt"> 기존 이미지 파일명
+											  <span>${srdto.srepimg}</span>
+											</p>
+										</div>
+										<div class="day">
+											<p class="txt">이미지1
 												<input type="file" name="files" id="file1">
 											</p>
 										</div>
@@ -113,7 +131,7 @@
 									<br>
 								</section>
 								<div style="text-align: right;">
-									<button type="button" class="button primary" id="srpwrite" onclick="srepwriteBtn()">저장</button>
+									<button type="button" class="button primary" id="srpupdate" onclick="srepupdateBtn()">수정완료</button>
 									<button type="button" class="button" onclick="javascript:location.href='sportReportList'">취소</button>
 								</div>
 							  </form>

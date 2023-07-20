@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.dto.SportDto;
+import com.java.dto.SportReviewDto;
 import com.java.mapper.SportMapper;
 
 @Service
@@ -64,6 +65,23 @@ public class SportServiceImpl implements SportService {
 		
 		return map;
 	}
+
+//	@Override
+//	public ArrayList<SportReviewDto> selectReAll(int sfno) {
+//		// 게시글 하단 리뷰 전체 가져오기
+//		ArrayList<SportReviewDto> sreList = sportMapper.selectReAll(sfno);
+//		return sreList;
+//	}
+//
+//	@Override
+//	public SportReviewDto reviewInsert(SportReviewDto sreDto) {
+//		// 게시글 하단 리뷰저장 후
+//		sportMapper.reviewInsert(sreDto);
+//		
+//		//하단리뷰 1개 가져오기
+//		SportReviewDto sreviewdto = sportMapper.selectReOne(sreDto);
+//		return sreviewdto;
+//	}
 	
 	
 //	@Override

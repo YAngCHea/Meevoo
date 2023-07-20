@@ -53,16 +53,20 @@
 										<div class="day">
 											<p class="txt">내용<span>${srdto.srepinput}</span></p>
 										</div>
+										<c:if test="${srdto.srepimg == null}">
 										<div class="day">
 											<p class="txt">사진<span><img src="${srdto.srepimg}"></span></p>
 										</div>
+										</c:if>
 									
 									</div>
 									<br>
 									<!-- Buttons 수정 ->  main.css (1294번째)-->
 									<ul class="actions">
-										<li><a href="#" class="button primary">수정</a></li>
-										<li><a onclick="srpdeleteBtn()" class="button">삭제</a></li>
+											<c:if test="${sessionId == srdto.id}">
+											  <li><a href="sportReportUpdate?srepno=${srdto.srepno}&page=${page}&category=${category}&srep_word=${srep_word}" class="button primary">수정</a></li>
+											  <li><a onclick="srpdeleteBtn()" class="button">삭제</a></li>
+											</c:if>
 										<li><a href="sportReportList?page=${page}&category=${category}&srep_word=${srep_word}" class="button primary">문의 목록으로</a></li>
 									</ul>
 								</section>
