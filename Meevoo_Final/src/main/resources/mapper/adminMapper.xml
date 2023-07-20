@@ -4,15 +4,191 @@
 
 <mapper namespace="com.java.mapper.AdminMapper">
 
- <!--  회원 전체 가져오기  -->
-  <select id="selectAll" resultType="com.java.dto.MemberDto">
-     select * from userList
-  </select> 
-
- <!--  모임 전체 가져오기  -->
-  <select id="selectClubAll" resultType="com.java.dto.ClubDto">
-     select * from clubList
+  <!-- 회원그래프 데이터 가져오기 -->
+  <select id="selectUserGraphAll" resultType="com.java.dto.UserGraphDto">
+		<![CDATA[SELECT
+		    t1.joinMonth,
+		    t1.joinuser AS newuser,
+		    t2.alluser AS totaluser,
+		    t3.quituser AS quituser
+		FROM
+		    (SELECT
+		        TO_CHAR(joinDate, 'YYYYMM') AS joinMonth,
+		        COUNT(*) AS joinuser
+		    FROM
+		        userlist
+		    WHERE
+		        joinDate >= '20230101' AND joinDate < '20230731'
+		        AND nowjoin = '1'
+		    GROUP BY
+		        TO_CHAR(joinDate, 'YYYYMM')) t1
+		JOIN
+		    (SELECT
+		        TO_CHAR(joinDate, 'YYYYMM') AS joinMonth,
+		        SUM(COUNT(*)) OVER (ORDER BY TO_CHAR(joinDate, 'YYYYMM') ASC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS alluser
+		    FROM
+		        userlist
+		    WHERE
+		        joinDate >= '20230101' AND joinDate < '20230731'
+		    GROUP BY
+		        TO_CHAR(joinDate, 'YYYYMM')) t2 ON t1.joinMonth = t2.joinMonth
+		JOIN
+		    (SELECT
+		        TO_CHAR(joinDate, 'YYYYMM') AS joinMonth,
+		        COUNT(*) AS quituser
+		    FROM
+		        userlist
+		    WHERE
+		        joinDate >= '20230101' AND joinDate < '20230731'
+		        AND nowjoin = '0'
+		    GROUP BY
+		        TO_CHAR(joinDate, 'YYYYMM')) t3 ON t1.joinMonth = t3.joinMonth
+		ORDER BY
+		    t1.joinMonth ASC
+		    ]]>
   </select>
+  
+  <!-- 게시물 그래프 데이터 가져오기 -->
+  <select id="selectWriteGraphAll" resultType="com.java.dto.WriteGraphDto">
+		<![CDATA[SELECT
+		    t1.writeMonth,
+		    t1.clubWrite AS clubWrite,
+		    t2.sportReview AS sportReview
+		FROM
+		    (SELECT 
+		        TO_CHAR(cWrDate, 'YYYYMM') AS writeMonth,
+		        COUNT(*) AS clubWrite
+		    FROM 
+		        clublist 
+		    WHERE
+		        cWrDate >= '20230101' AND cWrDate <= '20230731'
+		    GROUP BY
+		        TO_CHAR(cWrDate, 'YYYYMM')
+		    ORDER BY
+		        writeMonth ASC) t1
+		JOIN
+		    (SELECT 
+		        TO_CHAR(sReDate, 'YYYYMM') AS writeMonth,
+		        COUNT(*) AS sportReview
+		    FROM 
+		        sportReview 
+		    WHERE
+		        sReDate >= '20230101' AND sReDate <= '20230731'
+		    GROUP BY
+		        TO_CHAR(sReDate, 'YYYYMM')
+		    ORDER BY
+		        writeMonth ASC) t2 ON t1.writeMonth = t2.writeMonth
+		ORDER BY
+		    t1.writeMonth ASC
+		
+		
+		    ]]>
+  </select>
+  
+ 
+    <!-- 전체 회원 하단 넘버링  -->
+  <select id="selectAll" resultType="com.java.dto.MemberDto">
+     select * from ( select rownum rnum,a.* from-->
+		(select * from userlist order by joindate desc) a
+		)where rnum between #{startRow} and #{endRow}
+   </select>
+   
+    <!--전체 회원 가져오기   -->
+   <select id="selectMemberListCount" resultType="int">
+      select count(*) from userlist
+   </select>
+   
+   <!-- 전체 모임 하단 넘버링  -->
+   <select id = "selectClubAll" resultType="com.java.dto.ClubDto">
+      select * from ( select rownum rnum,a.* from
+		(select * from clublist order by cWrDate desc) a
+		)where rnum between #{startRow} and #{endRow}
+   </select>
+   
+   <!-- 전체 모임 가져오기 -->
+   <select id = "selectClubListCount" resultType="int">
+      select count(*) from clublist
+   </select>
+   
+   <!-- Sport 신고 게시물 상위 5개 -->
+   <select id="selectSFive" resultType="com.java.dto.SportReportDto">
+      <![CDATA[
+      select * 
+	  from (select *
+      		from sportreport 
+     		 order by sRepDate desc
+      		)
+	  where rownum <= 5
+	  ]]>
+   </select>
+   
+   <!-- Sport 신고 게시물 1개 가져오기 -->
+   <select id="selectSROne" resultType="com.java.dto.SportReportDto">
+      select * from sportreport where srepno = #{srepno}
+   </select>
+   
+   <!-- 모임 신고 게시물 상위 5개 -->
+   <select id="selectCFive" resultType="com.java.dto.ClubReportDto">
+      <![CDATA[
+      select * 
+	  from ( select *
+     		 from clubreport 
+     		 order by cRepDate desc
+      		)
+	  where rownum <= 5
+	  ]]>
+   </select>
+   
+   <!-- 모임 신고 게시물 1개 가져오기 -->
+   <select id="selectCROne" resultType="com.java.dto.ClubReportDto">
+      select * from clubreport where crepno = #{crepno}
+   </select>
+   
+   <!-- 회원 추가하기 -->
+   <insert id="insertMember">
+      insert into userlist values(#{id},#{pw},#{usernm},#{nicknm},#{birth},#{email},#{gender},#{dongcate},#{scate},
+      #{userimg},#{selfintro},sysdate,1,0,#{addr})
+   </insert>
+   
+   <!-- 수정할 회원정보 가져오기 -->
+   <select id="selectTUMOne">
+      select * from userlist where id=#{id}
+   </select>
+   
+   <!-- 회원 수정사항 저장하기 -->
+   <update id="updateTUMOne">
+      update userlist set id=#{id},pw=#{pw}, usernm=#{usernm}, nicknm=#{nicknm}, birth=#{birth}, email=#{email}, gender=#{gender}, dongcate=#{dongcate}, 
+      userimg=#{userimg},scate=#{scate}, selfintro=#{selfintro},addr=#{addr},nowjoin=#{nowjoin}
+      where id=#{id}
+   </update>
+   
+   <!-- 회원 탈퇴처리하기 -->
+   <update id="deleteTUMOne">
+      update userlist set nowjoin=0 where id=#{id}
+   </update>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
    
    

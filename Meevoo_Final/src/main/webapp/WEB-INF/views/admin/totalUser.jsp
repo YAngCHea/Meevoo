@@ -10,9 +10,13 @@
       <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-      <link rel="stylesheet" href="../css/main_yang.css" />
+      <link rel="stylesheet" href="../css/main_new_yang.css" />
+      
+	  <link rel="icon" href="../images/main/logo2.png">
+	  
    </head>
    <body class="is-preload">
+      <c:if test="${result=='i_success'}"><script>alert("게시글이 등록되었습니다.!!");</script></c:if>
 
       <!-- Wrapper -->
          <div id="wrapper">
@@ -22,7 +26,7 @@
                   <div class="inner">
 
                      <!-- Header -->
-                        <header id="header">
+                        <!-- <header id="header">
                            <a href="/index" class="logo"><strong>Meevoo</strong> by 채연</a>
                            <ul class="icons">
                               <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -31,7 +35,10 @@
                               <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
                               <li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
                            </ul>
-                        </header>
+                        </header> -->
+
+<%@ include file="../top.jsp" %>
+
 
                      <!-- Banner -->
                         <!-- <section id="banner">
@@ -73,7 +80,7 @@
 							        					</ul>
 							        				</div>
 						                        </div> -->
-						                        <div class="option_section" style="width:300px;">
+						                        <div class="option_section" style="width:30%;">
 					                                <span class="first_tit" style="float:left;text-align : center" ><br>가입 날짜 :</span>
 					                                <input type="text" class="Datepicker cald_St hasDatepicker" id="dp1689135199476" style="width:100px; float:left;">
 					                                <span style="float:left;"><br> ~ </span>
@@ -150,16 +157,17 @@
 						                                   <tr>
 															  <td>${userList.id}</td>
 															  <td>${userList.pw}</td>
-															  <td><a href="/" class="lightgray">${userList.usernm}</a></td>
+															  <td><a href="/admin/totalUserModify?id=${userList.id}" class="lightgray">${userList.usernm}</a></td>
 															  <td>${userList.nicknm}</td>
 															  <td>${userList.email}</td>
 															  <td><fmt:formatDate value="${userList.joindate}" pattern="yyyy-MM-dd"/></td>
 															  <td>${userList.totaltemp}</td>
 															  <td>${userList.nowjoin}</td>
-						                                      <td><button class="btn_simple btn_blue">수정</button><button class="btn_simple btn_green">삭제</button></td>
+						                                      <td><a href="/admin/totalUserModify?id=${userList.id}"><button class="btn_simple btn_blue">수정</button></a>
+						                                         <!--  <a onclick="deleteBtn()"><button class="btn_simple btn_green">삭제</button></a> -->
+						                                      </td>
 														    </tr>
 						                                </c:forEach>
-						                                
 						                                      <!-- <td>1</td>
 						                                        <td><div class="id_photo"><img src="./Admin Template - Light_files/icon_loginID.png"></div></td>
 						                                        <td>Data Name</td>
@@ -170,7 +178,6 @@
 						                                        <td>OFF</td>
 						                                        <td>AA</td>
 						                                        <td><button class="btn_simple btn_blue">확인</button><button class="btn_simple btn_green">수정</button></td> -->
-						                                   
 						                                </tbody>
 						                                
 						                            </table>
@@ -179,7 +186,111 @@
 						        			</div>
 						        			
 						        			
+						        			
+						        			
+						        			
+							        			<!-- 하단 넘버링 버튼 -->
+											<div class="col-12" style="margin: 0px auto;">
+												<ul class="pagination">
+												    <!-- 첫 페이지 이동 -->
+												    <c:if test="${pageDto.page !=1}">
+													  <li>
+													    <a href="/admin/totalUser?page=1" class="button">
+													      <img src="../images/general/pageFirst.png" style="width:15px; " />
+													    </a>
+													  </li>
+												    </c:if>
+												    <c:if test="${pageDto.page ==1}">
+													  <li>
+													    <span class="button disabled">
+													      <img src="../images/general/pageFirst.png" style="width:15px; vertical-align: middle;" />
+													    </span>
+													  </li>
+												    </c:if>
+													<!-- 첫 페이지 이동 끝-->
+													<!-- 이전 페이지 이동 -->
+													<c:if test="${pageDto.page>1}">
+													  <li>
+													    <a href="/admin/totalUser?page=${pageDto.page-1}" class="button">
+													      <img src="../images/general/pagePrevious.png" style="width:15px; vertical-align: middle;" />
+													    </a>
+													  </li>
+													</c:if>
+													<c:if test="${pageDto.page==1}">
+													  <li>
+													    <span class="button disabled">
+													      <img src="../images/general/pagePrevious.png" style="width:15px; vertical-align: middle;" />
+													    </span>
+													  </li>
+													</c:if>
+													<!-- 이전 페이지 이동 끝 -->
+													<!-- 페이지 리스트 -->
+													<c:forEach var="num" begin="${pageDto.startPage}" end="${pageDto.endPage}" step="1" >
+													  <c:if test="${num != pageDto.page}" >
+													    <li><a href="/admin/totalUser?page=${num}" class="page">${num}</a></li>
+													  </c:if>
+													  <c:if test="${num == pageDto.page}" >
+													    <li><a href="/admin/totalUser?page=${num}" class="page active">${num}</a></li>
+													  </c:if>
+													</c:forEach>
+													<!-- 페이지 리스트 끝-->
+													<!-- 다음 페이지 이동 -->
+													<c:if test="${pageDto.page<pageDto.maxPage}">
+													  <li>
+													    <a href="/admin/totalUser?page=${pageDto.page+1}" class="button">
+													      <img src="../images/general/pageNext.png" style="width:15px; vertical-align: middle;" />
+													    </a>
+													  </li>
+													</c:if>
+													<c:if test="${pageDto.page==pageDto.maxPage}">
+													  <li>
+													    <span class="button disabled">
+													      <img src="../images/general/pageNext.png" style="width:15px; vertical-align: middle;" />
+													    </span>
+													  </li>
+													</c:if>
+													<!-- 다음 페이지 이동 끝-->
+													<!-- 끝 페이지 이동 -->
+												    <c:if test="${pageDto.page != pageDto.maxPage}">
+													  <li>
+													    <a href="/admin/totalUser?page=${pageDto.maxPage}" class="button">
+													      <img src="../images/general/pageLast.png" style="width:15px; vertical-align: middle;" />
+													    </a>
+													  </li>
+												    </c:if>
+												    <c:if test="${pageDto.page == pageDto.maxPage}">
+													  <li>
+													    <span class="button disabled">
+													      <img src="../images/general/pageLast.png" style="width:15px; vertical-align: middle;" />
+													    </span>
+													  </li>
+												    </c:if>
+													<!-- 끝 페이지 이동 끝-->
+													
+											</ul>
+										</div>
+									
+									
+									
+									<!-- Section -->
+									<section>
+										<!-- Table -->
+										<div class="table-wrapper">
+											
+											<div style="text-align: right;">
+												<a href="/admin/totalUserWrite"><button type="button" class="button primary">문의글 작성</button></a>
+											</div>
+										</div>
+									</section>
+									<!-- // Section -->
+						        			
+						        			
+					        			
+						        			
+						        			
+						        			
 											<!--paging-->
+											<!-- 
 											<div class="paging">
 						                        <div class="ps_area">
 						                            <span class="imgb"><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#"><i class="demo-icon icon-first" title="First"></i></a></span>
@@ -192,7 +303,16 @@
 						                            <span class="imgb"><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#"><i class="demo-icon icon-end" title="First"></i></a></span>
 						                        </div>
 						                    </div>
+											 -->
 											<!--paging-->
+											
+											
+											<!-- 게시글 페이지 넘기기 Start -->
+												<!-- 하단 넘버링 버튼 끝 -->
+											<!-- 게시글 페이지 넘기기 End -->
+											
+											
+											
 											
 											
 										</div>
@@ -205,9 +325,28 @@
 						</div>
 										 
 					 
+<%@ include file="../footer.jsp" %> 
+					 
 					 
                   </div>
                </div>
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
 
             <!-- Sidebar -->
                <div id="sidebar">
@@ -261,9 +400,12 @@
 
 
                      <!-- Footer -->
+                     	
+                        <!-- 
                         <footer id="footer">
                            <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
                         </footer>
+                         -->
 
                   </div>
                </div>

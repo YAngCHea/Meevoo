@@ -5,12 +5,27 @@
 <!DOCTYPE HTML>
 <html>
    <head>
-      <title>FAQ</title>
+      <title>회원수정하기</title>
       <!-- 제이쿼리 최신 -->
       <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
       <link rel="stylesheet" href="../css/main_yang.css" />
+      <script>
+     function updateBtn(){
+    	if(confirm("회원정보를 수정하시겠습니까?")){
+	    	 update.submit(); //전송
+    	}
+     }
+  </script>
+  <script>
+	      function deleteBtn(){
+	    	  if(confirm("게시글을 삭제하시겠습니까?")){
+	    		  update.submit(); //전송
+	    		  //location.href="/admin/totalUserModify?id=${userList.id}";
+	    	  }
+	      }
+	    </script>
    </head>
    <body class="is-preload">
 
@@ -54,7 +69,7 @@
 					        		
 					        			<!--card 맨 위 이름-->
 					        			<div class="card_title bottomline">
-					                        <h3>전체 게시글 관리
+					                        <h3>회원정보 수정하기
 					                    	</h3>
 					                    </div>
 					        			<!--card_title-->
@@ -72,22 +87,23 @@
 									              <div class="x_panel">
 
 									                <div class="x_content">
-									                  <form class="" action="https://colorlib.com/polygon/gentelella/form_validation.html" method="post"
+									                  <form class="" action="/admin/totalUserModify" method="post" name="update" enctype="multipart/form-data"
 									                    novalidate="">
 									                    
 									                    <!-- <span class="section">Personal Info</span> -->
-									                    <div class="field item form-group">
+									                    <!-- <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">no<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" placeholder="1" name="occupation" data-validate-length-range="5,15" type="text">
 									                      </div>
-									                    </div>
+									                    </div> -->
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">이름<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="occupation" placeholder="길동쓰" data-validate-length-range="5,15" type="text">
+									                        <input class="form-control" name="usernm" value="${mdto.usernm}" data-validate-length-range="5,15" type="text" >
 									                      </div>
 									                    </div>
 									                    
@@ -95,131 +111,147 @@
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">닉네임<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="email" name="confirm_email" data-validate-linked="email"
-									                          required="required">
+									                        <input class="form-control" type="text" value="${mdto.nicknm }" name="nicknm" data-validate-linked="email">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">ID<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="occupation" data-validate-length-range="5,15" type="text">
+									                        <input class="form-control" value="${mdto.id}" name="id" data-validate-length-range="5,15" type="id" readonly>
+									                        
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">PW<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="email" required="required" type="password">
+									                        <input class="form-control" value="${mdto.pw }" name="pw"  type="password" readonly>  <!-- required="required" -->
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">EMAIL<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="email" required="required" type="email">
+									                        <input class="form-control" value="${mdto.email }" name="email" required="required" type="email">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">성별<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="number" name="number" data-validate-minmax="10,100"
-									                          required="required">
+									                        <input class="form-control" value="${mdto.gender }" type="text" name="gender" >
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">주소<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="address" name="password" data-validate-length="6,8"
-									                          required="required">
+									                        <input class="form-control" value="${mdto.addr}" type="text" name="addr" >
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심지역<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="number" name="number" data-validate-minmax="10,100"
-									                          required="required">
+									                        <input class="form-control" type="text" value="${mdto.dongcate }" name="dongcate"  >
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심스포츠<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="number" name="number" data-validate-minmax="10,100"
-									                          required="required">
+									                        <input class="form-control" type="text" value="${mdto.scate }" name="scate">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">태어난 연도<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="date" name="date" required="required">
+									                        <input class="form-control" type="number" value="${mdto.birth }" name="birth">
 									                      </div>
 									                    </div>
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">가입일자<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="date" name="date" required="required">
-									                      </div>
-									                    </div>
-									                    <!-- <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Time<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="time" name="time" required="required">
-									                      </div>
-									                    </div> -->
-									                    <!-- <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Repeat password<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="password" name="password2" data-validate-linked="password"
-									                          required="required">
-									                      </div>
-									                    </div> -->
-									                    <!-- <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Telephone<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="tel" name="phone" required="required"
-									                          data-validate-length-range="8,20">
-									                      </div>
-									                    </div> -->
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">프로필 사진<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="occupation" placeholder="사진없음" data-validate-length-range="5,15" type="text">
+									                        <input type="file" class="form-control" value="${mdto.userimg}" name="file">
+									                        <input type="text" class="form-control" value="${mdto.userimg}" name="userimg">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">자기소개<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <textarea required="required" name="message"></textarea>
+									                        <textarea  name="selfintro">${mdto.selfintro }</textarea>
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">가입 상태(가입/탈퇴)<span
+									                          class="required">*</span></label>
+									                      <div class="col-md-6 col-sm-6">
+									                        <!-- <input class="form-control" type="number" value="${mdto.nowjoin}" name="nowjoin" > -->
+									                        								                        
+									                        <select name="srepcontent">
+																<c:if test="${mdto.nowjoin == '1'}">
+																	<option value="1" selected>가입되어있는 회원</option>
+																	<option value="0">탈퇴한 회원</option>
+																</c:if>
+																<c:if test="${mdto.nowjoin == '0'}">
+																	<option value="1">가입되어있는 회원</option>
+																	<option value="0" selected>탈퇴한 회원</option>
+																</c:if>
+															</select>
+									                        
+									                        
+									                      
+									                      </div>
+									                      
+									                    </div>
+									                    
+									                    <!-- <div class="field item form-group">
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Time<span
+									                          class="required">*</span></label>
+									                      <div class="col-md-6 col-sm-6">
+									                        <input class="form-control" type="time" name="time" required="required">
+									                      </div>
+									                    </div>
+									                    <div class="field item form-group">
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Repeat password<span
+									                          class="required">*</span></label>
+									                      <div class="col-md-6 col-sm-6">
+									                        <input class="form-control" type="password" name="password2" data-validate-linked="password"
+									                          required="required">
+									                      </div>
+									                    </div>
+									                    <div class="field item form-group">
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Telephone<span
+									                          class="required">*</span></label>
+									                      <div class="col-md-6 col-sm-6">
+									                        <input class="form-control" type="tel" name="phone" required="required"
+									                          data-validate-length-range="8,20">
+									                      </div>
+									                    </div>
+									                   <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심온도<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" type="number" name="number" data-validate-minmax="10,100"
 									                          required="required">
 									                      </div>
-									                    </div>
+									                    </div> -->
 									                    <div class="ln_solid">
 									                      <div class="form-group">
 									                        <div class="col-md-6 offset-md-3">
-									                          <button type="submit" class="btn btn-primary" style="margin: 0 auto;">Submit</button>
+									                          <button type="button" onclick="updateBtn()" class="btn btn-primary" style="margin: 0 auto;">Submit</button>
 									                          <button type="reset" class="btn btn-success">Reset</button>
+									                          <button type="button" onclick="deleteBtn()" class="btn btn-delete" style="margin: 0 auto;float: right;">탈퇴하기</button>
 									                        </div>
 									                      </div>
 									                    </div>
 									                  </form>
+									                  
 									                </div>
 									              </div>
 									            </div>

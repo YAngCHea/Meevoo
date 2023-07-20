@@ -154,21 +154,11 @@
 															  <td><fmt:formatDate value="${clublist.cdodate}" pattern="yyyy-MM-dd"/></td>
 															  <td>${clublist.cloc}</td>
 															  <td>${clublist.sfno}</td>
-						                                      <td><button class="btn_simple btn_blue">수정</button><button class="btn_simple btn_green">삭제</button></td>
+						                                      <td><a href="/admin/totalWriteModify?id=${clublist.id }"><button class="btn_simple btn_blue">수정</button></a><button class="btn_simple btn_green">삭제</button></td>
 														    </tr>
 						                                </c:forEach>
 						                                
-						                                      <!-- <td>1</td>
-						                                        <td><div class="id_photo"><img src="./Admin Template - Light_files/icon_loginID.png"></div></td>
-						                                        <td>Data Name</td>
-						                                        <td>222</td>
-						                                        <td>v0.0.1</td>
-						                                        <td>20,840,512</td>
-						                                        <td>OFF</td>
-						                                        <td>OFF</td>
-						                                        <td>AA</td>
-						                                        <td><button class="btn_simple btn_blue">확인</button><button class="btn_simple btn_green">수정</button></td> -->
-						                                   
+						                                      
 						                                </tbody>
 						                            </table>
 												</div>
@@ -176,7 +166,96 @@
 						        			</div>
 						        			
 						        			
+						        			
+						        			
+						        			
+						        			<!-- 하단 넘버링 버튼 -->
+											<div class="col-12" style="margin: 0px auto;">
+												<ul class="pagination">
+												    <!-- 첫 페이지 이동 -->
+												    <c:if test="${pageDto.page !=1}">
+													  <li>
+													    <a href="/admin/totalWrite?page=1" class="button">
+													      <img src="../images/general/pageFirst.png" style="width:15px; " />
+													    </a>
+													  </li>
+												    </c:if>
+												    <c:if test="${pageDto.page ==1}">
+													  <li>
+													    <span class="button disabled">
+													      <img src="../images/general/pageFirst.png" style="width:15px; vertical-align: middle;" />
+													    </span>
+													  </li>
+												    </c:if>
+													<!-- 첫 페이지 이동 끝-->
+													<!-- 이전 페이지 이동 -->
+													<c:if test="${pageDto.page>1}">
+													  <li>
+													    <a href="/admin/totalWrite?page=${pageDto.page-1}" class="button">
+													      <img src="../images/general/pagePrevious.png" style="width:15px; vertical-align: middle;" />
+													    </a>
+													  </li>
+													</c:if>
+													<c:if test="${pageDto.page==1}">
+													  <li>
+													    <span class="button disabled">
+													      <img src="../images/general/pagePrevious.png" style="width:15px; vertical-align: middle;" />
+													    </span>
+													  </li>
+													</c:if>
+													<!-- 이전 페이지 이동 끝 -->
+													<!-- 페이지 리스트 -->
+													<c:forEach var="num" begin="${pageDto.startPage}" end="${pageDto.endPage}" step="1" >
+													  <c:if test="${num != pageDto.page}" >
+													    <li><a href="/admin/totalWrite?page=${num}" class="page">${num}</a></li>
+													  </c:if>
+													  <c:if test="${num == pageDto.page}" >
+													    <li><a href="/admin/totalWrite?page=${num}" class="page active">${num}</a></li>
+													  </c:if>
+													</c:forEach>
+													<!-- 페이지 리스트 끝-->
+													<!-- 다음 페이지 이동 -->
+													<c:if test="${pageDto.page<pageDto.maxPage}">
+													  <li>
+													    <a href="/admin/totalWrite?page=${pageDto.page+1}" class="button">
+													      <img src="../images/general/pageNext.png" style="width:15px; vertical-align: middle;" />
+													    </a>
+													  </li>
+													</c:if>
+													<c:if test="${pageDto.page==pageDto.maxPage}">
+													  <li>
+													    <span class="button disabled">
+													      <img src="../images/general/pageNext.png" style="width:15px; vertical-align: middle;" />
+													    </span>
+													  </li>
+													</c:if>
+													<!-- 다음 페이지 이동 끝-->
+													<!-- 끝 페이지 이동 -->
+												    <c:if test="${pageDto.page != pageDto.maxPage}">
+													  <li>
+													    <a href="/admin/totalWrite?page=${pageDto.maxPage}" class="button">
+													      <img src="../images/general/pageLast.png" style="width:15px; vertical-align: middle;" />
+													    </a>
+													  </li>
+												    </c:if>
+												    <c:if test="${pageDto.page == pageDto.maxPage}">
+													  <li>
+													    <span class="button disabled">
+													      <img src="../images/general/pageLast.png" style="width:15px; vertical-align: middle;" />
+													    </span>
+													  </li>
+												    </c:if>
+													<!-- 끝 페이지 이동 끝-->
+													
+											</ul>
+										</div>
+						        			
+						        			
+						        			
+						        			
+						        			
 											<!--paging-->
+						        			<!--
 											<div class="paging">
 						                        <div class="ps_area">
 						                            <span class="imgb"><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#"><i class="demo-icon icon-first" title="First"></i></a></span>
@@ -189,7 +268,11 @@
 						                            <span class="imgb"><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#"><i class="demo-icon icon-end" title="First"></i></a></span>
 						                        </div>
 						                    </div>
+						        			 -->
 											<!--paging-->
+											
+											
+											
 											
 											
 										</div>
@@ -200,6 +283,17 @@
 					        </div>
 					        <!--//content-->
 						</div>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
 										 
 					 
 					 

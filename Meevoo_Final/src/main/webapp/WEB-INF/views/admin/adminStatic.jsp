@@ -8,6 +8,7 @@
 <head>
     <meta charset="utf-8">
     <title>Meevoo 관리자 페이지</title>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -158,7 +159,7 @@
 									<header id="header">
 										<a href="/main" class="logo"><strong>Meevoo</strong> by 채연</a>
 										<ul class="icons">
-											<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+											<li><a class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 											<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
 											<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
@@ -244,13 +245,30 @@
 								             <div class="col-sm-12 col-md-6 col-xl-4">
 						                        <div class="h-100 bg-light rounded p-4">
 						                            <div class="d-flex align-items-center justify-content-between mb-4">
-						                                <h4 class="mb-0">신고 게시물</h6>
+						                                <h4 class="mb-0">시설 신고 게시물</h6>
 						                                <a href="">전체 보기</a>
 						                            </div>
+						                            
+				                            <!-- 시설 신고 상위 5개 -->
+				                            <c:forEach var="sRelist" items="${sRelist}">
+				                                   <div class="d-flex align-items-center border-bottom py-2">
+						                                <input class="form-check-input m-0" type="checkbox">
+						                                <div class="w-100 ms-3">
+						                                    <div class="d-flex w-100 align-items-center justify-content-between">
+						                                        <span>${sRelist.sfno}</span>
+						                                        <span><a href="#">${sRelist.srepcontent}</a></span>
+						                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+						                                    </div>
+						                                </div>
+						                            </div>
+				                                </c:forEach>
+						                            
+						                            <!-- 
 						                            <div class="d-flex align-items-center border-bottom py-2">
 						                                <input class="form-check-input m-0" type="checkbox">
 						                                <div class="w-100 ms-3">
 						                                    <div class="d-flex w-100 align-items-center justify-content-between">
+						                                        <span>새벽</span>
 						                                        <span>새벽두시에 인라인타실분</span>
 						                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
 						                                    </div>
@@ -292,6 +310,8 @@
 						                                    </div>
 						                                </div>
 						                            </div>
+						                            -->
+						                            
 						                        </div>
 						                    </div>
 								            <!-- 신고게시물 end -->
@@ -300,9 +320,25 @@
 								             <div class="col-sm-12 col-md-6 col-xl-4">
 						                        <div class="h-100 bg-light rounded p-4">
 						                            <div class="d-flex align-items-center justify-content-between mb-4">
-						                                <h4 class="mb-0">최근 게시물</h6>
+						                                <h4 class="mb-0">모임 신고 게시물</h6>
 						                                <a href="">전체 보기</a>
 						                            </div>
+						                            
+						                            <!-- 시설 신고 상위 5개 -->
+						                            <c:forEach var="cRelist" items="${cRelist}">
+						                                   <div class="d-flex align-items-center border-bottom py-2">
+								                                <input class="form-check-input m-0" type="checkbox">
+								                                <div class="w-100 ms-3">
+								                                    <div class="d-flex w-100 align-items-center justify-content-between">
+								                                        <span>${cRelist.cno}</span>
+								                                        <span><a href="#">${cRelist.crepcontent}</a></span>
+								                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+								                                    </div>
+								                                </div>
+								                            </div>
+						                                </c:forEach>
+						                            
+						                            <!-- 
 						                            <div class="d-flex align-items-center border-bottom py-2">
 						                                <input class="form-check-input m-0" type="checkbox">
 						                                <div class="w-100 ms-3">
@@ -348,6 +384,9 @@
 						                                    </div>
 						                                </div>
 						                            </div>
+						                             -->
+						                            
+						                            
 						                        </div>
 						                    </div>
 								            <!-- 최근게시물 end -->
