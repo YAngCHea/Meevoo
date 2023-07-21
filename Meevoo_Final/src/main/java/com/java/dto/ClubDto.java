@@ -2,6 +2,8 @@ package com.java.dto;
 
 import java.sql.Timestamp;
 
+
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,8 +25,8 @@ public class ClubDto {
 	private String ccontent;
 	private int ctotalpick;
 	private int crecruitlimit;
-	private int cnowrecruit;
+	private String cnowrecruit;
 	private String cnowstatus;
 	private String scate;
-
+	
 }
