@@ -7,10 +7,39 @@
 	<select id="selectLogin" resultType="com.java.dto.MemberDto">
 		select * from userList where id=#{id} and pw=#{pw}
 	</select>
+
+	<!-- 회원가입시 입력한 정보 저장하기 -->
+	<insert id="insertMem">
+		insert into userList (id,pw,usernm,birth,
+		email,gender,scate,joindate,nowjoin,totaltemp,addr) 
+		values(#{id}, #{pw}, #{usernm}, #{birth}, 
+		#{email}, #{gender}, #{scate}, sysdate, 1, 36.5, #{addr})
+		
+	</insert>
 	
+	<!-- select에 scate 값 표시하기 -->
 	<select id="selectscateAll" resultType="String">
-		select distinct scate from sportlist
+		select distinct scate from sportList
 	</select>
 	
+	<!-- id 중복체크 -->
+	<select id="selectIdOne" resultType="com.java.dto.MemberDto">
+		select * from userList where id=#{id}
+	</select>
+	
+	<!-- 멤버 정보 1개 가져오기 -->
+	<select id="selectMemOne" resultType="com.java.dto.MemberDto">
+		select * from userList where id=#{id}
+	</select>
+	
+	<!-- 회원 삭제 -->
+	<delete id="deleteUser">
+		delete userList where id=#{id}
+	</delete>
+	
+	<update id="updateSaveUser">
+		update userList set nicknm=#{nicknm}, dongcate=#{dongcate}, scate=#{scate},
+		selfintro=#{selfintro} where id=#{id}
+	</update>
 	
 </mapper>

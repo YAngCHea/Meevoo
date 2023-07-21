@@ -17,6 +17,9 @@
 		<link rel="stylesheet" href="../css/main.lee.css" />
 	</head>
 	<body class="is-preload">
+	<c:if test="${result== 'mem_success' }">
+		<script>alert("회원가입이 완료되었습니다.<br>로그인을 해주세요");</script>
+	</c:if>
 
 		<!-- Wrapper -->
 			<div id="wrapper">

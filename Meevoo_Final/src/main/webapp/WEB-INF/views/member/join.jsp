@@ -1,7 +1,7 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UP
@@ -32,6 +32,7 @@
 </style>
 <!-- 제이쿼리 최신 -->
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- <script type="text/javascript">
 //joinform_check 함수로 유효성 검사
@@ -140,7 +141,8 @@ function id_check() {
 
 </script> -->
 
-<script type="text/javascript"> /* 글자수, 입력 조건 스크립트 */
+<!-- 사용할페이지 -->
+<!-- <script type="text/javascript"> /* 글자수, 입력 조건 스크립트 */
 	function joinform_check(){
 		let nameCheck = /^[ㄱ-ㅎ가-힣]{2,}$/ //^[ㄱ-ㅎ가-힣].{1,}$/ ; // ^ 는 시작 [모든 국문자] + 는 하나이상 $ 는 끝
 		let numCheck = /^[0-9]+$/ ;  //숫자인지
@@ -172,55 +174,55 @@ function id_check() {
 		} */
 		
 		//아이디 입력, 소문자 2자리 이상 입력 가능
-		if ($("#mem_id").val()!="") {
-			if(!idCheck.test($("#mem_id").val())){
+		if ($("#id").val()!="") {
+			if(!idCheck.test($("#id").val())){
 				alert("영문 소문자 2자리 이상 입력이 가능합니다.");
-				$("#mem_id").focus();
+				$("#id").focus();
 				return false;
 			}
 		  }else{
 		    alert("아이디를 입력하세요.");
-		    $("#mem_id").focus();
+		    $("#id").focus();
 		    return false;
 		  }
 		
 		//비밀번호 입력, 숫자 5자리만 입력 가능
-		if($("#mem_pw").val()!=""){
-			if(!pwCheck2.test($("#mem_pw").val())){
+		if($("#pw").val()!=""){
+			if(!pwCheck2.test($("#pw").val())){
 				alert("5자리 숫자만 입력이 가능합니다.");
-				$("#mem_pw").focus();
+				$("#pw").focus();
 				return false;
 			}
 		}else{
 			alert("비밀번호를 입력하세요");
-			$("#mem_pw").focus();
+			$("#pw").focus();
 			return false;
 		}
 		
 		//비밀번호 확인 입력
-		if($("#mem_pw2").val()!=""){
-			if ($("#mem_pw2").val() != $("#mem_pw").val()) {
+		if($("#pw2").val()!=""){
+			if ($("#pw2").val() != $("#pw").val()) {
 			    alert("비밀번호가 일치하지 않습니다..");
-			    $("#mem_pw2").focus();
+			    $("#pw2").focus();
 			    return false;
 			}
 		}else{
 			alert("비밀번호를 한번 더 확인하세요")
-			$("#mem_pw2").focus();
+			$("#pw2").focus();
 			return false;
 		}
 		
 		//이메일 아이디 입력
-		if ($("#mem_email1").val()=="") {
+		if ($("#email1").val()=="") {
 		    alert("이메일을 입력하세요.");
-		    $("#mem_email1").focus();
+		    $("#email1").focus();
 		    return false;
 		}
 
 		//이메일 주소 입력
-		if ($("#mem_email2").val()=="") {
+		if ($("#email2").val()=="") {
 		    alert("이메일을 입력하세요.");
-		    $("#mem_email2").focus();
+		    $("#email2").focus();
 		    return false;
 		}
 		
@@ -240,16 +242,16 @@ function id_check() {
 		}
 		
 		//태어난해 입력
-		if ($("#mem_birth").val()=="") {
+		if ($("#birth").val()=="") {
 			alert("태어난 해를 선택하세요.");
-			$("#mem_birth").focus();
+			$("#birth").focus();
 		    return false;
 		}
 		
 		//운동종목 입력
-		if ($("#exercise").val()=="") {
+		if ($("#scate").val()=="") {
 			alert("운동종목을 선택하세요.");
-			$("#exercise").focus();
+			$("#scate").focus();
 		    return false;
 		}
 		
@@ -258,7 +260,10 @@ function id_check() {
 		
 		alert("회원정보를 저장합니다.");
 	}
-</script>
+</script> --> <!-- 사용할페이지 -->
+
+
+
 
 <!-- <script type="text/javascript"> /* 글자수, 입력 조건 스크립트 */
 	function joinform_check(){
@@ -388,7 +393,7 @@ function addrBtn() {
 											</ul>
 										</div>
 					
-										<form action="" name="memberFrm" method="post">
+										<form action="/member/join" id="memberFrm" name="memberFrm" method="post" onsubmit="check()" enctype="multipart/form-data">
 										
 										
 										<div class="memberbd">
@@ -403,7 +408,7 @@ function addrBtn() {
 														<th scope="row"><span>이름 *</span></th>
 														<td>
 															<ul class="pta">
-																<li class="r10"><input type="text" name="name" id="mem_name" class="w134"  required/></li>
+																<li class="r10"><input type="text" name="usernm" id="name" class="w134"  required/></li>
 																<li style="padding:10px 0 0 0;" ><span class="mvalign">※ 한글만 사용가능</span></li>
 															</ul>
 														</td>
@@ -412,54 +417,70 @@ function addrBtn() {
 														<th scope="row" style="height:56.59px;"><span>아이디 *</span></th>
 														<td style="height:56.59px;">
 															<ul class="pta" style="margin:0;">
-																<li class="r10"><input type="text" onkeyup="idKey()" id="mem_id" class="w134" /></li>
-																<li id="idKeyText" style="width:100px; padding:8px 0 0 0;"><a href="#" class="button primary small fit">중복확인</a></li>
-																<li class="pt5"><span class="mvalign">※ 영문 소문자 2자리 이상 입력 가능</span></li>
+																<li class="r10"><input type="text" name="id" id="id" class="w134" /></li>
+																<li id="idKeyText" style="width:100px; padding:8px 0 0 0;"><a onclick="idcheckBtn()" class="button primary small fit">중복확인</a></li>
+																<li id="idCheckText" class="pt5"><span class="mvalign">※ 영문 소-문자 2자리 이상 입력 가능</span></li>
 															</ul>
 														</td>
 													</tr>
-													<script>
-														function idKey(){
-															let id1 = $("#mem_id").val();
-															if(id1 == getName()){
-																$("#idKeyText").html("<span class='mvalign black'>* 비밀번호가 일치합니다.</span>")
-															}else{
-																$("#pwKeyText").html("<span class='mvalign orange'>* 비밀번호가 일치하지 않습니다.</span>")
-															}
-															
-															console.log($("#mem_pw2").val());
-															return false;
+													<!-- <script> <사용할 스크립트>
+														function idcheckBtn(){ //ajax은 페이지가 아닌 값으로 넘겨준다.
+																//alert("아이디 중복검사");
+															$.ajax({
+																url:"idcheck",
+																type:"get",
+																data:{"id" :$("#id").val()},
+																success:function(result){
+																	//alert("아이디를 확인하였습니다.");
+																	/* checkId = result; */
+																	console.log("checkedId : "+result);
+																	if($("#id").val()!=""){
+																		if(result=="success"){
+																			$("#idCheckText").html("<span class='mvalign orange'>* 사용가능한 아이디입니다.</span>")
+																		}else{
+																			$("#idCheckText").html("<span class='mvalign black'>* 아이디를 사용할 수 없습니다.</span>")
+																			$("#id").val("");
+																		}
+																	}else{
+																		alert("아이디를 입력 후 중복확인을 해주세요");
+																		$("#id").focus();
+																	}
+																},
+																error:function(){
+																	alert("실패");
+																	$("#id").focus();
+																}
+															});
 														}
-													</script>
-													
+													</script> <사용할 스크립트> -->
 													<tr>
 														<th scope="row"><span>비밀번호 *</span></th>
 														<td>
 															<ul class="pta">
-																<li class="r10"><input type="text" id="mem_pw" class="w134" /></li>
+																<li class="r10"><input type="text" name="pw" id="pw" class="w134" /></li>
 																<li style="padding:10px 0 0 0;"><span class="mvalign">※ 숫자로 5자만 가능</span></li>
 															</ul>
 														</td>
 													</tr>
-													<script>
+													<!-- <script> <사용할 스크립트>
 														function pwKey(){
-															let pw1 = $("#mem_pw").val();
-															if(pw1 == $("#mem_pw2").val()){
+															let pw1 = $("#pw").val();
+															if(pw1 == $("#pw2").val()){
 																$("#pwKeyText").html("<span class='mvalign black'>* 비밀번호가 일치합니다.</span>")
 															}else{
 																$("#pwKeyText").html("<span class='mvalign orange'>* 비밀번호가 일치하지 않습니다.</span>")
 															}
 															
-															console.log($("#mem_pw2").val());
+															console.log($("#pw2").val());
 															return false;
 														}
-													</script>
-													<script></script>
+													</script> <사용할 스크립트> -->
+													
 													<tr>
 														<th scope="row"><span>비밀번호 확인 *</span></th>
 														<td>
 															<ul class="pta">
-																<li class="r10"><input type="text" onkeyup="pwKey()" id="mem_pw2" class="w134" /></li>
+																<li class="r10"><input type="text" onkeyup="pwKey()" id="pw2" class="w134" /></li>
 																<li id="pwKeyText">
 																</li>
 															</ul>
@@ -469,23 +490,24 @@ function addrBtn() {
 														<th scope="row"><span>이메일</span></th>
 														<td>
 															<ul class="pta">
-																<li><input type="text" name="email" id="mem_email1" class="w134" style="width:163px;"/></li>
-																<li id=valign1><span class="valign">&nbsp;@&nbsp;</span></li>
-																<li class="r10"><input type="text" name="email" id="mem_email2" class="w134" style="width:163px;"/></li>
-																<script>
+																<li><input type="text" name="email" id="email1" class="w134" style="width:163px;"/></li>
+																<!-- <li><input type="text" name="email1" id="email1" class="w134" style="width:163px;"/></li>
+																<li id=valign1><span id="middle" class="valign">&nbsp;@&nbsp;</span></li>
+																<li class="r10"><input type="text" name="email2" id="email2" class="w134" style="width:163px;"/></li> -->
+																<!-- <script> <사용할 스크립트>
 																	function email_chn(){
 																		console.log($("#emailList").val());
 																		if($("#emailList").val()=="txt"){
-																			$("#mem_email2").val("");
-																			$("#mem_email2").attr("readonly",false);
-																			$("#mem_email2").focus();
+																			$("#email2").val("");
+																			$("#email2").attr("readonly",false);
+																			$("#email2").focus();
 																		}else{
-																			$("#mem_email2").val($("#emailList").val());
-																			$("#mem_email2").attr("readonly",true);
+																			$("#email2").val($("#emailList").val());
+																			$("#email2").attr("readonly",true);
 																		}
 																	}
-																</script>
-																<li>
+																</script> <사용할 스크립트> -->
+																<!-- <li>
 																	<select id="emailList" onchange="email_chn()">
 																		<option value="txt" selected="selected">직접입력</option>
 																		<option value="naver.com">naver.com</option>
@@ -505,15 +527,30 @@ function addrBtn() {
 																		<option value="empas.com">empas.com</option>
 																	</select>&nbsp;&nbsp;&nbsp;
 																</li>
-																<!-- <input type="hidden" name="email" id="email"> -->
+																<input type="hidden" name="email" id="email" value=""> -->
 																<li id="chk_e"><a onclick="emailBtn()" style="cursor: pointer;" class="button primary small fit">인증코드 발송</a></li>
 															</ul>
-															
 															<script>
+																$("#email1").blur(function(){
+																	email();
+																});
+																$("#email2").change(function(){
+																	email();
+																});
+																function email(){
+																	const email1 = $("#email1").val();
+																	const middle = $("#middle").text();
+																	const email2 = $("#email2").val();
+																	if(email1 != "" && address != ""){
+																		$("#email").val(email1+middle+email2);
+																	}
+																}
+															</script>
+															<!-- <script> <사용할 스크립트>
 																let temp_code=""; //전역변수로 사용
 																
 																function emailBtn(){
-																	if($("#mem_name").val()=="" || $("#mem_email1").val()=="" || $("#mem_email2").val()==""){
+																	if($("#name").val()=="" || $("#email1").val()=="" || $("#email2").val()==""){
 																		alert("이름과 이메일을 입력한 후 인증코드 발송 버튼을 클릭하세요");
 																	}else{
 																		$("#pta_email").css("display","block");
@@ -522,12 +559,12 @@ function addrBtn() {
 																	$.ajax({
 																		url:"/member/emailSend",
 																		type:"post",
-																		data:{"name":$("#mem_name").val(),"email":$("#mem_email1").val()+"@"+$("#mem_email2").val()},
+																		data:{"usernm":$("#name").val(),"email":$("#email1").val()+"@"+$("#email2").val()},
 																		success:function(data){
 																			alert("이메일이 발송되었습니다.");
 																			temp_code = data;
 																			console.log("pwCode : "+temp_code);
-																			$("#mem_name").attr("readonly",true);
+																			$("#name").attr("readonly",true);
 																		},
 																		error:function(){
 																			alert("실패");
@@ -554,9 +591,9 @@ function addrBtn() {
 																		$("#temp_code").val("");
 																	}
 																}
-															</script>
+															</script> <사용할 스크립트> -->
 															<ul id="pta_email" class="pta">
-																<li class="r10"><input type="text" id="temp_code" class="w134" /></li>
+																<li class="r10"><input type="email" id="temp_code" class="w134" /></li>
 																<li style="width:100px; padding:8px 0 0 0;"><a style="cursor: pointer;" onclick="authBtn()" class="button primary small fit">인증코드 확인</a></li>
 																<li class="pt5"><span class="mvalign">※ 이메일을 확인해서 인증코드를 입력해주세요</span></li>
 															</ul>
@@ -567,10 +604,10 @@ function addrBtn() {
 														<td>
 															<ul class="pta">
 																<li class="gender">
-																	<input type="radio" name="receive" id="receive_yes" class="radio_t" checked="checked"/><label for="receive_yes" id="m">남</label>
+																	<input type="radio" name="gender" id="receive_yes" class="radio_t" value="male" checked="checked"/><label for="receive_yes" id="m">남</label>
 																</li>
 																<li class="gender">
-																	<input type="radio" name="receive" id="receive_no" class="radio_t"/><label for="receive_no" id="f">여</label>
+																	<input type="radio" name="gender" id="receive_no" class="radio_t" value="female" /><label for="receive_no" id="f">여</label>
 																</li>
 															</ul>
 														</td>
@@ -580,30 +617,46 @@ function addrBtn() {
 														<td>
 															<ul class="pta">
 																<li id="postcode1">
-																	<input type="text" id="postcode" class="w134" readonly/>&nbsp;
+																	<input type="text" name="postcode" id="postcode" class="w134" readonly/>&nbsp;
 																</li>
 																<li style="width:100px; padding:8px 0 0 10px;">
 																	<a onclick="addrBtn()" class="button primary small fit"><span>우편번호 찾기</span></a></li>
-																<li class="pt5"><input type="text" name="addr_detail" id="addr1" class="addressType" readonly/></li>
-																<li class="pt5"><input type="text" name="addr_detail2" id="addr2" class="addressType" /></li>
-																<li class="pt5"><input type="text" name="addr_detail2" id="addr3" class="addressType" /></li>
+																<li class="pt5"><input type="text" name="addr" id="addr1" class="addressType" readonly/></li>
+																<li class="pt5"><input type="text" name="addr2" id="addr2" class="addressType" /></li>
+																<li class="pt5"><input type="text" name="addr3" id="addr3" class="addressType" /></li>
 																<li class="cb" style="padding:5px 0 0 0;">
+																<!-- <input type="hidden" name="email" id="email"> -->
 																	<span class="mvalign">※ 주소를 정확히 적어 주세요.</span>
 																</li>
 															</ul>
 														</td>
 													</tr>
 													
+<!-- <script>
+ function check() {
+   var email1 = document.getElementById('addr1').value;
+   var email2 = document.getElementById('addr2').value;
+   var email3 = document.getElementById('addr3').value;
+   
+   var email = email1 + ' ' + email2 + ' ' + email3;
+   
+   // form 태그에 값을 설정하여 전송
+   document.getElementById('email').value = email;
+   console.log(email);
+  /*  alert("회원가입이 완료되었습니다."); */
+  
+ }
+</script> -->
 													<tr>
 														<th scope="row"><span>태어난해 *</span></th>
 														<td>
 															<ul class="pta">
 																<li>
-																	<select id="mem_birth">
+																	<select id="birth" name="birth">
 																		<option value='' selected="selected">선택하세요</option>
-																		<script>
+																		<script name="birth">
 																			for(var i=1940; i<=2023; i++){
-																				document.write("<option value='birth'>" + i + "년"+ "</option>");	
+																				document.write("<option value="+ i +">" + i + "년"+ "</option>");	
 																			};
 																		</script>
 																	</select>
@@ -617,10 +670,10 @@ function addrBtn() {
 														<td>
 															<ul class="pta">
 																<li>
-																	<select id="exercise" name="exercise">
+																	<select id="scate" name="scate">
 																		<option value='' selected="selected" id="mem_exercise">선택하세요</option>
 																		<c:forEach var="scate" items="${scate }">
-																			<option value='scate' >${scate }</option>
+																			<option value='${scate }' >${scate }</option>
 																		
 																		</c:forEach>
 																	</select>
@@ -636,11 +689,12 @@ function addrBtn() {
 					
 										</div>
 										
-										<!-- <script>
+										<script>
 											function joinform_check(){
 												alert("가입을 축하합니다^^")
+												memberFrm.submit(); //전송
 											}
-										</script> -->
+										</script>
 										
 										<!-- Btn Area -->
 										<div class="btnArea" style="padding:0 0 20px 0;">
@@ -654,7 +708,7 @@ function addrBtn() {
 										<!-- //Btn Area -->
 										</form>
 										
-										<script type="text/javascript" src="../js/jquery.fancybox-1.3.4.pack.js"></script>
+										<!-- <script type="text/javascript" src="../js/jquery.fancybox-1.3.4.pack.js"></script>
 										<link rel="stylesheet" type="text/css" href="../css/jquery.fancybox-1.3.4.css" />
 										<script type="text/javascript">
 										$(function(){
@@ -694,7 +748,7 @@ function addrBtn() {
 										
 										
 										});
-										</script>
+										</script> -->
 
 
 								</div>

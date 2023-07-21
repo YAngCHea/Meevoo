@@ -69,13 +69,16 @@
 														</tr>
 													</thead>
 													<tbody>
-														<tr class="tr1">
-															<td>1</td>
-															<td>여기여기 모여라~</td>
-															<td>구로동</td>
-															<td>2023.7.12</td>
-															<td><button onclick="clubBtn()" class="button small">삭제</button></td>
-														</tr>
+														<c:forEach var="myclubboard" items="${list }">
+															<tr class="tr1">
+																<td>${mypick.cpickno }</td>
+																<td>여기여기 모여라~</td>
+																<td>구로동</td>
+																<td>${mypick.cpickdate }</td>
+																<td><button onclick="clubBtn()" class="button small">삭제</button></td>
+															</tr>
+														</c:forEach>
+														<!-- 
 														<tr class="tr1">
 															<td>2</td>
 															<td>여기여기 모여라~</td>
@@ -83,27 +86,7 @@
 															<td>2023.7.12</td>
 															<td><button onclick="clubBtn()" class="button small">삭제</button></td>
 														</tr>
-														<tr class="tr1">
-															<td>3</td>
-															<td>여기여기 모여라~</td>
-															<td>구로동</td>
-															<td>2023.7.12</td>
-															<td><button onclick="clubBtn()" class="button small">삭제</button></td>
-														</tr>
-														<tr class="tr1">
-															<td>4</td>
-															<td>여기여기 모여라~</td>
-															<td>구로동</td>
-															<td>2023.7.12</td>
-															<td><button onclick="clubBtn()" class="button small">삭제</button></td>
-														</tr>
-														<tr class="tr1">
-															<td>5</td>
-															<td>여기여기 모여라~</td>
-															<td>구로동</td>
-															<td>2023.7.12</td>
-															<td><button onclick="clubBtn()" class="button small">삭제</button></td>
-														</tr>
+														 -->
 													</tbody>
 												</table>
 												<div>

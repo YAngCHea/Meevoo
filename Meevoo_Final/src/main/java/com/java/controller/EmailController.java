@@ -15,7 +15,7 @@ public class EmailController {
 	@RequestMapping("/member/emailSend")
 	@ResponseBody
 	public String emailSend(String name,String email) {
-		System.out.println("name : "+name);
+		System.out.println("usernm : "+name);
 		
 		//임시비밀번호 코드 생성
 		String pwCode = emailService.insertPwCode(name,email);

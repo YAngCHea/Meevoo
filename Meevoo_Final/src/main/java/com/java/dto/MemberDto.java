@@ -1,7 +1,6 @@
 package com.java.dto;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +25,7 @@ public class MemberDto {
 	private String selfintro;
 	private Date joindate;
 	private int nowjoin;
-	private int totaltemp;
+	private float totaltemp;
 	private String addr;
 	private int remainDate;    //DB에서 계산을 해서 가져오는 것 : xml에서 쿼리문으로 불러오는것이다 : 이름을 임의로 정해서 불러오는것! : 안불러오면 그냥 null값
 	
