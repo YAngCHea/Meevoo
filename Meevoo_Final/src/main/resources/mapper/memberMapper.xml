@@ -37,9 +37,10 @@
 		delete userList where id=#{id}
 	</delete>
 	
+	<!-- 회원정보 수정 -->
 	<update id="updateSaveUser">
 		update userList set nicknm=#{nicknm}, dongcate=#{dongcate}, scate=#{scate},
-		selfintro=#{selfintro} where id=#{id}
+		selfintro=#{selfintro}, userimg=#{userimg} where id=#{id}
 	</update>
 	
 </mapper>

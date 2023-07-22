@@ -160,7 +160,7 @@
 												<div class="cell">
 													<div class="subject">자기소개</div>
 													<div>
-														<textarea id="textbox" name="salfintro" readonly>${mdto.selfintro }</textarea>
+														<textarea id="textbox" name="salfintro" value="${mdto.selfintro }" readonly>${mdto.selfintro }</textarea>
 													</div>
 												</div>
 											</div>

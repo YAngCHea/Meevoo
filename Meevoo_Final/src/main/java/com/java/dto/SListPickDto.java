@@ -9,15 +9,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CListCurrDto {
+public class SListPickDto {
 
-	private int ccurrno;
+	private int spickno;
+	private int sfno;
 	private String id;
-	private int cno;
-	private String cnm;
+	private String sfnm;
 	private String dongcate;
-	private Date ccurrdate;
-	private Date cdodate;
-	
+	private String spickyn;
+	private Date spickdate;
 	
 }

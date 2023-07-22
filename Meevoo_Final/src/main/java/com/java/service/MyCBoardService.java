@@ -1,0 +1,22 @@
+package com.java.service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import com.java.dto.CListCurrDto;
+import com.java.dto.CListJoinDto;
+import com.java.dto.CListPickDto;
+import com.java.dto.PageDto;
+
+public interface MyCBoardService {
+
+	//운동모임 - 찜한 리스트 전체, 전체 리스트 개수 가져오기
+	HashMap<String, Object> selectClubPickAll(PageDto pageDto);
+
+	//운동모임 - 최근본 리스트 전체, 전체 리스트 개수 가져오기
+	HashMap<String, Object> selectClubCurrAll(PageDto pageDto);
+
+	//운동모임 - 참여한 리스트 전체, 전체 리스트 개수 가져오기
+	HashMap<String, Object> selectClubJoinAll(PageDto pageDto);
+
+}

@@ -1,6 +1,10 @@
 package com.java.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.MemberDto;
 import com.java.service.MemberService;
@@ -53,7 +58,7 @@ public class MypageController {
 	@RequestMapping("/mypage/myProfilEdit")
 	public String myProfilEdit(String id, MemberDto memberDto, Model model) {
 		
-		//로그인 했을 경우에만 마이페이지 열 수 있도록
+		//로그인 했을 경우에만 마이페이지 수정 열 수 있도록
 		if(session.getAttribute("sessionId")==null) {
 			return "member/login";
 		}
@@ -69,18 +74,26 @@ public class MypageController {
 		return "mypage/myProfilEdit";
 	}
 	
+	//회원정보 수정 저장
 	@RequestMapping("/mypage/updateSaveUser")
-	public String updateSaveUser(MemberDto memDto) {
-		System.out.println("MypageController : "+memDto.getNicknm());
-		System.out.println("MypageController : "+memDto.getScate());
-		System.out.println("MypageController : "+memDto.getDongcate());
-		System.out.println("MypageController : "+memDto.getSelfintro());
-		System.out.println("MypageController : "+memDto.getId());
-		
+	public String updateSaveUser(MemberDto memberDto, MultipartFile file) throws Exception {
+
+		//이미지 파일 있을 경우 저장
+		String fileName = "";
+		if(!file.isEmpty()) {
+			
+			String ori_fileName = file.getOriginalFilename(); //실제 파일 이름
+			UUID uuid = UUID.randomUUID(); //랜덤숫자생성
+			fileName = uuid + "_" + ori_fileName; //변경파일이름 - 중복방지
+			String uploadUrl = "c:/upload/"; //파일업로드 위치
+			File f = new File(uploadUrl+fileName);
+			file.transferTo(f); //파일 저장
+			memberDto.setUserimg(fileName);
+		}
 		//회원정보 수정 저장
-		memberService.updateSaveUser(memDto);
+		memberService.updateSaveUser(memberDto);
 		
-		return "redirect:/main";
+		return "redirect:/mypage/myProfil";
 	}
 
 

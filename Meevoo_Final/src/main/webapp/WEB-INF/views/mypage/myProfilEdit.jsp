@@ -68,9 +68,17 @@
 										
 										<div class="wrapper1">
 											<div class="profile">
-			                                    <div id="preview" class="profile-img"><img src="/images/clubPick1.png"></div>
-												<input type="file" name="uesrimg" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg" id="profile-photo" />
-												<label for="profile-photo">프로필 사진 수정</label>
+			                                    <div id="preview" class="img">
+				                                  <%--   <c:if test="${mdto.userimg!=null }">
+											      		<img src="/images/${mdto.userimg }">
+											      	</c:if>
+											      	<c:if test="${mdto.userimg==null }">
+														<strong>업로드 된 파일이 없습니다.</strong>
+											      	</c:if>
+			                                   	 <img src="/images/${mdto.userimg }"> --%>
+			                                   	</div>
+												<input type="file" value="${mdto.userimg }" name="uesrimg" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg" id="uesrimg" />
+												<label for="uesrimg">프로필 사진 수정</label>
 											</div>
 											<div class="info1">
 												<div>
@@ -286,7 +294,7 @@
 												<div class="cell">
 													<div class="subject">자기소개</div>
 													<div>
-														<textarea id="textbox" name="selfintro" value="${mdto.selfintro }"></textarea>
+														<textarea id="textbox" name="selfintro" value="${mdto.selfintro }">${mdto.selfintro }</textarea>
 													</div>
 												</div>
 											</div>
@@ -297,7 +305,7 @@
 									<div class="btnArea">
 										<div class="bCenter">
 											<ul>
-												<li><button style="cursor:pointer;" onclick="memberBtn()" class="button small fit">수정완료</button></li>
+												<li><button type="button" cursor:pointer;" onclick="memberBtn()" class="button small fit">수정완료</button></li>
 											</ul>
 											
 											<script>
@@ -305,7 +313,8 @@
 													if(confirm("수정을 하시겠습니까?")){
 														alert("수정완료!");
 														memberFrm.submit();
-														/* location.href="/mypage/updateSaveUser?memberDto="memberFrm; */
+													}else{
+														return false;
 													}
 												}
 											</script>

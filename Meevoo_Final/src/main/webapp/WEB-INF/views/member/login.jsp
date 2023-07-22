@@ -23,6 +23,7 @@
 		alert("아이디 또는 패스워드가 일치하지 않습니다.");
 		$(".idType").focus(); //java script 언어
 	}
+	
     </script>
 	<body class="is-preload">
 
@@ -52,6 +53,9 @@
 								    			alert("아이디는 2자리 이상 입력하셔야 합니다.")
 								    			$(".idtype").focus();
 								    			return false;
+								    		}else{
+									    		alert("환영합니다!!");
+								    			
 								    		}
 								    		loginFrm.submit();
 								    	}

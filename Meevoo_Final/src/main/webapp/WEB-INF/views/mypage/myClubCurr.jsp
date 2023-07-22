@@ -10,7 +10,7 @@
 -->
 <html>
 	<head>
-		<title>Generic - Editorial by HTML5 UP</title>
+		<title>myClubCurr</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main.lee.css" />
@@ -57,7 +57,7 @@
 									<div class="wrap1">
 										<div id="wrap11">
 											<div id="wrap11_1">
-												<h4>내가 찜한 운동모임</h4>
+												<h4>내가 최근 본 운동모임</h4>
 											</div>
 											<div class="table-wrapper">
 												<table id="table1">
@@ -83,33 +83,24 @@
 															</tr>
 														</c:forEach>
 														<script>
-															function deleteBtn(){ //찜한 게시물 삭제 버튼 
+															function deleteBtn(){ //최근본 게시물 삭제 버튼 
 																alert("최근본 게시글을 삭제합니다.");
 															}
 														</script>
-														<!-- 
-														<tr class="tr1">
-															<td>2</td>
-															<td>여기여기 모여라~</td>
-															<td>구로동</td>
-															<td>2023.7.12</td>
-															<td><button onclick="clubBtn()" class="button small">삭제</button></td>
-														</tr>
-														 -->
 													</tbody>
 												</table>
-												<div>
+												<%-- <div>
 													<ul class="pagination">
 														<!-- 첫페이지로 이동 -->
 														<c:if test="${pageDto.page !=1 }">
-															<a href="/mypage/myClubPick?page=1" class="button"><li class="page1">처음으로</li></a>
+															<a href="/mypage/myClubCurr?page=1" class="button"><li class="page1">처음으로</li></a>
 														</c:if>
 														<c:if test="${pageDto.page==1 }">
 															<li class="page1"><span class="button disabled">처음으로</span></li>
 														</c:if>
 														<!-- 이전페이지 이동 -->
 														<c:if test="${pageDto.page>1 }">
-															<a href="/mypage/myClubPick?page=${pageDto.page-1 }" class="button"><li class="page1">이전</li></a>
+															<a href="/mypage/myClubCurr?page=${pageDto.page-1 }" class="button"><li class="page1">이전</li></a>
 														</c:if>
 														<c:if test="${pageDto.page==1 }">
 								 							<li class="page1"><span class="button disabled">이전</span></li>
@@ -119,21 +110,21 @@
 														<!-- 페이지 리스트 -->
 														<c:forEach var="num" begin="${pageDto.startPage}" end="${pageDto.endPage }" step="1">
 															<c:if test="${num != pageDto.page }">
-																<a href="/mypage/myClubPick?page=${num }">
+																<a href="/mypage/myClubCurr?page=${num }">
 																	<li class="page"><div>${num }</div></li>
 																</a>
 															</c:if>
 															<c:if test="${num == pageDto.page }">
 																<li id="numon" class="page active"><div>${num }</div></li>
 															</c:if>
-															<%-- <li><a href="#" class="page">
+															<li><a href="#" class="page">
 															<div>${num }</div>
-															</a></li> --%>
+															</a></li>
 														</c:forEach>
 														
 														<!-- 다음페이지 이동 -->
 														<c:if test="${pageDto.page<pageDto.maxPage }">
-															<a href="/mypage/myClubPick?page=${pageDto.page+1 }" class="button"><li class="page1">다음</li></a>
+															<a href="/mypage/myClubCurr?page=${pageDto.page+1 }" class="button"><li class="page1">다음</li></a>
 														</c:if>
 														<c:if test="${pageDto.page==pageDto.maxPage }">
 															<li class="page1"><span class="button disabled">다음</span></li>
@@ -141,20 +132,13 @@
 														</c:if>
 														<!-- 끝페이지 이동 -->
 														<c:if test="${pageDto.page!=pageDto.maxPage }">
-															<a href="/mypage/myClubPick?page=${pageDto.maxPage }" class="button"><li class="page1">끝으로</li></a>
+															<a href="/mypage/myClubCurr?page=${pageDto.maxPage }" class="button"><li class="page1">끝으로</li></a>
 														</c:if>
 														<c:if test="${pageDto.page==pageDto.maxPage }">
 															<li class="page1"><span class="button disabled">끝으로</span></li>
 														</c:if>
-														
-														<!-- <li class="page1"><span class="button disabled">처음페이지</span></li>
-														<li class="page1"><span class="button disabled">이전</span></li>
-														<li><a href="#" class="page active">1</a></li> -->
-														<!-- <li><a href="#" class="page">3</a></li>
-														<li class="page1"><a href="#" class="button">다음</a></li>
-														<li class="page1"><a href="#" class="button">끝페이지</a></li> -->
 													</ul>
-												</div>
+												</div> --%>
 												
 											</div>
 										</div>

@@ -393,7 +393,7 @@ function addrBtn() {
 											</ul>
 										</div>
 					
-										<form action="/member/join" id="memberFrm" name="memberFrm" method="post" onsubmit="check()" enctype="multipart/form-data">
+										<form action="/member/join" id="memberFrm" name="memberFrm" method="post" onsubmit="check()">
 										
 										
 										<div class="memberbd">
@@ -462,7 +462,7 @@ function addrBtn() {
 															</ul>
 														</td>
 													</tr>
-													<!-- <script> <사용할 스크립트>
+													<script>
 														function pwKey(){
 															let pw1 = $("#pw").val();
 															if(pw1 == $("#pw2").val()){
@@ -474,7 +474,7 @@ function addrBtn() {
 															console.log($("#pw2").val());
 															return false;
 														}
-													</script> <사용할 스크립트> -->
+													</script>
 													
 													<tr>
 														<th scope="row"><span>비밀번호 확인 *</span></th>

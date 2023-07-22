@@ -26,7 +26,7 @@ public interface MemberMapper {
 	void deleteUser(String id);
 
 	//회원정보 수정 저장
-	void updateSaveUser(MemberDto memDto);
+	void updateSaveUser(MemberDto memberDto);
 
 
 

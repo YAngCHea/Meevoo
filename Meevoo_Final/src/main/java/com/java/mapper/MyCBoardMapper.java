@@ -15,15 +15,18 @@ public interface MyCBoardMapper {
 	//운동모임 - 찜한 리스트 전체 가져오기
 	ArrayList<CListPickDto> selectClubPickAll(PageDto pageDto);
 
-	//찜한 리스트 전체 게시글 수
+	//운동모임 - 찜한 리스트 전체 게시글 수
 	int selectListCPick();
 
 	//운동모임 - 최근본 리스트 전체 가져오기
 	ArrayList<CListCurrDto> selectClubCurrAll(PageDto pageDto);
 	
-	//최근본 리스트 전체 게시글 수
+	//운동모임 - 최근본 리스트 전체 게시글 수
 	int selectListCCurr();
 
 	//운동모임 - 참여한 리스트 전체 가져오기
-	ArrayList<CListJoinDto> selectClubJoinAll();
+	ArrayList<CListJoinDto> selectClubJoinAll(PageDto pageDto);
+	
+	//운동모임 - 참여한 리스트 전체 게시글 수
+	int selectListCJoin();
 }

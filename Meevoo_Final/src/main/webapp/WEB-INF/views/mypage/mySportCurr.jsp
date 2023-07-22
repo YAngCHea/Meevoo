@@ -10,7 +10,7 @@
 -->
 <html>
 	<head>
-		<title>myClubJoin</title>
+		<title>mySportCurr</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main.lee.css" />
@@ -50,92 +50,45 @@
 								<section>
 									<div id=main1_1>
 										<header class="main1">
-											<h2>내 운동모임</h2>
+											<h2>내 체육시설</h2>
 										</header>
 									</div>
 
 									<div class="wrap1">
 										<div id="wrap11">
 											<div id="wrap11_1">
-												<h4>내가 참여한 운동모임</h4>
+												<h4>내가 최근 본 체육시설</h4>
 											</div>
 											<div class="table-wrapper">
 												<table id="table1">
 													<thead>
 														<tr>
 															<th id="th1">게시물 번호</th>
-															<th id="th2">운동모임 제목</th>
+															<th id="th2">체육시설 이름</th>
 															<th id="th3">위치</th>
-															<th id="th4">참여 날짜</th>
-															<th id="th5">후기</th>
+															<th id="th4">본 날짜</th>
+															<th id="th5">삭제</th>
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="joinlist" items="${list }">
+														<c:forEach var="currlist" items="${list }">
 															<tr class="tr1">
-																<td>${joinlist.cno }</td>
-																<td>${joinlist.cnm }</td>
-																<td>${joinlist.dongcate }</td>
+																<td>${currlist.sfno}</td>
+																<td>${currlist.sfnm}</td>
+																<td>${currlist.dongcate}</td>
 																<td>
-																	<fmt:formatDate value="${joinlist.cdodate}" pattern="yyyy-MM-dd" />
+																	<fmt:formatDate value="${currlist.scurrdate}" pattern="yyyy-MM-dd" />
 																</td>
-																<td><button onclick="reviewBtn()" class="button small">쓰기</button></td>
+																<td><button onclick="deleteBtn()" class="button small">삭제</button></td>
 															</tr>
 														</c:forEach>
 														<script>
-															function reviewBtn(){ //참여한 운동모임 후기 작성 버튼 
-																alert("후기 작성하러 이동합니다.");
+															function deleteBtn(){ //최근본 게시물 삭제 버튼 
+																alert("최근본 게시글을 삭제합니다.");
 															}
 														</script>
 													</tbody>
 												</table>
-												<div>
-													<ul class="pagination">
-														<!-- 첫페이지로 이동 -->
-														<c:if test="${pageDto.page !=1 }">
-															<a href="/mypage/myClubJoin?page=1" class="button"><li class="page1">처음으로</li></a>
-														</c:if>
-														<c:if test="${pageDto.page==1 }">
-															<li class="page1"><span class="button disabled">처음으로</span></li>
-														</c:if>
-														<!-- 이전페이지 이동 -->
-														<c:if test="${pageDto.page>1 }">
-															<a href="/mypage/myClubJoin?page=${pageDto.page-1 }" class="button"><li class="page1">이전</li></a>
-														</c:if>
-														<c:if test="${pageDto.page==1 }">
-								 							<li class="page1"><span class="button disabled">이전</span></li>
-														</c:if>
-														
-														
-														<!-- 페이지 리스트 -->
-														<c:forEach var="num" begin="${pageDto.startPage}" end="${pageDto.endPage }" step="1">
-															<c:if test="${num != pageDto.page }">
-																<a href="/mypage/myClubJoin?page=${num }">
-																	<li class="page"><div>${num }</div></li>
-																</a>
-															</c:if>
-															<c:if test="${num == pageDto.page }">
-																<li id="numon" class="page active"><div>${num }</div></li>
-															</c:if>
-														</c:forEach>
-														
-														<!-- 다음페이지 이동 -->
-														<c:if test="${pageDto.page<pageDto.maxPage }">
-															<a href="/mypage/myClubJoin?page=${pageDto.page+1 }" class="button"><li class="page1">다음</li></a>
-														</c:if>
-														<c:if test="${pageDto.page==pageDto.maxPage }">
-															<li class="page1"><span class="button disabled">다음</span></li>
-															
-														</c:if>
-														<!-- 끝페이지 이동 -->
-														<c:if test="${pageDto.page!=pageDto.maxPage }">
-															<a href="/mypage/myClubJoin?page=${pageDto.maxPage }" class="button"><li class="page1">끝으로</li></a>
-														</c:if>
-														<c:if test="${pageDto.page==pageDto.maxPage }">
-															<li class="page1"><span class="button disabled">끝으로</span></li>
-														</c:if>
-													</ul>
-												</div>
 												
 											</div>
 										</div>

@@ -10,7 +10,7 @@
 -->
 <html>
 	<head>
-		<title>myClubJoin</title>
+		<title>mySportReview</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main.lee.css" />
@@ -50,14 +50,14 @@
 								<section>
 									<div id=main1_1>
 										<header class="main1">
-											<h2>내 운동모임</h2>
+											<h2>내 체육시설</h2>
 										</header>
 									</div>
 
 									<div class="wrap1">
 										<div id="wrap11">
 											<div id="wrap11_1">
-												<h4>내가 참여한 운동모임</h4>
+												<h4>내가 후기 작성한 체육시설</h4>
 											</div>
 											<div class="table-wrapper">
 												<table id="table1">
@@ -71,20 +71,20 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="joinlist" items="${list }">
+														<c:forEach var="reviewlist" items="${list }">
 															<tr class="tr1">
-																<td>${joinlist.cno }</td>
-																<td>${joinlist.cnm }</td>
-																<td>${joinlist.dongcate }</td>
+																<td>${reviewlist.sfno }</td>
+																<td>${reviewlist.sfnm }</td>
+																<td>${reviewlist.dongcate }</td>
 																<td>
-																	<fmt:formatDate value="${joinlist.cdodate}" pattern="yyyy-MM-dd" />
+																	<fmt:formatDate value="${reviewlist.sredate}" pattern="yyyy-MM-dd" />
 																</td>
-																<td><button onclick="reviewBtn()" class="button small">쓰기</button></td>
+																<td><button onclick="reviewBtn()" class="button small">삭제</button></td>
 															</tr>
 														</c:forEach>
 														<script>
-															function reviewBtn(){ //참여한 운동모임 후기 작성 버튼 
-																alert("후기 작성하러 이동합니다.");
+															function reviewBtn(){ //참여한 게시물 삭제 버튼 
+																alert("후기를 삭제합니다.");
 															}
 														</script>
 													</tbody>

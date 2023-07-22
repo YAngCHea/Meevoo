@@ -1,6 +1,6 @@
 package com.java.dto;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +16,7 @@ public class CListJoinDto {
 	private String id;
 	private String cnm;
 	private String dongcate;
-	private Timestamp cdodate;
+	private Date cdodate;
 	private String giveid;
 	
 	

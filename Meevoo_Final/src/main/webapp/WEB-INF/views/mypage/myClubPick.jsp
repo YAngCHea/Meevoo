@@ -10,7 +10,7 @@
 -->
 <html>
 	<head>
-		<title>Generic - Editorial by HTML5 UP</title>
+		<title>myClubPick</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main.lee.css" />
@@ -147,21 +147,12 @@
 															<li class="page1"><span class="button disabled">끝으로</span></li>
 														</c:if>
 														
-														<!-- <li class="page1"><span class="button disabled">처음페이지</span></li>
-														<li class="page1"><span class="button disabled">이전</span></li>
-														<li><a href="#" class="page active">1</a></li> -->
-														<!-- <li><a href="#" class="page">3</a></li>
-														<li class="page1"><a href="#" class="button">다음</a></li>
-														<li class="page1"><a href="#" class="button">끝페이지</a></li> -->
 													</ul>
 												</div>
 												
 											</div>
 										</div>
 									</div>
-									
-									
-									
 
 								</section>
 								
