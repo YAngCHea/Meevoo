@@ -21,8 +21,8 @@
 				}
 			</script>
 			
-			<!-- 리뷰쓴거 등록하기  -->
-			<!-- <script>
+			<script>
+				// 1. 리뷰쓴거 등록하기
 				function reviewBtn(){
 					if("${sessionId}"==""){
 						alert("로그인을 하셔야 리뷰등록이 가능합니다.");
@@ -30,14 +30,21 @@
 						return false;
 					}
 					
+					if($("#sreviewContent").val() == ""){
+						alert("리뷰글을 작성하셔야 등록이 가능합니다.");
+						return false;
+					}
+					
+					alert("리뷰글을 등록합니다.");
+					
 					//ajax구문
               	  	$.ajax({
               		  url:"/sport/reviewInsert",
               		  type:"post",
               		  data:{"id":"${sessionId}", //${sessionId}를 사용함.
               			    "sfno":"${sdto.sfno}",
-              			    "scontent":$(".sreviewContent").val(),
-              			    "sstar":$(".sportstar").val()  
+              			    "srecontent":$("#sreviewContent").val(),
+              			    "sstar": $('[name=star]:checked').val()
               		  },
               		  success:function(data){
               			  var dataHtml="";
@@ -45,24 +52,25 @@
               			  //하단리뷰 1개 가져오기
               			  console.log(data);
               			  //하단에 리뷰추가코드
-              			  dataHtml += "<ul id='"+ data.cno +"'>";
-              			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp&nbsp[ "+ moment(data.cdate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
-              			  dataHtml += "<li class='txt'>"+ data.ccontent +"</li>";
+              			  dataHtml += "<ul id='"+ data.sreno +"'>";
+              			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp;&nbsp;&nbsp;[ "+ moment(data.sredate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
+              			  dataHtml += "<li class='star'><span class='srestar' style='color: rgba(250, 208, 0, 0.99);''>"+ data.sstar + "</span>&nbsp;&nbsp;별점&nbsp;"+data.sstar+"</li>";
+              			  dataHtml += "<li class='txt'>"+ data.srecontent +"</li>";
               			  dataHtml += "<li class='btn'>";
-              			  dataHtml += "<a onclick=\"updateBtn("+data.cno+",'"+data.id+"','"+data.cdate+"','"+data.ccontent+"')\" class='rebtn'>수정</a>&nbsp";
-              			  dataHtml += "<a onclick=\"deleteBtn("+data.cno+")\" class='rebtn'>삭제</a>";
+              			  dataHtml += "<a onclick=\"updateBtn("+data.sreno+",'"+data.id+"','"+data.sredate+"','"+data.srecontent+"')\" class='button primary small'>수정</a>&nbsp";
+              			  dataHtml += "<a onclick=\"deleteBtn("+data.sreno+")\" class='button small'>삭제</a>";
               			  dataHtml += "</li>";
               			  dataHtml += "</ul>";
               			  
               			  $(".replyBox").prepend(dataHtml);  //prepend(위),append(아래),html(모두삭제후 추가)
               			  
               			  //글자삭제
-              			  $(".sreviewContent").val("");
-              			  $(".sportstar").val("");
+              			  $("#sreviewContent").val();
+              			  $('[name=star]:checked').val()
               			  
               			  //총개수 수정
-	                    	  var cnum = Number($("#cnum").text())+1;
-	                    	  $("#cnum").text(cnum);
+                    	  var renum = Number($("#renum").text())+1;
+                    	  $("#renum").text(renum);
               			  
               			  
               		  },
@@ -70,45 +78,148 @@
               			  alert("실패");
               		  }
               	  });//ajax
-				}
-			</script> -->
-			
-			<!-- 리뷰쓴거 수정하기  -->
-			<script>
-				function fixBtn(){
-					alert("리뷰를 수정합니다.");
-				}
+				} // 리뷰 등록
+				
+				
+				// 2. 리뷰쓴거 삭제하기
+				function deleteBtn(sreno){
+              	  if(confirm("리뷰를 삭제하시겠습니까?")){
+                  	  $.ajax({
+                  		  url:"/sport/reviewDelete",
+                  		  type:"post",
+                  		  data:{"sreno":sreno }, // 댓글번호
+                  		  success:function(data){
+                  			  alert(sreno+"번 리뷰가 삭제되었습니다.");
+                  			  $("#"+sreno).remove();  // 삭제
+                  			  //총개수 수정
+	                    	  var renum = Number($("#renum").text())-1;
+	                    	  $("#renum").text(renum);
+                  		  },
+                  		  error:function(){
+                  			  alert("실패");
+                  		  }
+                  	  });//ajax
+              	  }//if
+                }//삭제버튼 -->
+                
+                
+				// 3. 리뷰쓴거 수정하기
+ 			 	function updateBtn(sreno,id,sredate,sstar,srecontent){
+					if(confirm("댓글을 수정하시겠습니까?")){
+	            		 
+            		 let dataHtml="";
+	            	 
+            		 dataHtml += "<ul>";
+	      			 dataHtml += "<li class='name'>"+ id +"<span>&nbsp;&nbsp;&nbsp;[ "+ sredate +" ]</span></li>";
+	      			 dataHtml += "<li class='star'>";
+	      			 dataHtml += "<span class='srestar' style='color: rgba(250, 208, 0, 0.99);'>";
+	      			 dataHtml += getStars(sstar);  
+	      			 dataHtml += "</span>&nbsp;&nbsp;별점 "+sstar+"</li>";
+            		 dataHtml += "<li class='txt'>";
+            		 dataHtml += "<textarea type='text' class='updateContent' id='updateContent'>"+srecontent+"</textarea>";
+            		 dataHtml += "</li>";
+            		 dataHtml += "<li class='btn'>";
+            		 dataHtml += "<a onclick=\"updateSave("+sreno+")\" class='button primary small'>저장</a>&nbsp;";
+            		 dataHtml += "<a onclick=\"cancelBtn("+sreno+",'"+id+"','"+sredate+"','"+sstar+"','"+srecontent+"')\" class='button small'>취소</a>";
+            		 dataHtml += "</li>";
+            		 dataHtml += "</ul>";
+	
+            		 $("#"+sreno).html(dataHtml);
+	            		
+	            	  }//if
+	              }// 수정창 띄우기 -->
+	              
+	              function getStars(sstar) {
+	            	  if (0 < sstar && sstar <= 1) {
+	            	    return '★';
+	            	  } else if (1 < sstar && sstar <= 2) {
+	            	    return '★ ★';
+	            	  } else if (2 < sstar && sstar <= 3) {
+	            	    return '★ ★ ★';
+	            	  } else if (3 < sstar && sstar <= 4) {
+	            	    return '★ ★ ★ ★';
+	            	  } else if (4 < sstar && sstar <= 5) {
+	            	    return '★ ★ ★ ★ ★';
+	            	  }
+	            	}
+	              
+	              
+	              // 4. 리뷰 수정 취소
+	              function cancelBtn(sreno,id,sredate,sstar,srecontent){
+                  	  alert("댓글 수정을 취소하셨습니다.");
+                  	  
+                  	  var dataHtml="";
+          			  
+          			  //댓글화면 변경
+        			  dataHtml += "<li class='name'>"+ id +"<span>&nbsp;&nbsp;&nbsp;[ "+ sredate +" ]</span></li>";
+        			  dataHtml += "<span class='srestar' style='color: rgba(250, 208, 0, 0.99);'>";
+ 	      			  dataHtml += getStars(sstar);  
+ 	      			  dataHtml += "</span>&nbsp;&nbsp;별점 "+sstar+"</li>";
+           			  dataHtml += "<li class='txt'>"+ srecontent +"</li>";
+           			  dataHtml += "<li class='btn'>";
+           			  dataHtml += "<a onclick=\"updateBtn("+sreno+",'"+id+"','"+sredate+"','"+srecontent+"')\" class='button primary small'>수정</a>&nbsp";
+           			  dataHtml += "<a onclick=\"deleteBtn("+sreno+")\" class='button small'>삭제</a>";
+           			  dataHtml += "</li>";
+          			  
+          			  $("#"+sreno).html(dataHtml);
+                  	  
+                    }//리뷰 수정 취소 끝
+				
+                    
+                 	// 5. 리뷰 수정 저장
+                    function updateSave(sreno){
+                  	  
+                  	  if(confirm("수정한 리뷰글을 저장하시겠습니까?")){
+                  		  $.ajax({
+                      		  url:"/sport/reviewUpdateSave",
+                      		  type:"post",
+                      		  data:{ "sreno":sreno,
+                      			     "srecontent":$("#updateContent").val() }, 
+                      		  success:function(data){
+                      			  alert(sreno+"번 리뷰가 수정되었습니다.");
+                      			  
+                      			  var dataHtml="";
+                      			  
+                      			  //댓글화면 변경
+	                  			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp&nbsp[ "+ moment(data.sredate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
+		                  		  dataHtml += "<span class='srestar' style='color: rgba(250, 208, 0, 0.99);'>";
+		       	      			  dataHtml += getStars(sstar);  
+		       	      			  dataHtml += "</span>&nbsp;&nbsp;별점 "+data.sstar+"</li>";
+	                  			  dataHtml += "<li class='txt'>"+ data.srecontent +"</li>";
+	                  			  dataHtml += "<li class='btn'>";
+	                  			  dataHtml += "<a onclick=\"updateBtn("+data.sreno+",'"+data.id+"','"+data.sredate+"','"+data.srecontent+"')\" class='button primary small'>수정</a>&nbsp";
+	                			  dataHtml += "<a onclick=\"deleteBtn("+data.sreno+")\" class='button small'>삭제</a>";
+	                			  dataHtml += "</li>";
+                      			  
+                     		 	  $("#"+sreno).html(dataHtml);
+                      		  },
+                      		  error:function(){
+                      			  alert("실패");
+                      		  }
+                      	  });//ajax
+                  	  }//if
+                  	  
+                  	  
+                    }//리뷰 수정 저장 끝
+                 	
+                    
+                    // 6. 신고버튼 누르기
+                    function reportBtn(sreno, id){
+                    	if("${sessionId}"==""){
+    						alert("로그인을 하셔야 신고가 가능합니다.");
+    						location.href="/member/login";
+    						return false;
+    					}
+                    	
+    				 	if(confirm("리뷰글을 신고 하시겠습니까?")){
+    				 		location.href="/sport/sportReviewReport?sreno=";
+                  		  	return false;
+    				 	}
+    				}
+                 	
 			</script>
 			
-			<!-- 리뷰쓴거 삭제하기  -->
-			<script>
-				function deleteBtn(){
-					alert("리뷰가 삭제되었습니다.");
-				}
-			</script>
 			
-			<!-- 수정버튼 누르고 저장하면  -->
-			<script>
-				function saveBtn(){
-					alert("리뷰 수정이 완료되었습니다.");
-				}
-			</script>
-			
-			<!-- 수정버튼 누르고 취소하기  -->
-			<script>
-				function cancleBtn(){
-					alert("리뷰 수정이 취소되었습니다.");
-				}
-			</script>
-			
-			<!-- 신고버튼 누르기  -->
-			<script>
-				function reportBtn(){
-				 	if(confirm("리뷰글 신고 페이지로 이동하시겠습니까?")){
-						alert("리뷰글 신고 페이지로 이동합니다.");
-				 	}
-				}
-			</script>
 			
 
 		<!-- Wrapper -->
@@ -121,15 +232,6 @@
 							<!-- Top -->
 							<%@ include file="../top.jsp" %>
 
-							<!-- Banner -->
-								<!-- <section id="banner">
-									<div class="content">
-										<header style="text-align: center;">
-											<h1>Meevoo 체육시설 상세 페이지</h1>
-											<p>section 있을때마다 아래와 같이 줄이 생김</p>
-										</header>
-									</div>
-								</section> -->
 
 							<!-- Section -->
 								<section class="sportlistview">
@@ -222,9 +324,9 @@
 										<br>
 										<ul>
 											<li class="in">
-												<li class="name">총 <span>${comList.size() }</span> 3개의 댓글이 달려있습니다.</li>
+												<li class="name">총 <span id="renum">${sreList.size()}</span>개의 리뷰가 달려있습니다.</li>
 												<form name="myform" id="myform" method="post" >
-													<fieldset class="sportstar">
+													<fieldset class="sportstar" >
 														<!-- 별점 수정 main.css 1192번 -->
 														<span class="text-bold">별점을 선택해주세요</span>
 														<input type="radio" name="star" value="5" id="star1"><label
@@ -235,12 +337,11 @@
 															for="star3">★</label>
 														<input type="radio" name="star" value="2" id="star4"><label
 															for="star4">★</label>
-														<input type="radio" name="star" value="1" id="star5"><label
+														<input type="radio" name="star" value="1" id="star5" checked><label
 															for="star5">★</label>
 													</fieldset>
 													<div style="display: flex;">
-														<textarea class="col-auto form-control" type="text" class="sreviewContent"
-																  placeholder="시설 리뷰글을 작성해주세요!" ></textarea>
+														<textarea type="text" class="sreviewContent" id="sreviewContent" placeholder="시설 리뷰글을 작성해주세요!" ></textarea>
 																  <!-- 버튼 크기 수정 main.css 1644번째 -->
 													    <li class="btn"><a onclick="reviewBtn()" id="swrite"  class="button primary large">등록</a></li>
 													</div>
@@ -250,65 +351,54 @@
 									</div>
 									
 								<fieldset>
+									
 									<div class="replyBox">
-										<!-- 2. 내가 쓴 글 부분  -->
-										<ul>
-											<li class="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hong <span>&nbsp;&nbsp;&nbsp;[2023-07-06&nbsp;&nbsp;15:01:59]</span>
-											
-											</li>
-											<li class="txt">20대 / 남자 / 구로</li>
-											<br>
-											<li class="txt"> 별점 ★ ★ ★ ★ ★</li>
-											<li class="txt"> 내가 쓴 글은 수정, 삭제 가능</li>
-											<li class="btn">
-												<a onclick="fixBtn()" class="button primary small">수정</a>
-												<a onclick="deleteBtn()" class="button small">삭제</a>
-											</li>
-										</ul>
+										<!--  쓴 글 부분  -->
+										<c:forEach var="sreDto" items="${sreList}">
+											<ul id="${sreDto.sreno}">
+												<li class="name">${sreDto.id}<span>&nbsp;&nbsp;&nbsp;&nbsp;[${sreDto.sredate} ]</span></li>
+												<li class="star"><span class="srestar" style="color: rgba(250, 208, 0, 0.99);">
+													<c:if test="${0 < sreDto.sstar && sreDto.sstar <= 1 }">★</c:if> 
+													<c:if test="${1 < sreDto.sstar && sreDto.sstar <= 2 }">★ ★</c:if> 
+													<c:if test="${2 < sreDto.sstar && sreDto.sstar <= 3 }">★ ★ ★</c:if> 
+													<c:if test="${3 < sreDto.sstar && sreDto.sstar <= 4 }">★ ★ ★ ★</c:if> 
+													<c:if test="${4 < sreDto.sstar && sreDto.sstar <= 5 }">★ ★ ★ ★ ★</c:if> 
+												</span>&nbsp;&nbsp;별점 ${sreDto.sstar}</li>
+												<li class="txt">${sreDto.srecontent }</li>
+		
+												<!-- 자신의 댓글이 아닌경우 버튼노출 안됨 -->
+												<!-- sessionId와 sreDto.id가 같을 때만 수정, 삭제 노출 -->
+												<c:if test="${sessionId == sreDto.id }">
+													<li class="btn">
+														<a onclick="updateBtn(${sreDto.sreno},'${sreDto.id}','${sreDto.sredate}','${sreDto.sstar}','${sreDto.srecontent}')" class="button primary small">수정</a> 
+														<a onclick="deleteBtn(${sreDto.sreno})" class="button small">삭제</a>
+													</li>
+												</c:if>
+												<c:if test="${sessionId != sreDto.id }">
+													<li class="btn">
+														<a onclick="reportBtn(${sreDto.sreno},'${sreDto.id}')" class="button primary small">신고</a>
+													</li>
+												</c:if>
+											</ul>
+										</c:forEach>
 										
 										<!-- 3. 내가 쓴 글 수정 부분 -->
 										<ul>
-											<li class="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hong <span>&nbsp;&nbsp;&nbsp;[2023-07-06&nbsp;&nbsp;15:01:59]</span></li>
-											<li class="txt">20대 / 남자 / 구로</li>
-											<br>
-											<li class="txt"> 별점 ★ ★ ★ ★ ★</li>
-											<div>
-												<textarea class="col-auto form-control" type="text" id="fixContents"
-													  placeholder="작성한 시설 리뷰글을 수정해주세요!" ></textarea>
-										 	</div>
+											<li class="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hong <span>&nbsp;&nbsp;&nbsp;[2023-07-06&nbsp;&nbsp;15:01:59]</span>
+											</li>
+											<li class="star"><span class="srestar" style="color: rgba(250, 208, 0, 0.99);">★ ★ ★ ★ ★ </span>&nbsp;&nbsp;별점 5</li>
+											<textarea type="text" id="updateContent" placeholder="작성한 시설 리뷰글을 수정해주세요!" ></textarea>
 											<li class="btn">
 												<a onclick="saveBtn()" class="button primary small">저장</a>
 												<a onclick="javascript:location.href='sportListView?sfno=${sdto.sfno}&page=${page}'" class="button small" >취소</button></a>
 											</li>
 										</ul> 
 										
-										<!-- 4. 다른 사람이 쓴 글 부분 -->
-										<ul>
-											<li class="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aaaa <span>&nbsp;&nbsp;&nbsp;[2023-07-05&nbsp;&nbsp;19:01:59]</span></li>
-											<li class="txt">30대 / 남자 / 구로</li>
-											<br>
-											<li class="txt"> 별점 ★ ★ ★ ★ ★</li>
-											<li class="txt"> 다른 사람이 쓴 글은 신고만 가능</li>
-											<li class="btn">
-												<a href="sportReviewReportWrite" onclick="reportBtn()" class="button primary small">신고</a>
-											</li>
-										</ul>
 									</div>
 								</fieldset>
 								<!-- //댓글 -->
 								
 								</section>
-								<ul class="pagination" >
-									<li><span class="button disabled">Prev</span></li>
-									<li><a href="#" class="page active">1</a></li>
-									<li><a href="#" class="page">2</a></li>
-									<li><a href="#" class="page">3</a></li>
-									<li><span>&hellip;</span></li>
-									<li><a href="#" class="page">7</a></li>
-									<li><a href="#" class="page">8</a></li>
-									<li><a href="#" class="page">9</a></li>
-									<li><a href="#" class="button">Next</a></li>
-								</ul>
 								
 						<br>	
 						<!-- Footer -->

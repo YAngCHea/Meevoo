@@ -2,6 +2,7 @@ package com.java.service;
 
 import java.util.ArrayList;
 
+
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.java.dto.SportDto;
 import com.java.dto.SportReviewDto;
+import com.java.dto.SportReviewReportDto;
 import com.java.mapper.SportMapper;
 
 @Service
@@ -66,23 +68,46 @@ public class SportServiceImpl implements SportService {
 		return map;
 	}
 
-//	@Override
-//	public ArrayList<SportReviewDto> selectReAll(int sfno) {
-//		// 게시글 하단 리뷰 전체 가져오기
-//		ArrayList<SportReviewDto> sreList = sportMapper.selectReAll(sfno);
-//		return sreList;
-//	}
-//
-//	@Override
-//	public SportReviewDto reviewInsert(SportReviewDto sreDto) {
-//		// 게시글 하단 리뷰저장 후
-//		sportMapper.reviewInsert(sreDto);
-//		
-//		//하단리뷰 1개 가져오기
-//		SportReviewDto sreviewdto = sportMapper.selectReOne(sreDto);
-//		return sreviewdto;
-//	}
-	
+	@Override
+	public ArrayList<SportReviewDto> selectReAll(int sfno) {
+		// 게시글 하단 리뷰 전체 가져오기
+		ArrayList<SportReviewDto> sreList = sportMapper.selectReAll(sfno);
+		return sreList;
+	}
+
+	@Override
+	public SportReviewDto reviewInsert(SportReviewDto sreDto) {
+		// 게시글 하단 리뷰저장 후
+		sportMapper.reviewInsert(sreDto);
+		
+		//하단리뷰 1개 가져오기
+		SportReviewDto sreviewdto = sportMapper.selectReOne(sreDto);
+		return sreviewdto;
+	}
+
+	@Override
+	public void reviewDelete(int sreno) {
+		// 게시글 하단 리뷰 1개 삭제하기
+		sportMapper.reviewDelete(sreno);
+	}
+
+	@Override //수정한 하단 리뷰 저장
+	public SportReviewDto reviewUpdateSave(SportReviewDto sreDto) {
+		// 1개 수정
+		sportMapper.reviewUpdateSave(sreDto);
+		
+		//1개 가져오기
+		SportReviewDto sreviewdto = sportMapper.selectReOne(sreDto);
+		return sreviewdto;
+	}
+
+	@Override
+	public void insertReportOne(SportReviewReportDto srerepDto) {
+		
+		// 리뷰글에 대한 신고글 1개 작성
+		sportMapper.insertReportOne(srerepDto);
+	}
+
 	
 //	@Override
 //	public ArrayList<SportDto> selectAll() {

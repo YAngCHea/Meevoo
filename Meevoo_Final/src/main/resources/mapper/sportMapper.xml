@@ -42,6 +42,40 @@
 		from sportlist order by sfno asc) where sfno=#{sfno})
 	</select>
 	
+		<!-- 게시글 하단 리뷰 모두 가져오기 -->
+	<select id="selectReAll" resultType="com.java.dto.SportReviewDto">
+		select * from sportreview where sfno=#{sfno} order by sredate desc
+	</select>
+	
+	<!-- 게시글 하단 리뷰 저장하기 -->
+	<insert id="reviewInsert">
+	  <selectKey resultType="int" keyProperty="sreno" order="BEFORE">
+		select sportreview_seq.nextval from dual
+	  </selectKey>
+	  insert into sportreview values
+	  (#{sreno},#{sfno},#{id},#{srecontent},sysdate,#{sstar})
+	</insert>
+	
+	<!-- 하단 리뷰 1개 가져오기 -->
+	<select id="selectReOne" resultType="com.java.dto.SportReviewDto">
+		select * from sportreview where sreno=#{sreno}
+	</select>
+	<!-- 하단 리뷰 1개 삭제하기 -->
+	<delete id="reviewDelete">
+		delete sportreview where sreno=#{sreno}
+	</delete>
+	
+	<!-- 수정한 하단 리뷰 저장하기-->
+	<update id="reviewUpdateSave">
+		update sportreview set srecontent=#{srecontent},sredate=sysdate where sreno=#{sreno}
+	</update>
+	
+	<!-- 리뷰글에 대한 신고글 1개 작성 -->
+	<insert id="insertReportOne">
+		insert into sportreviewreport
+		values(sportreviewreport_sresrepno.nextval,#{sreno},#{id},sysdate,
+		#{sresrepcontent},sysdate,#{srepinput})
+	</insert>
 	
 	<!--  -->
 	<!-- 게시글 전체 가져오기 -->

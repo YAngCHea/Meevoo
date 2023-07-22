@@ -12,7 +12,6 @@ public interface SportReportMapper {
 
 	// 문의글 전체 가져오기
 	ArrayList<SportReportDto> selectAll(int startRow, int endRow, String category, String srep_word);
-	
 	//문의글 전체개수
 	int selectListCount(String category, String srep_word);
 

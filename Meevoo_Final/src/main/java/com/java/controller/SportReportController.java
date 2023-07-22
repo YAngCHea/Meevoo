@@ -132,5 +132,8 @@ public class SportReportController {
 		return "redirect:sportReportList";
 	}// boardDelete
 	
+	
+	
+	
 
 }
