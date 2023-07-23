@@ -253,7 +253,7 @@
 								  <p class="txt" style="font-weight: bold;">총 <span style="color: #f56a6a; ">3</span> 개의 댓글이 달려있습니다.</p>
 								</li>
 								  <div style="display: flex;">
-								    <textarea class="replyType" placeholder="댓글을 입력해 주세요" style="margin-right: 0.5em;"></textarea>
+								    <textarea class="replyType" placeholder="댓글을 입력해 주세요" cols="40" rows="5" style="margin-right: 0.5em;"></textarea>
 								    <input type="submit" value="등록" class="primary" style="height: 100%" />
 								  </div>
 							  </ul>

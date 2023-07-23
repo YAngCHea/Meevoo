@@ -35,9 +35,9 @@
 								<section id="banner">
 									<div class="content">
 										<header>
-											<h1>모집 하기</h1>
+											<h1>모임 모집하기</h1>
 											<h3>내가 필요한 모임을 직접 만들어보세요.</h3>
-											<h4>좌측 사이드 바에서 관심 운동과 관심 지역을 선택할 수 있습니다.</h4>
+											<h4>다양한 사람들과 공통된 관심사로 새로운 연결을 가져봅시다.</h4>
 										</header>
 									</div>
 								</section>
@@ -50,14 +50,15 @@
 								      <div class="line subject">
 								        <input type="text" name="cnm" placeholder="제목" autofocus>
 								      </div>
+								      <p class="txt">&nbsp;&nbsp;* 최대 한글 25글자 까지 입력 가능</p>
 								      <br>
 								      <br>
 								      <div class="line select-date">
-								        <input type="text" id="select_Date" name="cdodate" placeholder="모집일시" onfocus="this.blur()" class="hasDatePicker">
+								        <input type="datetime-local" style="width:100%;" id="select_Date" name="cdodate" placeholder="모집일시" onfocus="this.blur()" class="hasDatePicker">
 								      </div>
-								      <p class="txt">&nbsp;&nbsp;* 최대 30일까지 등록 가능</p>
+								      <p class="txt">&nbsp;&nbsp;* 최대 30일까지 선택 가능</p>
 								      <div class="line member">
-								        <input type="text" class="input-form" id="crecruitlimit" name="crecruitlimit" placeholder="모집인원" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+								        <input type="number" min="2" max="15" style="width:100%;" class="input-form" id="crecruitlimit" name="crecruitlimit" placeholder="모집인원" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 								      </div>
 								      <p class="txt">&nbsp;&nbsp;* 모집인원 최대 15명</p>
 								      <div class="line location">
@@ -92,26 +93,35 @@
 								
 										</script>
 								      <br>
-								      <div class="line sports">
-								        <div class="dropdown">
-								          <select name="sname">
-								            <option value="select" selected disabled>모집종목</option>
-									        <option value="golf">골프</option>
-									        <option value="climbing">클라이밍</option>
-									        <option value="tennis">테니스</option>
-									        <option value="tabletennis">탁구</option>
-  									        <option value="basketball">농구</option>
-									        <option value="bowling">볼링</option>
-									        <option value="badminton">배드민턴</option>
-									        <option value="futsal">풋살</option>
-									        <option value="iceskate">스케이트</option>
-									      </select>
-								        </div>
+								      <div class="col-4 col-12-small">
+								          <div style="margin-bottom: 1em;">운동종목</div>  
+								          <input type="radio" name="scate" id="basketball" value="basketball" />
+								          <label for="basketball"><img src="../images/sports/basketballIcon.png" style="width: 2em;"> 농구</label>
+								          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								          <input type="radio" name="scate" id="badminton" value="badminton" />
+								          <label for="badminton"><img src="../images/sports/badmintonIcon.png" style="width: 2em;"> 배드민턴</label>
+								          <input type="radio" name="scate" id="bowling" value="bowling" />
+								          <label for="bowling"><img src="../images/sports/bowlingIcon.png" style="width: 2em;"> 볼링</label>
+								          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								          <input type="radio" name="scate" id="climbing" value="climbing" />
+								          <label for="climbing"><img src="../images/sports/climbingIcon.png" style="width: 2em;"> 클라이밍</label>
+								          <input type="radio" name="scate" id="futsal" value="futsal" />
+								          <label for="futsal"><img src="../images/sports/futsalIcon.png" style="width: 2em;"> 풋살</label>
+								          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								          <input type="radio" name="scate" id="iceSkate" value="iceSkate" />
+								          <label for="iceSkate"><img src="../images/sports/iceSkateIcon.png" style="width: 2em;"> 스케이트</label>
+								          <input type="radio" name="scate" id="golf" value="golf" />
+								          <label for="golf"><img src="../images/sports/golfIcon.png" style="width: 2em;"> 골프</label>
+								          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								          <input type="radio" name="scate" id="tableTennis" value="tableTennis" />
+								          <label for="tableTennis"><img src="../images/sports/tableTennisIcon.png" style="width: 2em;"> 탁구</label>
+								          <input type="radio" name="scate" id="tennis" value="tennis" />
+								          <label for="tennis"><img src="../images/sports/tennisIcon.png" style="width: 2em;"> 테니스</label>
 								      </div>
 								      <br>
 								      <br>
 								      <div class="line ccontent">
-								        <input type="text" name="ccontent" placeholder="모집내용">
+								        <textarea name="ccontent" placeholder="모입 모집을 위한 게시글을 작성해주세요. (최대 한글 250자 까지 입력 가능)" cols="40" rows="5" style="margin-right: 0.5em;"></textarea>
 								      </div>
 								      <br>
 								      <br>

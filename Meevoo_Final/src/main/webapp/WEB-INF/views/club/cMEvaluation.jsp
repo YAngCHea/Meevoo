@@ -323,7 +323,7 @@
 									  <div class="col-12"; style="postion:flex; width: 100%;">
 										<ul class="actions" style="justify-content: flex-end;">
 											<li><input type="reset" value="초기화" /></li>
-											<li><input type="submit" value="등록" class="primary" /></li>
+											<li><input type="submit" value="적용" class="primary" /></li>
 										</ul>
 									  </div>
 									</form>

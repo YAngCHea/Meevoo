@@ -15,6 +15,22 @@
      select count(*) from clublist
   </select>
   
+  <!-- 모임목록 추천 가져오기 1. 로그인 전, 찜하기 많고, 최근 게시글 중 모집중인 모임목록 2개 -->
+  <select id="selectClubRecsLogout" resultType="com.java.dto.ClubDto">
+  	 select * from (select rownum rnum, a.* from 
+     (select * from clublist where cnowstatus = '모집중' order by ctotalpick desc, cno desc) a
+     )where rnum between 1 and 2
+  </select>
+  
+  <!-- 모임목록 추천 가져오기 2. 로그인한 사람의 관심지역, 관심종목과 일치하는 모집중인 모임목록 2개 -->
+  <select id="selectClubRecsLogin" resultType="com.java.dto.ClubDto">
+  	 select * from (select rownum rnum, a.* from 
+     (select * from (select a.* from clublist a inner join userlist b 
+     on a.dongcate = b.dongcate and a.scate = b.scate
+     where b.id = #{id}) where cnowstatus = '모집중' order by ctotalpick desc, cno desc) a
+     )where rnum between 1 and 2
+  </select>
+  
   
 
 

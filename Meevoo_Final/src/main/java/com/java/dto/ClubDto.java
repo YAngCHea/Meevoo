@@ -2,8 +2,6 @@ package com.java.dto;
 
 import java.sql.Timestamp;
 
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,8 +23,9 @@ public class ClubDto {
 	private String ccontent;
 	private int ctotalpick;
 	private int crecruitlimit;
-	private String cnowrecruit;
+	private int cnowrecruit;
 	private String cnowstatus;
 	private String scate;
-	
+	private int dateDifference;		//모임 목록 필터검색시 D-day 반영 변수
+
 }
