@@ -2446,7 +2446,59 @@ ul.pagination {
 .card_btnArea .rigth_Area .option_box {position:relative;display:table-cell;vertical-align: middle;height:3rem;text-align:right;padding: 0.6rem 0;font-size:1.3rem;color:#999;}
 
 
+/*공지사항 네모네모 : 탭 메뉴=================================================================*/
+.tab.equal .nav {
+  table-layout: fixed;
+}
 
+.tab .nav {
+  display: table;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.tab .nav>li {
+  display: table-cell;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #f56a6a;
+  border-left: 1px solid #ccc;
+  background-color: #ededed;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tab .nav>li.active {
+  border-top: 1px solid #f56a6a;
+  border-left: 1px solid #f56a6a;
+  border-bottom: 1px solid #fff;
+  background-color: #fff;
+}
+
+.tab .nav>li.active+li {
+  border-left: 1px solid #f56a6a;
+}
+
+.tab .nav>li.active:last-child {
+  border-right: 1px solid #f56a6a;
+}
+
+.tab .nav>li.active a {
+  color: #f56a6a;
+}
+
+.tab .nav>li:last-child {
+  border-right: 1px solid #ccc;
+}
+
+.tab .nav>li>a {
+  display: block;
+  padding: 14px 0;
+}
+
+.tab .nav>li>a:hover {
+  color: #f56a6a;
+  text-decoration: underline;
+}
 
 
 

@@ -1,24 +1,6 @@
 (function ($) {
     "use strict";
 
-   
-
-
-
-
-
-
-
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
 
     // Spinner
     var spinner = function () {
@@ -83,8 +65,8 @@
     
     
     
-    //회원 그래프 그리기 
-     $(".fa-twitter").click(function () {
+//=== 회원 그래프 그리기 ===========================================================================================
+//     $(".fa-twitter").click(function () {     //이 function을 빼면 클릭 없이 바로 넘어간다
 		
 		var data1;
 		var data2;
@@ -98,8 +80,8 @@
 				
 			},
 			success: function(data) {
-			   console.log(data);
-               alert("성공");
+			   //console.log(data);
+               //alert("성공" + data);
                
                 var data1 = data.data1;
                 var data2 = data.data2;
@@ -142,12 +124,12 @@
 			}//error
 			
 		});//ajax
-	});//click
+//	});//click
+//==회원그래프 END=====================================================================================================
 
-
+//== 게시물 그래프 그리기 START ==========================================================================================
     // Salse & Revenue Chart
-    //회원 그래프 그리기 
-     $(".fa-twitter").click(function () {
+    // $(".fa-twitter").click(function () {
 		
 		var wdata1;
 		var wdata2;
@@ -164,7 +146,7 @@
                
                 var wdata1 = data.wdata1;
                 var wdata2 = data.wdata2;
-                
+                //alert(wdata1);
                
                 var ctx2 = $("#salse-revenue").get(0).getContext("2d");
 			    var myChart2 = new Chart(ctx2, {
@@ -198,7 +180,88 @@
 			}//error
 			
 		});//ajax
-	});//click
+	//});//click
+//== 게시물 그래프 그리기 END ==========================================================================================   
+    
+    
+    
+    
+//== 오른쪽 하단 그래프 그리기 - 모임게시물 START ==========================================================================================   
+    
+        var dcclist;
+	    
+		//ajax구문
+		$.ajax({
+			url: "/admin/adminStatic5",
+			type: "post",
+			data: {
+				
+			},
+			success: function(data) {
+			   console.log(data);
+               //alert("성공");
+               //alert("data1 : "+data);
+                var dcclist = data;
+               //alert("data2 : "+dcclist[0].golf_count);    => 리스트 0번째의 ~값 을 찍어야 나온다....
+                
+               // Doughnut Chart
+			    var ctx6 = $("#doughnut-chart").get(0).getContext("2d");
+			    var myChart6 = new Chart(ctx6, {
+			        type: "doughnut",
+			        data: {
+			            labels: ["골프", "농구", "배드민턴", "볼링", "스케이트", "클라이밍", "탁구", "테니스", "풋살"],
+			            datasets: [{
+			                backgroundColor: [
+			                    "rgba(0, 156, 255, .7)",
+			                    "rgba(0, 156, 255, .6)",
+			                    "rgba(0, 156, 255, .5)",
+			                    "rgba(0, 156, 255, .4)",
+			                    "rgba(0, 156, 255, .3)"
+			                ],
+			                data: [dcclist[0].golf_count, dcclist[0].basketball_count, dcclist[0].badminton_count, dcclist[0].bowling_count, dcclist[0].skate_count,
+			                       dcclist[0].climbing_count,dcclist[0].pingpong_count,dcclist[0].tennis_count,dcclist[0].soccer_count]
+			            }]
+			        },
+			        options: {
+			            responsive: true
+			        }
+			    });
+               
+
+			},//success
+			error: function() {
+            alert("실패");
+            
+			}//error
+			
+		});//ajax
+    
+ //== 오른쪽 하단 그래프 그리기 - 모임게시물 END ==========================================================================================   
+    
+//== 오른쪽 하단 그래프 그리기 - 모임게시물 2222222222 START ==========================================================================================   
+    
+ //== 오른쪽 하단 그래프 그리기 - 모임게시물 222222222 END ==========================================================================================   
+    
+    
+ //== 오른쪽 탭 메뉴 그리기 START ==========================================================================================   
+  $(function(){
+  $('.tabcontent > div').hide();
+  $('.tabnav a').click(function () {
+    $('.tabcontent > div').hide().filter(this.hash).fadeIn();
+    $('.tabnav a').removeClass('active');
+    $(this).addClass('active');
+    return false;
+  }).filter(':eq(0)').click();
+  });
+    
+ //== 오른쪽 탭 메뉴 그리기 END ==========================================================================================   
+    
+    
+    
+    
+    
+    
+    
     
     
 })(jQuery);

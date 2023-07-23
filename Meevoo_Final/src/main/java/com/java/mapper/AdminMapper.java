@@ -5,13 +5,17 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.ClubDto;
 import com.java.dto.ClubReportDto;
+import com.java.dto.DonutChartsClubDto;
 import com.java.dto.MemberDto;
 import com.java.dto.PageDto;
 import com.java.dto.SportReportDto;
+import com.java.dto.StaticHeadOneDto;
+import com.java.dto.StaticHeadTwoDto;
 import com.java.dto.UserGraphDto;
 import com.java.dto.WriteGraphDto;
 
@@ -20,7 +24,7 @@ public interface AdminMapper {
 
 
 	//전체 회원 하단 넘버링 
-	ArrayList<MemberDto> selectAll(PageDto pageDto);
+	ArrayList<MemberDto> selectAll(@Param("pDto") PageDto pageDto, String serch_input);
 
 	//전체 회원 가져오기
 	int selectMemberListCount();
@@ -60,6 +64,31 @@ public interface AdminMapper {
 
 	//회원 탈퇴처리
 	void deleteTUMOne(MemberDto mdto);
+
+	//1) 신규가입자, 최근 게시물, 최근리뷰 값을 리스트에 채워서 데려오기
+	ArrayList<StaticHeadOneDto> selectSHOne();
+
+	//2) 접속자 수 리스트에 채워서 데려오기
+	ArrayList<StaticHeadTwoDto> selectSHTwo();
+
+	//1) 모임 - 스포츠 종류별 count
+	ArrayList<DonutChartsClubDto> selectDonutChartClub();
+
+	//모임 추가하기
+	void insertClub(ClubDto cdto);
+
+	//수정할 모임 정보 가져오기
+	ClubDto selectTCMOne(int cno);
+
+	//수정한 모임 정보 저장하기
+	void updateTCMOne(ClubDto cdto);
+
+	//모임 삭제하기
+	void deleteTCMOne(ClubDto cdto);
+
+
+
+
 
 
 

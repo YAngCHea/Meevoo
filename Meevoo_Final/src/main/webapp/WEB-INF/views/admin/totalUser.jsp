@@ -16,7 +16,7 @@
 	  
    </head>
    <body class="is-preload">
-      <c:if test="${result=='i_success'}"><script>alert("게시글이 등록되었습니다.!!");</script></c:if>
+      <c:if test="${result=='i_success'}"><script>alert("회원이 등록되었습니다.!!");</script></c:if>
 
       <!-- Wrapper -->
          <div id="wrapper">
@@ -26,30 +26,7 @@
                   <div class="inner">
 
                      <!-- Header -->
-                        <!-- <header id="header">
-                           <a href="/index" class="logo"><strong>Meevoo</strong> by 채연</a>
-                           <ul class="icons">
-                              <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                              <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                              <li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
-                              <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                              <li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
-                           </ul>
-                        </header> -->
-
-<%@ include file="../top.jsp" %>
-
-
-                     <!-- Banner -->
-                        <!-- <section id="banner">
-                           <div class="content">
-                              <header style="text-align: center;">
-                                 <h1>전체 회원목록을 볼 수 있을것이다!</h1>
-                                 <p> 수정이랑 삭제 그리고 회원추가가 가능하지!!!</p>
-                              </header>
-                           </div>
-                        </section> -->
-					 
+					 <%@ include file="../top.jsp" %>
 					 
 					 <!-- 회원관리 리스트 나오게! -->
 						 <div class="Wrap">
@@ -62,24 +39,31 @@
 					        			<!--card 맨 위 이름-->
 					        			<div class="card_title bottomline">
 					                        <h3>전체 회원 관리
-					                        	<span class="subtitle">종류별 검색과 수정, 삭제가 가능해요!!</span>
 					                    	</h3>
 					                    </div>
 					        			<!--card_title-->
 					        			
+					        			
+					        			
+					        			<!-- 검색 클릭시 -->
+											<script>
+										    	function userSearchBtn(){
+										    		
+										    		if($("#serch_input").val().length<2){
+										    			alert("2글자 이상 입력하셔야 합니다.")
+										    			$("#serch_input").focus();
+										    			return false;
+										    		}
+										    		
+										    		userSearch.submit();
+										    	}
+										    </script>
+					        			
 					        			<!--card-->
 					        			<div class="card card_border bg_lightblue">
 					                        <div class="card_option ">
-						                        <!-- <div class="option_section">
-					                                <span>Group : </span>
-					                                <div class="Button_group">
-							        					<ul>
-							        						<li class="tab-link current">Group1</li>
-							        						<li class="tab-link">Group2</li>
-							        						<li class="tab-link">Group3</li>
-							        					</ul>
-							        				</div>
-						                        </div> -->
+					                            
+						                        <!-- 2차 구현에서 하자....
 						                        <div class="option_section" style="width:30%;">
 					                                <span class="first_tit" style="float:left;text-align : center" ><br>가입 날짜 :</span>
 					                                <input type="text" class="Datepicker cald_St hasDatepicker" id="dp1689135199476" style="width:100px; float:left;">
@@ -92,12 +76,20 @@
 					                                    <option>가입</option>
 					                                    <option>탈퇴</option>
 					                                </select>
-						                        </div>
-						                        <div class="option_section">
+						                        </div> -->
+						                        
+						                        <div class="option_section" style="width:100%;">
 					                            	<span style="float:left;"><br>회원 이름 검색 :</span>
+					                            	<!-- 이 부분이 원래 벝은
 					                            	<input type="text" style="width:120px; float:left;">
-					                                <button class="btn_small btn_blue" style="float:left;">검색</button>
+					                                <button class="btn_small btn_blue" style="float:left;">검색</button> -->
+					                                <!-- 검색부분!! -->
+					                            <form class='userSearchBtn' method="post" action="/admin/totalUser" name="userSearch" style="display:flex; align-items:center; place-content: center; ">    
+													<input tye="search" style="width:400px; margin: 0 0 0 1px;" name="serch_input" id="serch_input" value="${serch_input}" placeholder="검색어를 입력해주세요." />
+													<button type="button" class="btn_small btn_blue" onclick="userSearchBtn()" style="height: 40px; margin: 0 0 0 1px;">검색</button>
+												</form>
 						                        </div>
+						                        
 					                        </div>
 					        			</div>
 										<!--card-->

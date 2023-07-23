@@ -5,21 +5,24 @@
 <!DOCTYPE HTML>
 <html>
    <head>
-      <title>모임 수정 페이지</title>
+      <title>공지사항 추가하기</title>
       <!-- 제이쿼리 최신 -->
       <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
       <link rel="stylesheet" href="../css/main_yang.css" />
-      
       <script>
-	     function updateClubBtn(){
-	    	if(confirm("모임 정보를 수정하시겠습니까?")){
-		    	 updateClub.submit(); //전송
-	    	}
+	     function writeNoticeBtn(){
+	    	 alert("test");
+	    	 writeNoticeFrm.submit(); //전송
+	    	 
 	     }
 	  </script>
-      
+	  <!-- 날짜가져오기 : 아직 못함 -->
+	  <script>
+		  document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
+	  </script>
+	  
    </head>
    <body class="is-preload">
 
@@ -33,17 +36,6 @@
                      <!-- Header -->
                         <%@ include file="../top.jsp" %>
 
-                     <!-- Banner -->
-                        <!-- <section id="banner">
-                           <div class="content">
-                              <header style="text-align: center;">
-                                 <h1>전체 게시글 목록을 볼 수 있을것이다!</h1>
-                                 <p> 수정이랑 삭제가 가능하지!!!</p>
-                              </header>
-                           </div>
-                        </section> -->
-					 
-					 
 					 <!-- 회원관리 리스트 나오게! -->
 						 <div class="Wrap">
 					        <!--content-->
@@ -51,10 +43,9 @@
 					        	<div class="content_Area">
 					        		<!--card 이거다!!!!!!!!!!!!!!!!!!!-->
 					        		<div class="card card_border">
-					        		
 					        			<!--card 맨 위 이름-->
 					        			<div class="card_title bottomline">
-					                        <h3>전체 게시글 관리
+					                        <h3>모임 생성하기
 					                    	</h3>
 					                    </div>
 					        			<!--card_title-->
@@ -72,105 +63,66 @@
 									              <div class="x_panel">
 
 									                <div class="x_content">
-									                  <form class="" action="/admin/totalWriteModify" method="post" name="updateClub" enctype="multipart/form-data"
+									                  <form class="" action="/notice/noticeWrite" method="post" name="writeNoticeFrm" enctype="multipart/form-data"
 									                    novalidate="">
 									                    
-									                    <!-- <span class="section">Personal Info</span> -->
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">no<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="cno" value="${cdto.cno}" type="number">
-									                      </div>
-									                    </div>
+									                   
+									                    
+									                    <!-- no 디폴트값을 그냥 0으로 넣고 쿼리문에서 nextval로 넣어둠 -->
+								                        <input class="form-control" name="notino" type="hidden" value="0">
 									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성자<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="id" value="${cdto.id}" name="id" >  <!-- data-validate-linked="email" -->
+									                        <input class="form-control" type="text" name="notiid" >  <!-- data-validate-linked="email" -->
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">모임 이름<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">제목<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" value="${cdto.cnm}" name="cnm" >
+									                        <input class="form-control" type="text" name="notititle" >
 									                      </div>
 									                    </div>
+									                    
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">글 작성일<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성일<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="cwrdate" value="${cdto.cwrdate}" type="date">  <!-- required="required" -->
+									                        <input class="form-control" name="notidate"  type="date" value="currentDate">  <!-- required="required" -->
 									                      </div>
 									                    </div>
+									                    
+									                    <!-- 
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">사진<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">조회수<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="file" value="${cdto.cimg}" type="file">
+									                        <input class="form-control" name="notihit" type="number">
 									                      </div>
 									                    </div>
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">시설 번호<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="number" value="${cdto.sfno}" name="sfno" >
-									                      </div>
-									                    </div>
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">모임 지역<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" value="${cdto.dongcate}" name="dongcate" >
-									                      </div>
-									                    </div>
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">상세지역<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" value="${cdto.cloc}" name="cloc"  >
-									                      </div>
-									                    </div>
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">모임 날짜<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="date" value="${cdto.cdodate}" name="cdodate">
-									                      </div>
-									                    </div>
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">운동종목<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text"  value="${cdto.scate}" name="scate">
-									                      </div>
-									                    </div>
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">현재상태<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text"  value="${cdto.cnowstatus}" name="cnowstatus">
-									                      </div>
-									                    </div>
+									                     -->
+									                     
+									                        
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">내용<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <textarea  name="ccontent">${cdto.ccontent}</textarea>
+									                        <textarea  name="noticontent"></textarea>
 									                      </div>
 									                    </div>
-									                    
+									                   
 									                    <div class="ln_solid">
 									                      <div class="form-group">
 									                        <div class="col-md-6 offset-md-3">
-									                          <button type="submit" class="btn btn-primary" style="margin: 0 auto;">Submit</button>
+									                          <button type="button" onclick="writeNoticeBtn()" class="btn btn-primary" style="margin: 0 auto;">Submit</button>
 									                          <button type="reset" class="btn btn-success">Reset</button>
 									                        </div>
 									                      </div>
 									                    </div>
 									                  </form>
+									                  
 									                </div>
 									              </div>
 									            </div>
@@ -180,11 +132,6 @@
 									    </div>
 									  </div>
 					        			
-					        			
-					        			
-					        			
-					        			
-										
 					        		</div>
 					        		<!--card-->
 					        	</div>

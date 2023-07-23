@@ -5,27 +5,19 @@
 <!DOCTYPE HTML>
 <html>
    <head>
-      <title>회원수정하기</title>
+      <title>회원수정하기+회원추가</title>
       <!-- 제이쿼리 최신 -->
       <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
       <link rel="stylesheet" href="../css/main_yang.css" />
       <script>
-     function updateBtn(){
-    	if(confirm("회원정보를 수정하시겠습니까?")){
-	    	 update.submit(); //전송
-    	}
-     }
-  </script>
-  <script>
-      function deleteBtn(){
-    	  if(confirm("게시글을 삭제하시겠습니까?")){
-    		  update.submit(); //전송
-    		  //location.href="/admin/totalUserModify?id=${userList.id}";
-    	  }
-      }
-  </script>
+	     function writeClubBtn(){
+	    	 alert("test");
+	    	 writeClubFrm.submit(); //전송
+	    	 
+	     }
+	  </script>
    </head>
    <body class="is-preload">
 
@@ -38,7 +30,6 @@
 
                      <!-- Header -->
                         <%@ include file="../top.jsp" %>
-
 
                      <!-- Banner -->
                         <!-- <section id="banner">
@@ -61,7 +52,7 @@
 					        		
 					        			<!--card 맨 위 이름-->
 					        			<div class="card_title bottomline">
-					                        <h3>회원정보 수정하기
+					                        <h3>모임 생성하기
 					                    	</h3>
 					                    </div>
 					        			<!--card_title-->
@@ -79,7 +70,7 @@
 									              <div class="x_panel">
 
 									                <div class="x_content">
-									                  <form class="" action="/admin/totalUserModify" method="post" name="update" enctype="multipart/form-data"
+									                  <form class="" action="/admin/totalWriteWrite" method="post" name="writeClubFrm" enctype="multipart/form-data"
 									                    novalidate="">
 									                    
 									                    <!-- <span class="section">Personal Info</span> -->
@@ -92,115 +83,97 @@
 									                    </div> -->
 									                    
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">이름<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">no<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="usernm" value="${mdto.usernm}" data-validate-length-range="5,15" type="text" >
+									                        <input class="form-control" name="cno" type="number">
 									                      </div>
 									                    </div>
 									                    
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">닉네임<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성자<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" value="${mdto.nicknm }" name="nicknm" data-validate-linked="email">
+									                        <input class="form-control" type="id" name="id" >  <!-- data-validate-linked="email" -->
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">ID<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">모임 이름<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" value="${mdto.id}" name="id" data-validate-length-range="5,15" type="id" readonly>
-									                        
+									                        <input class="form-control" type="text" name="cnm" >
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">PW<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">글 작성일<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" value="${mdto.pw }" name="pw"  type="password" readonly>  <!-- required="required" -->
+									                        <input class="form-control" name="cwrdate"  type="date">  <!-- required="required" -->
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">EMAIL<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">사진<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" value="${mdto.email }" name="email" required="required" type="email">
+									                        <input class="form-control" name="file" type="file">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">성별<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">시설 번호<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" value="${mdto.gender }" type="text" name="gender" >
+									                        <input class="form-control" type="number" name="sfno" >
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">주소<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">모임 지역<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" value="${mdto.addr}" type="text" name="addr" >
+									                        <input class="form-control" type="text" name="dongcate" >
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심지역<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">상세지역<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" value="${mdto.dongcate }" name="dongcate"  >
+									                        <input class="form-control" type="text" name="cloc"  >
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심스포츠<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">모임 날짜<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" value="${mdto.scate }" name="scate">
+									                        <input class="form-control" type="date" name="cdodate">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">태어난 연도<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">운동종목<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="number" value="${mdto.birth }" name="birth">
+									                        <input class="form-control" type="text" name="scate">
 									                      </div>
 									                    </div>
-									                    
 									                    <div class="field item form-group">
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">내용<span
+									                          class="required">*</span></label>
+									                      <div class="col-md-6 col-sm-6">
+									                        <textarea  name="ccontent"></textarea>
+									                      </div>
+									                    </div>
+									                    <!-- <div class="field item form-group">
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">가입일자<span
+									                          class="required">*</span></label>
+									                      <div class="col-md-6 col-sm-6">
+									                        <input class="form-control" type="date" name="joindate" >
+									                      </div>
+									                    </div>  -->
+									                    <!-- <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">프로필 사진<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input type="file" class="form-control" value="${mdto.userimg}" name="file">
-									                        <input type="text" class="form-control" value="${mdto.userimg}" name="userimg">
+									                        <input type="file" class="form-control" name="file">
 									                      </div>
-									                    </div>
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">자기소개<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <textarea  name="selfintro">${mdto.selfintro }</textarea>
-									                      </div>
-									                    </div>
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">가입 상태(가입/탈퇴)<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <!-- <input class="form-control" type="number" value="${mdto.nowjoin}" name="nowjoin" > -->
-									                        								                        
-									                        <select name="srepcontent">
-																<c:if test="${mdto.nowjoin == '1'}">
-																	<option value="1" selected>가입되어있는 회원</option>
-																	<option value="0">탈퇴한 회원</option>
-																</c:if>
-																<c:if test="${mdto.nowjoin == '0'}">
-																	<option value="1">가입되어있는 회원</option>
-																	<option value="0" selected>탈퇴한 회원</option>
-																</c:if>
-															</select>
-									                        
-									                        
-									                      
-									                      </div>
-									                      
-									                    </div>
+									                    </div> -->
 									                    
 									                    <!-- <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Time<span
@@ -236,14 +209,12 @@
 									                    <div class="ln_solid">
 									                      <div class="form-group">
 									                        <div class="col-md-6 offset-md-3">
-									                          <button type="button" onclick="updateBtn()" class="btn btn-primary" style="margin: 0 auto;">Submit</button>
+									                          <button type="button" onclick="writeClubBtn()" class="btn btn-primary" style="margin: 0 auto;">Submit</button>
 									                          <button type="reset" class="btn btn-success">Reset</button>
-									                          <button type="button" onclick="deleteBtn()" class="btn btn-delete" style="margin: 0 auto;float: right;">탈퇴하기</button>
 									                        </div>
 									                      </div>
 									                    </div>
 									                  </form>
-									                  
 									                </div>
 									              </div>
 									            </div>

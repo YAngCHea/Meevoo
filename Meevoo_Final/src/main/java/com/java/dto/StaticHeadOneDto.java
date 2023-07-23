@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Data //getter, setter
 public class StaticHeadOneDto {
 
+	//adminStatic에서 상단에 신규가입자 / 최근게시물 / 최근리뷰 계산해서 가져오는데 필요함!
 	private int newjoinuser;
 	private int newclub;
 	private int newreview;

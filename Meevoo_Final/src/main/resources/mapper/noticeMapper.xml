@@ -5,9 +5,52 @@
 <mapper namespace="com.java.mapper.NoticeMapper">
 
 <!-- 공지사항 전체 가져오기 -->
-   <select id="selectNotiAll" resultType="com.java.dto.NoticeDto">
+   <select id="selectNoticeAll" resultType="com.java.dto.NoticeDto">
       select * from notice
+      
+      <if test="search_input != null and search_input != '' ">
+		   where notititle like '%'||#{search_input}||'%'
+		</if>
+      
+      
+      order by notidate desc
    </select>
+   
+   <!-- 공지사항 가져오기   -->
+   <select id="selectNoticeListCount" resultType="int">
+      select count(*) from notice
+      
+      <if test="search_input != null and serch_input != '' ">
+		   where notititle like '%'||#{search_input}||'%'
+	  </if>
+      
+   </select>
+   
+   <!-- 공지사항 상세페이지 : noticeView -->
+   <select id="selectNoticeOne" resultType="com.java.dto.NoticeDto">
+   select * from notice where notino=#{notino}
+   </select>
+   
+   <!-- 공지사항 추가하기 -->
+   <insert id="insertNotice">
+   insert into notice values 
+(
+notice_seq.nextval ,
+'MeeVoo',
+#{notititle},
+sysdate,
+#{noticontent},
+#{notihit},
+#{notiimg}
+)</insert>
+   
+<!-- 1) 수정할 공지사항 가져오기 -->
+   <select id="selectNMOne" resultType="com.java.dto.NoticeDto">
+      select * from notice where notino = #{notino}
+   </select>
+   
+   
+      
    
 <!-- FAQ 전체 가져오기 -->
    <select id="selectFAQAll" resultType="com.java.dto.FAQDto">

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -16,9 +17,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.ClubDto;
 import com.java.dto.ClubReportDto;
+import com.java.dto.DonutChartsClubDto;
 import com.java.dto.MemberDto;
 import com.java.dto.PageDto;
 import com.java.dto.SportReportDto;
+import com.java.dto.StaticHeadOneDto;
+import com.java.dto.StaticHeadTwoDto;
 import com.java.dto.UserGraphDto;
 import com.java.dto.WriteGraphDto;
 import com.java.mapper.AdminMapper;
@@ -30,26 +34,26 @@ public class AdminServiceImpl implements AdminService {
 	AdminMapper adminMapper;
 	
 	
-
 	
-	//전체 회원 하단 넘버링 
+	//전체 회원 하단 넘버링 =========================================================================================
 	@Override
-	public HashMap<String, Object> selectAll(PageDto pageDto) {
+	public HashMap<String, Object> selectAll(PageDto pageDto, String serch_input) {
 		HashMap<String, Object> map = new HashMap<>();
 		//페이지정보 메소드호출
-		pageDto = pageMethod(pageDto);
+		pageDto = pageMethod(pageDto,serch_input);
 		
-		//회원 전체가져오기
-		ArrayList<MemberDto> list = adminMapper.selectAll(pageDto);
+		//회원 전체가져오기 - 마이바티스로 객체,String 변수
+		ArrayList<MemberDto> list = adminMapper.selectAll(pageDto,serch_input);
 		//System.out.println("AdminServiceImpl remainDate : "+list.get(0).getRemainDate());
 		
 		map.put("list", list);
+		map.put("serch_input", serch_input);
 		map.put("pageDto", pageDto);
 		return map;
 	}
 	
 	//페이지정보 메소드
-	public PageDto pageMethod(PageDto pageDto) {
+	public PageDto pageMethod(PageDto pageDto, String serch_input) {
 			
 			//전체게시글 수-142,현재페이지,최대페이지,시작페이지,끝페이지 1-시작,2,3,4,5-현재,6,7,8,9,10-끝  15-최대
 			//시작번호,끝나는번호 1-10,11-20,21-30
@@ -69,7 +73,12 @@ public class AdminServiceImpl implements AdminService {
 			return pageDto;
 		}
 	
-	//전체 모임 하단 넘버링 
+	
+	
+	
+	
+	
+	//전체 모임 하단 넘버링 =========================================================================================
 	@Override
 	public HashMap<String, Object> selectClubAll(PageDto pageDto1) {
 		HashMap<String, Object> map1 = new HashMap<>();
@@ -234,6 +243,109 @@ public class AdminServiceImpl implements AdminService {
 		System.out.println("Impl에서도 탈퇴가 되었을껄?");
 		
 	}
+
+	//1) 신규가입자, 최근 게시물, 최근리뷰 값을 리스트에 채워서 데려오기
+	@Override
+	public ArrayList<StaticHeadOneDto> selectSHOne() {
+		ArrayList<StaticHeadOneDto> sholist = adminMapper.selectSHOne();
+		return sholist;
+	}
+
+	//2) 접속자 수 리스트에 채워서 데려오기
+	@Override
+	public ArrayList<StaticHeadTwoDto> selectSHTwo() {
+		ArrayList<StaticHeadTwoDto> shtlist = adminMapper.selectSHTwo();
+		return shtlist;
+	}
+
+	//1) 모임 - 스포츠 종류별 count 
+	@Override
+	public ArrayList<DonutChartsClubDto> selectDonutChartClub() {
+		ArrayList<DonutChartsClubDto> dcclist = adminMapper.selectDonutChartClub();
+		System.out.println("Impl dcclist : "+dcclist);
+		return dcclist;
+	}
+
+	//모임 추가하기
+	@Override
+	public void insertClub(ClubDto cdto, MultipartFile files) {
+		
+		String cimg = "";  //파일 저장 이름
+		String tempFile = ""; //임시 사용 이름
+		String oriFile = "";  //원본 파일 이름
+		
+		if(!cimg.isEmpty()) {
+			oriFile = files.getOriginalFilename();
+			UUID uuid = UUID.randomUUID();  //랜덤번호
+			tempFile = uuid + "_" + oriFile;   //이름을 임의로 저장한다
+			String uploadURL = "c:/upload/";  //저장위치
+			File f = new File(uploadURL + tempFile);
+			try { files.transferTo(f);
+			} catch (Exception e) {e.printStackTrace();}
+		}//if
+		
+		//dto에 userimg 저장하기
+		cdto.setCimg(cimg);
+		
+		//파일이름 출력
+		System.out.println("파일이름 출력해보자 : " + cimg);
+		
+		//mapper에 전송
+		adminMapper.insertClub(cdto);
+		
+	}
+
+	//수정할 모임 정보 가져오기
+	@Override
+	public ClubDto selectTCMOne(int cno) {
+		ClubDto cdto = adminMapper.selectTCMOne(cno);
+		return cdto;
+	}
+
+	//수정한 모임 정보 저장하기
+	@Override
+	public void updateTCMOne(ClubDto cdto, MultipartFile file) {
+		
+		adminMapper.updateTCMOne(cdto);
+		
+		
+		String cimg = "";  //파일 저장 이름
+		String tempFile = ""; //임시 사용 이름
+		String oriFile = "";  //원본 파일 이름
+		
+		if(!cimg.isEmpty()) {
+			oriFile = file.getOriginalFilename();
+			UUID uuid = UUID.randomUUID();  //랜덤번호
+			tempFile = uuid + "_" + oriFile;   //이름을 임의로 저장한다
+			String uploadURL = "c:/upload/";  //저장위치
+			File f = new File(uploadURL + tempFile);
+			try { file.transferTo(f);
+			} catch (Exception e) {e.printStackTrace();}
+		}//if
+		
+		//dto에 cimg 저장하기
+		cdto.setCimg(cimg);
+		
+		//파일이름 출력
+		System.out.println("파일이름 출력해보자 : " + cimg);
+		
+	}
+
+	//모임 삭제하기
+	@Override
+	public void deleteTCMOne(ClubDto cdto) {
+		adminMapper.deleteTCMOne(cdto);
+		
+	}
+
+
+
+
+	
+
+
+	
+	
 
 
 
