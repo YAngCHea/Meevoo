@@ -121,22 +121,29 @@
 										<h2>가장 많이 찜한 체육시설</h2>
 									</header>
 									<div class="features">
-										<c:forEach items="${list}" var="item">
+										<%-- <c:forEach items="${list}" var="item">
 											<article>
-												<span><img src="images/clubPick1.png"><%-- ${item.imgurl1 } --%></span>
+												<span><img src="images/clubPick1.png">${item.imgurl1 }</span>
 												<div class="content">
-													<h2>&nbsp;&nbsp;&nbsp;&nbsp;<%-- ${item.sfnm } --%></h2>
-													<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%-- ${item.dongcate } --%></p>
+													<h2>&nbsp;&nbsp;&nbsp;&nbsp;${item.sfnm }</h2>
+													<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${item.dongcate }</p>
 												</div>
 											</article>
-										</c:forEach>
-										<!-- <article>
+										</c:forEach> --%>
+										<article>
 											<span><img src="images/football1.png"></span>
 											<div class="content">
 												<h2>&nbsp;&nbsp;&nbsp;&nbsp;구로동 풋살장</h2>
 												<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;구로구 구로동</p>
 											</div>
-										</article> -->
+										</article>
+										<article>
+											<span><img src="images/football1.png"></span>
+											<div class="content">
+												<h2>&nbsp;&nbsp;&nbsp;&nbsp;구로동 풋살장</h2>
+												<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;구로구 구로동</p>
+											</div>
+										</article>
 									</div>
 								</section>
 								
