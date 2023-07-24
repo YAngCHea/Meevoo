@@ -10,7 +10,7 @@
       <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-      <link rel="stylesheet" href="../css/main_yang.css" />
+      <link rel="stylesheet" href="../css/main_new_yang.css" />
    </head>
    <body class="is-preload">
 
@@ -22,31 +22,15 @@
                   <div class="inner">
 
                      <!-- Header -->
-                        <header id="header">
-                           <a href="/index" class="logo"><strong>Meevoo</strong> by 채연</a>
-                           <ul class="icons">
-                              <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                              <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                              <li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
-                              <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                              <li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
-                           </ul>
-                        </header>
+                        <%@ include file="../top.jsp" %>
 
-                     <!-- Banner -->
-                     <!-- 
-                        <section id="banner">
-                           <div class="content">
-                              <header style="text-align: center;">
-                                 <h1>자주 물어본 질문을 답해줄것이다!</h1>
-                                 <p> 근데 이걸 QnA랑 따로 해두는게 맞나? </p>
-                              </header>
-                           </div>
-                        </section>
-                      -->
+                    
 
 					 <!-- 중간에 공지사항 탭 넣기 : 공지사항 템플릿 -->
 						<div id="container" class="container sub_container">
+					
+					 <br>
+                     <br>
 					
 							<div class="contents" id="contents">
 								<!-- breadcrumbs End -->
@@ -68,8 +52,9 @@
                            <div class="table-wrapper">
                               <table>
                                  <colgroup>
-                                    <col width="5%"  />
-                                    <col width="25%" />
+                                    <col width="3%"  />
+                                    <col width="30%" />
+                                    <col width="*" />
                                     <col width="*" />
                                     
                                  </colgroup>
@@ -87,26 +72,103 @@
                                        <!-- <td><a href="/sport/sportnoticeView?fcltyno=${faqlist.faqq}" class="lightgray">${faqlist.faqq} </a></td> -->
                                        <td>${faqlist.faqq}</td>
                                        <td>${faqlist.faqa}</td>
+                                       <td><a href="/notice/FAQModify?faqno=${faqlist.faqno }"><button class="btn_simple btn_blue">수정</button></a>
                                     </tr>
                                     </c:forEach>
                                  </tbody>
                               </table>
+                            </div>
                               
-                              <!-- 페이지 넘기는 버튼 -->
-                              <ul class="pagination" >
-                                 <li><span class="button disabled">Prev</span></li>
-                                 <li><a href="#" class="page active">1</a></li>
-                                 <li><a href="#" class="page">2</a></li>
-                                 <li><a href="#" class="page">3</a></li>
-                                 <li><span>&hellip;</span></li>
-                                 <li><a href="#" class="page">7</a></li>
-                                 <li><a href="#" class="page">8</a></li>
-                                 <li><a href="#" class="page">9</a></li>
-                                 <li><a href="#" class="button">Next</a></li>
-                              </ul>
-                              <h4>페이지 넘기는 버튼</h4>
-                           </div>
+                              
+                               
+									<!-- Table -->
+									<div class="table-wrapper">
+										
+										<div style="text-align: right;">
+											<a href="/notice/FAQWrite"><button type="button" class="button primary">FAQ 작성</button></a>
+										</div>
+									</div>
+								
+                              
+                              
+                              
+                              
+					<!-- 하단 넘버링 버튼 -->
+					<div class="col-12" style="margin: 0px auto;">
+						<ul class="pagination">
+							<!-- 첫 페이지 이동 -->
+							<c:if test="${pageDto.page !=1}">
+								<li><a href="/notice/FAQ?page=1" class="button"> <img
+										src="../images/general/pageFirst.png" style="width: 15px;" />
+								</a></li>
+							</c:if>
+							<c:if test="${pageDto.page ==1}">
+								<li><span class="button disabled"> <img
+										src="../images/general/pageFirst.png"
+										style="width: 15px; vertical-align: middle;" />
+								</span></li>
+							</c:if>
+							<!-- 첫 페이지 이동 끝-->
+							<!-- 이전 페이지 이동 -->
+							<c:if test="${pageDto.page>1}">
+								<li><a href="/notice/FAQ?page=${pageDto.page-1}"
+									class="button"> <img
+										src="../images/general/pagePrevious.png"
+										style="width: 15px; vertical-align: middle;" />
+								</a></li>
+							</c:if>
+							<c:if test="${pageDto.page==1}">
+								<li><span class="button disabled"> <img
+										src="../images/general/pagePrevious.png"
+										style="width: 15px; vertical-align: middle;" />
+								</span></li>
+							</c:if>
+							<!-- 이전 페이지 이동 끝 -->
+							<!-- 페이지 리스트 -->
+							<c:forEach var="num" begin="${pageDto.startPage}"
+								end="${pageDto.endPage}" step="1">
+								<c:if test="${num != pageDto.page}">
+									<li><a href="/notice/FAQ?page=${num}" class="page">${num}</a></li>
+								</c:if>
+								<c:if test="${num == pageDto.page}">
+									<li><a href="/notice/FAQ?page=${num}"
+										class="page active">${num}</a></li>
+								</c:if>
+							</c:forEach>
+							<!-- 페이지 리스트 끝-->
+							<!-- 다음 페이지 이동 -->
+							<c:if test="${pageDto.page<pageDto.maxPage}">
+								<li><a href="/notice/FAQ?page=${pageDto.page+1}"
+									class="button"> <img src="../images/general/pageNext.png"
+										style="width: 15px; vertical-align: middle;" />
+								</a></li>
+							</c:if>
+							<c:if test="${pageDto.page==pageDto.maxPage}">
+								<li><span class="button disabled"> <img
+										src="../images/general/pageNext.png"
+										style="width: 15px; vertical-align: middle;" />
+								</span></li>
+							</c:if>
+							<!-- 다음 페이지 이동 끝-->
+							<!-- 끝 페이지 이동 -->
+							<c:if test="${pageDto.page != pageDto.maxPage}">
+								<li><a href="/notice/FAQ?page=${pageDto.maxPage}"
+									class="button"> <img src="../images/general/pageLast.png"
+										style="width: 15px; vertical-align: middle;" />
+								</a></li>
+							</c:if>
+							<c:if test="${pageDto.page == pageDto.maxPage}">
+								<li><span class="button disabled"> <img
+										src="../images/general/pageLast.png"
+										style="width: 15px; vertical-align: middle;" />
+								</span></li>
+							</c:if>
+							<!-- 끝 페이지 이동 끝-->
+					</div>
+                           
 
+				<!-- Footer -->
+                  <%@ include file="../footer.jsp" %>
 
                   </div>
                </div>
@@ -162,10 +224,6 @@
                         </nav>
 
 
-                     <!-- Footer -->
-                        <footer id="footer">
-                           <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-                        </footer>
 
                   </div>
                </div>

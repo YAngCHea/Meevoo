@@ -40,10 +40,16 @@ public class MemberController {
 		MemberDto mdto = memberService.selectLogin(memberDto);
 		
 		 if(mdto!=null) { 
-			 session.setAttribute("sessionId", mdto.getId()); //sessionId
-			 session.setAttribute("sessionName", mdto.getUsernm());
-			 session.setAttribute("sessionNicknm", mdto.getNicknm());
-			 
+			 if(mdto.getId().equals("admin")) {
+				 session.setAttribute("sessionId", mdto.getId()); //sessionId
+				 session.setAttribute("sessionName", mdto.getUsernm());
+				 session.setAttribute("sessionNicknm", mdto.getNicknm());
+				 return "/admin/adminStatic";
+			 }else {
+				 session.setAttribute("sessionId", mdto.getId()); //sessionId
+				 session.setAttribute("sessionName", mdto.getUsernm());
+				 session.setAttribute("sessionNicknm", mdto.getNicknm());
+			 }
 		 }else {
 			 model.addAttribute("loginCheck", "fail"); 
 			 //String loginCheck="fail"; 과 같은 구문(그런데 웹에서는 안되서 java에서는 안됨)

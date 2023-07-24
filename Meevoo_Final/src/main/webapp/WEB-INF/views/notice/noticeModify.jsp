@@ -18,7 +18,13 @@
 	    	 
 	     }
 	  </script>
-	  
+    <script>
+      function deleteBtn(){
+    	  if(confirm("게시글을 삭제하시겠습니까?")){
+    		  location.href="noticeDelete?notino=${ndto.notino}";
+    	  }
+      }
+    </script>	  
 	  
    </head>
    <body class="is-preload">
@@ -100,7 +106,14 @@
 									                      </div>
 									                    </div>
 									                     -->
-									                     
+									                    <div class="field item form-group">
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">파일<span
+									                          class="required">*</span></label>
+									                      <div class="col-md-6 col-sm-6">
+									                        <input type="file" class="form-control" name="file">
+									                        <input type="text" class="form-control" value="${ndto.notiimg}" name="userimg">
+									                      </div>
+									                    </div>
 									                        
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">내용<span
@@ -115,6 +128,7 @@
 									                        <div class="col-md-6 offset-md-3">
 									                          <button type="button" onclick="writeModifyBtn()" class="btn btn-primary" style="margin: 0 auto;">Submit</button>
 									                          <button type="reset" class="btn btn-success">Reset</button>
+									                          <a onclick="deleteBtn()"><button type="button"  class="btn btn-delete" style="margin: 0 auto;float: right;">삭제하기</button></a>
 									                        </div>
 									                      </div>
 									                    </div>

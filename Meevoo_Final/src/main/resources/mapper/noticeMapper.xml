@@ -49,17 +49,84 @@ sysdate,
       select * from notice where notino = #{notino}
    </select>
    
-   
+   <!-- 공지사항 수정사항 저장하기 -->
+   <update id="updateNMOne">
+      update notice set notino=#{notino},notiid=#{notiid}, notidate=#{notidate}, noticontent=#{noticontent}, notiimg=#{notiimg}
+      where notino=#{notino}
+   </update>
       
+   <!-- 공지사항 삭제하기 -->
+   <delete id="deleteOne">
+      delete notice where notino=#{notino}
+   </delete>
    
-<!-- FAQ 전체 가져오기 -->
+   
+   
+   
+<!-- FAQ --> 
+
+   <!-- 1. FAQ 전체 가져오기 -->
    <select id="selectFAQAll" resultType="com.java.dto.FAQDto">
-      select * from faq
+      select * from faq 
    </select>
    
-<!-- QnA 전체 가져오기 -->
-   <select id="selectQnAAll" resultType="com.java.dto.QnADto">
-      select a.*,TO_CHAR(QnADate, 'YYYY/MM/DD') newdate from QnA a
+   <!-- 2. FAQ 추가하기 -->
+   <insert id="insertFAQ">
+   insert into FAQ values (faq_seq.nextval , #{faqq}, #{faqa})
+   </insert>
+   
+   <!-- 3) 수정할 FAQ 가져오기 -->
+   <select id="selectFMOne" resultType="com.java.dto.FAQDto">
+      select * from faq where faqno = #{faqno}
    </select>
+   
+   <!-- FAQ 수정사항 저장하기 -->
+   <update id="updateFMOne">
+      update faq set faqno=#{faqno}, faqq=#{faqq}, faqa=#{faqa}
+      where faqno=#{faqno}
+   </update>
+   
+   <!-- FAQ 삭제하기 -->
+   <delete id="deleteFAQOne">
+      delete faq where faqno=#{faqno}
+   </delete>
+   
+   
+ <!-- QnA -->  
+   
+   <!-- QnA 전체 가져오기 -->
+   <select id="selectQnAAll" resultType="com.java.dto.QnADto">
+      select * from qna
+      <if test="search_input != null and search_input != '' ">
+		   where id like '%'||#{search_input}||'%'
+	  </if>
+   </select>
+   
+   <!-- QnA 가져오기   -->
+   <select id="selectQnAListCount" resultType="int">
+      select count(*) from qna
+      <if test="search_input != null and search_input != '' ">
+		   where id like '%'||#{search_input}||'%'
+	  </if>
+   </select>
+   
+   <!-- QnA 상세페이지  -->
+   <select id="selectQnAOne" resultType="com.java.dto.QnADto">
+   select * from qna where qnano=#{qnano}
+   </select>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 </mapper>

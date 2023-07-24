@@ -5,7 +5,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>공지사항 상세페이지</title>
+		<title>QnA 상세페이지</title>
 		<!-- 제이쿼리 최신 -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<meta charset="utf-8" />
@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="../css/main_kmh.css" />
 	</head>
 	<body class="is-preload">
-		
+			
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -32,18 +32,17 @@
 									<div class="viewHead">
 										<div class="subject">
 											<ul>
-												<li>공지사항 제목  : ${ndto.notino}. ${ndto.notititle} </li>
+												<li>${qdto.qnano}. ${qdto.qnatitle} </li>
 											</ul>
 										</div>
 										
 										<div class="day">
-											<p class="txt">작성자<span>${ndto.notiid}</span></p>
-											<p class="txt">작성일시<span>${ndto.notidate}</span></p>
-											<p class="txt">조회수<span>${ndto.notihit}</span></p>
+											<p class="txt">작성자<span>${qdto.id}</span></p>
+											<p class="txt">작성일시<span>${qdto.qnadate}</span></p>
+											<p class="txt">답변현황<span>${qdto.qnastatus}</span></p>
 										</div>
 										<div class="convenient">
-											<p class="txt">${ndto.noticontent}</p>
-											<p class="txt">${ndto.notiimg}</p>
+											<p class="txt">${qdto.qnacontent}</p>
 											<br>
 											<br>
 											<br>
@@ -64,8 +63,10 @@
 									<br>
 									<!-- Buttons 수정 ->  main.css (1294번째)-->
 									<ul class="actions">
-										<li><a href="/notice/noticeModify?notino=${ndto.notino}" class="button primary">수정하기</a></li>
+										<li><a href="/notice/QnAModify?qnano=${qdto.qnano}" class="button primary">수정하기</a></li>
+										<!-- 
 										<li><a href="sportList?page=${page}" class="button primary">삭제하기</a></li>
+										 -->
 									</ul>
 								
 								

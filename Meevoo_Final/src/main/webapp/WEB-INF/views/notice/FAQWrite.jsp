@@ -5,23 +5,20 @@
 <!DOCTYPE HTML>
 <html>
    <head>
-      <title>공지사항 추가하기</title>
+      <title>FAQ 추가하기</title>
       <!-- 제이쿼리 최신 -->
       <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
       <link rel="stylesheet" href="../css/main_yang.css" />
       <script>
-	     function writeNoticeBtn(){
-	    	 alert("test");
-	    	 writeNoticeFrm.submit(); //전송
+	     function writeFAQBtn(){
+	    	 alert("FAQ가 등록되었습니다");
+	    	 writeFAQFrm.submit(); //전송
 	    	 
 	     }
 	  </script>
-	  <!-- 날짜가져오기 : 아직 못함 -->
-	  <script>
-		  document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
-	  </script>
+	 
 	  
    </head>
    <body class="is-preload">
@@ -63,66 +60,28 @@
 									              <div class="x_panel">
 
 									                <div class="x_content">
-									                  <form class="" action="/notice/noticeWrite" method="post" name="writeNoticeFrm" enctype="multipart/form-data"
+									                  <form class="" action="/notice/FAQWrite" method="post" name="writeFAQFrm" enctype="multipart/form-data"
 									                    novalidate="">
 									                    
-									                   
-									                    
-									                    <!-- no 디폴트값을 그냥 0으로 넣고 쿼리문에서 nextval로 넣어둠 -->
-								                        <input class="form-control" name="notino" type="hidden" value="0">
-									                    
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성자<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">질문 Q<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" name="notiid" >  <!-- data-validate-linked="email" -->
+									                        <input class="form-control" type="text" name="faqq" >  
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">제목<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">답변 A<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" name="notititle" >
-									                      </div>
-									                    </div>
-									                    
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성일<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="notidate"  type="date" value="currentDate">  <!-- required="required" -->
-									                      </div>
-									                    </div>
-									                    
-									                    <!-- 
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">조회수<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="notihit" type="number">
-									                      </div>
-									                    </div>
-									                     -->
-									                     <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">파일첨부<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input type="file" class="form-control" name="file">
-									                      </div>
-									                    </div>
-									                        
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">내용<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <textarea  name="noticontent"></textarea>
+									                        <textarea  name="faqa"></textarea>
 									                      </div>
 									                    </div>
 									                   
 									                    <div class="ln_solid">
 									                      <div class="form-group">
 									                        <div class="col-md-6 offset-md-3">
-									                          <button type="button" onclick="writeNoticeBtn()" class="btn btn-primary" style="margin: 0 auto;">Submit</button>
+									                          <button type="button" onclick="writeFAQBtn()" class="btn btn-primary" style="margin: 0 auto;">Submit</button>
 									                          <button type="reset" class="btn btn-success">Reset</button>
 									                        </div>
 									                      </div>
