@@ -6,8 +6,18 @@
 
   <!-- 모임목록 전체 가져오기 -->
   <select id="selectClubAll" resultType="com.java.dto.ClubDto">
-    select * from (select rownum rnum, a.* from 
-    (select * from clublist order by cno desc) a )where rnum between #{startRow} and #{endRow}
+    select * from 
+      (select rownum rnum, a.* from 
+      (select * from 
+          (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
+                  b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
+                  c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
+             from clublist a 
+              left join userlist b on a.id = b.id(+)
+              left join sportlist c on a.sfno = c.sfno)
+      order by cno desc) a )where rnum between #{startRow} and #{endRow}
+    
+    
   </select>
   
   <!-- 전체 게시글 수 (넘버링) -->
@@ -17,18 +27,47 @@
   
   <!-- 모임목록 추천 가져오기 1. 로그인 전, 찜하기 많고, 최근 게시글 중 모집중인 모임목록 2개 -->
   <select id="selectClubRecsLogout" resultType="com.java.dto.ClubDto">
-  	 select * from (select rownum rnum, a.* from 
-     (select * from clublist where cnowstatus = '모집중' order by ctotalpick desc, cno desc) a
-     )where rnum between 1 and 2
+  	 select * from 
+       (select rownum rnum, a.* from 
+         (select * from 
+           (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
+                   b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
+                   c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
+              from clublist a 
+                left join userlist b on a.id = b.id(+)
+                left join sportlist c on a.sfno = c.sfno)
+           where cnowstatus = '모집중' order by ctotalpick desc, cno desc) a
+      )where rnum between 1 and 2
   </select>
   
   <!-- 모임목록 추천 가져오기 2. 로그인한 사람의 관심지역, 관심종목과 일치하는 모집중인 모임목록 2개 -->
   <select id="selectClubRecsLogin" resultType="com.java.dto.ClubDto">
-  	 select * from (select rownum rnum, a.* from 
-     (select * from (select a.* from clublist a inner join userlist b 
-     on a.dongcate = b.dongcate and a.scate = b.scate
-     where b.id = #{id}) where cnowstatus = '모집중' order by ctotalpick desc, cno desc) a
-     )where rnum between 1 and 2
+     select * from 
+      (select rownum rnum, a.* from 
+        (select * from 
+          (select a.* from 
+            (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
+                    b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
+                    c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
+               from clublist a 
+                 left join userlist b on a.id = b.id(+)
+                 left join sportlist c on a.sfno = c.sfno)
+             a inner join userlist b on a.dongcate = b.dongcate and a.scate = b.scate
+           where b.id = #{id})
+         where cnowstatus = '모집중' order by ctotalpick desc, cno desc) a
+       )where rnum between 1 and 2
+     
+  </select>
+  
+  <!-- 모임목록 1개 가져오기 -->
+  <select id="selectClubOne" resultType="com.java.dto.ClubDto">
+    select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus,
+           b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
+           c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
+    	from clublist a 
+        	left join userlist b on a.id = b.id(+)
+        	left join sportlist c on a.sfno = c.sfno
+    	where cno = #{cno}
   </select>
   
   

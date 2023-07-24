@@ -17,5 +17,10 @@ public interface ClubService {
 	//모임목록 추천 가져오기 2. 로그인한 사람의 관심지역, 관심종목과 일치하는 모집중인 모임목록 2개
 	ArrayList<ClubDto> selectClubRecsLogin(String id);
 
+	// 모임목록 1개 가져오기
+	ClubDto selectClubOne(int cno);
+
+	
+
 
 }

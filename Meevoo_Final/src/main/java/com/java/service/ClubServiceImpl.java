@@ -71,6 +71,13 @@ public class ClubServiceImpl implements ClubService {
 		return recsLoginList;
 	}
 
+	@Override // 모임목록 1개 가져오기
+	public ClubDto selectClubOne(int cno) {
+		ClubDto cdto = clubMapper.selectClubOne(cno);
+		return cdto;
+	}
+
+
 
 	
 

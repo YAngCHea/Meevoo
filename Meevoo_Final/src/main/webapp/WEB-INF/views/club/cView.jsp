@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>모임글 상세</title>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main_kim.css" />
@@ -29,158 +32,218 @@
 		</style>
 	</head>
 	<body class="is-preload">
-
 		<!-- Wrapper -->
 			<div id="wrapper">
-
 				<!-- Main -->
-				
 					<div id="main">
 						<div class="inner">
-
 							<!-- Header -->
-								<header id="header">
-									<a href="main.jsp" class="logo"><strong>Meevoo</strong></a>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
-									</ul>
-								</header>
-
-							<!-- Banner -->
+							<%@ include file="../top.jsp" %>	
+							    <!-- Banner -->
 								<section id="banner" style="box-sizing: border-box; margin:0.5em; padding:2em 2em 2em 0; height: 250px; ">
 									<span class="content">
 										<header>
+										  <!-- 우상단 세부메뉴 점세개 -->
 										  <div class="dropdown" style="position: relative; display: inline-block; float: right; ">
-										    <input type="image" name="button" src="../images/general/ellipsisVertical.png" style="width: 30px; display: flex; float:right;" >
+										    <input type="image" src="../images/general/ellipsisVertical.png" style="width: 30px; display: flex; float:right;" >
 										      <div class="dropdown-content" style="top:-15px; left: -160px; background-color: #ffffff;">
-										         <div>
-										          <span>
-										            <a href="#">
-										              <img src="../images/general/previousPage.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;뒤로 가기
-										            </a>
-										          </span>
-										         </div>
-										         <div>
-										          <span>
-										            <a href="#">
-										              <img src="../images/general/index.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;저장 가기
-										            </a>
-										          </span>
-										         </div>
-										         <div>
-										          <span>
-										            <a href="#">
-										              <img src="../images/general/report.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;신고 하기
-										            </a>
-										          </span>
-										         </div>
-										         <div>
-										          <span>
-										            <a href="#">
-										              <img src="../images/general/write.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;수정 하기
-										            </a>
-										          </span>
-										         </div>
-										         <div>
-										          <span>
-										            <a href="#">
-										              <img src="../images/general/delete.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;삭제 하기
-										            </a>
-										          </span>
-										         </div>
+										         <div><span><a href="/club/club"><img src="../images/general/previousPage.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;뒤로 가기</a></span></div>
+										         <div><span><a href="#"><img src="../images/general/index.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;저장 하기</a></span></div>
+										         <div><span><a href="#"><img src="../images/general/report.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;신고 하기</a></span></div>
+										         <div><span><a href="#"><img src="../images/general/write.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;수정 하기</a></span></div>
+										         <div><span><a href="#"><img src="../images/general/delete.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;삭제 하기</a></span></div>
 										      </div>
 										  </div>
-										
-											<h1>조고비치가 되어 봅시다</h1>
+										  <!-- 우상단 세부메뉴 점세개 끝-->
+										  <h1>${cdto.cnm}</h1>
 										    <div style="width:70%; margin: 0 0 2em 0; padding: 1em 0 0 0;">
-	  									       <span style="display inline-block; padding: 10px; border: 1px; border-radius: 10%; background-color: rgba(135, 206, 250, 0.25); ">
-												  <img src="../images/sports/tennisIcon.png" style="width: 30px; vertical-align: middle;" />
+	  									       <span style="display inline-block; padding: 10px; border: 1px; border-radius: 10%; background-color: rgba(244, 244, 244, 0.5); ">
+											      <c:if test="${cdto.scate eq '스케이트'}">
+												    <img src="../images/sports/iceSkateIcon.png" style="width: 30px; vertical-align: middle;" />
+												  </c:if>
+												  <c:if test="${cdto.scate eq '골프'}">
+												    <img src="../images/sports/golfIcon.png" style="width: 30px; vertical-align: middle;" />
+												  </c:if>
+												  <c:if test="${cdto.scate eq '배드민턴'}">
+												    <img src="../images/sports/badmintonIcon.png" style="width: 30px; vertical-align: middle;" />
+												  </c:if>
+												  <c:if test="${cdto.scate eq '테니스'}">
+												    <img src="../images/sports/tennisIcon.png" style="width: 30px; vertical-align: middle;" />
+												  </c:if>
+												  <c:if test="${cdto.scate eq '탁구'}">
+												    <img src="../images/sports/tableTennisIcon.png" style="width: 30px; vertical-align: middle;" />
+												  </c:if>
+												  <c:if test="${cdto.scate eq '풋살'}">
+												    <img src="../images/sports/futsalIcon.png" style="width: 30px; vertical-align: middle;" />
+												  </c:if>
+												  <c:if test="${cdto.scate eq '클라이밍'}">
+												    <img src="../images/sports/climbingIcon.png" style="width: 30px; vertical-align: middle;" />
+												  </c:if>
+												  <c:if test="${cdto.scate eq '볼링'}">
+												    <img src="../images/sports/bowlingIcon.png" style="width: 30px; vertical-align: middle;" />
+												  </c:if>
+												  <c:if test="${cdto.scate eq '농구'}">
+												    <img src="../images/sports/basketballIcon.png" style="width: 30px; vertical-align: middle;" />
+												  </c:if>
 											      &nbsp;&nbsp;
-											      <span style="font-size:1em; font-weight: bold; text-align: center;">테니스</span>
+											      <span style="font-size:1em; font-weight: bold; text-align: center;">${cdto.scate}</span>
 										       </span>
 										       &nbsp;&nbsp;&nbsp;
-	 										   <span style="display inline-block; padding: 10px; border: 1px; border-radius: 10%; background-color: rgba(189, 183, 107, 0.25); ">
+	 										   <span style="display inline-block; padding: 10px; border: 1px; border-radius: 10%; background-color: rgba(244, 244, 244, 0.5); ">
 												  <img src="../images/general/index.png" style="width:30px; vertical-align: middle;" />
 											      &nbsp;
-											      <span style="font-size:1em; font-weight: bold; text-align: center;">저장&nbsp;&nbsp;10</span>
+											      <span style="font-size:1em; font-weight: bold; text-align: center;">저장&nbsp;&nbsp;${cdto.ctotalpick}</span>
 										       </span>
 										       &nbsp;&nbsp;&nbsp;
-											   <span style="display inline-block; padding: 10px; border: 1px; border-radius: 10%; background-color: rgba(216, 191, 216, 0.30); ">
-												  <img src="../images/general/memberAdd.png" style="width:30px; vertical-align: middle;" />
-											      &nbsp;&nbsp;
-											      <span style="font-size:1em; font-weight: bold; text-align: center;">모집중</span>
-										       </span>
+											      <c:if test="${cdto.cnowstatus eq '모집중'}">
+											        <span style="display inline-block; padding: 10px; border: 1px; border-radius: 10%; background-color: #f56a6a; color: #ffffff; font-size:1em; font-weight: bold; text-align: center; ">
+												      <img src="../images/general/memberAdd.png" style="width:30px; vertical-align: middle;" />
+												      <span>${cdto.cnowstatus}</span>
+										            </span>
+												  </c:if>
+												  <c:if test="${cdto.cnowstatus eq '모집완료'}">
+												    <span style="display inline-block; padding: 10px; border: 1px; border-radius: 10%; background-color: #f56a6a33; font-size:1em; font-weight: bold; text-align: center; ">
+												      <img src="../images/general/memberDone.png" style="width:30px; vertical-align: middle;" />
+												      <span>${cdto.cnowstatus}</span>
+												    </span>
+												  </c:if>
+												  <c:if test="${cdto.cnowstatus eq '모임완료'}">
+												    <span style="display inline-block; padding: 10px; border: 1px; border-radius: 10%; background-color: rgba(244, 244, 244, 0.5); font-size:1em; font-weight: bold; text-align: center;">
+												      <img src="../images/general/clubdone.png" style="width:30px; vertical-align: middle;" />
+												      <span>${cdto.cnowstatus}</span>
+												    </span>
+												  </c:if>
 											</div>
 										</header>
 									</span>
 								</section>
-								
-							<!-- Section -->
+								<!-- Banner 끝-->
+							    <!-- Section: 운동모임 작성자 정보 -->
 								<section style="padding: 0; vertical-align: center;">
 									<header class="major">
 									</header>
-									<div class="features" style="margin: 0;">
-									    <article style="margin: 0;">
+									<div class="features" style="margin: 0; width: 100%;">
+									    <article style="margin: 0; width: 100%;">
 											<span style="margin: 25px;">
 											  <img src="../images/profile/profile1.jpeg" style="width:110px; border-radius: 50%;" />
 											</span>
 											<div class="content" style="margin:  0, 0, 100px, 0;">
-												<h3 style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; margin:0.5em;">honghong111</h3>
-												<p style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; margin:0.5em;">체력은 국력</p>
+												<h3 style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; margin:0.5em;">${cdto.nicknm}</h3>
+												<p style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; margin:0.5em;">${cdto.selfintro}</p>
 											</div>
 										</article>
 									</div>
 								</section>
+								<!-- Section: 운동모임 작성자 정보 끝-->
 
-							<!-- Section -->
+							    <!-- Section: 운동모임 모임 정보 -->
 								<section>
 									<header class="major">
 										<h2>모임 정보</h2>
 									</header>
-									<div>
-										 <div style="display: flex; flex-direction: row; width: 100%;" >
+									<div style="margin-bottom:2em;">
+										 <div style="display: flex; flex-direction: row; width: 100%; " >
 										  <div style="width: 40%; padding: 1em;">
 									        <span class="sfinfo" style="width: 40%; ">
 									          <a href="#" class="image" style="width:100%;">
-									            <img src="../images/운동시설/고척근린공원 테니스장.jpg" style="width:100%;"/>
+									            <img src="${cdto.imgurl1}" style="width:100%;"/>
 									          </a>
 									        </span>
 									       </div>
 	 									  <div class="content" style=" width: 55%; padding: 1.5em 0.5em 0.1em 3em;" >
 	 									    <div>
-										      <p style="margin-bottom: 1em;">모임일자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold; color: #f56a6a">D-2</span>&nbsp;&nbsp;2023.07.09. sun. PM 12:13</p>
-										      <p style="margin-bottom: 1em;">모임장소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;고척근린공원 테니스장</p>
-										      <p style="margin-bottom: 1em;">모임주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서울특별시 구로구 고척로39길 48-11</p>
-										      <p style="margin: 0;">편의시설</p>
+	 									      <!-- 운동모임 모임 정보\d-day, 일자 -->
+										      <p style="margin-bottom: 1em;">모임일자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										        <span style="font-weight: bold; color: #f56a6a">
+										          <jsp:useBean id="nowRecsLoginList" class="java.util.Date" />
+												    <fmt:parseNumber value="${nowRecsLoginList.time / (1000*60*60*24)}" integerOnly="true" var="nowfmtTime" scope="request"/>
+												    <fmt:parseNumber value="${cdto.cdodate.time / (1000*60*60*24)}" integerOnly="true" var="dbDtParse" scope="request"/>
+												      <c:set var="num" value="${nowfmtTime - dbDtParse}" />
+												        <c:if test ="${(nowfmtTime - dbDtParse)>0}">
+													      <span style="color: #f56a6a; font-weight: bold; ">
+														    D+${nowfmtTime - dbDtParse}
+													      </span>
+												        </c:if>
+												        <c:if test ="${(nowfmtTime - dbDtParse)<0}">
+													      <span style="color: #f56a6a; font-weight: bold; ">
+														    D${nowfmtTime - dbDtParse}
+													      </span>
+												        </c:if>
+												        <c:if test ="${(nowfmtTime - dbDtParse)==0}">
+													      <span style="color: #f56a6a; font-weight: bold; ">
+														    D-${nowfmtTime - dbDtParse}
+													      </span>
+												        </c:if>
+										        </span>&nbsp;&nbsp;
+										        <fmt:formatDate value="${cdto.cdodate}" type="both" dateStyle ="long" pattern="yyyy-MM-dd (E) a hh:mm" />
+										      </p>
+										      <!-- 운동모임 모임 정보\d-day, 일자 끝-->
+										      <p style="margin-bottom: 1em;">모임장소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cdto.sfnm}</p>
+										      <p style="margin-bottom: 1em;">모임주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cdto.addr}</p>
 	 									    </div>
+										    <!-- 운동모임 모임 정보\편의시설 -->
 	 									    <div>
+										      <p style="margin: 0;">편의시설</p>
+	 									      <c:if test="${cdto.wifi eq 'O'}">
+	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
+										          <figure><img src="../images/facilities/wifiIconO.png" style="width:70px;" /></figure>
+										          <p style="font-size: 10px;">와이파이</p>
+	 									        </div>
+	 									      </c:if>
+	 									      <c:if test="${cdto.wifi eq 'X'}">
 	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
 										          <figure><img src="../images/facilities/wifiIconX.png" style="width:70px;" /></figure>
 										          <p style="font-size: 10px;">와이파이</p>
 	 									        </div>
+	 									      </c:if>
+	 									      <c:if test="${cdto.pet eq 'O'}">
 	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
 										          <figure><img src="../images/facilities/petIconO.png" style="width:70px" /></figure>
 										          <p style="font-size: 10px;">반려동물</p>
 	 									        </div>
+	 									      </c:if>
+	 									      <c:if test="${cdto.pet eq 'X'}">
+	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
+										          <figure><img src="../images/facilities/petIconX.png" style="width:70px" /></figure>
+										          <p style="font-size: 10px;">반려동물</p>
+	 									        </div>
+	 									      </c:if>
+	 									      <c:if test="${cdto.parking eq 'O'}">
 	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
 										          <figure><img src="../images/facilities/parkingIconO.png" style="width:70px;" /></figure>
 										          <p style="font-size: 10px;">주차장</p>
 	 									        </div>
+	 									      </c:if>
+	 									      <c:if test="${cdto.parking eq 'X'}">
+	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
+										          <figure><img src="../images/facilities/parkingIconX.png" style="width:70px;" /></figure>
+										          <p style="font-size: 10px;">주차장</p>
+	 									        </div>
+	 									      </c:if>
+	 									      <c:if test="${cdto.slope eq 'O'}">
 	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
 										          <figure><img src="../images/facilities/rampIconO.png" style="width:70px;" /></figure>
 										          <p style="font-size: 10px;">입구경사로</p>
 	 									        </div>
+	 									      </c:if>
+	 									      <c:if test="${cdto.slope eq 'X'}">
+	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
+										          <figure><img src="../images/facilities/rampIconX.png" style="width:70px;" /></figure>
+										          <p style="font-size: 10px;">입구경사로</p>
+	 									        </div>
+	 									      </c:if>
 	 									    </div>
+	 									    <!-- 운동모임 모임 정보\편의시설 끝-->
 	 									  </div>
 	 									 </div>
+	 									  <div class="col-12" style="float: right; ">
+								            <a href="/sport/sportListView?sfno=${cdto.sfno}" target="_blank;" class="button primary">모임장소 상세보기</a>
+								          </div>
 									</div>
 								</section>
+								<!-- Section: 운동모임 모임 정보 끝-->
 								
-						<!-- Section -->
+						        <!-- Section: 운동모임 모집 인원 -->
 								<section>
 								   <div class="recruit-member">
 									  <div class="top clear" style= "margin-bottom: 0.5em;">
@@ -304,71 +367,13 @@
 							</div>
 						</section>
 						
-						
-
-						</div>
-					</div>
-
-				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
-
-							<!-- Search -->
-								<section id="search" class="alt">
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="Search" />
-									</form>
-								</section>
-						
-						    <!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>메뉴</h2>
-									</header>
-									<ul>
-										<li>
-											<span class="opener">운동 모임</span>
-											<ul>
-												<li><a href="#">모임 목록</a></li>
-												<li><a href="#">모임 검색하기</a></li>
-												<li><a href="#">모임 작성하기</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">체육 시설</span>
-											<ul>
-												<li><a href="#">시설 목록</a></li>
-												<li><a href="#">시설 검색하기</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">내 페이지</span>
-											<ul>
-												<li><a href="#">내 프로필</a></li>
-												<li><a href="#">운동 모임</a></li>
-												<li><a href="#">체육 시설</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">고객 센터</span>
-											<ul>
-												<li><a href="#">고객 센터</a></li>
-												<li><a href="#">공지 사항</a></li>
-												<li><a href="#">FQA/Q&A</a></li>
-											</ul>
-										</li>
-									</ul>
-								</nav>
-
 							<!-- Footer -->
-								<footer id="footer">
-								</footer>
-
+						    <%@ include file="../footer.jsp" %>
 						</div>
 					</div>
-
+				<!-- Sidebar -->
+				<%@ include file="../sidebar.jsp" %>
 			</div>
-
 		<!-- Scripts -->
 			<script src="../js/jquery.min.js"></script>
 			<script src="../js/browser.min.js"></script>

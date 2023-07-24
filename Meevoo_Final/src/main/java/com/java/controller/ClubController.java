@@ -23,7 +23,7 @@ public class ClubController {
 	@Autowired HttpSession session;
 
 	@RequestMapping("/club/club")
-	public String club(PageDto pageDto, @ModelAttribute ClubDto clubDto, Model model) {
+	public String club(PageDto pageDto, ClubDto clubDto, Model model) {
 		String id = (String) session.getAttribute("sessionId");
 
 		// 모임목록 전체 가져오기
@@ -40,21 +40,24 @@ public class ClubController {
 			model.addAttribute("recsList", recsLoginList);
 		}
 		
-		
+		// 검색, 필터 input 반영해서 모임목록 가져오기
+				
 		return "club/club";
 	}
 
-	
-	
+	@RequestMapping("/club/cView")
+	public String cView(int cno, Model model) {
+		
+		// 모임목록 1개 가져오기
+		ClubDto cdto = clubService.selectClubOne(cno);
+		model.addAttribute("cdto", cdto);
+		
+		return "club/cView";
+	}
 
 	@RequestMapping("/club/cWrite")
 	public String cWrite() {
 		return "club/cWrite";
-	}
-
-	@RequestMapping("/club/cView")
-	public String cView() {
-		return "club/cView";
 	}
 
 	@RequestMapping("/club/cMEvaluation")

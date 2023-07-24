@@ -89,8 +89,8 @@
 												    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(244, 244, 244, 0.5); font-weight: bold; ">${club.scate }</span>
 												    &nbsp;
 												    <jsp:useBean id="nowRecsLoginList" class="java.util.Date" />
-												    <fmt:parseNumber value="${nowRecsLoginList.time / (1000*60*60*24)}" integerOnly="true" var="nowfmtTime" scope="request"/>
-												    <fmt:parseNumber value="${club.cdodate.time / (1000*60*60*24)}" integerOnly="true" var="dbDtParse" scope="request"/>
+												      <fmt:parseNumber value="${nowRecsLoginList.time / (1000*60*60*24)}" integerOnly="true" var="nowfmtTime" scope="request"/>
+												      <fmt:parseNumber value="${club.cdodate.time / (1000*60*60*24)}" integerOnly="true" var="dbDtParse" scope="request"/>
 												    <c:set var="num" value="${nowfmtTime - dbDtParse}" />
 												    <c:if test ="${(nowfmtTime - dbDtParse)>0}">
 													    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(244, 244, 244, 0.5); font-weight: bold; ">
@@ -338,7 +338,6 @@
 					</div>
 				<!-- Sidebar -->
 				<%@ include file="../sidebar.jsp" %>
-				
 			</div>
 		<!-- Scripts -->
 			<script src="../js/jquery.min.js"></script>

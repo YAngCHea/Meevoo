@@ -4,27 +4,19 @@
 <!-- 운동모임\모임검색하기\모집기한 부분 css -->
 <style>
 body.slider input[type="range"] {
-	-webkit-appearance: none !important;
-	width: 420px;
-	height: 2px;
-	background: #f56a6a;
-	border: none;
-	outline: none;
-}
-
-.slider input[type="range"]::-webkit-slider-thumb {
-	-webkit-appearance: none !important;
-	width: 1em;
-	height: 1em;
-	background: #ffffff;
-	border: 2px solid #f56a6a;
-	border-radius: 50%;
-	cursor: pointer;
-}
-
-.slider input[type="range"]::-webkit-slider-thumb:hover {
-	background: #f56a6a;
-}
+				-webkit-appearance:none !important;
+				width: 420px;
+				height: 2px;
+				background: #f56a6a;
+				border: none;
+				outline: none;}.slider input[type="range"]::-webkit-slider-thumb {
+					-webkit-appearance: none !important;
+					width: 1em;
+					height:1em;
+					background: #ffffff;
+					border: 2px solid #f56a6a;
+					border-radius: 50%;
+					cursor: pointer;}.slider input[type="range"]::-webkit-slider-thumb:hover {background: #f56a6a;} 
 </style>
 <!-- 운동모임\모임검색하기\모집기한 부분 css 끝-->
 <!-- Sidebar -->
@@ -49,101 +41,83 @@ body.slider input[type="range"] {
 						<li><a href="/club/club">모임 목록</a></li>
 						<li><a href="/club/cWrite">모임 작성하기</a></li>
 						<!-- 모임 검색하기 -->
-						<li><span class="opener" style="pointer-events: none;">모임
-								검색하기</span>
-							<div
-								style="margin: 0.3em 0 0 0.7em; padding: 0.3em 0 0 0.7em; color: #9fa3a6; font-size: 0.8em;">
-								<!-- 모임 목록 검색 -->
-								<section id="search" class="alt">
-									<span
-										style="margin-bottom: 1em; margin-top: 1em; pointer-events: none;">·
-										키워드 검색 </span>
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="검색하세요" />
-									</form>
-									<!-- <input type="submit" value="키워드검색" /> -->
-								</section>
-								<!-- 모임 목록 검색 끝 -->
-								<hr style="border: double 0.05em #9fa3a6; margin: 0 0 1em 0;">
-								<!-- 모임 목록 필터 검색 -->
-								<form action="/club/club" method="get" name="filter"
-									style="heiht: auto;">
-									<!-- 모임 목록 필터 검색(관심운동): 라디오버튼 -->
-									<span style="margin-bottom: 1em; pointer-events: none;">·
-										관심운동</span> <input type="radio" name="scate" id="basketball"
-										value="basketball" /> <label for="basketball"><img
-										src="../images/sports/basketballIcon.png" style="width: 2em;">
-										농구</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-										type="radio" name="scate" id="badminton" value="badminton" />
-									<label for="badminton"><img
-										src="../images/sports/badmintonIcon.png" style="width: 2em;">
-										배드민턴</label> <input type="radio" name="scate" id="bowling"
-										value="bowling" /> <label for="bowling"><img
-										src="../images/sports/bowlingIcon.png" style="width: 2em;">
-										볼링</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-										type="radio" name="scate" id="climbing" value="climbing" /> <label
-										for="climbing"><img
-										src="../images/sports/climbingIcon.png" style="width: 2em;">
-										클라이밍</label> <input type="radio" name="scate" id="futsal"
-										value="futsal" /> <label for="futsal"><img
-										src="../images/sports/futsalIcon.png" style="width: 2em;">
-										풋살</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-										type="radio" name="scate" id="iceSkate" value="iceSkate" /> <label
-										for="iceSkate"><img
-										src="../images/sports/iceSkateIcon.png" style="width: 2em;">
-										스케이트</label> <input type="radio" name="scate" id="golf" value="golf" />
-									<label for="golf"><img
-										src="../images/sports/golfIcon.png" style="width: 2em;">
-										골프</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-										type="radio" name="scate" id="tableTennis" value="tableTennis" />
-									<label for="tableTennis"><img
-										src="../images/sports/tableTennisIcon.png" style="width: 2em;">
-										탁구</label> <input type="radio" name="scate" id="tennis" value="tennis" />
-									<label for="tennis"><img
-										src="../images/sports/tennisIcon.png" style="width: 2em;">
-										테니스</label>
-									<!-- 모임 목록 필터 검색(관심운동): 라디오버튼 끝-->
-									<hr style="border: dotted 0.05em #9fa3a6;">
-									<!-- 모임 목록 필터 검색(진행단계): 드롭다운 -->
-									<span style="margin-bottom: 1em; pointer-events: none;">·
-										진행단계</span>
-									<div class="dropdown">
-										<select name="cnowstatus" style="cursor: pointer;">
-											<option value="select" selected disabled>선택하세요</option>
-											<option value="enroll">모집중</option>
-											<option value="done">모집완료</option>
-											<option value="completed">모임완료</option>
-										</select>
-									</div>
-									<!-- 모임 목록 필터 검색(진행단계): 드롭다운 끝-->
-									<hr style="border: dotted 0.05em #9fa3a6;">
-
-									<!-- 모임 목록 필터 검색(모집기한): range -->
-									<span style="margin-bottom: 1em; pointer-events: none;">·
-										모집기한</span>
-									<div class="slider">
-										<label for="dateDifference"></label> <input type="range"
-											id="dateDifference" name="dateDifference" min="0" max="30"
-											value="15" oninput="rangeValue.innerText = this.value"
-											style="width: 100%; cursor: pointer;">&nbsp;&nbsp;D -
-										<p id="rangeValue"
-											style="display: inline-block; font-weight: bold; color: #f56a6a">15</p>
-									</div>
-									<!-- 모임 목록 필터 검색(모집기한): range 끝 -->
-
-									<hr style="border: dotted 0.05em #9fa3a6; margin-top: 0;">
-									<!-- 모임 목록 필터 검색 버튼-->
-									<div class="col-12;" style="postion: flex; width: 100%;">
-										<ul class="actions" style="justify-content: flex-end;">
-											<li><input type="reset" value="초기화" /></li>
-											<li><input type="submit" value="필터검색" class="primary" /></li>
-										</ul>
-									</div>
-									<!-- 모임 목록 필터 검색 버튼 끝-->
-								</form>
-								<!-- 모임 목록 필터 검색 끝-->
-							</div></li>
-						<!-- 모임 검색하기 끝 -->
+							<li>
+							  <span class="opener" style="pointer-events : none;">모임 검색하기</span>
+							  <div style="margin: 0.3em 0 0 0.7em; padding: 0.3em 0 0 0.7em; color: #9fa3a6; font-size: 0.8em;">
+							    <!-- 모임 목록 검색 -->
+							    <section id="search" class="alt">
+	                              <span style="margin-bottom: 1em; margin-top: 1em; pointer-events : none;">· 키워드 검색 </span>
+	                                <form method="post" action="#">
+	                           	      <input type="text" name="query" id="query" placeholder="검색하세요" />
+	                                </form>
+	                           	      <!-- <input type="submit" value="키워드검색" /> -->
+                                </section>
+							    <!-- 모임 목록 검색 끝 -->
+							    <hr style="border: double 0.05em #9fa3a6; margin: 0 0 1em 0;">
+							    <!-- 모임 목록 필터 검색 -->
+							    <form action="/club/club" method="get" name="filter" style="heiht: auto;">
+							      <!-- 모임 목록 필터 검색(관심운동): 라디오버튼 -->
+							      <span style="margin-bottom: 1em; pointer-events : none;">· 관심운동</span>  
+							        <input type="radio" name="scate" id="basketball" value="basketball" />
+							        <label for="basketball"><img src="../images/sports/basketballIcon.png" style="width: 2em;"> 농구</label>
+							        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							        <input type="radio" name="scate" id="badminton" value="badminton" />
+							        <label for="badminton"><img src="../images/sports/badmintonIcon.png" style="width: 2em;"> 배드민턴</label>
+							        <input type="radio" name="scate" id="bowling" value="bowling" />
+							        <label for="bowling"><img src="../images/sports/bowlingIcon.png" style="width: 2em;"> 볼링</label>
+							        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							        <input type="radio" name="scate" id="climbing" value="climbing" />
+							        <label for="climbing"><img src="../images/sports/climbingIcon.png" style="width: 2em;"> 클라이밍</label>
+							        <input type="radio" name="scate" id="futsal" value="futsal" />
+							        <label for="futsal"><img src="../images/sports/futsalIcon.png" style="width: 2em;"> 풋살</label>
+							        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							        <input type="radio" name="scate" id="iceSkate" value="iceSkate" />
+							        <label for="iceSkate"><img src="../images/sports/iceSkateIcon.png" style="width: 2em;"> 스케이트</label>
+							        <input type="radio" name="scate" id="golf" value="golf" />
+							        <label for="golf"><img src="../images/sports/golfIcon.png" style="width: 2em;"> 골프</label>
+							        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							        <input type="radio" name="scate" id="tableTennis" value="tableTennis" />
+							        <label for="tableTennis"><img src="../images/sports/tableTennisIcon.png" style="width: 2em;"> 탁구</label>
+							        <input type="radio" name="scate" id="tennis" value="tennis" />
+							        <label for="tennis"><img src="../images/sports/tennisIcon.png" style="width: 2em;"> 테니스</label>
+							      <!-- 모임 목록 필터 검색(관심운동): 라디오버튼 끝-->
+							      <hr style="border: dotted 0.05em #9fa3a6;">
+							      <!-- 모임 목록 필터 검색(진행단계): 드롭다운 -->
+							      <span style="margin-bottom: 1em; pointer-events : none;">· 진행단계</span>
+							      <div class="dropdown">
+							        <select name="cnowstatus" style="cursor: pointer;">
+								      <option value="select" selected disabled>선택하세요</option>
+									  <option value="enroll">모집중</option>
+									  <option value="done">모집완료</option>
+									  <option value="completed">모임완료</option>
+									</select>
+							      </div>
+							      <!-- 모임 목록 필터 검색(진행단계): 드롭다운 끝-->
+							      <hr style="border: dotted 0.05em #9fa3a6;">
+							      
+							      <!-- 모임 목록 필터 검색(모집기한): range -->
+							      <span style="margin-bottom: 1em; pointer-events : none;">· 모집기한</span>
+							      <div class="slider">
+							        <label for="dateDifference" ></label>
+							        <input type="range" id="dateDifference" name="dateDifference" min="0" max="30" value="15" oninput="rangeValue.innerText = this.value" style="width: 100%; cursor: pointer;">&nbsp;&nbsp;D - 
+							          <p id="rangeValue" style="display: inline-block; font-weight: bold; color: #f56a6a">15</p>
+							      </div> 
+							      <!-- 모임 목록 필터 검색(모집기한): range 끝 -->
+							      
+								  <hr style="border: dotted 0.05em #9fa3a6; margin-top: 0;">
+							      <!-- 모임 목록 필터 검색 버튼-->
+							      <div class="col-12;" style="postion:flex; width: 100%;">
+								    <ul class="actions" style="justify-content: flex-end;">
+									  <li><input type="reset" value="초기화" /></li>
+									  <li><input type="submit" value="필터검색" class="primary" /></li>
+									</ul>
+								  </div>
+							      <!-- 모임 목록 필터 검색 버튼 끝-->
+							    </form>
+							    <!-- 모임 목록 필터 검색 끝-->
+							  </div>
+							</li>
+							<!-- 모임 검색하기 끝 -->
 					</ul></li>
 				<li><span class="opener">체육시설</span>
 					<ul>
