@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.java.dto.CListCurrDto;
 import com.java.dto.CListJoinDto;
 import com.java.dto.CListPickDto;
+import com.java.dto.ClubDto;
 import com.java.dto.PageDto;
 
 public interface MyCBoardService {
@@ -18,5 +19,8 @@ public interface MyCBoardService {
 
 	//운동모임 - 참여한 리스트 전체, 전체 리스트 개수 가져오기
 	HashMap<String, Object> selectClubJoinAll(PageDto pageDto);
+
+	//main에 표시될 가장 많이 찜한 상위 4개 운동 모임
+	ArrayList<ClubDto> selectCPickTop4();
 
 }

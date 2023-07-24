@@ -60,4 +60,15 @@
 		select count(*) from clubReviewTemp
 	</select>
 	
+	
+	<!-- main에 표시될 가장 많이 찜한 운동 모임 -->
+	<select id="selectCPickTop4" resultType="com.java.dto.ClubDto">
+		select * from
+		(select rownum rnum, c.* from
+		(select cno, id, cnm, cwrdate, cimg, sfno, dongcate, cloc, cdodate,
+		ccontent, ctotalpick, crecruitlimit, cnowrecruit, cnowstatus, scate
+		from clublist
+		where cnowstatus = '모집중'
+		order by ctotalpick desc, cwrdate desc) c) where rnum between 1 and 4
+	</select>
 </mapper>

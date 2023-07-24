@@ -2320,3 +2320,48 @@ button,
     padding-top: 0; 
     }
     
+/*내 운동모임, 내 체육시설 내 탭으로 이동버튼 css-지원*/
+/*공지사항 네모네모 : 탭 메뉴=================================================================*/
+.tab.equal .nav {
+  table-layout: fixed;
+}
+.tab .nav {
+  display: table;
+  width: 100%;
+  margin-bottom: 40px;
+}
+.tab .nav>li {
+  display: table-cell;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #f56a6a;
+  border-left: 1px solid #ccc;
+  background-color: #ededed;
+  text-align: center;
+  vertical-align: middle;
+}
+.tab .nav>li.active {
+  border-top: 1px solid #f56a6a;
+  border-left: 1px solid #f56a6a;
+  border-bottom: 1px solid #fff;
+  background-color: #fff;
+}
+.tab .nav>li.active+li {
+  border-left: 1px solid #f56a6a;
+}
+.tab .nav>li.active:last-child {
+  border-right: 1px solid #f56a6a;
+}
+.tab .nav>li.active a {
+  color: #f56a6a;
+}
+.tab .nav>li:last-child {
+  border-right: 1px solid #ccc;
+}
+.tab .nav>li>a {
+  display: block;
+  padding: 14px 0;
+}
+.tab .nav>li>a:hover {
+  color: #f56a6a;
+  text-decoration: underline;
+}

@@ -6,11 +6,13 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.java.dto.CListCurrDto;
 import com.java.dto.CListJoinDto;
 import com.java.dto.CListPickDto;
+import com.java.dto.ClubDto;
 import com.java.dto.ClubPickDto;
 import com.java.dto.PageDto;
 import com.java.service.MyCBoardService;
@@ -61,5 +63,20 @@ public class MyCBoardController {
 		model.addAttribute("pageDto", map.get("pageDto"));
 		
 		return "mypage/myClubJoin";
+	}
+	
+	//main에 표시될 가장 많이 찜한 상위 4개 운동 모임
+	@GetMapping("/main")
+	public String mainCPickTop4(Model model) {
+		
+		ArrayList<ClubDto> list = myCBoardService.selectCPickTop4();
+		
+		System.out.println("MyCBoardController cnm : "+list.get(0).getCnm());
+		System.out.println("MyCBoardController cnm : "+list.get(0).getDongcate());
+		
+		
+		model.addAttribute("list", list);
+		
+		return "main";
 	}
 }

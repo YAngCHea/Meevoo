@@ -20,7 +20,7 @@
 		<style>
 			#main1_1 h2{width:300px; border-bottom:1px solid gray; text-align: center; margin: 0 auto 50px;}
 			.main1 h2{font-size: 40px; margin: 0 auto;}
-			.wrap1{border-top:1px dotted #f56a6a; width:880px; height:800px; margin: 0 auto;}
+			.wrap1{/* border-top:1px dotted #f56a6a; */ width:880px; height:800px; margin: 50px auto;}
 			#wrap11{width:850px; height:600px; margin: 45px auto 0;}
 			#wrap11_1 h4{width:170px; border-bottom: 1px solid lightgray; margin:5px 0 20px;}
 			#th1{width:110px; text-align: center;}
@@ -52,13 +52,31 @@
 										<header class="main1">
 											<h2>내 체육시설</h2>
 										</header>
+										
+										<!-- 중간에 내 체육시설 탭 넣기 : 체육시설 템플릿 -->
+										<div id="container" class="container sub_container">
+									
+											<div class="contents" id="contents">
+												<!-- breadcrumbs End -->
+												<div class="cont-body">
+													<div class="tab equal">
+														<ul class="nav">
+															<li><a href="mySportPick"> 찜한 체육시설 </a></li>
+															<li><a href="mySportCurr"> 최근 본 체육시설 </a></li>
+															<li class="active" title="선택된 탭"><a href="mySportReview"> 후기 작성한 체육시설 </a></li>
+															<!-- <li class="active" title="선택된 탭"><a href="QnA"> 질의응답(QnA) </a></li>  -->
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 
 									<div class="wrap1">
 										<div id="wrap11">
-											<div id="wrap11_1">
+											<!-- <div id="wrap11_1">
 												<h4>내가 후기 작성한 체육시설</h4>
-											</div>
+											</div> -->
 											<div class="table-wrapper">
 												<table id="table1">
 													<thead>
@@ -74,7 +92,10 @@
 														<c:forEach var="reviewlist" items="${list }">
 															<tr class="tr1">
 																<td>${reviewlist.sfno }</td>
-																<td>${reviewlist.sfnm }</td>
+																<td>
+																	<a focus="sportreview" href="/sport/sportListView?sfno=${reviewlist.sfno }&page=${page}">
+																	${reviewlist.sfnm}</a>
+																</td>
 																<td>${reviewlist.dongcate }</td>
 																<td>
 																	<fmt:formatDate value="${reviewlist.sredate}" pattern="yyyy-MM-dd" />

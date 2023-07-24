@@ -1,6 +1,7 @@
 package com.java.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -21,9 +22,16 @@ public class FController {
 		return "elements";
 	}
 	
-	@RequestMapping("/main")
+	@PostMapping("/main")
 	public String main() {
 		return "main";
 	}
+
+	/*
+	 * @RequestMapping("/club/clubView") public String clubView() { return
+	 * "club/clubView"; }
+	 */
+	
+	
 
 }

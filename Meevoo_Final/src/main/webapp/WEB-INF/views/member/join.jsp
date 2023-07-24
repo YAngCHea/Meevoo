@@ -666,6 +666,22 @@ function addrBtn() {
 														</td>
 													</tr>
 													<tr>
+														<th scope="row"><span>관심지역 *</span></th>
+														<td>
+															<ul class="pta">
+																<li>
+																	<select id="dongcate" name="dongcate">
+																		<option value='' selected="selected" id="mem_dongcate">선택하세요</option>
+																		<c:forEach var="dongcate" items="${dongcate }">
+																			<option value='${dongcate }' >${dongcate }</option>
+																		</c:forEach>																		
+																	</select>
+																</li>
+																<li style="padding:10px 0 0 0;"><span class="mvalign">※ 관심지역으로 운동모임을 추천해드립니다.</span></li>
+															</ul>
+														</td>
+													</tr>
+													<tr>
 														<th scope="row"><span>관심운동종목 *</span></th>
 														<td>
 															<ul class="pta">
@@ -674,10 +690,10 @@ function addrBtn() {
 																		<option value='' selected="selected" id="mem_exercise">선택하세요</option>
 																		<c:forEach var="scate" items="${scate }">
 																			<option value='${scate }' >${scate }</option>
-																		
-																		</c:forEach>
+																		</c:forEach>																		
 																	</select>
 																</li>
+																<li style="padding:10px 0 0 0;"><span class="mvalign">※ 관심운동으로 운동모임을 추천해드립니다.</span></li>
 															</ul>
 														</td>
 													</tr>

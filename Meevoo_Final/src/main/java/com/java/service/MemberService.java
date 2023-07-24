@@ -17,6 +17,9 @@ public interface MemberService {
 	//select에 scate 값 표시하기
 	String[] selectscateAll();
 
+	//select에 dongcate 값 표시하기
+	String[] selectdongcateAll();
+
 	//id 중복체크
 	MemberDto selectIdOne(String id);
 
@@ -28,6 +31,7 @@ public interface MemberService {
 
 	//회원정보 수정 저장
 	void updateSaveUser(MemberDto memberDto);
+
 
 
 

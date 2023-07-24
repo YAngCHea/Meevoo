@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.java.dto.CListCurrDto;
 import com.java.dto.CListJoinDto;
 import com.java.dto.CListPickDto;
+import com.java.dto.ClubDto;
 import com.java.dto.PageDto;
 import com.java.mapper.MyCBoardMapper;
 
@@ -121,6 +122,13 @@ public class MyCBoardServiceImpl implements MyCBoardService {
 		pageDto.setEndRow(pageDto.getStartRow()+10-1);
 		
 		return pageDto;
+	}
+
+	@Override //main에 표시될 가장 많이 찜한 상위 4개 운동 모임
+	public ArrayList<ClubDto> selectCPickTop4() {
+		ArrayList<ClubDto> list = myCBoardMapper.selectCPickTop4();
+		
+		return list;
 	}
 
 }

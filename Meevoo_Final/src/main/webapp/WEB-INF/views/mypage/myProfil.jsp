@@ -68,7 +68,8 @@
 										
 										<div class="wrapper1">
 											<div class="profile">
-			                                    <div id="preview" class="profile-img"><img src="/images/clubPick1.png"></div>
+			                                    <div id="preview" class="profile-img"><img src="${mdto.userimg}"></div>
+<%-- 			                                    <div id="preview" class="profile-img"><img src="/images/${mdto.userimg}"></div> --%>
 												<!-- <input type="file" name="mb_picture" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg" id="profile-photo" />
 												<label for="profile-photo">프로필 사진 수정</label> -->
 											</div>

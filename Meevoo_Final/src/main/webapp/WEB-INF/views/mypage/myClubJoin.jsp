@@ -20,7 +20,7 @@
 		<style>
 			#main1_1 h2{width:300px; border-bottom:1px solid gray; text-align: center; margin: 0 auto 50px;}
 			.main1 h2{font-size: 40px; margin: 0 auto;}
-			.wrap1{border-top:1px dotted #f56a6a; width:880px; height:800px; margin: 0 auto;}
+			.wrap1{/* border-top:1px dotted #f56a6a; */ width:880px; height:800px; margin: 50px auto;}
 			#wrap11{width:850px; height:600px; margin: 45px auto 0;}
 			#wrap11_1 h4{width:170px; border-bottom: 1px solid lightgray; margin:5px 0 20px;}
 			#th1{width:110px; text-align: center;}
@@ -52,13 +52,31 @@
 										<header class="main1">
 											<h2>내 운동모임</h2>
 										</header>
+										
+										<!-- 중간에 내 운동모임 탭 넣기 : 운동모임 템플릿 -->
+										<div id="container" class="container sub_container">
+									
+											<div class="contents" id="contents">
+												<!-- breadcrumbs End -->
+												<div class="cont-body">
+													<div class="tab equal">
+														<ul class="nav">
+															<li><a href="myClubPick"> 찜한 운동모임 </a></li>
+															<li><a href="myClubCurr"> 최근 본 운동모임 </a></li>
+															<li class="active" title="선택된 탭"><a href="myClubJoin"> 참여한 운동모임 </a></li>
+															<!-- <li class="active" title="선택된 탭"><a href="QnA"> 질의응답(QnA) </a></li>  -->
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 
 									<div class="wrap1">
 										<div id="wrap11">
-											<div id="wrap11_1">
+											<!-- <div id="wrap11_1">
 												<h4>내가 참여한 운동모임</h4>
-											</div>
+											</div> -->
 											<div class="table-wrapper">
 												<table id="table1">
 													<thead>

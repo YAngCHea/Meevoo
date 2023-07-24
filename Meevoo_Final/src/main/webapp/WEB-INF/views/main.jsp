@@ -68,7 +68,7 @@
 											<h3>운동모임</h3>
 											<p>똑같은 일상을 활기차게 바꿔줄<br> 관심사 기반 모임</p>
 											<ul class="actions">
-												<li><a href="#" class="button">운동모임</a></li>
+												<li><a href="/club/club" class="button">운동모임</a></li>
 											</ul>
 										</article>
 										<article>
@@ -76,7 +76,7 @@
 											<h3>체육시설</h3>
 											<p>스포츠 시설 정보와 리뷰를 한눈에!</p>
 											<ul class="actions">
-												<li><a href="#" class="button">체육시설</a></li>
+												<li><a href="/sport/sportList" class="button">체육시설</a></li>
 											</ul>
 										</article>
 										<article>
@@ -84,7 +84,7 @@
 											<h3>내 페이지</h3>
 											<p>모든 것을 관리하고 확인하는<br> 나만의 페이지</p>
 											<ul class="actions">
-												<li><a href="#" class="button">내 페이지</a></li>
+												<li><a href="/mypage/myProfil" class="button">내 페이지</a></li>
 											</ul>
 										</article>
 										
@@ -97,35 +97,22 @@
 										<h2>가장 많이 찜한 운동모임</h2>
 									</header>
 									<div class="features">
-										<article>
+										<c:forEach items="${list}" var="item">
+											<article>
+												<span><img src="images/clubPick1.png"><%-- ${item.cimg } --%></span>
+												<div class="content">
+													<h2>&nbsp;&nbsp;&nbsp;&nbsp;${item.cnm }</h2>
+													<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${item.dongcate }</p>
+												</div>
+											</article>
+										</c:forEach>
+										<!-- <article>
 											<span><img src="images/clubPick1.png"></span>
 											<div class="content">
 												<h2>&nbsp;&nbsp;&nbsp;&nbsp;테니스 한판 하실분</h2>
 												<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;구로구 개봉동</p>
 											</div>
-										</article>
-										<article>
-											<span><img src="images/clubPick1.png"></span>
-											<div class="content">
-												<h2>&nbsp;&nbsp;&nbsp;&nbsp;테니스 한판 하실분</h2>
-												<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;구로구 개봉동</p>
-											</div>
-										</article>
-										<article>
-											<span><img src="images/clubPick1.png"></span>
-											<div class="content">
-												<h2>&nbsp;&nbsp;&nbsp;&nbsp;테니스 한판 하실분</h2>
-												<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;구로구 개봉동</p>
-											</div>
-										</article>
-										<article>
-											<span><img src="images/clubPick1.png"></span>
-											<div class="content">
-												<h2>&nbsp;&nbsp;&nbsp;&nbsp;테니스 한판 하실분</h2>
-												<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;구로구 개봉동</p>
-											</div>
-										</article>
-										
+										</article> -->
 									</div>
 								</section>
 							<!-- Section -->
@@ -134,35 +121,22 @@
 										<h2>가장 많이 찜한 체육시설</h2>
 									</header>
 									<div class="features">
-										<article>
+										<c:forEach items="${list}" var="item">
+											<article>
+												<span><img src="images/clubPick1.png"><%-- ${item.imgurl1 } --%></span>
+												<div class="content">
+													<h2>&nbsp;&nbsp;&nbsp;&nbsp;<%-- ${item.sfnm } --%></h2>
+													<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%-- ${item.dongcate } --%></p>
+												</div>
+											</article>
+										</c:forEach>
+										<!-- <article>
 											<span><img src="images/football1.png"></span>
 											<div class="content">
 												<h2>&nbsp;&nbsp;&nbsp;&nbsp;구로동 풋살장</h2>
 												<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;구로구 구로동</p>
 											</div>
-										</article>
-										<article>
-											<span><img src="images/football1.png"></span>
-											<div class="content">
-												<h2>&nbsp;&nbsp;&nbsp;&nbsp;구로동 풋살장</h2>
-												<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;구로구 구로동</p>
-											</div>
-										</article>
-										<article>
-											<span><img src="images/football1.png"></span>
-											<div class="content">
-												<h2>&nbsp;&nbsp;&nbsp;&nbsp;구로동 풋살장</h2>
-												<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;구로구 구로동</p>
-											</div>
-										</article>
-										<article>
-											<span><img src="images/football1.png"></span>
-											<div class="content">
-												<h2>&nbsp;&nbsp;&nbsp;&nbsp;구로동 풋살장</h2>
-												<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;구로구 구로동</p>
-											</div>
-										</article>
-										
+										</article> -->
 									</div>
 								</section>
 								

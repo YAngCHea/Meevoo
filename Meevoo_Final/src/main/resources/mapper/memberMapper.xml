@@ -10,16 +10,20 @@
 
 	<!-- 회원가입시 입력한 정보 저장하기 -->
 	<insert id="insertMem">
-		insert into userList (id,pw,usernm,birth,
-		email,gender,scate,joindate,nowjoin,totaltemp,addr) 
-		values(#{id}, #{pw}, #{usernm}, #{birth}, 
-		#{email}, #{gender}, #{scate}, sysdate, 1, 36.5, #{addr})
-		
+		insert into userList (id,pw,usernm,birth,email,
+		gender,dongcate,scate,joindate,nowjoin,totaltemp,addr) 
+		values(#{id}, #{pw}, #{usernm}, #{birth}, #{email},
+		#{gender}, #{dongcate}, #{scate}, sysdate, 1, 36.5, #{addr})
 	</insert>
 	
 	<!-- select에 scate 값 표시하기 -->
 	<select id="selectscateAll" resultType="String">
 		select distinct scate from sportList
+	</select>
+
+	<!-- select에 dongcate 값 표시하기 -->
+	<select id="selectdongcateAll" resultType="String">
+		select distinct dongcate from sportList
 	</select>
 	
 	<!-- id 중복체크 -->

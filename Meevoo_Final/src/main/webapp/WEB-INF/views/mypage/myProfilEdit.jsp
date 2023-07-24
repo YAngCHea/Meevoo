@@ -22,8 +22,9 @@
 			.section1{color: black;}
 			.main1{width:400px; margin:0 auto;}
 			.main1 h2{margin: 0 0 35px 0; text-align: center; border-bottom: 1px solid lightgray; font-size: 40px;}
+			
 			.profile{height: 180px; text-align: center; margin:20px 0;}
-			#preview{margin:0 0 20px;}
+			#preview1{margin:0 0 20px;}
 			#info1_1, #info1_2,#info1_3, #info1_4, #info1_5, #info1_6, #info1_7, #info1_8
 				{width:150px; margin:20px 100px 10px 100px; font-size:15px; float:left;}
 			#info1_11, #info1_12{float:left;}
@@ -65,21 +66,61 @@
 												<h2>내 정보 수정하기</h2>
 											</header>
 										</div>
-										
-										<div class="wrapper1">
-											<div class="profile">
-			                                    <div id="preview" class="img">
-				                                  <%--   <c:if test="${mdto.userimg!=null }">
-											      		<img src="/images/${mdto.userimg }">
-											      	</c:if>
-											      	<c:if test="${mdto.userimg==null }">
-														<strong>업로드 된 파일이 없습니다.</strong>
-											      	</c:if>
-			                                   	 <img src="/images/${mdto.userimg }"> --%>
-			                                   	</div>
-												<input type="file" value="${mdto.userimg }" name="uesrimg" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg" id="uesrimg" />
-												<label for="uesrimg">프로필 사진 수정</label>
+										<script>
+										  function readURL(input) {
+											  if (input.files && input.files[0]) {
+											    var reader = new FileReader();
+											    reader.onload = function(e) {
+											      document.getElementById('preview').src = e.target.result;
+											    };
+											    reader.readAsDataURL(input.files[0]);
+											  } else {
+											    document.getElementById('preview').src = "";
+											  }
+											}
+										</script>
+											<div id="userimg">
+												<div class="profile" style="">
+				                                    <div id="preview1" class="img">
+				                                   	 <img id="preview" style="width:100px;"/>
+				                                   	</div>
+				                                   	<div>
+				                                  <%--  	<div>
+														<c:if test="${mdto.userimg == null}">
+														    <option><img src="https://png.pngtree.com/png-clipart/20220113/ourmid/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png"/></option>
+														    <input type="file" name="userimg" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg"/>
+														    <label for="userimg">* 파일 선택을 눌러 프로필 사진을 수정해주세요</label>
+														</c:if>
+														<c:if test="${mdto.userimg != null}">
+														    <!-- 기존 이미지를 보여주는 등의 로직 -->
+														</c:if>
+													</div> --%>
+				                                   	
+				                                   	<c:if test="${mdto.userimg == null }">
+				                                   		<option><img src="https://png.pngtree.com/png-clipart/20220113/ourmid/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png"/></option>
+				                                   		<input type="file" name="uesrimg" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg"/>
+														<label for="uesrimg">* 파일 선택을 눌러 프로필 사진을 수정해주세요</label>
+				                                   	</div>
+				                                   	</c:if>
+				                                   <%-- 	<c:if test="${mdto.userimg != null }">
+				                                   		<option>
+				                                   			
+				                                   		</option>
+				                                   	</c:if> --%>
+													<input type="hidden" value="${mdto.userimg }" name="uesrimg" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg"/>
+													<input type="file" name="uesrimg" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg"/>
+													<label for="uesrimg">* 파일 선택을 눌러 프로필 사진을 수정해주세요</label>
+				                                   	</div>
+												</div>
+	<%-- 											<div class="profile">
+				                                    <div id="preview" class="img">
+				                                   	 <img src="/images/${mdto.userimg }">
+				                                   	</div>
+													<input type="file" value="${mdto.userimg }" name="uesrimg" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg" id="uesrimg" />
+													<label for="uesrimg">프로필 사진 수정</label>
+												</div> --%>
 											</div>
+										<div class="wrapper1">
 											<div class="info1">
 												<div>
 													<div id="info1_1">

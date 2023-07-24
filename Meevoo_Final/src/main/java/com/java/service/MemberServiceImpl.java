@@ -39,6 +39,12 @@ public class MemberServiceImpl implements MemberService {
 		return scate;
 	}
 
+	@Override //select에 dongcate 값 표시하기
+	public String[] selectdongcateAll() {
+		String[] dongcate = memberMapper.selectdongcateAll();
+		
+		return dongcate;
+	}
 
 	@Override //id 중복체크
 	public MemberDto selectIdOne(String id) {
@@ -61,6 +67,8 @@ public class MemberServiceImpl implements MemberService {
 		//System.out.println(""+memberDto.getScate());
 		//System.out.println(""+memberDto.getSelfintro());
 		//System.out.println(""+memberDto.getNicknm());
+		System.out.println("MemberServiceImpl img : "+memberDto.getUserimg());
+		
 		memberMapper.updateSaveUser(memberDto);
 		
 	}
@@ -70,10 +78,6 @@ public class MemberServiceImpl implements MemberService {
 		memberMapper.deleteUser(id);
 		
 	}
-
-
-
-
 
 
 }
