@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.dto.SportDto;
+import com.java.dto.SportPickDto;
 import com.java.dto.SportReviewDto;
 import com.java.dto.SportReviewReportDto;
 import com.java.mapper.SportMapper;
@@ -58,12 +59,6 @@ public class SportServiceImpl implements SportService {
 		//게시글 1개 가져오기
 		SportDto sdto = sportMapper.selectOne(sfno);
 		map.put("sdto", sdto);
-		//이전글 1개 가져오기
-		SportDto prevDto = sportMapper.selectPrevOne(sfno);
-		map.put("prevDto", prevDto);
-		//다음글 1개 가져오기
-		SportDto nextDto = sportMapper.selectNextOne(sfno);
-		map.put("nextDto", nextDto);
 		
 		return map;
 	}
@@ -108,21 +103,68 @@ public class SportServiceImpl implements SportService {
 		sportMapper.insertReportOne(srerepDto);
 	}
 
+	@Override
+	public HashMap<String, Object> selectSrenoOne(int sreno) {
+		
+		//리뷰글 번호 가져오기
+		HashMap<String, Object> map = new HashMap<>();
+		
+		//게시글 1개 가져오기
+		SportReviewDto sreDto = sportMapper.selectSrenoOne(sreno);
+		map.put("sreDto", sreDto);
+		
+		return map;
+	}
+
+	@Override
+	public SportPickDto sportPick(SportPickDto spickDto) {
+		// 시설물 찜하기 등록
+		sportMapper.sportPick(spickDto);
+		
+		//찜하기 1개 가져오기
+		SportPickDto pickdto = sportMapper.selectSpOne(spickDto);
+		
+		System.out.println("찜한 id"+spickDto.getId());
+		System.out.println("찜한 id"+spickDto.getSfno());
+		System.out.println("찜한 id"+spickDto.getSpickyn());
+		
+		return pickdto;
+	}
+
+	@Override
+	public SportPickDto sportPickCancel(SportPickDto spickDto) {
+		// 시설물 찜하기 취소
+		sportMapper.sportPickCancel(spickDto);
+		
+		//찜하기 1개 가져오기
+		SportPickDto pickdto = sportMapper.selectSpOne(spickDto);
+		System.out.println("찜취소 id service :"+spickDto.getId());
+		System.out.println("찜취소 sfno service :"+spickDto.getSfno());
+		System.out.println("찜취소 spickyn service :"+spickDto.getSpickyn());
+		System.out.println("찜취소 spickdate service :"+spickDto.getSpickdate());
+		return pickdto;
+	}
 	
-//	@Override
-//	public ArrayList<SportDto> selectAll() {
-//		ArrayList<SportDto> list = new ArrayList<>();
-//
-//		// 게시글 전체 가져오기
-//		list = sportMapper.selectAll();
-//		return list;
-//	}
-//
-//	@Override
-//	public SportDto selectOne(int fcltyno) {
-//		// 게시글 1개 가져오기 SportDto
-//		SportDto sdto = sportMapper.selectOne(fcltyno);
-//		return sdto;
-//	}
+	
+	@Override
+	public SportPickDto sportPickUpdate(SportPickDto spickDto) {
+		// 3. 시설물 다시 찜하기
+		sportMapper.sportPickUpdate(spickDto);
+		//찜하기 1개 가져오기
+		SportPickDto pickdto = sportMapper.selectSpOne(spickDto);
+		System.out.println("다시 찜한 id service :"+spickDto.getId());
+		System.out.println("다시 찜한 sfno service :"+spickDto.getSfno());
+		System.out.println("다시 찜한 spickyn service :"+spickDto.getSpickyn());
+		return pickdto;
+	}
+	
+	
+	@Override
+	public ArrayList<SportPickDto> selectSpAll(int sfno) {
+		// 찜하기 전체 가져오기
+		ArrayList<SportPickDto> spickList = sportMapper.selectSpAll(sfno);
+		return spickList;
+	}
+
 
 }

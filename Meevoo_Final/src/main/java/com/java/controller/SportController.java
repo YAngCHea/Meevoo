@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.SportDto;
+import com.java.dto.SportPickDto;
 import com.java.dto.SportReportDto;
 import com.java.dto.SportReviewDto;
 import com.java.dto.SportReviewReportDto;
@@ -49,7 +51,7 @@ public class SportController {
 	
 	@RequestMapping("/sport/sportListView")
 	public String sportListView(@RequestParam(defaultValue = "1") int sfno,
-			@RequestParam(defaultValue = "1") int page, Model model) {
+			@RequestParam(defaultValue = "1")int page, Model model) {
 
 		// 게시글 1개 가져오기
 		HashMap<String, Object> map = sportService.selectOne(sfno);
@@ -59,12 +61,56 @@ public class SportController {
 		ArrayList<SportReviewDto> sreList = sportService.selectReAll(sfno); 
 		model.addAttribute("sreList", sreList);
 		
-		model.addAttribute("prevDto", map.get("prevDto"));
-		model.addAttribute("nextDto", map.get("nextDto"));
+		// 찜하기 목록 전체 가져오기
+		ArrayList<SportPickDto> spickList = sportService.selectSpAll(sfno); 
+		model.addAttribute("spickList", spickList);
 		
 		model.addAttribute("page", page);
 		return "/sport/sportListView";
 	} // sportListView
+	
+	
+	@RequestMapping("/sport/sportPick")
+	@ResponseBody //데이터로 리턴해서 가져와라
+	public SportPickDto sportPick(SportPickDto spickDto, Model model) {
+		
+		// 1. 찜하기 등록
+		SportPickDto spdto = sportService.sportPick(spickDto);
+		
+		System.out.println("등록 ajax에서 넘어온 아이디 : "+spickDto.getId());
+		System.out.println("등록 ajax에서 넘어온 리뷰번호 : "+spickDto.getSfno());
+		System.out.println("등록 ajax에서 넘어온 시설번호 : "+spickDto.getSpickyn());
+		return spdto;
+	}
+	
+	@RequestMapping("/sport/sportPickCancel")
+	@ResponseBody //데이터로 리턴해서 가져와라
+	public SportPickDto sportPickCancel(SportPickDto spickDto, Model model) {
+		
+		// 2. 찜하기 취소(업뎃)
+		SportPickDto spdto = sportService.sportPickCancel(spickDto);
+		
+		System.out.println("등록 ajax에서 넘어온 아이디 : "+spickDto.getId());
+		System.out.println("등록 ajax에서 넘어온 시설번호 : "+spickDto.getSfno());
+		System.out.println("등록 ajax에서 넘어온 spickyn : "+spickDto.getSpickyn());
+		System.out.println("등록 ajax에서 넘어온 spickyn : "+spickDto.getSpickdate());
+		return spdto;
+	}
+	
+	
+	@RequestMapping("/sport/sportPickUpdate")
+	@ResponseBody //데이터로 리턴해서 가져와라
+	public SportPickDto sportPickUpdate(SportPickDto spickDto, Model model) {
+		
+		// 3. 시설물 다시 찜하기(업뎃)
+		SportPickDto spdto = sportService.sportPickUpdate(spickDto);
+		
+		System.out.println("등록 ajax에서 넘어온 아이디 : "+spickDto.getId());
+		System.out.println("등록 ajax에서 넘어온 리뷰번호 : "+spickDto.getSfno());
+		System.out.println("등록 ajax에서 넘어온 시설번호 : "+spickDto.getSpickyn());
+		return spdto;
+	}
+	
 	
 	@RequestMapping("/sport/reviewInsert")
 	@ResponseBody //데이터로 리턴해서 가져와라
@@ -81,8 +127,17 @@ public class SportController {
 		return sreviewdto;
 	} //reviewInsert
 	
+	@RequestMapping("/sport/reviewUpdateSave") //수정한 리뷰 저장
+	@ResponseBody //데이터로 리턴해서 가져와라
+	public SportReviewDto reviewUpdateSave(SportReviewDto sreDto) {
+		
+		//수정한 하단 리뷰 저장
+		SportReviewDto sreviewdto = sportService.reviewUpdateSave(sreDto);
+		return sreviewdto;
+	} //reviewUpdateSave 
 	
-	@RequestMapping("sport/reviewDelete")
+	
+	@RequestMapping("/sport/reviewDelete")
 	@ResponseBody //데이터로 리턴해서 가져와라
 	public String reviewDelete(int sreno) {
 		System.out.println("ajax 넘어온 데이터 : "+sreno);
@@ -96,20 +151,13 @@ public class SportController {
 	} //reviewDelete
 	
 	
-	@RequestMapping("sport/reviewUpdateSave") //수정한 리뷰 저장
-	@ResponseBody //데이터로 리턴해서 가져와라
-	public SportReviewDto reviewUpdateSave(SportReviewDto sreDto) {
-		
-		//수정한 하단 리뷰 저장
-		SportReviewDto sreviewdto = sportService.reviewUpdateSave(sreDto);
-		return sreviewdto;
-	} //reviewUpdateSave 
-	
-	
 	@GetMapping("/sport/sportReviewReport")
-	public String sportReviewReport() {
-
-		// 신고글 작성으로 인한 리뷰글 전체 가져오기
+	public String sportReviewReport(int sreno, Model model) {
+		
+		//리뷰글 번호, 아이디 가져오기
+		HashMap<String, Object> map = sportService.selectSrenoOne(sreno);
+		model.addAttribute("sreList", map.get("sreList"));
+		
 		
 		return "sport/sportReviewReport";
 	} // sportReviewReport

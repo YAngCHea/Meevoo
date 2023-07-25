@@ -32,6 +32,7 @@
 										$("#srerepinput").focus();
 										return false;
 									}
+									alert("신고 접수가 완료되었습니다.");
 									$("#srerepwrite").submit();
 					          	  
 					            }// 문의글 수정
@@ -40,7 +41,7 @@
 								<section class="sportlistview">
 									<!-- 상세설명 css -> main.css(63번째)  -->
 									<div class="viewHead">
-									  <form action="/sport/sportReviewReport" name="srerepwrite" id="srerepwrite" method="post">
+									  <form action="sportReviewReport" name="srerepwrite" id="srerepwrite" method="post">
 										<div class="day">
 											<p class="txt">신고자
 											  <span>${sessionId}
@@ -50,15 +51,15 @@
 										</div>
 										<div class="day">
 											<p class="txt">리뷰 작성자
-											  <span>${sreList.id}
-												<input type="hidden" name="id" value="${sreList.id}"/>
+											  <span>quickly
+												<input type="hidden" name="id" value="id"/>
 											  </span>
 											</p>
 										</div>
 										<div class="day">
 											<p class="txt">리뷰번호
-											  <span>${sreList.sreno}
-												<input type="hidden" name="sreno" value="${sreList.sreno}"/>
+											  <span>59
+												<input type="hidden" name="sreno" value="sreno"/>
 											  </span>
 											</p>
 										</div>
@@ -77,7 +78,7 @@
 										</div>
 										<div class="day">
 											<p class="txt">내용
-												<textarea name="srerepinput" id="srerepinput" cols="110" rows="10" style="resize:none;">${sreList.srerepinput}</textarea>
+												<textarea name="srerepinput" id="srerepinput" cols="110" rows="10" style="resize:none;" placeholder="신고 내용을 입력해주세요."></textarea>
 											</p>
 										</div>
 									</div>

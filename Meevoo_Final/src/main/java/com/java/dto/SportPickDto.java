@@ -9,15 +9,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class SportReportDto {
+public class SportPickDto {
 	
-	private int srepno;
+	private int spickno;
 	private String id;
 	private int sfno;
-	private String srepcontent;
-	private Timestamp srepdate;
-	private String srepinput;
-	private String srepimg;
-	private String[] srepimgs;
+	private String spickyn;
+	private Timestamp spickdate;
 
 }

@@ -8,18 +8,12 @@
 		<title>체육시설 상세페이지</title>
 		<!-- 제이쿼리 최신 -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main_kmh.css" />
 	</head>
 	<body class="is-preload">
-			
-			<!-- 찜하기 알림 -->
-			<script>
-				function sPickBtn(){
-					alert("찜하기가 설정되었습니다.");
-				}
-			</script>
 			
 			<script>
 				// 1. 리뷰쓴거 등록하기
@@ -41,20 +35,32 @@
               	  	$.ajax({
               		  url:"/sport/reviewInsert",
               		  type:"post",
-              		  data:{"id":"${sessionId}", //${sessionId}를 사용함.
-              			    "sfno":"${sdto.sfno}",
-              			    "srecontent":$("#sreviewContent").val(),
-              			    "sstar": $('[name=star]:checked').val()
-              		  },
-              		  success:function(data){
-              			  var dataHtml="";
-              			  alert("리뷰 저장 성공");
-              			  //하단리뷰 1개 가져오기
-              			  console.log(data);
-              			  //하단에 리뷰추가코드
-              			  dataHtml += "<ul id='"+ data.sreno +"'>";
-              			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp;&nbsp;&nbsp;[ "+ moment(data.sredate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
-              			  dataHtml += "<li class='star'><span class='srestar' style='color: rgba(250, 208, 0, 0.99);''>"+ data.sstar + "</span>&nbsp;&nbsp;별점&nbsp;"+data.sstar+"</li>";
+              		data:{"id":"${sessionId}",
+          			    "sfno":"${sdto.sfno}",
+          			    "srecontent":$("#sreviewContent").val(),
+          			    "sstar": $('[name=star]:checked').val()
+          		  },
+          		  success:function(data){
+          			  var dataHtml="";
+          			  alert("리뷰 저장 성공");
+          			  //하단리뷰 1개 가져오기
+          			  console.log(data);
+          			  //하단에 리뷰추가코드
+          			  dataHtml += "<ul id='"+ data.sreno +"'>";
+          			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp;&nbsp;&nbsp;[ "+ moment(data.sredate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
+          			  dataHtml += "<li class='star'><span class='srestar' style='color: rgba(250, 208, 0, 0.99);'>";
+	              			if (data.sstar == 1) {
+	              			    dataHtml += "★";
+	              			} else if (data.sstar == 2) {
+	              			    dataHtml += "★ ★";
+	              			} else if (data.sstar == 3) {
+	              			    dataHtml += "★ ★ ★";
+	              			} else if (data.sstar == 4) {
+	              			    dataHtml += "★ ★ ★ ★";
+	              			} else if (data.sstar == 5) {
+	              			    dataHtml += "★ ★ ★ ★ ★";
+	              			}
+              			  dataHtml += "</span>&nbsp;&nbsp;별점&nbsp;"+data.sstar+"</li>";
               			  dataHtml += "<li class='txt'>"+ data.srecontent +"</li>";
               			  dataHtml += "<li class='btn'>";
               			  dataHtml += "<a onclick=\"updateBtn("+data.sreno+",'"+data.id+"','"+data.sredate+"','"+data.srecontent+"')\" class='button primary small'>수정</a>&nbsp";
@@ -62,11 +68,11 @@
               			  dataHtml += "</li>";
               			  dataHtml += "</ul>";
               			  
-              			  $(".replyBox").prepend(dataHtml);  //prepend(위),append(아래),html(모두삭제후 추가)
+              			  $("#reviewBox").prepend(dataHtml);  //prepend(위),append(아래),html(모두삭제후 추가)
               			  
               			  //글자삭제
-              			  $("#sreviewContent").val();
-              			  $('[name=star]:checked').val()
+              			  $("#sreviewContent").val("");
+              			  $('[name=star]:checked').val("");
               			  
               			  //총개수 수정
                     	  var renum = Number($("#renum").text())+1;
@@ -103,14 +109,50 @@
                 }//삭제버튼 -->
                 
                 
-				// 3. 리뷰쓴거 수정하기
+             	// 3. 리뷰 수정 저장
+                function updateSave(sreno){
+              	  
+              	  if(confirm("수정한 리뷰글을 저장하시겠습니까?")){
+              		  $.ajax({
+                  		  url:"/sport/reviewUpdateSave",
+                  		  type:"post",
+                  		  data:{ "sreno":sreno,
+                  			     "srecontent":$("#updateContent").val() }, 
+                  		  success:function(data){
+                  			  alert(sreno+"번 리뷰가 수정되었습니다.");
+                  			  
+                  			  var dataHtml="";
+                  			  
+                  			  //댓글화면 변경
+                  			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp&nbsp[ "+ moment(data.sredate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
+	                  		  dataHtml += "<span class='srestar' style='color: rgba(250, 208, 0, 0.99);'>";
+	       	      			  dataHtml += getStars(sstar);  
+	       	      			  dataHtml += "</span>&nbsp;&nbsp;별점 "+data.sstar+"</li>";
+                  			  dataHtml += "<li class='txt'>"+ data.srecontent +"</li>";
+                  			  dataHtml += "<li class='btn'>";
+                  			  dataHtml += "<a onclick=\"updateBtn("+data.sreno+",'"+data.id+"','"+data.sredate+"','"+data.srecontent+"')\" class='button primary small'>수정</a>&nbsp";
+                			  dataHtml += "<a onclick=\"deleteBtn("+data.sreno+")\" class='button small'>삭제</a>";
+                			  dataHtml += "</li>";
+                  			  
+                 		 	  $("#"+sreno).html(dataHtml);
+                  		  },
+                  		  error:function(){
+                  			  alert("실패");
+                  		  }
+                  	  });//ajax
+              	  }//if
+              	  
+              	  
+                }//리뷰 수정 저장 끝
+                
+                
+				// 4. 리뷰쓴거 수정하기
  			 	function updateBtn(sreno,id,sredate,sstar,srecontent){
 					if(confirm("댓글을 수정하시겠습니까?")){
-	            		 
             		 let dataHtml="";
 	            	 
             		 dataHtml += "<ul>";
-	      			 dataHtml += "<li class='name'>"+ id +"<span>&nbsp;&nbsp;&nbsp;[ "+ sredate +" ]</span></li>";
+	      			 dataHtml += "<li class='name'>"+ id +"<span>&nbsp;&nbsp;&nbsp;[ "+ moment(sredate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
 	      			 dataHtml += "<li class='star'>";
 	      			 dataHtml += "<span class='srestar' style='color: rgba(250, 208, 0, 0.99);'>";
 	      			 dataHtml += getStars(sstar);  
@@ -125,7 +167,6 @@
             		 dataHtml += "</ul>";
 	
             		 $("#"+sreno).html(dataHtml);
-	            		
 	            	  }//if
 	              }// 수정창 띄우기 -->
 	              
@@ -144,14 +185,13 @@
 	            	}
 	              
 	              
-	              // 4. 리뷰 수정 취소
+	              // 5. 리뷰 수정 취소
 	              function cancelBtn(sreno,id,sredate,sstar,srecontent){
                   	  alert("댓글 수정을 취소하셨습니다.");
-                  	  
                   	  var dataHtml="";
           			  
           			  //댓글화면 변경
-        			  dataHtml += "<li class='name'>"+ id +"<span>&nbsp;&nbsp;&nbsp;[ "+ sredate +" ]</span></li>";
+        			  dataHtml += "<li class='name'>"+ id +"<span>&nbsp;&nbsp;&nbsp;[ "+ moment(sredate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
         			  dataHtml += "<span class='srestar' style='color: rgba(250, 208, 0, 0.99);'>";
  	      			  dataHtml += getStars(sstar);  
  	      			  dataHtml += "</span>&nbsp;&nbsp;별점 "+sstar+"</li>";
@@ -160,51 +200,13 @@
            			  dataHtml += "<a onclick=\"updateBtn("+sreno+",'"+id+"','"+sredate+"','"+srecontent+"')\" class='button primary small'>수정</a>&nbsp";
            			  dataHtml += "<a onclick=\"deleteBtn("+sreno+")\" class='button small'>삭제</a>";
            			  dataHtml += "</li>";
-          			  
           			  $("#"+sreno).html(dataHtml);
                   	  
                     }//리뷰 수정 취소 끝
-				
                     
-                 	// 5. 리뷰 수정 저장
-                    function updateSave(sreno){
-                  	  
-                  	  if(confirm("수정한 리뷰글을 저장하시겠습니까?")){
-                  		  $.ajax({
-                      		  url:"/sport/reviewUpdateSave",
-                      		  type:"post",
-                      		  data:{ "sreno":sreno,
-                      			     "srecontent":$("#updateContent").val() }, 
-                      		  success:function(data){
-                      			  alert(sreno+"번 리뷰가 수정되었습니다.");
-                      			  
-                      			  var dataHtml="";
-                      			  
-                      			  //댓글화면 변경
-	                  			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp&nbsp[ "+ moment(data.sredate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
-		                  		  dataHtml += "<span class='srestar' style='color: rgba(250, 208, 0, 0.99);'>";
-		       	      			  dataHtml += getStars(sstar);  
-		       	      			  dataHtml += "</span>&nbsp;&nbsp;별점 "+data.sstar+"</li>";
-	                  			  dataHtml += "<li class='txt'>"+ data.srecontent +"</li>";
-	                  			  dataHtml += "<li class='btn'>";
-	                  			  dataHtml += "<a onclick=\"updateBtn("+data.sreno+",'"+data.id+"','"+data.sredate+"','"+data.srecontent+"')\" class='button primary small'>수정</a>&nbsp";
-	                			  dataHtml += "<a onclick=\"deleteBtn("+data.sreno+")\" class='button small'>삭제</a>";
-	                			  dataHtml += "</li>";
-                      			  
-                     		 	  $("#"+sreno).html(dataHtml);
-                      		  },
-                      		  error:function(){
-                      			  alert("실패");
-                      		  }
-                      	  });//ajax
-                  	  }//if
-                  	  
-                  	  
-                    }//리뷰 수정 저장 끝
-                 	
                     
                     // 6. 신고버튼 누르기
-                    function reportBtn(sreno, id){
+                    function reportBtn(sreno, id,sfno){
                     	if("${sessionId}"==""){
     						alert("로그인을 하셔야 신고가 가능합니다.");
     						location.href="/member/login";
@@ -212,11 +214,75 @@
     					}
                     	
     				 	if(confirm("리뷰글을 신고 하시겠습니까?")){
-    				 		location.href="/sport/sportReviewReport?sreno=";
+    				 		location.href="/sport/sportReviewReport?sfno="+sfno+"&page=${page}&sreno="+sreno+"&id="+id;
                   		  	return false;
     				 	}
     				}
-                 	
+                    
+                    // 7. 찜하기 버튼(insert)
+       				function sPickBtn(sfno){
+       					if(confirm("찜하기를 등록하시겠습니까?")){
+       						const spickyn = $("#spicklike").data("value");
+                        	  $.ajax({
+                        		  url:"/sport/sportPick",
+                        		  type:"post",
+                        		  data:{"id":"${sessionId}",
+                        			  	"sfno" : sfno,
+                        			  	"spickyn" : spickyn},
+                        		  success:function(data){
+                        			  alert("찜하기가 등록되었습니다.");
+                        		  },
+                        		  error:function(){
+                        			  alert("실패");
+                        		  }
+                        	  });//ajax
+                    	  }//if
+                      }//찜하기 버튼 끝
+                      
+                      
+                    // 8. 찜하기 취소 버튼(update)
+       				function sPickCancelBtn(sfno,spickdate){
+       					if(confirm("찜하기를 취소하시겠습니까?")){
+       						const spickyn = $("#spickcancel").data("value");
+                        	  $.ajax({
+                        		  url:"/sport/sportPickCancel",
+                        		  type:"post",
+                        		  data:{"id":"${sessionId}",
+                        			  	"sfno" : sfno,
+                        			  	"spickyn" : spickyn,
+                        			  	"spickdate" : spickdate},
+                        		  success:function(data){
+                        			  alert("찜하기가 취소되었습니다.");
+                        		  },
+                        		  error:function(){
+                        			  alert("실패");
+                        		  }
+                        	  });//ajax
+                    	  }//if
+                      }//찜하기 취소 버튼 끝
+                      
+                      
+                    // 9. 다시 찜하기 버튼(update)
+       				function sPickUpdateBtn(sfno,spickdate){
+       					if(confirm("찜하기를 선택하시겠습니까?")){
+       						const spickyn = $("#spicklikeupdate").data("value");
+                        	  $.ajax({
+                        		  url:"/sport/sportPickUpdate",
+                        		  type:"post",
+                        		  data:{"id":"${sessionId}",
+                        			  	"sfno" : sfno,
+                        			  	"spickyn" : spickyn,
+                        			  	"spickdate" : spickdate},
+                        		  success:function(data){
+                        			  alert("찜하기가 선택되었습니다.");
+                        		  },
+                        		  error:function(){
+                        			  alert("실패");
+                        		  }
+                        	  });//ajax
+                    	  }//if
+                      }//찜하기 취소 버튼 끝
+                      
 			</script>
 			
 			
@@ -308,9 +374,25 @@
 									<br>
 									<!-- Buttons 수정 ->  main.css (1294번째)-->
 									<ul class="actions">
-										<li><a class="button" onclick="sPickBtn()">시설 찜하기</a></li>
+										<c:forEach var="spickDto" items="${spickList}">
+										<c:if test="${sessionId == spickDto.id}">
+											<!-- 1. 찜을 한 상태일 때(업뎃) -->
+											<c:if test="${spickDto.spickyn == 'Yes'}">
+											  <li><a class="button primary" id="spickcancel" onclick="sPickCancelBtn(${sdto.sfno},'${spickDto.spickdate}')" data-value="No">시설 찜하기 취소</a></li>
+											</c:if>
+											<!-- 2. 찜을 하지 않은 상태일 때(업뎃) -->
+											<c:if test="${spickDto.spickyn == 'No'}">
+											  <li><a class="button" id="spicklikeupdate" onclick="sPickUpdateBtn(${sdto.sfno},'${spickDto.spickdate}')" data-value="Yes">시설 찜하기</a></li>
+											</c:if>
+											<!-- 3. 아예 찜을 처음 누를 때(인서트) -->
+											<c:if test="${empty (spickDto.id)}">
+											  <li><a class="button" id="spicklike" onclick="sPickBtn(${sdto.sfno})" data-value="Yes">시설 찜하기</a></li>
+											</c:if>
+										</c:if>
+										</c:forEach>
 										<li><a href="/sportreport/sportReportWrite?sfno=${sdto.sfno}" class="button primary">시설 문의글 작성</a></li>
 										<li><a href="sportList?page=${page}" class="button primary">시설 목록으로</a></li>
+										<li><a href="/club/cWrite" class="button primary">모임 생성</a></li>
 									</ul>
 								</section>
 								
@@ -352,11 +434,11 @@
 									
 								<fieldset>
 									
-									<div class="replyBox">
+									<div class="replyBox" id="reviewBox">
 										<!--  쓴 글 부분  -->
 										<c:forEach var="sreDto" items="${sreList}">
 											<ul id="${sreDto.sreno}">
-												<li class="name">${sreDto.id}<span>&nbsp;&nbsp;&nbsp;&nbsp;[${sreDto.sredate} ]</span></li>
+												<li class="name">${sreDto.id}<span>&nbsp;&nbsp;&nbsp;&nbsp;[ ${sreDto.sredate} ]</span></li>
 												<li class="star"><span class="srestar" style="color: rgba(250, 208, 0, 0.99);">
 													<c:if test="${0 < sreDto.sstar && sreDto.sstar <= 1 }">★</c:if> 
 													<c:if test="${1 < sreDto.sstar && sreDto.sstar <= 2 }">★ ★</c:if> 
@@ -376,24 +458,11 @@
 												</c:if>
 												<c:if test="${sessionId != sreDto.id }">
 													<li class="btn">
-														<a onclick="reportBtn(${sreDto.sreno},'${sreDto.id}')" class="button primary small">신고</a>
+														<a onclick="reportBtn(${sreDto.sreno},'${sreDto.id}','${sdto.sfno}' )" class="button primary small">신고</a>
 													</li>
 												</c:if>
 											</ul>
 										</c:forEach>
-										
-										<!-- 3. 내가 쓴 글 수정 부분 -->
-										<ul>
-											<li class="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hong <span>&nbsp;&nbsp;&nbsp;[2023-07-06&nbsp;&nbsp;15:01:59]</span>
-											</li>
-											<li class="star"><span class="srestar" style="color: rgba(250, 208, 0, 0.99);">★ ★ ★ ★ ★ </span>&nbsp;&nbsp;별점 5</li>
-											<textarea type="text" id="updateContent" placeholder="작성한 시설 리뷰글을 수정해주세요!" ></textarea>
-											<li class="btn">
-												<a onclick="saveBtn()" class="button primary small">저장</a>
-												<a onclick="javascript:location.href='sportListView?sfno=${sdto.sfno}&page=${page}'" class="button small" >취소</button></a>
-											</li>
-										</ul> 
-										
 									</div>
 								</fieldset>
 								<!-- //댓글 -->

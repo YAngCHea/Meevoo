@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.java.dto.SportDto;
+import com.java.dto.SportPickDto;
 import com.java.dto.SportReviewDto;
 import com.java.dto.SportReviewReportDto;
 
@@ -17,10 +18,6 @@ public interface SportMapper {
 	
 	//게시글 1개 가져오기
 	SportDto selectOne(int sfno);
-	//게시글 이전글 가져오기
-	SportDto selectPrevOne(int sfno);
-	//게시글 다음글 가져오기
-	SportDto selectNextOne(int sfno);
 	
 	//게시글 전체개수
 	int selectListCount();
@@ -44,6 +41,25 @@ public interface SportMapper {
 	
 	// 리뷰글에 대한 신고글 1개 작성
 	void insertReportOne(SportReviewReportDto srerepDto);
+
+
+	//리뷰글 번호 가져오기
+	SportReviewDto selectSrenoOne(int sreno);
+
+	//1. 시설물 찜하기 등록(인서트)
+	void sportPick(SportPickDto spickDto);
+	//찜한 데이터 1개 가져오기
+	SportPickDto selectSpOne(SportPickDto spickDto);
+	//찜한 데이터 전체 가져오기
+	ArrayList<SportPickDto> selectSpAll(int sfno);
+	
+	// 2. 시설물 찜하기 취소(업뎃)
+	void sportPickCancel(SportPickDto spickDto);
+	// 3. 시설물 다시 찜하기(업뎃)
+	void sportPickUpdate(SportPickDto spickDto);
+	
+
+
 
 
 	
