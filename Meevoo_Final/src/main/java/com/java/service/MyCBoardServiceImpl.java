@@ -3,6 +3,8 @@ package com.java.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,19 +19,33 @@ import com.java.mapper.MyCBoardMapper;
 public class MyCBoardServiceImpl implements MyCBoardService {
 
 	@Autowired MyCBoardMapper myCBoardMapper;
+	//sessionId를 가져오기 위해 추가 
+	@Autowired HttpSession session;
 	
 	@Override //운동모임 - 찜한 리스트 전체 가져오기
 	public HashMap<String, Object> selectClubPickAll(PageDto pageDto) {
 		HashMap<String, Object> map = new HashMap<>();
+		ArrayList<CListPickDto> list = null;
 		
+		
+		//sessionId를 가져오기 위해 추가 
+		String id = (String)session.getAttribute("sessionId");
 		//페이지정보 메소드호출
 		pageDto = pageMethod1(pageDto);
 		
-		//게시글 전체 가져오기
-		ArrayList<CListPickDto> list = myCBoardMapper.selectClubPickAll(pageDto);
+		//System.out.println("MyCBoardServiceImpl id : "+id);
+		
+		if(id!=null) {
+			//게시글 전체 가져오기
+			list = myCBoardMapper.selectClubPickAll(pageDto, id);
+			map.put("loginCheck", "success");		
+		}else {
+			map.put("loginCheck", "fail");
+		}
 		
 		map.put("list", list);
 		map.put("pageDto", pageDto);
+		map.put("id", id);
 		
 		return map;
 	}
@@ -52,15 +68,35 @@ public class MyCBoardServiceImpl implements MyCBoardService {
 		
 		return pageDto;
 	}
+	
+	@Override //운동모임 - 찜하기 취소 버튼
+	public void cancelCPick(String id, int cno) {
+		myCBoardMapper.cancelCPick(id, cno);
+		
+	}
 
+	
 	@Override //운동모임 - 최근본 리스트 전체 가져오기
 	public HashMap<String, Object> selectClubCurrAll(PageDto pageDto) {
 		HashMap<String, Object> map = new HashMap<>();
+		ArrayList<CListCurrDto> list = null;
 		
 		//페이지 정보 메소드 호출
 		pageDto = pageMethod2(pageDto);
 		
-		ArrayList<CListCurrDto> list = myCBoardMapper.selectClubCurrAll(pageDto);
+		//sessionId를 가져오기 위해 추가
+		String id = (String)session.getAttribute("sessionId");
+		
+		//System.out.println("MyCBoardServiceImpl id : "+id);
+		
+		if(id!=null) {
+			//게시글 전체 가져오기
+			list = myCBoardMapper.selectClubCurrAll(pageDto, id);
+			map.put("loginCheck", "success");
+		}else {
+			map.put("loginCheck", "fail");
+		}
+		
 		
 		map.put("list", list);
 		map.put("pageDto", pageDto);
@@ -87,13 +123,25 @@ public class MyCBoardServiceImpl implements MyCBoardService {
 		return pageDto;
 	}
 
+	
 	@Override //운동모임 - 참여한 리스트 전체 가져오기
 	public HashMap<String, Object> selectClubJoinAll(PageDto pageDto) {
 		HashMap<String, Object> map = new HashMap<>();
+		ArrayList<CListJoinDto> list = null;
 		
 		pageDto = pageMethod3(pageDto);
 		
-		ArrayList<CListJoinDto> list = myCBoardMapper.selectClubJoinAll(pageDto);
+		//sessionId 를 가져오기 위해 추가
+		String id = (String)session.getAttribute("sessionId");
+		System.out.println("MyCBoardServiceImpl : "+id);
+		
+		if(id!=null) {
+			//게시글 전체 가져오기
+			list = myCBoardMapper.selectClubJoinAll(pageDto, id);
+			map.put("loginCheck", "success");
+		}else {
+			map.put("loginCheck", "fail");
+		}
 		
 		map.put("list", list);
 		map.put("pageDto", pageDto);
@@ -124,6 +172,13 @@ public class MyCBoardServiceImpl implements MyCBoardService {
 		return pageDto;
 	}
 
+	@Override //참여한 리스트 1개 삭제
+	public void deleteCJoin(int cno) {
+		myCBoardMapper.deleteCJoin(cno);
+		
+	}
+
+	
 	@Override //main에 표시될 가장 많이 찜한 상위 4개 운동 모임
 	public ArrayList<ClubDto> selectCPickTop4() {
 		ArrayList<ClubDto> list = myCBoardMapper.selectCPickTop4();
@@ -131,10 +186,7 @@ public class MyCBoardServiceImpl implements MyCBoardService {
 		return list;
 	}
 
-	@Override //참여한 리스트 1개 삭제
-	public void deleteCJoin(int cno) {
-		myCBoardMapper.deleteCJoin(cno);
-		
-	}
+
+	
 
 }

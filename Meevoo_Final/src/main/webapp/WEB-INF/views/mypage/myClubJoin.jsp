@@ -88,7 +88,6 @@
 															<th id="th5">후기/삭제</th>
 														</tr>
 													</thead>
-													<form action="" name="deleteFrm" method="post">
 													<tbody>
 														<c:forEach var="joinlist" items="${list }">
 															<tr class="tr1">
@@ -115,7 +114,7 @@
 															function reviewBtn(){ //참여한 운동모임 후기 작성 버튼 
 																alert("후기 작성하러 이동합니다.");
 															/* @@@@@@@@ 페이지 설정!!! @@@@@@@@ */
-																//location.href="";
+																location.href="/club/cMEvaluation";
 															}
 															
 															function deleteBtn(cno){ //참여한 운동모임 삭제 버튼
@@ -130,7 +129,6 @@
 															
 														</script>
 													</tbody>
-													</form>
 												</table>
 												<div>
 													<ul class="pagination">

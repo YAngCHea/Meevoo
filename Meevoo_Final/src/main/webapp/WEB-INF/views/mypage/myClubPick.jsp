@@ -100,12 +100,15 @@
 																<td>
 																	<fmt:formatDate value="${picklist.cdodate}" pattern="yyyy-MM-dd" />
 																</td>
-																<td><button onclick="deleteBtn()" class="button small">삭제</button></td>
+																<td><button onclick="cancelBtn(${picklist.cno})" class="button small">취소</button></td>
 															</tr>
 														</c:forEach>
 														<script>
-															function deleteBtn(){ //찜한 게시물 삭제 버튼 
-																alert("찜한 게시글을 삭제합니다.");
+															function cancelBtn(cno){ //찜한 게시물 삭제 버튼 
+																if(confirm("찜하기를 취소할까요?")){
+																	alert("찜하기를 취소합니다.");
+																	location.href="/mypage/cPickCancel?cno="+cno;
+																}
 															}
 														</script>
 														<!-- 
