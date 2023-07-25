@@ -50,7 +50,7 @@
 										         <div><span><a href="/club/club"><img src="../images/general/previousPage.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;뒤로 가기</a></span></div>
 										         <div><span><a href="#"><img src="../images/general/index.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;저장 하기</a></span></div>
 										         <div><span><a href="#"><img src="../images/general/report.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;신고 하기</a></span></div>
-										         <div><span><a href="#"><img src="../images/general/write.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;수정 하기</a></span></div>
+										         <div><span><a href="/club/cWriteEdit"><img src="../images/general/write.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;수정 하기</a></span></div>
 										         <div><span><a href="#"><img src="../images/general/delete.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;삭제 하기</a></span></div>
 										      </div>
 										  </div>
@@ -237,7 +237,7 @@
 	 									  </div>
 	 									 </div>
 	 									  <div class="col-12" style="float: right; ">
-								            <a href="/sport/sportListView?sfno=${cdto.sfno}" target="_blank;" class="button primary">모임장소 상세보기</a>
+								            <a href="/sport/sportListView?sfno=${cdto.sfno}" class="button primary">모임장소 상세보기</a>
 								          </div>
 									</div>
 								</section>

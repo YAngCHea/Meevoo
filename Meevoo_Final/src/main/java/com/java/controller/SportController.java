@@ -49,7 +49,7 @@ public class SportController {
 	
 	@RequestMapping("/sport/sportListView")
 	public String sportListView(@RequestParam(defaultValue = "1") int sfno,
-			int page, Model model) {
+			@RequestParam(defaultValue = "1") int page, Model model) {
 
 		// 게시글 1개 가져오기
 		HashMap<String, Object> map = sportService.selectOne(sfno);

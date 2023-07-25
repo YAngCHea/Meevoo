@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.dto.ClubDto;
+import com.java.dto.ClubSearch;
 import com.java.dto.PageDto;
 import com.java.mapper.ClubMapper;
 
@@ -76,6 +77,13 @@ public class ClubServiceImpl implements ClubService {
 		ClubDto cdto = clubMapper.selectClubOne(cno);
 		return cdto;
 	}
+	
+	@Override // 필터 input 반영해서 모임목록 가져오기 (필터검색)
+	public ArrayList<ClubDto> selectClubFilter(ClubDto clubDto) {
+		ArrayList<ClubDto> filterList = clubMapper.selectClubFilter(clubDto); 
+		return filterList;
+	}
+
 
 
 

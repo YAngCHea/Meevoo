@@ -4,9 +4,10 @@
     
 <mapper namespace="com.java.mapper.ClubMapper">
 
-  <!-- 모임목록 전체 가져오기 -->
+  <!-- 모임목록 전체 가져오기 (페이지, 키워드 검색 포함) -->
   <select id="selectClubAll" resultType="com.java.dto.ClubDto">
-    select * from 
+  
+  select * from 
       (select rownum rnum, a.* from 
       (select * from 
           (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
@@ -16,8 +17,24 @@
               left join userlist b on a.id = b.id(+)
               left join sportlist c on a.sfno = c.sfno)
       order by cno desc) a )where rnum between #{startRow} and #{endRow}
-    
-    
+  
+    <!-- 
+    select * from 
+      (select rownum rnum, a.* from 
+        (select * from 
+          (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
+                  b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
+                  c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
+             from clublist a 
+               left join userlist b on a.id = b.id(+)
+               left join sportlist c on a.sfno = c.sfno)
+          where id like '%'||#{search.s_word}||'%'
+             or cnm like '%'||#{search.s_word}||'%'
+             or dongcate like '%'||#{search.s_word}||'%''
+             or ccontent like '%'||#{search.s_word}||'%'
+             or scate like '%'||#{search.s_word}||'%'
+          order by cno desc) a )where rnum between #{startRow} and #{endRow} 
+          -->
   </select>
   
   <!-- 전체 게시글 수 (넘버링) -->
@@ -70,7 +87,19 @@
     	where cno = #{cno}
   </select>
   
-  
+  <!-- 필터 input 반영해서 모임목록 가져오기 (필터검색) -->
+  <select id="selectClubFilter" resultType="com.java.dto.ClubDto">
+       select * from 
+ 	     (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
+                 b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
+                 c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
+            from clublist a 
+              left join userlist b on a.id = b.id(+)
+              left join sportlist c on a.sfno = c.sfno)
+         where scate = #{scate}
+           and cnowstatus = #{cnowstatus}
+           and cdodate between sysdate and sysdate + #{dateDifference}
+  </select>
 
 
 </mapper>

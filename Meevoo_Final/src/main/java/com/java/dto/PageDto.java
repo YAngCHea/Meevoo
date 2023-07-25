@@ -8,15 +8,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class PageDto {
-
-	private int page=1;    //디폴트값이 1!! 
-	private int listCount;
-	private int maxPage;
-	private int startPage;
-	private int endPage;
-	private int startRow;
-	private int endRow;
-	private int rowPerPage = 10;
-	private int numberingPerPage = 10;
 	
+	private int page = 1;					// 현재 하단페이지, default 1page
+	private int listCount;				// 전체 게시글 수
+	private int maxPage;				// 최대 넘버링 페이지 
+	private int startPage;				// 처음 넘버링 페이지
+	private int endPage;				// 마지막 넘버링 페이지
+	private int startRow;				// 페이지 최초 모임목록글 번호
+	private int endRow;					// 페이지 마지막 모임목록글 번호
+	private int rowPerPage=10;			// 페이지 당 게시글 갯수, default 10개
+	private int numberringPerPage=10;	// 페이지 갯수
+	
+	
+
 }

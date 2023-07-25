@@ -9,10 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.dto.ClubDto;
+import com.java.dto.ClubSearch;
 import com.java.dto.PageDto;
 import com.java.service.ClubService;
 
@@ -39,11 +42,22 @@ public class ClubController {
 			ArrayList<ClubDto> recsLoginList = clubService.selectClubRecsLogin(id);
 			model.addAttribute("recsList", recsLoginList);
 		}
-		
-		// 검색, 필터 input 반영해서 모임목록 가져오기
-				
 		return "club/club";
 	}
+	
+	@PostMapping("/club/cFilterAjax")
+	@ResponseBody //데이터로 넘겨줌
+	public ArrayList<ClubDto>  cFilterAjax(ClubDto clubDto, PageDto pageDto, int dateDifference, Model model) {
+		
+		//필터 input 반영해서 모임목록 가져오기 (필터검색)
+		ArrayList<ClubDto> filterList = clubService.selectClubFilter(clubDto);
+		model.addAttribute("filteredClubList", filterList);
+		
+		return filterList;
+	}
+	
+	
+	
 
 	@RequestMapping("/club/cView")
 	public String cView(int cno, Model model) {
@@ -58,6 +72,11 @@ public class ClubController {
 	@RequestMapping("/club/cWrite")
 	public String cWrite() {
 		return "club/cWrite";
+	}
+	
+	@RequestMapping("/club/cWriteEdit")
+	public String cWriteEdit() {
+		return "club/cWriteEdit";
 	}
 
 	@RequestMapping("/club/cMEvaluation")

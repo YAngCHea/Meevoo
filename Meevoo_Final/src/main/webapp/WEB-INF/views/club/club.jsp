@@ -7,6 +7,7 @@
 	<head>
 		<title>모임 목록</title>
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main_kim.css" />
@@ -17,13 +18,13 @@
 			<div id="wrapper">
 				<!-- Main -->
 					<div id="main">
-					    <div style="background-color: #f56a6a ; box-shadow: 5px 5px 3px #666; cursor: pointer; position: fixed; display: flex; align-items: center; justify-content: center; right: 1em; top: 75%; width:110px; height:110px; border-radius: 50%;"">
-					      <a href="/club/cWrite" target="_blank;"><img src="../images/general/write.png" style="width:70px; height:70px; " ></a>
+					    <div style="z-index: 1; background-color: #f56a6a ; box-shadow: 5px 5px 3px #666; cursor: pointer; position: fixed; display: flex; align-items: center; justify-content: center; right: 1em; top: 75%; width:110px; height:110px; border-radius: 50%;"">
+					      <a href="/club/cWrite" ><img src="../images/general/write.png" style="width:70px; height:70px; " ></a>
 					    </div>
 						<div class="inner">
 							<!-- Header -->
 							<%@ include file="../top.jsp" %>	
-							<!-- Banner -->
+							    <!-- Banner -->
 								<section id="banner" style="box-sizing: border-box; margin:0.5em; padding:2em 2em 2em 0; height: 250px;">
 									<div class="content" style="box-sizing: border-box; weidth: 60%;">
 										<header style="vertical-align: center;">
@@ -46,11 +47,11 @@
 										<h2>${sessionId } 님을 위한 모임 추천</h2>
 									  </c:if>
 									</header>
-									<div class="features">
+									<div class="featuresRecs">
 									  <c:forEach var="club" items="${recsList}">
 										  <article>
 										      <!-- 운동종목 별 아이콘 영역 -->
-									          <a href="/club/cView?cno=${club.cno}" target="_blank" style="text-decoration: none;">
+									          <a href="/club/cView?cno=${club.cno}" style="text-decoration: none;">
 												<span style="margin: 25px;">
 												  <c:if test="${club.scate eq '스케이트'}">
 												    <img src="../images/sports/iceSkateIcon.png" style="width:150px;" />
@@ -83,7 +84,7 @@
 											  </a>
 											  <!-- 운동종목 별 아이콘 영역 끝-->
 												<!-- 회원님을 위한 모임추천 내용 -->
-												<div class="content" style="margin:  0, 0, 100px, 0;">
+												<div class="content" style="margin:  0, 0, 100px, 0; width: 100%;">
 												 <!-- 회원님을 위한 모임추천 내용 첫줄: 운동종목, 디데이, 상태, 모집인원-->
 												 <div style="width:287px;">
 												    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(244, 244, 244, 0.5); font-weight: bold; ">${club.scate }</span>
@@ -135,7 +136,7 @@
 													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">${club.dongcate }</span>
 													&nbsp;
 													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
-													  <fmt:formatDate value="${club.cdodate}" type="both" dateStyle ="long" pattern="yyyy-MM-dd (E) a hh:mm" />
+													  <fmt:formatDate value="${club.cdodate}" type="both" dateStyle ="long" pattern="yy-MM-dd (E) a hh:mm" />
 													</span>
 													<!-- 회원님을 위한 모임추천 내용 셋째줄 끝: 모임위치(동이름), 모임일시 -->
 												</div>
@@ -147,16 +148,160 @@
 							    <!-- 회원님을 위한 모임추천 끝-->
 								
 								<!-- 회원님을 기다리는 모임들 -->
+								<!-- 회원님을 기다리는 모임들_키워드 검색  -->
+								<!-- <script>
+								  function clubSearchBtn(){
+									  alert("키워드 검색을 진행합니다.");
+							    	   
+							    	  if($("#s_word").val().length<2){
+							    		  alert("2글자 이상 입력하셔야 합니다.");
+							    		  $("#s_word").focus();
+							    		  return false;
+							    	  }
+							    	  search.submit();
+							      }
+								</script> -->
+								<!-- 회원님을 기다리는 모임들_키워드 검색 끝 -->
+								<!-- 회원님을 기다리는 모임들_필터 검색 ajax -->
+								<script>
+								  function clubFilterBtn() {
+									  alert("필터 검색을 진행합니다.");
+									  //alert($("#dateDifference").val());
+									  //alert($("input[name='scate']:checked").val());
+									  //alert($(".cnowstatus").val());
+									 $.ajax({
+										  url:"/club/cFilterAjax",
+										  type:"post",
+										  data:{"dateDifference":$("#dateDifference").val(),
+											    "scate":$("input[name='scate']:checked").val(),
+											    "cnowstatus":$(".cnowstatus").val()
+											    },
+						 				  success:function(data) {
+						 					console.log("data : "+data);
+						 					//alert("controller에서 데이터 받기 성공!!");
+						 					  
+											var htmlData="";
+						 					
+						 					for(var i = 0; i <data.length; i++) {
+							
+												var href="/club/cView?cno="+data[i].id;
+												
+												htmlData +='<article>';
+												<!-- 운동종목 별 아이콘 영역 -->
+												htmlData +='<a href="/club/cView?cno='+data[i].cno+'" style="text-decoration: none;">';
+												htmlData +='<span style="margin: 25px;">';
+												if(data[i].scate =='스케이트'){
+													htmlData +='<img src="../images/sports/iceSkateIcon.png" style="width:150px;" />';
+												}
+												if(data[i].scate =='골프'){
+													htmlData +='<img src="../images/sports/golfIcon.png" style="width:150px;" />';
+												}
+												if(data[i].scate =='배드민턴'){
+													htmlData +='<img src="../images/sports/badmintonIcon.png" style="width:150px;" />';
+												}
+												if(data[i].scate =='테니스'){
+													htmlData +='<img src="../images/sports/tennisIcon.png" style="width:150px;" />';
+												}
+												if(data[i].scate =='탁구'){
+													htmlData +='<img src="../images/sports/tableTennisIcon.png" style="width:150px;" />';
+												}
+												if(data[i].scate =='풋살'){
+													htmlData +='<img src="../images/sports/futsalIcon.png" style="width:150px;" />';
+												}
+												if(data[i].scate =='클라이밍'){
+													htmlData +='<img src="../images/sports/climbingIcon.png" style="width:150px;" />';
+												}
+												if(data[i].scate =='볼링'){
+													htmlData +='<img src="../images/sports/bowlingIcon.png" style="width:150px;" />';
+												}
+												if(data[i].scate =='농구'){
+													htmlData +='<img src="../images/sports/basketballIcon.png" style="width:150px;" />';
+												}
+												htmlData +='</span>';
+												htmlData +='</a>';
+												<!-- 운동종목 별 아이콘 영역 끝-->
+												<!-- 회원님을 기다리는 모임들 내용 -->
+												htmlData +='<div class="content" style="margin:  0, 0, 100px, 0; width: 100%;">';
+												<!-- 회원님을 기다리는 모임들 내용 첫줄: 운동종목, 디데이, 상태, 모집인원-->
+												htmlData +='<div style="width:287px;">';
+												htmlData +='<div style="width:287px;">';
+												htmlData +='<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(244, 244, 244, 0.5); font-weight: bold; ">'+data[i].scate+'</span>';
+												htmlData +='&nbsp;';
+												<!-- 디데이 -->
+												var currentDate = moment(); // 현재 날짜와 시간
+												var targetDate = moment(data[i].cdodate); // 비교하려는 대상 날짜와 시간
+												if (targetDate.isBefore(currentDate, 'day')) {
+													  // 지난 날짜인 경우
+													  htmlData += '<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(244, 244, 244, 0.5); font-weight: bold; ">';
+													  htmlData += (moment(data[i].cdodate).startOf("day+1").fromNow());
+													  
+													  htmlData += '</span>';
+													} else if (targetDate.isSame(currentDate, 'day')) {
+													  // 오늘인 경우
+													  htmlData += '<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: #f56a6a33; font-weight: bold; ">';
+													  htmlData += (moment(data[i].cdodate).startOf("day+1").fromNow());
+													  htmlData += '</span>';
+													} else {
+													  // 지나지 않은 날짜인 경우
+													  htmlData += '<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: #f56a6a; color: #ffffff; font-weight: bold; ">';
+													  htmlData += (moment(data[i].cdodate).startOf("day+1").fromNow());
+													  htmlData += '</span>';
+													}
+												<!-- 디데이 끝-->
+												htmlData +='&nbsp;';
+												if(data[i].cnowstatus =='모집중'){
+													htmlData +='<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: #f56a6a; color: #ffffff; font-weight: bold; ">'+data[i].cnowstatus+'</span>';
+												}
+												if(data[i].cnowstatus =='모집완료'){
+													htmlData +='<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: #f56a6a33; font-weight: bold; ">'+data[i].cnowstatus+'</span>';
+												}
+												if(data[i].cnowstatus =='모임완료'){
+													htmlData +='<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(244, 244, 244, 0.5); font-weight: bold; ">'+data[i].cnowstatus+'</span>'+data[i].cnowstatus+'</span>';
+												}
+												htmlData +='&nbsp;';
+												htmlData +='<span>';
+												htmlData +='<img src="../images/general/members.png" style="width:15px" />';
+												htmlData +='</span>';
+												htmlData +='<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">'+data[i].cnowrecruit+'/'+data[i].crecruitlimit+'</span>';
+												htmlData +='</div>';
+												<!-- 회원님을 기다리는 모임들 내용 첫줄 끝: 운동종목, 디데이, 상태, 모집인원 -->
+												<!-- 회원님을 기다리는 모임들 내용 둘째줄: 모임 이름 -->
+												htmlData +='<br>';
+												htmlData +='<h3>'+data[i].cnm+'</h3>';
+												<!-- 회원님을 기다리는 모임들 내용 둘째줄 끝: 모임 이름 -->
+												<!-- 회원님을 기다리는 모임들 내용 셋째줄 : 모임위치(동이름), 모임일시 -->
+												htmlData +='<span>';
+												htmlData +='<img src="../images/general/locationPin.png" style="width:10px" />';
+												htmlData +='</span>';
+												htmlData +='<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">'+data[i].dongcate+'</span>';
+												htmlData +='&nbsp;';
+												htmlData +='<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">';
+												htmlData +=(moment(data[i].cdodate).format("YY-MM-DD ddd HH:mm a"));
+												htmlData +='</span>';
+												<!-- 회원님을 기다리는 모임들 내용 셋째줄 끝: 모임위치(동이름), 모임일시 -->
+												htmlData +='</div>';
+												<!-- 회원님을 기다리는 모임들 내용 끝-->
+												htmlData +='</article>';
+						 					}
+						 					$(".featuresAll").html(htmlData);
+						 				  }, 
+						 				  error:function(){
+						 					  alert("모든 항목을 선택해 주세요.");
+						 				  }
+									  }); //ajax
+								  } //clubFilterBtn()
+								</script>
+								<!-- 회원님을 기다리는 모임들_필터 검색 ajax 끝-->
 								<section>
 									<header class="major">
 										<h2>회원님을 기다리는 모임들</h2>
 									</header>
 									<!-- 회원님을 기다리는 모임들 목록 -->
-									<div class="features">
+									<div class="featuresAll">
 									  <c:forEach var="club" items="${list}">
 										  <article>
 										      <!-- 운동종목 별 아이콘 영역 -->
-										      <a href="/club/cView?cno=${club.cno}" target="_blank" style="text-decoration: none;">
+										      <a href="/club/cView?cno=${club.cno}" style="text-decoration: none;">
 												<span style="margin: 25px;">
 												  <c:if test="${club.scate eq '스케이트'}">
 												    <img src="../images/sports/iceSkateIcon.png" style="width:150px;" />
@@ -189,13 +334,13 @@
 											  </a>
 											  <!-- 운동종목 별 아이콘 영역 끝-->
 												<!-- 회원님을 기다리는 모임들 내용 -->
-												<div class="content" style="margin:  0, 0, 100px, 0;">
+												<div class="content" style="margin:  0, 0, 100px, 0; width: 100%;">
 												 <!-- 회원님을 기다리는 모임들 내용 첫줄: 운동종목, 디데이, 상태, 모집인원-->
 												 <div style="width:287px;">
 												    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(244, 244, 244, 0.5); font-weight: bold; ">${club.scate }</span>
 												    &nbsp;
-												    <jsp:useBean id="now" class="java.util.Date" />
-												    <fmt:parseNumber value="${now.time / (1000*60*60*24)}" integerOnly="true" var="nowfmtTime" scope="request"/>
+												    <jsp:useBean id="nowNow" class="java.util.Date" />
+												    <fmt:parseNumber value="${nowNow.time / (1000*60*60*24)}" integerOnly="true" var="nowfmtTime" scope="request"/>
 												    <fmt:parseNumber value="${club.cdodate.time / (1000*60*60*24)}" integerOnly="true" var="dbDtParse" scope="request"/>
 												    <c:set var="num" value="${nowfmtTime - dbDtParse}" />
 												    <c:if test ="${(nowfmtTime - dbDtParse)>0}">
@@ -241,7 +386,7 @@
 													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">${club.dongcate }</span>
 													&nbsp;
 													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
-													  <fmt:formatDate value="${club.cdodate}" type="both" dateStyle ="long" pattern="yyyy-MM-dd (E) a hh:mm" />
+													  <fmt:formatDate value="${club.cdodate}" type="both" dateStyle ="long" pattern="yy-MM-dd (E) a hh:mm" />
 													</span>
 													<!-- 회원님을 기다리는 모임들 내용 셋째줄 끝: 모임위치(동이름), 모임일시 -->
 												</div>

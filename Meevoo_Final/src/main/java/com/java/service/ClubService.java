@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.java.dto.ClubDto;
+import com.java.dto.ClubSearch;
 import com.java.dto.PageDto;
 
 public interface ClubService {
@@ -19,6 +20,10 @@ public interface ClubService {
 
 	// 모임목록 1개 가져오기
 	ClubDto selectClubOne(int cno);
+	
+	// 필터 input 반영해서 모임목록 가져오기 (필터검색)
+	ArrayList<ClubDto> selectClubFilter(ClubDto clubDto);
+
 
 	
 

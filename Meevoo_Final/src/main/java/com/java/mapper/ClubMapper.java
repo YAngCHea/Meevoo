@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.java.dto.ClubDto;
+import com.java.dto.ClubSearch;
 import com.java.dto.PageDto;
 
 @Repository
@@ -27,6 +28,12 @@ public interface ClubMapper {
 
 	// 모임목록 1개 가져오기
 	public ClubDto selectClubOne(int cno);
+	
+	// 필터 input 반영해서 모임목록 가져오기 (필터검색)
+	public ArrayList<ClubDto> selectClubFilter(ClubDto clubDto);
+
+
+
 
 
 
