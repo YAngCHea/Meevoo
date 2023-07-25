@@ -1,9 +1,7 @@
 package com.java.controller;
 
 import java.util.ArrayList;
-
-
-
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,10 +34,12 @@ public class SportController {
 	
 	@RequestMapping("/sport/sportList")
 	public String sportList(@RequestParam(defaultValue ="1")int page,
-			Model model) {
+			@RequestParam(name = "sports", required = false) String[] sports, 
+			@RequestParam(name = "dong", required = false)String dong, 
+			String slist_word,Model model) {
 
 		// 게시글 전체 가져오기
-		HashMap<String,Object> map = sportService.selectAll(page);
+		HashMap<String,Object> map = sportService.selectAll(page,sports,dong,slist_word);
 		model.addAttribute("list", map.get("list"));
 		
 		model.addAttribute("page", map.get("page"));
@@ -47,14 +47,20 @@ public class SportController {
 		model.addAttribute("startPage", map.get("startPage"));
 		model.addAttribute("endPage", map.get("endPage"));
 		model.addAttribute("maxPage", map.get("maxPage"));
-
+		
+		// 검색필터
+		model.addAttribute("sports", map.get("sports"));
+		model.addAttribute("dong", map.get("dong"));
+		model.addAttribute("slist_word", map.get("slist_word"));
+		
 		return "/sport/sportList";
 	} // sportList
 	
 	
 	@RequestMapping("/sport/sportListView")
 	public String sportListView(@RequestParam(defaultValue = "1") int sfno,
-			@RequestParam(defaultValue = "1")int page,Model model) {
+			@RequestParam(defaultValue = "1")int page,
+			String slist_word,Model model) {
 
 		// 게시글 1개 가져오기
 		HashMap<String, Object> map = sportService.selectOne(sfno);
@@ -76,6 +82,10 @@ public class SportController {
 		model.addAttribute("spickcount", spickcount);
 		
 		model.addAttribute("page", page);
+		
+		//검색 필터
+		model.addAttribute("slist_word", slist_word);
+		
 		return "/sport/sportListView";
 	} // sportListView
 	

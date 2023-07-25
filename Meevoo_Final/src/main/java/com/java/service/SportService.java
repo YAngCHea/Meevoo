@@ -2,7 +2,9 @@ package com.java.service;
 
 import java.util.ArrayList;
 
+
 import java.util.HashMap;
+import java.util.List;
 
 import com.java.dto.SportDto;
 import com.java.dto.SportPickDto;
@@ -12,7 +14,7 @@ import com.java.dto.SportReviewReportDto;
 public interface SportService {
 	
 	// 1. 게시글 전체 가져오기
-	HashMap<String, Object> selectAll(int page);
+	HashMap<String, Object> selectAll(int page, String[] sports, String dong, String slist_word);
 	// 2. 게시글 1개 가져오기
 	HashMap<String, Object> selectOne(int sfno);
 
@@ -42,6 +44,9 @@ public interface SportService {
 	void sportPickCancel(int spickno);
 	// 찜 Count(sfno,sessionId)
 	int selectSpCount(int sfno, String id);
+	
+	
+	
 
 
 }

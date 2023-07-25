@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,13 +22,15 @@ public class SportServiceImpl implements SportService {
 	SportMapper sportMapper;
 
 	@Override
-	public HashMap<String, Object> selectAll(int page) {
+	public HashMap<String, Object> selectAll(int page,String[] sports,
+			String dong, String slist_word) {
+		
 		//게시글 전체 가져오기
 		
 		HashMap<String, Object> map = new HashMap<>();
 		
 		//게시글 전체개수
-		int listCount = sportMapper.selectListCount();
+		int listCount = sportMapper.selectListCount(sports, dong, slist_word);
 
 		//최대페이지
 		int maxPage = (int)Math.ceil((double)listCount/10); // 최대페이지(전체 게시물/10 -> 4개page)
@@ -39,7 +42,7 @@ public class SportServiceImpl implements SportService {
 		
 		//endPage가 maxPage보다 더 크면 maxPage만 노출
 		if(endPage>maxPage) endPage=maxPage;
-		ArrayList<SportDto> list = sportMapper.selectAll(startRow,endRow);
+		ArrayList<SportDto> list = sportMapper.selectAll(startRow,endRow,sports, dong, slist_word);
 		
 		map.put("list", list);
 		map.put("listCount", listCount);
@@ -47,6 +50,11 @@ public class SportServiceImpl implements SportService {
 		map.put("startPage", startPage);
 		map.put("endPage", endPage);
 		map.put("page", page);
+		
+		//
+		map.put("sports", sports);
+		map.put("dong", dong);
+		map.put("slist_word", slist_word);
 		
 		return map;
 	}

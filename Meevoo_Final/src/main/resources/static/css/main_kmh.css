@@ -225,9 +225,11 @@ input, select, textarea {
 .searchbutton .day p.txt{float:left; padding:13px 0 ; margin:0 0 0 20px; color:#666; }
 .searchbutton .day p.txt span{font-size:13px; color:#666; font-weight:normal; padding:0 18px 0 14px;}
 .searchbutton .day p label{padding:0 18px 0 20px;}
-/*checkbox 선택*/
+/*checkbox,radio 선택*/
 #sport11 .txt input[type="checkbox"]:checked + label{color:#f56a6a;}
 #sport11 .txt input[type="checkbox"] + label:before {display: none;}
+#sport11 .txt input[type="radio"]:checked + label{color:#f56a6a;}
+#sport11 .txt input[type="radio"] + label:before {display: none;}
 
 
 

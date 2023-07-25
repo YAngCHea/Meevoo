@@ -1,7 +1,7 @@
 package com.java.mapper;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,13 +14,13 @@ import com.java.dto.SportReviewReportDto;
 public interface SportMapper {
 	
 	//게시글 전체 가져오기
-	ArrayList<SportDto> selectAll(int startRow, int endRow);
+	ArrayList<SportDto> selectAll(int startRow, int endRow, String[] sports, String dong, String slist_word);
 	
 	//게시글 1개 가져오기
 	SportDto selectOne(int sfno);
 	
 	//게시글 전체개수
-	int selectListCount();
+	int selectListCount(String[] sports, String dong, String slist_word);
 
 	
 	// 문의글,리뷰신고글 작성으로 인한 시설번호 전체 가져오기
@@ -56,9 +56,6 @@ public interface SportMapper {
 	void sportPickCancel(int spickno);
 	// 찜 Count(sfno,sessionId)
 	int selectSpCount(int sfno, String id);
-	
-
-
 
 
 	
