@@ -1008,7 +1008,7 @@ header.main > :last-child {
 
 /* Form */
 form {
-  margin: 0 0 2em 0; }
+  margin: 0 0 0% 0; }
 
 label {
   color: #3d4449;
@@ -1857,7 +1857,7 @@ button,
   #main > .inner {
     padding: 0 6em 0.1em 6em ;
     margin: 0 auto;
-    max-width: 100%; }
+    max-width: 110em; }
     #main > .inner > section {
       padding: 6em 0 4em 0 ;
       border-top: solid 2px rgba(210, 215, 217, 0.75); }

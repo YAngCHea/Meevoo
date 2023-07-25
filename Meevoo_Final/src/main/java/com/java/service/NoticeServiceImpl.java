@@ -1,10 +1,12 @@
 package com.java.service;
 
 import java.io.File;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,25 +29,43 @@ public class NoticeServiceImpl implements NoticeService {
 
 	// 1. 전체 회원 하단 넘버링
 	@Override
-	public HashMap<String, Object> selectNoticeAll(PageDto pageDto, String search_input) {
+	public HashMap<String, Object> selectNoticeAll(int page) {
 
 		HashMap<String, Object> map = new HashMap<>();
 		//페이지 정보 메소드 호출하기
-		pageDto = pageMethod(pageDto,search_input);
+		//pageDto = pageMethod(pageDto,search_input);
+		
+		
+		// 게시글 전체개수
+		int listCount = noticeMapper.selectListCount();
+		int maxPage = (int)Math.ceil((double)listCount/10); // 26/10 3개page
+		int startPage = (int)((page-1)/10)*10 + 1;  //1
+		int endPage = startPage+10-1;
+		int startRow = (page-1)*10+1;  //1page -> 1-10, 2page -> 11-20
+		int endRow = startRow+10-1;
+		
+		
+		//endPage가 최대페이지보다 더 크면 최대페이지까지만 노출
+		if(endPage>maxPage) endPage=maxPage;
+		System.out.println("endPage : "+endPage);
 		
 		//모임 전체 가져오기
-		ArrayList<NoticeDto> nlist = noticeMapper.selectNoticeAll(pageDto, search_input);
+		ArrayList<NoticeDto> nlist = noticeMapper.selectNoticeAll(startRow,endRow);
 		
 		System.out.println("Impl nlist : "+nlist);
 		
 		map.put("nlist", nlist);
-		map.put("search_input", search_input);
-		map.put("pageDto", pageDto);
+		map.put("listCount", listCount);
+		map.put("maxPage", maxPage);
+		map.put("startPage", startPage);
+		map.put("endPage", endPage);
+		map.put("page", page);		
+		//map.put("pageDto", pageDto);
 		return map;
 	}
 
 	//페이지정보 메소드
-	public PageDto pageMethod(PageDto pageDto, String search_input) {
+	public PageDto pageMethod(@Param("pDto")PageDto pageDto, String search_input) {
 			
 			//전체게시글 수-142,현재페이지,최대페이지,시작페이지,끝페이지 1-시작,2,3,4,5-현재,6,7,8,9,10-끝  15-최대
 			//시작번호,끝나는번호 1-10,11-20,21-30

@@ -3,6 +3,7 @@ package com.java.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.FAQDto;
@@ -14,7 +15,7 @@ public interface NoticeService {
 
 
 	// 1. 전체 공지사항 하단 넘버링
-	HashMap<String, Object> selectNoticeAll(PageDto pageDto, String search_input);
+	HashMap<String, Object> selectNoticeAll(int page);
 
 
 	// 2. 공지사항 상세페이지

@@ -85,27 +85,44 @@
 		    ]]>
   </select>
   
- 
+
     <!-- 전체 회원 하단 넘버링  -->
   <select id="selectAll" resultType="com.java.dto.MemberDto">
      select * from ( select rownum rnum,a.* from
 		(select * from userlist 
 		
-		<if test="serch_input != null and serch_input != '' ">
-		   where userNm like '%'||#{serch_input}||'%'
-		</if>
+	   <if test="search.category == 'all'">
+		   where id like '%'||#{search.search_input}||'%' or usernm like '%'||#{search.search_input}||'%' or nicknm like '%'||#{search.search_input}||'%'
+	   </if>
+	   <if test="search.category == 'id'">
+		   where id like '%'||#{search.search_input}||'%'
+	   </if>
+	   <if test="search.category == 'usernm'">
+		   where usernm like '%'||#{search.search_input}||'%'
+	   </if>
+	   <if test="search.category == 'nicknm'">
+		   where nicknm like '%'||#{search.search_input}||'%'
+	   </if>
 		
 		order by joindate desc) a
-		)where rnum between #{pDto.startRow} and #{pDto.endRow}
+		)where rnum between #{startRow} and #{endRow}
    </select>
    
     <!--전체 회원 가져오기   -->
    <select id="selectMemberListCount" resultType="int">
       select count(*) from userlist
-      <if test="serch_input != null and serch_input != '' ">
-		   where userNm like '%'||#{serch_input}||'%'
-	  </if>
-      
+      <if test="category == 'all'">
+		   where id like '%'||#{search_input}||'%' or usernm like '%'||#{search_input}||'%' or nicknm like '%'||#{search_input}||'%'
+	   </if>
+	   <if test="category == 'id'">
+		   where id like '%'||#{search_input}||'%'
+	   </if>
+	   <if test="category == 'usernm'">
+		   where usernm like '%'||#{search_input}||'%'
+	   </if>
+	   <if test="category == 'nicknm'">
+		   where nicknm like '%'||#{search_input}||'%'
+	   </if>
    </select>
    
    <!-- 전체 모임 하단 넘버링  -->
@@ -229,8 +246,7 @@
 		sysdate,
 		#{cimg},
 		#{sfno},
-		(select dongcate from sportlist
-		where sfno = #{sfno}),
+		(select dongcate from sportlist where sfno = #{sfno}),
 		#{cloc},
 		#{cdodate},
 		#{ccontent},

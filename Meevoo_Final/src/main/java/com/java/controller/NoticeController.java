@@ -37,16 +37,18 @@ public class NoticeController {
 	
 // 1. 전체 회원 하단 넘버링 notice/notice -------------------------------------------------------------------
 		@RequestMapping("/notice/notice")
-		public String notice(PageDto pageDto, String search_input, Model model) {
+		public String notice(@RequestParam(defaultValue = "1")int page, Model model) {
 			
 			//게시글 전체가져오기
-			HashMap<String, Object> map = noticeService.selectNoticeAll(pageDto, search_input);
+			HashMap<String, Object> map = noticeService.selectNoticeAll(page);
 			model.addAttribute("nlist",map.get("nlist"));
-			model.addAttribute("search_input",map.get("search_input"));
+			model.addAttribute("page",map.get("page"));
+			model.addAttribute("listCount",map.get("listCount"));
+			model.addAttribute("startPage",map.get("startPage"));
+			model.addAttribute("endPage",map.get("endPage"));
+			model.addAttribute("maxPage",map.get("maxPage"));
 			model.addAttribute("pageDto",map.get("pageDto"));
 		
-			System.out.println("search_input"+search_input);
-			
 			return "notice/notice";
 		}	
 	

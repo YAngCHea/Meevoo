@@ -18,6 +18,5 @@ public class SportReportDto {
 	private Timestamp srepdate;
 	private String srepinput;
 	private String srepimg;
-	private String[] srepimgs;
 
 }

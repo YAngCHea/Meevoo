@@ -13,6 +13,7 @@ import com.java.dto.ClubReportDto;
 import com.java.dto.DonutChartsClubDto;
 import com.java.dto.MemberDto;
 import com.java.dto.PageDto;
+import com.java.dto.SearchDto;
 import com.java.dto.SportReportDto;
 import com.java.dto.StaticHeadOneDto;
 import com.java.dto.StaticHeadTwoDto;
@@ -24,14 +25,14 @@ public interface AdminMapper {
 
 
 	//전체 회원 하단 넘버링 
-	ArrayList<MemberDto> selectAll(@Param("pDto") PageDto pageDto, String serch_input);
+	ArrayList<MemberDto> selectAll(int startRow, int endRow,@Param("search") SearchDto search);
 
 	//전체 회원 가져오기
-	int selectMemberListCount();
+	int selectMemberListCount(SearchDto search);
 
 	//전체 모임 하단 넘버링 
 	ArrayList<ClubDto> selectClubAll(PageDto pageDto1);
-
+	
 	//전체 모임 가져오기
 	int selectClubListCount();
 

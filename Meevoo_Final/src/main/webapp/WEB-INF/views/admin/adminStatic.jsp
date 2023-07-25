@@ -151,7 +151,7 @@
 						                        <div class="h-100 bg-light rounded p-4">
 						                            <div class="d-flex align-items-center justify-content-between mb-4">
 						                                <h4 class="mb-0">시설 신고 게시물</h6>
-						                                <a href="">전체 보기</a>
+						                                <a href="/sportreport/sportReportList">전체 보기</a>
 						                            </div>
 						                            
 				                            <!-- 시설 신고 상위 5개 -->
@@ -161,7 +161,7 @@
 						                                <div class="w-100 ms-3">
 						                                    <div class="d-flex w-100 align-items-center justify-content-between">
 						                                        <span>${sRelist.sfno}</span>
-						                                        <span><a href="#">${sRelist.srepcontent}</a></span>
+						                                        <span><a href="/sportreport/sportReportListView?srepno=${srdto.srepno}">${sRelist.srepcontent}</a></span>
 						                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
 						                                    </div>
 						                                </div>

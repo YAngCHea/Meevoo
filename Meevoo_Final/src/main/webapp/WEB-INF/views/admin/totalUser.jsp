@@ -49,9 +49,9 @@
 											<script>
 										    	function userSearchBtn(){
 										    		
-										    		if($("#serch_input").val().length<2){
+										    		if($("#search_input").val().length<2){
 										    			alert("2글자 이상 입력하셔야 합니다.")
-										    			$("#serch_input").focus();
+										    			$("#search_input").focus();
 										    			return false;
 										    		}
 										    		
@@ -59,7 +59,7 @@
 										    	}
 										    </script>
 					        			
-					        			<!--card-->
+					        			<%-- <!--card-->
 					        			<div class="card card_border bg_lightblue">
 					                        <div class="card_option ">
 					                            
@@ -78,40 +78,72 @@
 					                                </select>
 						                        </div> -->
 						                        
-						                        <div class="option_section" style="width:100%;">
-					                            	<span style="float:left;"><br>회원 이름 검색 :</span>
+					                            <form class='userSearchBtn' method="post" action="/admin/totalUser" name="userSearch" >    
+						                        
+						                        <select name="category" id="category" style="width:10%;padding:0 0 0 0;margin:0;">
+										          <option value="all">전체</option>
+										          <option value="btitle">제목</option>
+										          <option value="bcontent">내용</option>
+										        </select>
+						                        
+						                        <div class="option_section" style="width:60%; display:flex; align-items:center; place-content: center; ">
+					                            	<!-- <span style="float:left;"><br>회원 이름 검색 :</span> -->
 					                            	<!-- 이 부분이 원래 벝은
 					                            	<input type="text" style="width:120px; float:left;">
 					                                <button class="btn_small btn_blue" style="float:left;">검색</button> -->
 					                                <!-- 검색부분!! -->
-					                            <form class='userSearchBtn' method="post" action="/admin/totalUser" name="userSearch" style="display:flex; align-items:center; place-content: center; ">    
-													<input tye="search" style="width:400px; margin: 0 0 0 1px;" name="serch_input" id="serch_input" value="${serch_input}" placeholder="검색어를 입력해주세요." />
-													<button type="button" class="btn_small btn_blue" onclick="userSearchBtn()" style="height: 40px; margin: 0 0 0 1px;">검색</button>
-												</form>
+													<input type="search" style="width:400px; margin: 0 0 0 1px;" name="search_input" id="search_input" value="${search_input}" placeholder="검색어를 입력해주세요." />
+													<button type="button" class="btn_small btn_blue" onclick="userSearchBtn()" style="height: 40px; margin: 0 0 0 1px;float:left;">검색</button>
 						                        </div>
+												</form>
 						                        
 					                        </div>
 					        			</div>
+										<!--card--> --%>
+										
+										
+										
+										
+										
 										<!--card-->
+										<div class="card card_border bg_lightblue">
+										    <div class="card_option">
+										        <form class="userSearchBtn" method="post" action="/admin/totalUser" name="userSearch" style="display: flex; align-items: center; justify-content: center;">
+										            <select name="category" id="category" style="width: 10%; padding: 0 0 0 0; margin: 0;">
+										                <option value="all">전체</option>
+										                <option value="id">아이디</option>
+										                <option value="usernm">이름</option>
+										                <option value="nicknm">닉네임</option>
+										            </select>
+										
+										            <div class="option_section" style="width: 30%; display: flex; align-items: center;">
+										                <input type="search" style="width: 400px; margin: 0 0 0 1px;" name="search_input" id="search_input" value="${search_input}" placeholder="검색어를 입력해주세요." />
+										                <button type="button" class="btn_small btn_blue" onclick="userSearchBtn()" style="height: 40px; margin: 0 0 0 1px;">검색</button>
+										            </div>
+										        </form>
+										    </div>
+										</div>
+										<!--card-->
+
+										
+										
+										
+										
+										
+										
+										
 										
 										<!--회원 리스트-->
 										<div class="card card_border">
-											<!--card_title-->
-						        			<!-- <div class="card_title"> -->
-						                        <!-- <div class="rightArea"> -->
-						                        	<!-- <button class="btn_small btn_red">Option</button> -->
-						                        	<!-- <div class="dropBtn"> -->
-								        				<!-- <button class="btn_small btn_blue">Button Name<span><i class="demo-icon icon-down-open"></i></span></button> -->
-							        					<div class="drop_list" style="display: none;">
-							        						<ul>
-							        							<li><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">dropButton name1</a></li>
-							        							<li><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">dropButton name2</a></li>
-							        							<li><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">dropButton name3</a></li>
-							        						</ul>
-							        					</div>
-							        				<!-- </div> -->
-						                        <!-- </div> -->
-						                    <!-- </div> -->
+				        					<div class="drop_list" style="display: none;">
+				        						<ul>
+				        							<li><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">dropButton name1</a></li>
+				        							<li><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">dropButton name2</a></li>
+				        							<li><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">dropButton name3</a></li>
+				        						</ul>
+				        					</div>
+						                    
+						                    
 						        			<!--card_title-->
 						        			<div class="card paddingnone">
 						        				<!--table-->
@@ -142,7 +174,6 @@
 						                                        <th>Edit</th>
 						                                    <!-- </tr> -->
 						                                </thead>
-						                                
 						                                <tbody>
 						                                <!-- userList 가져오기!! -->
 						                                <c:forEach var="userList" items="${list}">
@@ -175,94 +206,101 @@
 						                            </table>
 												</div>
 												<!--table-->
-						        			</div>
+						        			</div> 
+						        			<!--  -->
 						        			
 						        			
 						        			
 						        			
-						        			
-							        			<!-- 하단 넘버링 버튼 -->
-											<div class="col-12" style="margin: 0px auto;">
+									        	<div class="col-12" style="margin: 0px auto;">
 												<ul class="pagination">
-												    <!-- 첫 페이지 이동 -->
-												    <c:if test="${pageDto.page !=1}">
-													  <li>
-													    <a href="/admin/totalUser?page=1" class="button">
-													      <img src="../images/general/pageFirst.png" style="width:15px; " />
-													    </a>
-													  </li>
-												    </c:if>
-												    <c:if test="${pageDto.page ==1}">
-													  <li>
-													    <span class="button disabled">
-													      <img src="../images/general/pageFirst.png" style="width:15px; vertical-align: middle;" />
-													    </span>
-													  </li>
-												    </c:if>
-													<!-- 첫 페이지 이동 끝-->
-													<!-- 이전 페이지 이동 -->
-													<c:if test="${pageDto.page>1}">
-													  <li>
-													    <a href="/admin/totalUser?page=${pageDto.page-1}" class="button">
-													      <img src="../images/general/pagePrevious.png" style="width:15px; vertical-align: middle;" />
-													    </a>
-													  </li>
-													</c:if>
-													<c:if test="${pageDto.page==1}">
-													  <li>
-													    <span class="button disabled">
-													      <img src="../images/general/pagePrevious.png" style="width:15px; vertical-align: middle;" />
-													    </span>
-													  </li>
-													</c:if>
-													<!-- 이전 페이지 이동 끝 -->
-													<!-- 페이지 리스트 -->
-													<c:forEach var="num" begin="${pageDto.startPage}" end="${pageDto.endPage}" step="1" >
-													  <c:if test="${num != pageDto.page}" >
-													    <li><a href="/admin/totalUser?page=${num}" class="page">${num}</a></li>
-													  </c:if>
-													  <c:if test="${num == pageDto.page}" >
-													    <li><a href="/admin/totalUser?page=${num}" class="page active">${num}</a></li>
-													  </c:if>
-													</c:forEach>
-													<!-- 페이지 리스트 끝-->
-													<!-- 다음 페이지 이동 -->
-													<c:if test="${pageDto.page<pageDto.maxPage}">
-													  <li>
-													    <a href="/admin/totalUser?page=${pageDto.page+1}" class="button">
-													      <img src="../images/general/pageNext.png" style="width:15px; vertical-align: middle;" />
-													    </a>
-													  </li>
-													</c:if>
-													<c:if test="${pageDto.page==pageDto.maxPage}">
-													  <li>
-													    <span class="button disabled">
-													      <img src="../images/general/pageNext.png" style="width:15px; vertical-align: middle;" />
-													    </span>
-													  </li>
-													</c:if>
-													<!-- 다음 페이지 이동 끝-->
-													<!-- 끝 페이지 이동 -->
-												    <c:if test="${pageDto.page != pageDto.maxPage}">
-													  <li>
-													    <a href="/admin/totalUser?page=${pageDto.maxPage}" class="button">
-													      <img src="../images/general/pageLast.png" style="width:15px; vertical-align: middle;" />
-													    </a>
-													  </li>
-												    </c:if>
-												    <c:if test="${pageDto.page == pageDto.maxPage}">
-													  <li>
-													    <span class="button disabled">
-													      <img src="../images/general/pageLast.png" style="width:15px; vertical-align: middle;" />
-													    </span>
-													  </li>
-												    </c:if>
-													<!-- 끝 페이지 이동 끝-->
-													
-											</ul>
+											      <!-- 첫페이지 이동 -->
+											      <c:if test="${page != 1 }">
+												      <li class="first">
+												         <a href="/admin/totalUser?page=1&search_input=${search_input}" class="button">
+												            <img src="../images/general/pageFirst.png" style="width: 15px;" />
+												         </a>
+												      </li>
+											      </c:if>
+											      <c:if test="${page == 1 }">
+												      <li class="first">
+												         <span class="button disabled"> 
+												            <img src="../images/general/pageFirst.png" style="width: 15px; vertical-align: middle;" />
+														 </span>
+												      </li>
+											      </c:if>
+											      <!-- 첫 페이지 이동 끝-->
+											      <!-- 이전페이지 이동 -->
+											      <c:if test="${page>1}">
+											        <li class="prev">
+											           <a href="/admin/totalUser?page=${page-1}&search_input=${search_input}" class="button">
+											              <img src="../images/general/pagePrevious.png" style="width: 15px; vertical-align: middle;" />
+											           </a>
+											        </li>
+											      </c:if>
+											      <c:if test="${page==1}">
+											         <li class="prev">
+											            <span class="button disabled"> 
+											               <img src="../images/general/pagePrevious.png" style="width: 15px; vertical-align: middle;" />
+														</span>
+											         </li>
+											      </c:if>
+											      <!-- 이전 페이지 이동 끝 -->
+											      <!-- 페이지리스트 -->
+											      <c:forEach begin="${startPage}" end="${endPage}" step="1" var="num">
+											        <c:if test="${num != page }">
+												       <li class="num">
+												          <a href="/admin/totalUser?page=${num}&search_input=${search_input}" class="page">
+												           <div>${num}</div>
+												          </a>
+												       </li>
+											        </c:if>
+											        <c:if test="${num == page }">
+											            <li class="num on">
+											               <a href="/admin/totalUser?page=${num}" class="page active">
+											                  <div>${num}</div>
+											               </a>
+											            </li>
+											        </c:if>
+											      </c:forEach>
+											      <!-- 페이지 리스트 끝-->
+											      <!-- 다음페이지 이동 -->
+											      <c:if test="${page<maxPage}">
+											        <li class="next">
+											           <a href="/admin/totalUser?page=${page+1}&search_input=${search_input}" class="button">
+											              <img src="../images/general/pageNext.png" style="width: 15px; vertical-align: middle;" />
+											           </a>
+											        </li>
+											      </c:if>
+											      <c:if test="${page==maxPage }">
+											        <li class="next">
+											           <span class="button disabled"> 
+											              <img src="../images/general/pageNext.png" style="width: 15px; vertical-align: middle;" />
+													   </span>
+											        </li>
+											      </c:if>
+											      <!-- 다음 페이지 이동 끝-->
+											      <!-- 끝페이지 이동 -->
+											      <c:if test="${page != maxPage }">
+											        <li class="last">
+												      <a href="/admin/totalUser?page=${maxPage}&search_input=${search_input}" class="button">
+												         <img src="../images/general/pageLast.png" style="width: 15px; vertical-align: middle;" />
+												      </a>
+											        </li>
+											      </c:if>
+											      <c:if test="${page == maxPage }">
+												      <li class="last">
+											            <span class="button disabled"> <img src="../images/general/pageLast.png" style="width: 15px; vertical-align: middle;" />
+														</span>
+												      </li>
+											      </c:if>
+											      
+											    </ul>
+											</div>	
+				
+				
 										</div>
-									
-									
+
 									
 									<!-- Section -->
 									<section>
@@ -276,36 +314,6 @@
 									</section>
 									<!-- // Section -->
 						        			
-						        			
-					        			
-						        			
-						        			
-						        			
-											<!--paging-->
-											<!-- 
-											<div class="paging">
-						                        <div class="ps_area">
-						                            <span class="imgb"><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#"><i class="demo-icon icon-first" title="First"></i></a></span>
-						                            <span class="imgb"><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#"><i class="demo-icon icon-left-open" title="First"></i></a></span>
-						                            <span class="on"><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">1</a></span>
-						                            <span><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">2</a></span>
-						                            <span><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">3</a></span>
-						                            <span><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">4</a></span>
-						                            <span class="imgb"><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#"><i class="demo-icon icon-right-open" title="First"></i></a></span>
-						                            <span class="imgb"><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#"><i class="demo-icon icon-end" title="First"></i></a></span>
-						                        </div>
-						                    </div>
-											 -->
-											<!--paging-->
-											
-											
-											<!-- 게시글 페이지 넘기기 Start -->
-												<!-- 하단 넘버링 버튼 끝 -->
-											<!-- 게시글 페이지 넘기기 End -->
-											
-											
-											
-											
 											
 										</div>
 					        			<!--card-->
@@ -321,14 +329,14 @@
 					 
 					 
                   </div>
-               </div>
                
                
                <!-- Sidebar Start -->
 					<%@ include file="../sidebar.jsp" %>
 		       <!-- Sidebar End -->
                
-         </div>
+               </div>
+         
          <!-- Scripts -->
          <script src="../js/jquery.min.js"></script>
          <script src="../js/browser.min.js"></script>

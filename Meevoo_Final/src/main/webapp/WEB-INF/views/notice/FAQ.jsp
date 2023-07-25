@@ -97,12 +97,12 @@
 					<div class="col-12" style="margin: 0px auto;">
 						<ul class="pagination">
 							<!-- 첫 페이지 이동 -->
-							<c:if test="${pageDto.page !=1}">
+							<c:if test="${page !=1}">
 								<li><a href="/notice/FAQ?page=1" class="button"> <img
 										src="../images/general/pageFirst.png" style="width: 15px;" />
 								</a></li>
 							</c:if>
-							<c:if test="${pageDto.page ==1}">
+							<c:if test="${page ==1}">
 								<li><span class="button disabled"> <img
 										src="../images/general/pageFirst.png"
 										style="width: 15px; vertical-align: middle;" />
@@ -110,14 +110,14 @@
 							</c:if>
 							<!-- 첫 페이지 이동 끝-->
 							<!-- 이전 페이지 이동 -->
-							<c:if test="${pageDto.page>1}">
-								<li><a href="/notice/FAQ?page=${pageDto.page-1}"
+							<c:if test="${page>1}">
+								<li><a href="/notice/FAQ?page=${page-1}"
 									class="button"> <img
 										src="../images/general/pagePrevious.png"
 										style="width: 15px; vertical-align: middle;" />
 								</a></li>
 							</c:if>
-							<c:if test="${pageDto.page==1}">
+							<c:if test="${page==1}">
 								<li><span class="button disabled"> <img
 										src="../images/general/pagePrevious.png"
 										style="width: 15px; vertical-align: middle;" />
@@ -125,25 +125,25 @@
 							</c:if>
 							<!-- 이전 페이지 이동 끝 -->
 							<!-- 페이지 리스트 -->
-							<c:forEach var="num" begin="${pageDto.startPage}"
-								end="${pageDto.endPage}" step="1">
-								<c:if test="${num != pageDto.page}">
+							<c:forEach var="num" begin="${startPage}"
+								end="${endPage}" step="1">
+								<c:if test="${num != page}">
 									<li><a href="/notice/FAQ?page=${num}" class="page">${num}</a></li>
 								</c:if>
-								<c:if test="${num == pageDto.page}">
+								<c:if test="${num == page}">
 									<li><a href="/notice/FAQ?page=${num}"
 										class="page active">${num}</a></li>
 								</c:if>
 							</c:forEach>
 							<!-- 페이지 리스트 끝-->
 							<!-- 다음 페이지 이동 -->
-							<c:if test="${pageDto.page<pageDto.maxPage}">
-								<li><a href="/notice/FAQ?page=${pageDto.page+1}"
+							<c:if test="${page<maxPage}">
+								<li><a href="/notice/FAQ?page=${page+1}"
 									class="button"> <img src="../images/general/pageNext.png"
 										style="width: 15px; vertical-align: middle;" />
 								</a></li>
 							</c:if>
-							<c:if test="${pageDto.page==pageDto.maxPage}">
+							<c:if test="${page==maxPage}">
 								<li><span class="button disabled"> <img
 										src="../images/general/pageNext.png"
 										style="width: 15px; vertical-align: middle;" />
@@ -151,19 +151,20 @@
 							</c:if>
 							<!-- 다음 페이지 이동 끝-->
 							<!-- 끝 페이지 이동 -->
-							<c:if test="${pageDto.page != pageDto.maxPage}">
-								<li><a href="/notice/FAQ?page=${pageDto.maxPage}"
+							<c:if test="${page != maxPage}">
+								<li><a href="/notice/FAQ?page=${maxPage}"
 									class="button"> <img src="../images/general/pageLast.png"
 										style="width: 15px; vertical-align: middle;" />
 								</a></li>
 							</c:if>
-							<c:if test="${pageDto.page == pageDto.maxPage}">
+							<c:if test="${page == maxPage}">
 								<li><span class="button disabled"> <img
 										src="../images/general/pageLast.png"
 										style="width: 15px; vertical-align: middle;" />
 								</span></li>
 							</c:if>
 							<!-- 끝 페이지 이동 끝-->
+						</ul>
 					</div>
                            
 

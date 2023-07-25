@@ -14,6 +14,7 @@ import com.java.dto.ClubReportDto;
 import com.java.dto.DonutChartsClubDto;
 import com.java.dto.MemberDto;
 import com.java.dto.PageDto;
+import com.java.dto.SearchDto;
 import com.java.dto.SportReportDto;
 import com.java.dto.StaticHeadOneDto;
 import com.java.dto.StaticHeadTwoDto;
@@ -26,7 +27,7 @@ public interface AdminService {
 
 
 	//전체 회원 하단 넘버링 
-	HashMap<String, Object> selectAll(PageDto pageDto, String serch_input);
+	HashMap<String, Object> selectAll(int page, SearchDto search);
 
 	//전체 모임 하단 넘버링 
 	HashMap<String, Object> selectClubAll(PageDto pageDto1);

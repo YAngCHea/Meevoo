@@ -6,24 +6,28 @@
 
 <!-- 공지사항 전체 가져오기 -->
    <select id="selectNoticeAll" resultType="com.java.dto.NoticeDto">
-      select * from notice
       
-      <if test="search_input != null and search_input != '' ">
-		   where notititle like '%'||#{search_input}||'%'
-		</if>
-      
-      
-      order by notidate desc
+      select * from (select rownum rnum,a.* from 
+	     (select * from notice 
+		   <![CDATA[
+           order by notidate desc) a)
+		   where rnum >= #{startRow} and rnum <= #{endRow}
+		   ]]>
    </select>
+   
+      <!-- 공지사항 전체개수 -->
+   <select id="selectListCount" resultType="int">
+       select count(*) from notice
+	   
+   </select>
+   
+   
+   
+   
    
    <!-- 공지사항 가져오기   -->
    <select id="selectNoticeListCount" resultType="int">
       select count(*) from notice
-      
-      <if test="search_input != null and serch_input != '' ">
-		   where notititle like '%'||#{search_input}||'%'
-	  </if>
-      
    </select>
    
    <!-- 공지사항 상세페이지 : noticeView -->
@@ -97,9 +101,7 @@ sysdate,
    <!-- QnA 전체 가져오기 -->
    <select id="selectQnAAll" resultType="com.java.dto.QnADto">
       select * from qna
-      <if test="search_input != null and search_input != '' ">
-		   where id like '%'||#{search_input}||'%'
-	  </if>
+      order by qgroup desc, qstep asc
    </select>
    
    <!-- QnA 가져오기   -->
@@ -108,6 +110,7 @@ sysdate,
       <if test="search_input != null and search_input != '' ">
 		   where id like '%'||#{search_input}||'%'
 	  </if>
+	 order by qgroup desc,qstep asc
    </select>
    
    <!-- QnA 상세페이지  -->
@@ -115,12 +118,51 @@ sysdate,
    select * from qna where qnano=#{qnano}
    </select>
    
+   <!-- QnA 추가하기 -->
+   <insert id="insertQnA">
+   INSERT INTO qna VALUES (
+     qna_seq.nextval,
+     #{id},
+     #{qnatitle},
+     sysdate,
+     #{qnacontent},
+     #{qnastatus},
+     1,
+     qna_seq.currval,
+     0
+     )
+   </insert>
    
+   <!-- QnA 삭제하기 -->
+   <delete id="deleteQnAOne">
+      delete qna where qnano=#{qnano}
+   </delete>
    
+   <!-- QnA 답글달기 불러오기 -->
+   <select id="selectQROne">
+      select * from qna where qnano=#{qnano}
+   </select>
    
+   <update id="updateQstepCount">
+   <![CDATA[
+   update qna set qstep=qstep+1 where qgroup=#{qgroup} and qstep>#{qstep}
+   ]]>
+   </update>
    
-   
-   
+   <!-- QnA 답글 저장하기 -->
+   <insert id="doQnAReply">
+   INSERT INTO qna VALUES (
+     qna_seq.nextval,
+     #{id},
+     #{qnatitle},
+     sysdate,
+     #{qnacontent},
+     #{qnastatus},
+     #{qstep}+1,
+     #{qgroup},
+     #{qindent}+1
+     )
+   </insert>
    
    
    

@@ -27,6 +27,7 @@ import com.java.dto.ClubReportDto;
 import com.java.dto.DonutChartsClubDto;
 import com.java.dto.MemberDto;
 import com.java.dto.PageDto;
+import com.java.dto.SearchDto;
 import com.java.dto.SportReportDto;
 import com.java.dto.StaticHeadOneDto;
 import com.java.dto.StaticHeadTwoDto;
@@ -51,18 +52,23 @@ public class AdminController {
 //=== Admin : 회원 관련 ====================================================================================================================	
 // 1. 전체 회원 하단 넘버링 -------------------------------------------------------------------
 		@RequestMapping("/admin/totalUser")
-		public String totalUser(PageDto pageDto, String serch_input, Model model) {
-			//System.out.println("AdminController totalUser page : "+pageDto.getPage());
+		public String totalUser(@RequestParam(defaultValue = "1")int page, SearchDto search, Model model) {
 			
 			//게시글 전체가져오기
-			HashMap<String, Object> map = adminService.selectAll(pageDto, serch_input);
+			HashMap<String, Object> map = adminService.selectAll(page, search);
 			model.addAttribute("list",map.get("list"));
-			model.addAttribute("serch_input",map.get("serch_input"));
-			model.addAttribute("pageDto",map.get("pageDto"));
+			model.addAttribute("page",map.get("page"));
+			model.addAttribute("listCount",map.get("listCount"));
+			model.addAttribute("startPage",map.get("startPage"));
+			model.addAttribute("endPage",map.get("endPage"));
+			model.addAttribute("maxPage",map.get("maxPage"));
+			model.addAttribute("category",map.get("category"));
+			model.addAttribute("search_input",map.get("search_input"));
 		
-			System.out.println("serch_input"+serch_input);
+			System.out.println("search"+search);
+			System.out.println("page"+page);
 			
-				return "admin/totalUser";
+			return "admin/totalUser";
 		}
 	
 		

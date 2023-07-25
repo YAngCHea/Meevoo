@@ -17,7 +17,10 @@ public interface NoticeMapper {
 
 	
 	//공지사항 전체 가져오기
-	ArrayList<NoticeDto> selectNoticeAll(@Param("pDto")PageDto pageDto, String search_input);
+	ArrayList<NoticeDto> selectNoticeAll(int startRow, int endRow);
+	
+	//공지사항 전체개수
+	int selectListCount();
 
 	//공지사항 하단 넘버링
 	int selectNoticeListCount();
@@ -81,6 +84,10 @@ public interface NoticeMapper {
 
 	// 7. QnA qstep1 증가
 	void updateQstepCount(QnADto qdto);
+
+	
+
+	
 
 
 	

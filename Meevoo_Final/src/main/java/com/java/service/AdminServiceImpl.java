@@ -1,6 +1,7 @@
 package com.java.service;
 
 import java.io.File;
+
 import java.util.ArrayList;
 
 
@@ -12,6 +13,7 @@ import java.util.UUID;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +22,7 @@ import com.java.dto.ClubReportDto;
 import com.java.dto.DonutChartsClubDto;
 import com.java.dto.MemberDto;
 import com.java.dto.PageDto;
+import com.java.dto.SearchDto;
 import com.java.dto.SportReportDto;
 import com.java.dto.StaticHeadOneDto;
 import com.java.dto.StaticHeadTwoDto;
@@ -37,41 +40,57 @@ public class AdminServiceImpl implements AdminService {
 	
 	//전체 회원 하단 넘버링 =========================================================================================
 	@Override
-	public HashMap<String, Object> selectAll(PageDto pageDto, String serch_input) {
-		HashMap<String, Object> map = new HashMap<>();
-		//페이지정보 메소드호출
-		pageDto = pageMethod(pageDto,serch_input);
+	public HashMap<String, Object> selectAll(int page, SearchDto search) {
+		
+		HashMap<String, Object> map = new HashMap<>(page);
+		
+		// 회원 전체개수
+		int listCount = adminMapper.selectMemberListCount(search);
 		
 		//회원 전체가져오기 - 마이바티스로 객체,String 변수
-		ArrayList<MemberDto> list = adminMapper.selectAll(pageDto,serch_input);
-		//System.out.println("AdminServiceImpl remainDate : "+list.get(0).getRemainDate());
+		// 최대페이지
+		int maxPage = (int)Math.ceil((double)listCount/10); // 26/10 3개page
+		int startPage = (int)((page-1)/10)*10 + 1;  //1
+		int endPage = startPage+10-1;
+		int startRow = (page-1)*10+1;  //1page -> 1-10, 2page -> 11-20
+		int endRow = startRow+10-1;
 		
+		//endPage가 최대페이지보다 더 크면 최대페이지까지만 노출
+		if(endPage>maxPage) endPage=maxPage;
+		System.out.println("endPage : "+endPage);
+		ArrayList<MemberDto> list = adminMapper.selectAll(startRow, endRow, search);
+
 		map.put("list", list);
-		map.put("serch_input", serch_input);
-		map.put("pageDto", pageDto);
+		map.put("listCount", listCount);
+		map.put("maxPage", maxPage);
+		map.put("startPage", startPage);
+		map.put("endPage", endPage);
+		map.put("page", page);
+		map.put("category", search.getCategory());
+		map.put("Search_input", search.getSearch_input());
 		return map;
 	}
 	
 	//페이지정보 메소드
-	public PageDto pageMethod(PageDto pageDto, String serch_input) {
-			
-			//전체게시글 수-142,현재페이지,최대페이지,시작페이지,끝페이지 1-시작,2,3,4,5-현재,6,7,8,9,10-끝  15-최대
-			//시작번호,끝나는번호 1-10,11-20,21-30
-			//전체게시글 수 저장
-			pageDto.setListCount(adminMapper.selectMemberListCount());
-			// 최대 넘버링페이지
-			pageDto.setMaxPage((int)Math.ceil((double)pageDto.getListCount()/10));
-			// 시작 넘버링페이지
-			pageDto.setStartPage((int)((pageDto.getPage()-1)/10)*10 + 1);
-			// 끝 넘버링페이지
-			pageDto.setEndPage(pageDto.getStartPage()+10-1);
-			// 시작번호
-			pageDto.setStartRow((pageDto.getPage()-1)*10+1);
-			// 끝나는번호
-			pageDto.setEndRow(pageDto.getStartRow()+10-1);
-			
-			return pageDto;
-		}
+//	public PageDto pageMethod(PageDto pageDto, String search_input) {
+//			
+//			//전체게시글 수-142,현재페이지,최대페이지,시작페이지,끝페이지 1-시작,2,3,4,5-현재,6,7,8,9,10-끝  15-최대
+///			//시작번호,끝나는번호 1-10,11-20,21-30
+//			//전체게시글 수 저장
+//			pageDto.setListCount(adminMapper.selectMemberListCount());
+//			// 최대 넘버링페이지
+//			pageDto.setMaxPage((int)Math.ceil((double)pageDto.getListCount()/10));
+//			// 시작 넘버링페이지
+//			pageDto.setStartPage((int)((pageDto.getPage()-1)/10)*10 + 1);
+//			// 끝 넘버링페이지
+//			pageDto.setEndPage(pageDto.getStartPage()+10-1);
+//			// 시작번호
+//			pageDto.setStartRow((pageDto.getPage()-1)*10+1);
+//			// 끝나는번호
+//			pageDto.setEndRow(pageDto.getStartRow()+10-1);
+//			
+//			return pageDto;
+//		}
 	
 	
 	

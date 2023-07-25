@@ -86,7 +86,7 @@
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">이름<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="usernm" placeholder="길동쓰" data-validate-length-range="5,15" type="text">
+									                        <input class="form-control" name="usernm"  data-validate-length-range="5,15" type="text" value ="${memberDto.id }">
 									                      </div>
 									                    </div>
 									                    

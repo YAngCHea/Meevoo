@@ -40,18 +40,7 @@
                         <%@ include file="../top.jsp" %>
 
 
-                     <!-- Banner -->
-                        <!-- <section id="banner">
-                           <div class="content">
-                              <header style="text-align: center;">
-                                 <h1>전체 게시글에서 수정버튼 누르면 댄다!</h1>
-                                 <p> 수정이랑 삭제가 가능하지!!!</p>
-                              </header>
-                           </div>
-                        </section> -->
-					 
-					 
-					 <!-- 회원관리 리스트 나오게! -->
+					 <!-- 회원관리 리스트 나오게! Start -->
 						 <div class="Wrap">
 					        <!--content-->
 					        <div class="content_St">
@@ -264,15 +253,19 @@
 					        </div>
 					        <!--//content-->
 						</div>
-										 
+						<!-- 회원관리 리스트 나오게! End -->			
+						
+							 
 					 <%@ include file="../footer.jsp" %> 
 					 
                   </div>
-               </div>
-
+                  
                <!-- Sidebar Start -->
 					<%@ include file="../sidebar.jsp" %>
 		       <!-- Sidebar End -->
+                  
+               </div>
+
 
          </div>
          <!-- Scripts -->
