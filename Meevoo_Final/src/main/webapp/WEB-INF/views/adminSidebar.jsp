@@ -146,26 +146,55 @@ body.slider input[type="range"] {
 							<li><a href="/notice/QnA">Q&A</a></li>
 						</ul>
 					 </li>
-					 <!-- admin으로 로그인했을때만 sidebar에서 이 부분이 보인다 -->
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
 					 <c:if test="${sessionId == 'admin'}">
 					 
+					 
+					 
 					 <li>
-					  <a href="/admin/adminStatic">관리자 메인페이지</a></li>
+						  <a href="/admin/adminStatic">관리자 메인페이지</a></li>
+						<!-- opener 옵션 1,2,3 -->
 					 <li>
 					 <span class="opener">회원관리</span>
-						<ul>
-							<li><a href="/admin/totalUser">전체 회원 리스트</a></li>
-						</ul>
+							<ul>
+								<li><a href="/admin/totalUser">전체 회원 리스트</a></li>
+							</ul>
 					 </li>
 				     <li>
-					<span class="opener">게시글 관리</span>
-						<ul>
-							<li><a href="/admin/totalWrite">전체 게시글 리스트</a></li>
-							<li>가능하면 게시글 / 후기 두개로 탭 나눠서 해보기</li>
-						</ul>
+						<span class="opener">게시글 관리</span>
+							<ul>
+								<li><a href="/admin/totalWrite">전체 게시글 리스트</a></li>
+								<li>가능하면 게시글 / 후기 두개로 탭 나눠서 해보기</li>
+							</ul>
 					 </li>
 					 
+					 
 					 </c:if>
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
 					 
 				</ul>
 			</nav>

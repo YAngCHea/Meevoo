@@ -236,69 +236,16 @@
 					        <!--//content-->
 						</div>
 										 
+					 <%@ include file="../footer.jsp" %> 
 					 
 					 
                   </div>
                </div>
-
-            <!-- Sidebar -->
-               <div id="sidebar">
-                  <div class="inner">
-
-                     <!-- Search -->
-                        <section id="search" class="alt">
-                           <form method="post" action="#">
-                              <input type="text" name="query" id="query" placeholder="Search" />
-                           </form>
-                        </section>
-
-                     <!-- Menu -->
-                        <nav id="menu">
-                           <header class="major">
-                              <h2>Menu</h2>
-                           </header>
-                           <ul>
-                              <li><a href="/admin_static">통계</a></li>
-                              <!-- opener 옵션 1,2,3 -->
-                              <li>
-                                 <span class="opener">회원관리</span>
-                                 <ul>
-                                    <li><a href="/total_user">전체 회원 리스트</a></li>
-                                 </ul>
-                              </li>
-                              <li>
-                                 <span class="opener">게시글 관리</span>
-                                 <ul>
-                                    <li><a href="/total_write">전체 게시글 리스트</a></li>
-                                    <li>가능하면 게시글 / 후기 두개로 탭 나눠서 해보기</li>
-                                 </ul>
-                              </li>
-                              <li>
-                                 <span class="opener">마이페이지</span>
-                                 <ul>
-                                    <li><a href="/index">내 프로필</a></li>
-                                    <li><a href="/index">내 운동모임</a></li>
-                                    <li><a href="/index">내 체육시설</a></li>
-                                 </ul>
-                              </li>
-                              <li>
-                                 <span class="opener">고객센터</span>
-                                 <ul>
-                                    <li><a href="/index">공지사항</a></li>
-                                    <li><a href="/index">FAQ / Q&A</a></li>
-                                 </ul>
-                              </li>
-                           </ul>
-                        </nav>
-
-
-                     <!-- Footer -->
-                        <footer id="footer">
-                           <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-                        </footer>
-
-                  </div>
-               </div>
+               
+               
+               <!-- Sidebar Start -->
+					<%@ include file="../sidebar.jsp" %>
+		       <!-- Sidebar End -->
 
          </div>
          <!-- Scripts -->

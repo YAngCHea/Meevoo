@@ -70,15 +70,12 @@
 								
 								
 						<br>	
-						<!-- Footer -->
 						<%@ include file="../footer.jsp" %>
-						</div>
-						
-					</div>
+					 
+                  </div>
+               </div>
 
-					
-				<!-- Sidebar -->
-				<%@ include file="../sidebar.jsp" %>
+            <%@ include file="../sidebar.jsp" %>
 			</div>
 			
 			

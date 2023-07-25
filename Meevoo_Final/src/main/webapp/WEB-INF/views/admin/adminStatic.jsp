@@ -40,80 +40,10 @@
 </head>
 
 <body class="is-preload">
-    
-    
-
     <div class="container-xxl position-relative bg-white d-flex p-0">
+    
         <!-- Sidebar Start -->
-               <div id="sidebar">
-                  <div class="inner">
-
-                     <!-- Search -->
-                        <section id="search" class="alt">
-                           <form method="post" action="#">
-                              <input type="text" name="query" id="query" placeholder="Search" />
-                           </form>
-                        </section>
-
-                     <!-- Menu -->
-					 	 <nav id="menu">
-						 	 <header class="major">
-								 <h2>Menu</h2>
-							 </header>
-							<ul>
-							 <li>
-							   <span class="opener">운동모임</span>
-								 <ul>
-									 <li><a href="adminStatic">운동모임 홈</a></li>
-									 <li><a href="index">운동모임 게시판</a></li>
-								 	 <li><a href="index">운동모임 작성</a></li>
-								 </ul>
-						     </li>
-							 <li>
-							   <span class="opener">체육시설</span>
-								 <ul>
-									 <li><a href="/sport/sportnotice">체육시설 게시판</a></li>
-									 <li>체육시설 게시판으로 이동하게 코드 설정하기</li>
-								 </ul>
-							 </li>
-							 <li>
-							   <span class="opener">내 페이지</span>
-								 <ul>
-									<li><a href="index">내 프로필</a></li>
-									<li><a href="index">내 운동모임</a></li>
-									<li><a href="index">내 체육시설</a></li>
-								</ul>
-							 </li>
-								<li>
-								<span class="opener">고객센터</span>
-									<ul>
-										<li><a href="/notice/notice">공지사항</a></li>
-										<li><a href="/notice/FAQ">FAQ</a></li>
-										<li><a href="/notice/QnA">Q&A</a></li>
-									</ul>
-								</li>
-								<li>
-								  <a href="/admin/adminStatic">관리자 메인페이지</a></li>
-								<!-- opener 옵션 1,2,3 -->
-								<li>
-								<span class="opener">회원관리</span>
-									<ul>
-										<li><a href="/admin/totalUser">전체 회원 리스트</a></li>
-									</ul>
-							    </li>
-								<li>
-								<span class="opener">게시글 관리</span>
-									<ul>
-										<li><a href="/admin/totalWrite">전체 게시글 리스트</a></li>
-										<li>가능하면 게시글 / 후기 두개로 탭 나눠서 해보기</li>
-									</ul>
-								</li>
-							</ul>
-						</nav>
-					<!-- Menu End-->
-                        
-                  </div>
-               </div>
+			<%@ include file="../sidebar.jsp" %>
         <!-- Sidebar End -->
         
         
