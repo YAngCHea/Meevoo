@@ -223,7 +223,12 @@
 			            }]
 			        },
 			        options: {
-			            responsive: true
+			            responsive: true,
+						plugins: {
+							legend: {
+								position: "left"
+							}
+						}
 			        }
 			    });
                
@@ -239,7 +244,58 @@
  //== 오른쪽 하단 그래프 그리기 - 모임게시물 END ==========================================================================================   
     
 //== 오른쪽 하단 그래프 그리기 - 모임게시물 2222222222 START ==========================================================================================   
-    
+        var dcclist;
+	    
+		//ajax구문
+		$.ajax({
+			url: "/admin/adminStatic5",
+			type: "post",
+			data: {
+				
+			},
+			success: function(data) {
+			   console.log(data);
+               //alert("성공");
+               //alert("data1 : "+data);
+                var dcclist = data;
+               //alert("data2 : "+dcclist[0].golf_count);    => 리스트 0번째의 ~값 을 찍어야 나온다....
+                
+               // Doughnut Chart
+			    var ctx6 = $("#doughnut-chart2222").get(0).getContext("2d");
+			    var myChart6 = new Chart(ctx6, {
+			        type: "doughnut",
+			        data: {
+			            labels: ["골프", "농구", "배드민턴", "볼링", "스케이트", "클라이밍", "탁구", "테니스", "풋살"],
+			            datasets: [{
+			                backgroundColor: [
+			                    "rgba(0, 156, 255, .7)",
+			                    "rgba(0, 156, 255, .6)",
+			                    "rgba(0, 156, 255, .5)",
+			                    "rgba(0, 156, 255, .4)",
+			                    "rgba(0, 156, 255, .3)"
+			                ],
+			                data: [dcclist[0].golf_count, dcclist[0].basketball_count, dcclist[0].badminton_count, dcclist[0].bowling_count, dcclist[0].skate_count,
+			                       dcclist[0].climbing_count,dcclist[0].pingpong_count,dcclist[0].tennis_count,dcclist[0].soccer_count]
+			            }]
+			        },
+			        options: {
+			            responsive: true,
+						plugins: {
+							legend: {
+								position: "left"
+							}
+						}
+			        }
+			    });
+               
+
+			},//success
+			error: function() {
+            alert("실패");
+            
+			}//error
+			
+		});//ajax
  //== 오른쪽 하단 그래프 그리기 - 모임게시물 222222222 END ==========================================================================================   
     
     
