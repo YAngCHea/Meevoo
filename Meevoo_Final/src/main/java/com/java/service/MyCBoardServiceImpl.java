@@ -131,4 +131,10 @@ public class MyCBoardServiceImpl implements MyCBoardService {
 		return list;
 	}
 
+	@Override //참여한 리스트 1개 삭제
+	public void deleteCJoin(int cno) {
+		myCBoardMapper.deleteCJoin(cno);
+		
+	}
+
 }

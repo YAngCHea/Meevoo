@@ -9,7 +9,7 @@
 		(select d.* from 
         (select spickno, b.sfno sfno, id, spickdate, spickyn,
         sfnm, dongcate from sportList a join sportPick b
-        on a.sfno = b.sfno)d order by spickno) c)
+        on a.sfno = b.sfno)d order by spickno desc) c)
         where rnum between #{startRow} and #{endRow}
 	</select>
 	
@@ -46,7 +46,7 @@
 		(select d.* from 
         (select sreno, b.sfno sfno, id, sfnm, dongcate, sredate
         from sportList a join sportreview b
-        on a.sfno = b.sfno)d order by sreno) c) 
+        on a.sfno = b.sfno)d order by sreno desc) c) 
         where rnum between #{startRow} and #{endRow}
 	</select>
 	
@@ -66,4 +66,9 @@
 		where cnowstatus = '모집중'
 		order by ctotalpick desc, cwrdate desc) c) where rnum between 1 and 4
 	</select> -->
+	
+	<!-- 후기 작성한 리스트 1개 삭제 -->
+	<delete id="deleteSReview">
+		delete sportreview where sfno=#{sfno}
+	</delete>
 </mapper>

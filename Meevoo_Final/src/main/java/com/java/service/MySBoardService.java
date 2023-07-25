@@ -15,4 +15,7 @@ public interface MySBoardService {
 	//체육시설 - 후기 작성한 리스트 전체 가져오기
 	HashMap<String, Object> selectSportReviewAll(PageDto pageDto);
 
+	//후기 작성한 리스트 1개 삭제
+	void deleteSReview(int sfno);
+
 }

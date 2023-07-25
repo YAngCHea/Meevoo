@@ -21,15 +21,16 @@
 			#all1{width:900px; border:1px solid #f56a6a; margin:0 auto;}
 			.section1{color: black;}
 			.main1{width:200px; margin:0 auto;}
-			.main1 h2{margin: 0 0 35px 0; text-align: center; border-bottom: 1px solid lightgray; font-size: 40px;}
+			.main1 h2{margin: 35px 0 35px 0; text-align: center; border-bottom: 1px solid lightgray; font-size: 40px;}
 			.profile{height: 180px; text-align: center; margin:20px 0;}
 			#preview{margin:0 0 20px;}
+			#preview img{width:150px;}
 			#info1_1, #info1_2,#info1_3, #info1_4, #info1_5, #info1_6, #info1_7, #info1_8
 				{width:150px; margin:20px 100px 10px 100px; font-size:15px; float:left;}
-			#info1_11, #info1_12{float:left;}
-			#info1_21, #info1_22{float:left; }
-			#info1_31, #info1_32{float:left;}
-			#info1_41, #info1_42{float:left;}
+			#info1_11, #info1_12{display: flex; flex-direction: row;}
+			#info1_21, #info1_22{display: flex; flex-direction: row;}
+			#info1_31, #info1_32{display: flex; flex-direction: row;}
+			#info1_41, #info1_42{display: flex; flex-direction: row;}
 			.wrapper1{border-bottom:1px dotted #f56a6a; width:800px; height:500px; margin:0 auto;}
 			.wrapper2{width:800px; height:400px; margin:10px auto;}
 			.info2 .info3{width:370px; margin:10px 50px 10px 50px; font-size:15px; display: inline-block; font-size:15px;
@@ -67,8 +68,9 @@
 										</div>
 										
 										<div class="wrapper1">
+										<!-- 프로필 사진 넣는 부분 -->
 											<div class="profile">
-			                                    <div id="preview" class="profile-img"><img src="${mdto.userimg}"></div>
+			                                    <div id="preview" class="profile-img"><img src="/upload/${mdto.userimg}"></div>
 <%-- 			                                    <div id="preview" class="profile-img"><img src="/images/${mdto.userimg}"></div> --%>
 												<!-- <input type="file" name="mb_picture" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg" id="profile-photo" />
 												<label for="profile-photo">프로필 사진 수정</label> -->
@@ -107,7 +109,7 @@
 														<div id="info1_51">나이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 														<!-- </div>
 														<div id="info1_52" name="birth"> -->
-														${mdto.birth } 년생</div>
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.birth } 년생</div>
 													</div>
 													<div id="info1_6">
 														<div id="info1_61">이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:

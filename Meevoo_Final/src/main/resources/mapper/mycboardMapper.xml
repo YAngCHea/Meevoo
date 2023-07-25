@@ -47,11 +47,29 @@
 	
 	<!-- 운동모임 - 참여한 리스트 전체 가져오기 -->
 	<select id="selectClubJoinAll" resultType="com.java.dto.CListJoinDto">
-		select * from (select rownum rnum, c.* from
+		<!-- select * from
+		(select rownum rnum, c.* from
+		(select distinct cno, cnm, dongcate, cdodate, cnowstatus from
 		(select d.* from 
         (select clubreviewno, b.cno cno, id, cnm, dongcate, 
-        cdodate, giveid from clubList a join clubreviewtemp b 
+        cdodate, giveid, cnowstatus from clubList a join clubreviewtemp b 
+        on a.cno = b.cno)d order by clubreviewno))c)
+        where rnum between #{startRow} and #{endRow} -->
+		
+<!-- 		select * from (select rownum rnum, c.* from
+		(select d.* from 
+        (select clubreviewno, b.cno cno, id, cnm, dongcate, 
+        cdodate, giveid, cnowstatus from clubList a join clubreviewtemp b 
         on a.cno = b.cno)d order by clubreviewno) c) 
+        where rnum between #{startRow} and #{endRow} -->
+        
+        select * from
+		(select rownum rnum, c.* from
+		(select distinct cno, cnm, dongcate, cdodate, cnowstatus from
+		(select d.* from 
+        (select clubreviewno, b.cno cno, id, cnm, dongcate, 
+        cdodate, giveid, cnowstatus from clubList a join clubreviewtemp b 
+        on a.cno = b.cno)d order by clubreviewno))c)
         where rnum between #{startRow} and #{endRow}
 	</select>
 	
@@ -71,4 +89,10 @@
 		where cnowstatus = '모집중'
 		order by ctotalpick desc, cwrdate desc) c) where rnum between 1 and 4
 	</select>
+	
+	
+	<!-- 참여한 리스트 1개 삭제 -->
+	<delete id="deleteCJoin">
+		delete clubreviewtemp where cno=#{cno}
+	</delete>
 </mapper>

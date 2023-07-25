@@ -23,4 +23,9 @@ public interface MyCBoardService {
 	//main에 표시될 가장 많이 찜한 상위 4개 운동 모임
 	ArrayList<ClubDto> selectCPickTop4();
 
+	//참여한 리스트 1개 삭제
+	void deleteCJoin(int cno);
+
+	
+
 }

@@ -120,4 +120,10 @@ public class MySBoardServiceImpl implements MySBoardService {
 		
 		return pageDto;
 	}
+
+	@Override //후기 작성한 리스트 1개 삭제
+	public void deleteSReview(int sfno) {
+		mySBoardMapper.deleteSReview(sfno);
+		
+	}
 }

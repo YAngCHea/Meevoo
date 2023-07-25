@@ -15,6 +15,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main.lee.css" />
+		<style>
+		</style>
 	</head>
 	<body class="is-preload">
 	<c:if test="${result== 'mem_success' }">
@@ -34,7 +36,7 @@
 						<%@ include file="top.jsp" %>
 
 
-							<!-- Banner -->
+							<!-- 메인 사진, 베너 -->
 								<section id="banner">
 									<div class="content">
 										<header>
@@ -57,14 +59,14 @@
 								</section>
 
 
-							<!-- Section -->
+							<!-- 핵심 메뉴 3가지 -->
 								<section>
 									<header class="major">
 										<h2>메인 메뉴</h2>
 									</header>
 									<div class="posts">
 										<article>
-											<a href="#" class="image"><img src="images/club2.png" alt="" /></a>
+											<a href="/club/club" class="image"><img src="images/club2.png" alt="" /></a>
 											<h3>운동모임</h3>
 											<p>똑같은 일상을 활기차게 바꿔줄<br> 관심사 기반 모임</p>
 											<ul class="actions">
@@ -72,15 +74,15 @@
 											</ul>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/fclty2.png" alt="" /></a>
+											<a href="/sport/sportList" class="image"><img src="images/fclty2.png" alt="" /></a>
 											<h3>체육시설</h3>
-											<p>스포츠 시설 정보와 리뷰를 한눈에!</p>
+											<p>스포츠 시설 정보와 리뷰를 한눈에!<br> &nbsp;</p>
 											<ul class="actions">
 												<li><a href="/sport/sportList" class="button">체육시설</a></li>
 											</ul>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/mypage2.png" alt="" /></a>
+											<a href="/mypage/myProfil" class="image"><img src="images/mypage2.png" alt="" /></a>
 											<h3>내 페이지</h3>
 											<p>모든 것을 관리하고 확인하는<br> 나만의 페이지</p>
 											<ul class="actions">
@@ -91,7 +93,7 @@
 									</div>
 								</section>
 
-							<!-- Section -->
+							<!-- 가장 많이 찜한 게시글 Top4 -->
 								<section>
 									<header class="major">
 										<h2>가장 많이 찜한 운동모임</h2>

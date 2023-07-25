@@ -134,8 +134,8 @@ body.slider input[type="range"] {
 						<span class="opener">내 페이지</span>
 						<ul>
 							<li><a href="/mypage/myProfil">내 정보</a></li>
-							<li><a href="/mypage/myClub">내 운동모임</a></li>
-							<li><a href="/mypage/mySport">내 체육시설</a></li>
+							<li><a href="/mypage/myClubJoin">내 운동모임</a></li>
+							<li><a href="/mypage/mySportReview">내 체육시설</a></li>
 						</ul>
 					</li>
 					<li>

@@ -18,6 +18,10 @@ public class CListJoinDto {
 	private String dongcate;
 	private Date cdodate;
 	private String giveid;
-	
-	
+	private String cnowstatus;
+
+	//------------------------------clubreviewtemp----
+	private int clubreviewno;
+	private String getid;
+	private int personaltemp;
 }

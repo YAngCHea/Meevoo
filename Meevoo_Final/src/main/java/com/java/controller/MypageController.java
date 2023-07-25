@@ -77,7 +77,6 @@ public class MypageController {
 	//회원정보 수정 저장
 	@RequestMapping("/mypage/updateSaveUser")
 	public String updateSaveUser(MemberDto memberDto, MultipartFile file) throws Exception {
-		System.out.println("MypageController img : "+memberDto.getUserimg());
 		
 		//이미지 파일 있을 경우 저장
 		String fileName = "";
@@ -91,6 +90,8 @@ public class MypageController {
 			file.transferTo(f); //파일 저장
 			memberDto.setUserimg(fileName);
 		}
+		
+		System.out.println("MypageController img : "+memberDto.getUserimg());
 		
 		//회원정보 수정 저장
 		memberService.updateSaveUser(memberDto);

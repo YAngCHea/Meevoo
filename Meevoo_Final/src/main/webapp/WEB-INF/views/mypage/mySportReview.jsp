@@ -85,7 +85,7 @@
 															<th id="th2">운동모임 제목</th>
 															<th id="th3">위치</th>
 															<th id="th4">참여 날짜</th>
-															<th id="th5">후기</th>
+															<th id="th5">삭제</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -100,12 +100,13 @@
 																<td>
 																	<fmt:formatDate value="${reviewlist.sredate}" pattern="yyyy-MM-dd" />
 																</td>
-																<td><button onclick="reviewBtn()" class="button small">삭제</button></td>
+																<td><button type="button" onclick="reviewBtn(${reviewlist.sfno })" class="button small">삭제</button></td>
 															</tr>
 														</c:forEach>
 														<script>
-															function reviewBtn(){ //참여한 게시물 삭제 버튼 
+															function reviewBtn(sfno){ //참여한 게시물 삭제 버튼 
 																alert("후기를 삭제합니다.");
+																location.href="/mypage/deleteSReview?sfno="+sfno;
 															}
 														</script>
 													</tbody>

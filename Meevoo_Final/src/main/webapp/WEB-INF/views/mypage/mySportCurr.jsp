@@ -85,7 +85,6 @@
 															<th id="th2">체육시설 이름</th>
 															<th id="th3">위치</th>
 															<th id="th4">본 날짜</th>
-															<th id="th5">삭제</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -100,14 +99,8 @@
 																<td>
 																	<fmt:formatDate value="${currlist.scurrdate}" pattern="yyyy-MM-dd" />
 																</td>
-																<td><button onclick="deleteBtn()" class="button small">삭제</button></td>
 															</tr>
 														</c:forEach>
-														<script>
-															function deleteBtn(){ //최근본 게시물 삭제 버튼 
-																alert("최근본 게시글을 삭제합니다.");
-															}
-														</script>
 													</tbody>
 												</table>
 												

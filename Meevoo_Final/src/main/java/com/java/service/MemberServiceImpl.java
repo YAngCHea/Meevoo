@@ -67,7 +67,7 @@ public class MemberServiceImpl implements MemberService {
 		//System.out.println(""+memberDto.getScate());
 		//System.out.println(""+memberDto.getSelfintro());
 		//System.out.println(""+memberDto.getNicknm());
-		System.out.println("MemberServiceImpl img : "+memberDto.getUserimg());
+		//System.out.println("MemberServiceImpl img : "+memberDto.getUserimg());
 		
 		memberMapper.updateSaveUser(memberDto);
 		

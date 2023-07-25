@@ -85,27 +85,52 @@
 															<th id="th2">운동모임 제목</th>
 															<th id="th3">위치</th>
 															<th id="th4">참여 날짜</th>
-															<th id="th5">후기</th>
+															<th id="th5">후기/삭제</th>
 														</tr>
 													</thead>
+													<form action="" name="deleteFrm" method="post">
 													<tbody>
 														<c:forEach var="joinlist" items="${list }">
 															<tr class="tr1">
 																<td>${joinlist.cno }</td>
-																<td>${joinlist.cnm }</td>
+																<td>
+																	<a href="/club/cView?cno=${joinlist.cno}&page=${page}">
+																	${joinlist.cnm}</a>
+																</td>
 																<td>${joinlist.dongcate }</td>
 																<td>
 																	<fmt:formatDate value="${joinlist.cdodate}" pattern="yyyy-MM-dd" />
 																</td>
-																<td><button onclick="reviewBtn()" class="button small">쓰기</button></td>
+																<c:if test="${joinlist.cnowstatus== '모임완료' }">
+																	<td><button type="button" onclick="reviewBtn()" class="button small">쓰기</button></td>
+																</c:if>
+																<!-- @@@@@@@@후기작성 완료로 바꾸기 @@@@@@@@-->
+																<c:if test="${joinlist.cnowstatus!= '모임완료' }">
+																	<td><button type="button" onclick="deleteBtn(${joinlist.cno })" class="button primary small">삭제</button></td>
+																</c:if>
+																<!-- <td><button onclick="reviewBtn()" class="button small">쓰기</button></td> -->
 															</tr>
 														</c:forEach>
 														<script>
 															function reviewBtn(){ //참여한 운동모임 후기 작성 버튼 
 																alert("후기 작성하러 이동합니다.");
+															/* @@@@@@@@ 페이지 설정!!! @@@@@@@@ */
+																//location.href="";
 															}
+															
+															function deleteBtn(cno){ //참여한 운동모임 삭제 버튼
+																//alert("cno");
+															    //alert(cno);
+																if(confirm("게시글을 삭제할까요?")){
+																	alert("게시글을 삭제합니다.");
+																	location.href="/member/deleteCJoin?cno="+cno;
+																}
+															}
+															
+															
 														</script>
 													</tbody>
+													</form>
 												</table>
 												<div>
 													<ul class="pagination">

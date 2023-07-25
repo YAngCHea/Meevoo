@@ -85,78 +85,24 @@
 															<th id="th2">운동모임 제목</th>
 															<th id="th3">위치</th>
 															<th id="th4">본 날짜</th>
-															<th id="th5">삭제</th>
 														</tr>
 													</thead>
 													<tbody>
 														<c:forEach var="currlist" items="${list }">
 															<tr class="tr1">
 																<td>${currlist.cno}</td>
-																<td>${currlist.cnm}</td>
+																<td>
+																	<a href="/club/cView?cno=${currlist.cno}&page=${page}">
+																	${currlist.cnm}</a>
+																</td>
 																<td>${currlist.dongcate}</td>
 																<td>
 																	<fmt:formatDate value="${currlist.ccurrdate}" pattern="yyyy-MM-dd" />
 																</td>
-																<td><button onclick="deleteBtn()" class="button small">삭제</button></td>
 															</tr>
 														</c:forEach>
-														<script>
-															function deleteBtn(){ //최근본 게시물 삭제 버튼 
-																alert("최근본 게시글을 삭제합니다.");
-															}
-														</script>
 													</tbody>
 												</table>
-												<%-- <div>
-													<ul class="pagination">
-														<!-- 첫페이지로 이동 -->
-														<c:if test="${pageDto.page !=1 }">
-															<a href="/mypage/myClubCurr?page=1" class="button"><li class="page1">처음으로</li></a>
-														</c:if>
-														<c:if test="${pageDto.page==1 }">
-															<li class="page1"><span class="button disabled">처음으로</span></li>
-														</c:if>
-														<!-- 이전페이지 이동 -->
-														<c:if test="${pageDto.page>1 }">
-															<a href="/mypage/myClubCurr?page=${pageDto.page-1 }" class="button"><li class="page1">이전</li></a>
-														</c:if>
-														<c:if test="${pageDto.page==1 }">
-								 							<li class="page1"><span class="button disabled">이전</span></li>
-														</c:if>
-														
-														
-														<!-- 페이지 리스트 -->
-														<c:forEach var="num" begin="${pageDto.startPage}" end="${pageDto.endPage }" step="1">
-															<c:if test="${num != pageDto.page }">
-																<a href="/mypage/myClubCurr?page=${num }">
-																	<li class="page"><div>${num }</div></li>
-																</a>
-															</c:if>
-															<c:if test="${num == pageDto.page }">
-																<li id="numon" class="page active"><div>${num }</div></li>
-															</c:if>
-															<li><a href="#" class="page">
-															<div>${num }</div>
-															</a></li>
-														</c:forEach>
-														
-														<!-- 다음페이지 이동 -->
-														<c:if test="${pageDto.page<pageDto.maxPage }">
-															<a href="/mypage/myClubCurr?page=${pageDto.page+1 }" class="button"><li class="page1">다음</li></a>
-														</c:if>
-														<c:if test="${pageDto.page==pageDto.maxPage }">
-															<li class="page1"><span class="button disabled">다음</span></li>
-															
-														</c:if>
-														<!-- 끝페이지 이동 -->
-														<c:if test="${pageDto.page!=pageDto.maxPage }">
-															<a href="/mypage/myClubCurr?page=${pageDto.maxPage }" class="button"><li class="page1">끝으로</li></a>
-														</c:if>
-														<c:if test="${pageDto.page==pageDto.maxPage }">
-															<li class="page1"><span class="button disabled">끝으로</span></li>
-														</c:if>
-													</ul>
-												</div> --%>
 												
 											</div>
 										</div>

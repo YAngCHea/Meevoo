@@ -30,5 +30,8 @@ public interface MySBoardMapper {
 	//체육시설 - 후기 작성한 리스트 전체 게시글 수
 	int selectListSReview();
 
+	//후기 작성한 리스트 1개 삭제
+	void deleteSReview(int sfno);
+
 	
 }

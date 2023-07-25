@@ -53,4 +53,14 @@ public class MySBoardController {
 		
 		return "mypage/mySportReview";
 	}
+	
+	//후기 작성한 리스트 1개 삭제
+	@RequestMapping("/mypage/deleteSReview")
+	public String deleteSReview(int sfno) {
+		System.out.println("MySBoardController sfno : "+sfno);
+		//후기 작성한 리스트 1개 삭제
+		mySBoardService.deleteSReview(sfno);
+		
+		return "redirect:/mypage/mySportReview";
+	}
 }
