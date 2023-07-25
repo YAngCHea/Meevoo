@@ -141,7 +141,6 @@ public class SportServiceImpl implements SportService {
 		System.out.println("찜취소 id service :"+spickDto.getId());
 		System.out.println("찜취소 sfno service :"+spickDto.getSfno());
 		System.out.println("찜취소 spickyn service :"+spickDto.getSpickyn());
-		System.out.println("찜취소 spickdate service :"+spickDto.getSpickdate());
 		return pickdto;
 	}
 	

@@ -1,6 +1,6 @@
 package com.java.dto;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +15,6 @@ public class SportPickDto {
 	private String id;
 	private int sfno;
 	private String spickyn;
-	private Timestamp spickdate;
+	private Date spickdate;
 
 }

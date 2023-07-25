@@ -78,8 +78,8 @@ public class SportController {
 		SportPickDto spdto = sportService.sportPick(spickDto);
 		
 		System.out.println("등록 ajax에서 넘어온 아이디 : "+spickDto.getId());
-		System.out.println("등록 ajax에서 넘어온 리뷰번호 : "+spickDto.getSfno());
-		System.out.println("등록 ajax에서 넘어온 시설번호 : "+spickDto.getSpickyn());
+		System.out.println("등록 ajax에서 넘어온 시설번호 : "+spickDto.getSfno());
+		System.out.println("등록 ajax에서 넘어온 spickyn : "+spickDto.getSpickyn());
 		return spdto;
 	}
 	
@@ -93,7 +93,6 @@ public class SportController {
 		System.out.println("등록 ajax에서 넘어온 아이디 : "+spickDto.getId());
 		System.out.println("등록 ajax에서 넘어온 시설번호 : "+spickDto.getSfno());
 		System.out.println("등록 ajax에서 넘어온 spickyn : "+spickDto.getSpickyn());
-		System.out.println("등록 ajax에서 넘어온 spickyn : "+spickDto.getSpickdate());
 		return spdto;
 	}
 	
@@ -106,8 +105,8 @@ public class SportController {
 		SportPickDto spdto = sportService.sportPickUpdate(spickDto);
 		
 		System.out.println("등록 ajax에서 넘어온 아이디 : "+spickDto.getId());
-		System.out.println("등록 ajax에서 넘어온 리뷰번호 : "+spickDto.getSfno());
-		System.out.println("등록 ajax에서 넘어온 시설번호 : "+spickDto.getSpickyn());
+		System.out.println("등록 ajax에서 넘어온 시설번호 : "+spickDto.getSfno());
+		System.out.println("등록 ajax에서 넘어온 spickyn : "+spickDto.getSpickyn());
 		return spdto;
 	}
 	

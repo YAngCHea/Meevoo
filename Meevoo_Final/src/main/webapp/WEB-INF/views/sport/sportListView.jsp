@@ -241,7 +241,7 @@
                       
                       
                     // 8. 찜하기 취소 버튼(update)
-       				function sPickCancelBtn(sfno,spickdate){
+       				function sPickCancelBtn(sfno){
        					if(confirm("찜하기를 취소하시겠습니까?")){
        						const spickyn = $("#spickcancel").data("value");
                         	  $.ajax({
@@ -249,10 +249,17 @@
                         		  type:"post",
                         		  data:{"id":"${sessionId}",
                         			  	"sfno" : sfno,
-                        			  	"spickyn" : spickyn,
-                        			  	"spickdate" : spickdate},
+                        			  	"spickyn" : spickyn},
                         		  success:function(data){
                         			  alert("찜하기가 취소되었습니다.");
+                        			  
+                        			  var dataHtml="";
+                          			  
+                          			  //댓글화면 변경
+                          			  dataHtml += "<a class='button' id='spicklikeupdate' onclick=\"sPickUpdateBtn("+sfno+")\" data-value='Yes'>시설 찜하기</a>";
+                          			  $("#"+sfno).html(dataHtml);
+                          			  
+                        			  
                         		  },
                         		  error:function(){
                         			  alert("실패");
@@ -263,7 +270,7 @@
                       
                       
                     // 9. 다시 찜하기 버튼(update)
-       				function sPickUpdateBtn(sfno,spickdate){
+       				function sPickUpdateBtn(sfno){
        					if(confirm("찜하기를 선택하시겠습니까?")){
        						const spickyn = $("#spicklikeupdate").data("value");
                         	  $.ajax({
@@ -271,10 +278,17 @@
                         		  type:"post",
                         		  data:{"id":"${sessionId}",
                         			  	"sfno" : sfno,
-                        			  	"spickyn" : spickyn,
-                        			  	"spickdate" : spickdate},
+                        			  	"spickyn" : spickyn},
                         		  success:function(data){
                         			  alert("찜하기가 선택되었습니다.");
+                        			  
+									  let dataHtml="";
+                          			  
+                          			  //댓글화면 변경
+                          			  dataHtml += "<a class='button primary' id='spickcancel' onclick=\"sPickCancelBtn("+sfno+")\" data-value='No'>시설 찜하기 취소</a>";
+                          			  
+                          			  $("#"+sfno).html(dataHtml);
+                        			  
                         		  },
                         		  error:function(){
                         			  alert("실패");
@@ -375,24 +389,32 @@
 									<!-- Buttons 수정 ->  main.css (1294번째)-->
 									<ul class="actions">
 										<c:forEach var="spickDto" items="${spickList}">
-										<c:if test="${sessionId == spickDto.id}">
-											<!-- 1. 찜을 한 상태일 때(업뎃) -->
-											<c:if test="${spickDto.spickyn == 'Yes'}">
-											  <li><a class="button primary" id="spickcancel" onclick="sPickCancelBtn(${sdto.sfno},'${spickDto.spickdate}')" data-value="No">시설 찜하기 취소</a></li>
+											<c:if test="${sessionId == spickDto.id}">
+												<c:if test="${spickDto.sfno == sdto.sfno}">
+													<!-- 1. 찜을 한 상태일 때(업뎃) -->
+													<c:if test="${spickDto.spickyn == 'Yes'}">
+													  <li id="${spickDto.sfno}"><a class="button primary" id="spickcancel" onclick="sPickCancelBtn(${spickDto.sfno})" data-value="No">시설 찜하기 취소</a></li>
+													</c:if>
+													<!-- 2. 찜을 하지 않은 상태일 때(업뎃) -->
+													<c:if test="${spickDto.spickyn == 'No'}">
+													  <li id="${spickDto.sfno}"><a class="button" id="spicklikeupdate" onclick="sPickUpdateBtn(${spickDto.sfno})" data-value="Yes">시설 찜하기</a></li>
+													</c:if>
+												</c:if>
+												<c:if test="${spickDto.sfno == 7}">
+													<!-- 3. 아예 찜을 처음 누를 때(인서트) -->
+										  			<li><a class="button" id="spicklike" onclick="sPickBtn(${sdto.sfno})" data-value="Yes">${sdto.sfno}시설 찜하기 등록</a></li>
+												</c:if>
 											</c:if>
-											<!-- 2. 찜을 하지 않은 상태일 때(업뎃) -->
-											<c:if test="${spickDto.spickyn == 'No'}">
-											  <li><a class="button" id="spicklikeupdate" onclick="sPickUpdateBtn(${sdto.sfno},'${spickDto.spickdate}')" data-value="Yes">시설 찜하기</a></li>
-											</c:if>
-											<!-- 3. 아예 찜을 처음 누를 때(인서트) -->
-											<c:if test="${empty (spickDto.id)}">
-											  <li><a class="button" id="spicklike" onclick="sPickBtn(${sdto.sfno})" data-value="Yes">시설 찜하기</a></li>
-											</c:if>
-										</c:if>
 										</c:forEach>
+											<%-- <c:if test="${sessionId != spickDto.id}">
+												<c:if test="${spickDto.sfno != sdto.sfno}">
+													<!-- 3. 아예 찜을 처음 누를 때(인서트) -->
+										  			<li id="${sdto.sfno}"><a class="button" id="spicklike" onclick="sPickBtn(${sdto.sfno})" data-value="Yes">시설 찜하기 등록</a></li>
+												</c:if>
+											</c:if> --%>
 										<li><a href="/sportreport/sportReportWrite?sfno=${sdto.sfno}" class="button primary">시설 문의글 작성</a></li>
-										<li><a href="sportList?page=${page}" class="button primary">시설 목록으로</a></li>
 										<li><a href="/club/cWrite" class="button primary">모임 생성</a></li>
+										<li><a href="sportList?page=${page}" class="button primary">시설 목록으로</a></li>
 									</ul>
 								</section>
 								
