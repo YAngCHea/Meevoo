@@ -34,6 +34,7 @@
 
     <!-- Template Stylesheet -->
     <link href="../css/style_yang.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main_new_yang.css" />
 
 
 </head>
@@ -127,16 +128,7 @@
 							
 							
 								<!-- Header Start -->
-									<header id="header">
-										<a href="/main" class="logo"><strong>Meevoo</strong> by 채연</a>
-										<ul class="icons">
-											<li><a class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-											<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
-											<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-											<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
-										</ul>
-									</header>
+									<%@ include file="../top.jsp" %>
 								<!-- Header End -->
 								
 								<!-- 맨위에 네개 Start -->
@@ -246,55 +238,6 @@
 						                            </div>
 				                                </c:forEach>
 						                            
-						                            <!-- 
-						                            <div class="d-flex align-items-center border-bottom py-2">
-						                                <input class="form-check-input m-0" type="checkbox">
-						                                <div class="w-100 ms-3">
-						                                    <div class="d-flex w-100 align-items-center justify-content-between">
-						                                        <span>새벽</span>
-						                                        <span>새벽두시에 인라인타실분</span>
-						                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                            <div class="d-flex align-items-center border-bottom py-2">
-						                                <input class="form-check-input m-0" type="checkbox">
-						                                <div class="w-100 ms-3">
-						                                    <div class="d-flex w-100 align-items-center justify-content-between">
-						                                        <span>당일치기 제주도 풋살팟</span>
-						                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                            <div class="d-flex align-items-center border-bottom py-2">
-						                                <input class="form-check-input m-0" type="checkbox" checked>
-						                                <div class="w-100 ms-3">
-						                                    <div class="d-flex w-100 align-items-center justify-content-between">
-						                                        <span><del>20대 여자회원분 구해여(삭제하면 이렇게 나옴)</del></span>
-						                                        <button class="btn btn-sm text-primary"><i class="fa fa-times"></i></button>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                            <div class="d-flex align-items-center border-bottom py-2">
-						                                <input class="form-check-input m-0" type="checkbox">
-						                                <div class="w-100 ms-3">
-						                                    <div class="d-flex w-100 align-items-center justify-content-between">
-						                                        <span>나보다 잘치는놈 없다! 야구가자!</span>
-						                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                            <div class="d-flex align-items-center pt-2">
-						                                <input class="form-check-input m-0" type="checkbox">
-						                                <div class="w-100 ms-3">
-						                                    <div class="d-flex w-100 align-items-center justify-content-between">
-						                                        <span>저희 애기랑 피구하실분,,</span>
-						                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                            -->
-						                            
 						                        </div>
 						                    </div>
 								            <!-- 신고게시물 end -->
@@ -320,54 +263,6 @@
 								                                </div>
 								                            </div>
 					                                </c:forEach>
-						                            
-						                            <!-- 
-						                            <div class="d-flex align-items-center border-bottom py-2">
-						                                <input class="form-check-input m-0" type="checkbox">
-						                                <div class="w-100 ms-3">
-						                                    <div class="d-flex w-100 align-items-center justify-content-between">
-						                                        <span>어제 다녀왔는데 시설 너무 좋네요!</span>
-						                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                            <div class="d-flex align-items-center border-bottom py-2">
-						                                <input class="form-check-input m-0" type="checkbox">
-						                                <div class="w-100 ms-3">
-						                                    <div class="d-flex w-100 align-items-center justify-content-between">
-						                                        <span>인라인 스케이트장 왕 추천!</span>
-						                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                            <div class="d-flex align-items-center border-bottom py-2">
-						                                <input class="form-check-input m-0" type="checkbox" checked>
-						                                <div class="w-100 ms-3">
-						                                    <div class="d-flex w-100 align-items-center justify-content-between">
-						                                        <span><del>시설 너무 구려요,,(삭제하면 이렇게 나옴)</del></span>
-						                                        <button class="btn btn-sm text-primary"><i class="fa fa-times"></i></button>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                            <div class="d-flex align-items-center border-bottom py-2">
-						                                <input class="form-check-input m-0" type="checkbox">
-						                                <div class="w-100 ms-3">
-						                                    <div class="d-flex w-100 align-items-center justify-content-between">
-						                                        <span>구로구 클라이밍 맛집인정!</span>
-						                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                            <div class="d-flex align-items-center pt-2">
-						                                <input class="form-check-input m-0" type="checkbox">
-						                                <div class="w-100 ms-3">
-						                                    <div class="d-flex w-100 align-items-center justify-content-between">
-						                                        <span>가본데중 제일 별로</span>
-						                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                             -->
 						                            
 						                            
 						                        </div>
@@ -397,7 +292,7 @@
 														      <div id="tab01"> 
 														      
 														         <!-- 그래프 넣기 : 모임 게시글 START -->
-																 <div class="col-sm-12 col-xl-6">
+																 <div class="col-sm-12 col-xl-6" style="padding-right:0;width:100%;">
 											                        <div class="bg-light rounded h-100 p-4">
 											                            <!-- <h6 class="mb-4">Doughnut Chart</h6> -->
 											                            <canvas id="doughnut-chart"></canvas>
@@ -409,10 +304,10 @@
 														      <div id="tab02">
 
 																 <!-- 그래프 넣기 : 시설 리뷰 START -->
-																 <div class="col-sm-12 col-xl-6">
+																 <div class="col-sm-12 col-xl-6" style="padding-right:0;width:100%;">
 											                        <div class="bg-light rounded h-100 p-4">
 											                            <!-- <h6 class="mb-4">Doughnut Chart</h6> -->
-											                            <canvas id="doughnut-chart"></canvas>
+											                            <canvas id="doughnut-chart2222" ></canvas>
 											                        </div>
 											                     </div>
 														         <!-- 그래프 넣기 : 시설 리뷰 END -->
@@ -422,14 +317,7 @@
 														    <!-- 탭 컨텐츠 넣기 END -->
 														    
 														  </div>
-														
-														
-														
-														
-														
 														<!-- 탭메뉴 넣기 End -->
-														
-													
 													
 												</div>
 						                    </div>
@@ -441,21 +329,7 @@
 						            <!-- 위젯 End -->
 								
 									<!-- Footer Start -->
-							            <div class="container-fluid pt-4 px-4">
-							                <div class="bg-light rounded-top p-4">
-							                    <div class="row">
-							                        <div class="col-12 col-sm-6 text-center text-sm-start">
-							                            &copy; <a href="#">Your Site Name</a>, All Right Reserved. 
-							                        </div>
-							                        <div class="col-12 col-sm-6 text-center text-sm-end">
-							                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-							                        </br>
-							                        Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-							                        </div>
-							                    </div>
-							                </div>
-							            </div>
+							           <%@ include file="../footer.jsp" %>
 							        <!-- Footer End -->
 								
 								

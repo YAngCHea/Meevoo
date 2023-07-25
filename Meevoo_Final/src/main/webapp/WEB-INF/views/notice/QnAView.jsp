@@ -11,6 +11,13 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main_kmh.css" />
+		<script>
+      function deleteQnABtn(){
+    	  if(confirm("게시글을 삭제하시겠습니까?")){
+    		  location.href="QnADelete?qnano=${qdto.qnano}";
+    	  }
+      }
+    </script>
 	</head>
 	<body class="is-preload">
 			
@@ -40,6 +47,7 @@
 											<p class="txt">작성자<span>${qdto.id}</span></p>
 											<p class="txt">작성일시<span>${qdto.qnadate}</span></p>
 											<p class="txt">답변현황<span>${qdto.qnastatus}</span></p>
+
 										</div>
 										<div class="convenient">
 											<p class="txt">${qdto.qnacontent}</p>
@@ -63,7 +71,8 @@
 									<br>
 									<!-- Buttons 수정 ->  main.css (1294번째)-->
 									<ul class="actions">
-										<li><a href="/notice/QnAModify?qnano=${qdto.qnano}" class="button primary">수정하기</a></li>
+										<li><a href="/notice/QnAReply?qnano=${qdto.qnano}" class="button primary">답변하기</a></li>
+										<li><a onclick="deleteQnABtn()"><button type="button"  class="btn btn-delete" style="margin: 0 auto;float: right;">삭제하기</button></a></li>
 										<!-- 
 										<li><a href="sportList?page=${page}" class="button primary">삭제하기</a></li>
 										 -->

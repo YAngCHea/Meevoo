@@ -53,6 +53,17 @@ public interface NoticeService {
 
 // 2. QnA 불러오기
 	HashMap<String, Object> selectQnAOne(int qnano);
+// 3. QnA 추가하기
+	void insertQnA(QnADto qdto);
+
+// 4. QnA 삭제하기
+	void deleteQnAOne(int qnano);
+
+// 5. QnA 답변달기 - 불러오기
+	HashMap<String, Object> selectQROne(int qnano);
+
+// 6, QnA 답변달기 저장하기
+	void doQnAReply(QnADto qdto);
 
 
 

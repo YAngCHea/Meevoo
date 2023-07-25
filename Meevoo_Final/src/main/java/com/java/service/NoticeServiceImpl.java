@@ -255,6 +255,40 @@ public class NoticeServiceImpl implements NoticeService {
 			
 			return map2;
 		}
+// 3. QnA 추가하기
+		@Override
+		public void insertQnA(QnADto qdto) {
+			noticeMapper.insertQnA(qdto);
+			
+		}
+// 4. QnA 삭제하기
+		@Override
+		public void deleteQnAOne(int qnano) {
+			noticeMapper.deleteQnAOne(qnano);
+			
+		}
+// 5. QnA 답변달기 - 불러오기
+		@Override
+		public HashMap<String, Object> selectQROne(int qnano) {
+			HashMap<String, Object> map3 = new HashMap<>();
+			// 조회수 1증가
+			//noticeMapper.updateBhitUp(bno);
+			System.out.println("impl qna: "+qnano);
+			QnADto qdto = noticeMapper.selectQROne(qnano);
+			map3.put("qdto", qdto);
+			//System.out.println("impl qdto"+qdto.getQnano());
+			//System.out.println("impl qdto"+qdto.getQgroup());
+			//System.out.println("impl qgroup:"+((QnADto)(map3.get("qdto"))).getQnano());
+			return map3;
+		}
+// 6. QnA 답변 저장하기
+		@Override
+		public void doQnAReply(QnADto qdto) {
+			noticeMapper.updateQstepCount(qdto);
+			noticeMapper.doQnAReply(qdto);
+			
+		}
+		
 	
 	
 	

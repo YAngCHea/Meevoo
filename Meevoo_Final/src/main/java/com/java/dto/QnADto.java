@@ -1,6 +1,7 @@
 package com.java.dto;
 
-import java.sql.Timestamp;
+import java.sql.Date;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,11 +16,11 @@ public class QnADto {
 	private int qnano;
 	private String id;
 	private String qnatitle;
-	private Timestamp qnadate;
+	private Date qnadate;
 	private String qnacontent;
-	private String qnare;
-	private Timestamp qnaredate;
-	private int qnapw;
 	private String qnastatus;
-	private String newdate;
+	private int qstep;
+	private int qgroup;
+	private int qindent;
+	
 }

@@ -16,9 +16,18 @@
 	     function updateClubBtn(){
 	    	if(confirm("모임 정보를 수정하시겠습니까?")){
 		    	 updateClub.submit(); //전송
+		    	 alert("모임정보가 수정되었습니다.")
 	    	}
 	     }
 	  </script>
+	  <script>
+      function deleteBtn(){
+    	  if(confirm("게시글을 삭제하시겠습니까?")){
+    		  location.href="totalWriteModifyDelete?cno=${cdto.cno}";
+    		  alert("게시글이 삭제되었습니다.");
+    	  }
+      }
+    </script>
       
    </head>
    <body class="is-preload">
@@ -167,6 +176,7 @@
 									                        <div class="col-md-6 offset-md-3">
 									                          <button type="submit" class="btn btn-primary" style="margin: 0 auto;">Submit</button>
 									                          <button type="reset" class="btn btn-success">Reset</button>
+									                          <button type="button" onclick="deleteBtn()" class="btn btn-delete" style="margin: 0 auto;float: right;">삭제하기</button>
 									                        </div>
 									                      </div>
 									                    </div>

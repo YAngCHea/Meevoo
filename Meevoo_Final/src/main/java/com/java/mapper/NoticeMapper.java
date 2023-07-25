@@ -67,6 +67,21 @@ public interface NoticeMapper {
 	//QnA 상세페이지
 	QnADto selectQnAOne(int qnano);
 
+	// 3. QnA 추가하기
+	void insertQnA(QnADto qdto);
+
+	// 4. QnA 삭제하기
+	void deleteQnAOne(int qnano);
+
+	// 5. QnA 답글달기 - 불러오기
+	QnADto selectQROne(int qnano);
+
+	// 6. QnA 답글달기 저장
+	void doQnAReply(QnADto qdto);
+
+	// 7. QnA qstep1 증가
+	void updateQstepCount(QnADto qdto);
+
 
 	
 	

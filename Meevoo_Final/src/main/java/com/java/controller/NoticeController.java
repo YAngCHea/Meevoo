@@ -1,9 +1,12 @@
 package com.java.controller;
 
 import java.io.File;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,7 @@ import com.java.service.NoticeService;
 @Controller
 public class NoticeController {
 
+	@Autowired HttpSession session;
 	@Autowired NoticeService noticeService;
 	
 //== 공지사항 notice ================================================================================
@@ -197,13 +201,46 @@ public class NoticeController {
 		return "notice/QnAView";
 	}	
 	
+// 3. QnA 새로 추가하기------------------------------------------------------------------
+	// 1) QnA 추가하기
+		@GetMapping("/notice/QnAWrite")
+		public String QnAWrite() {
+			return "notice/QnAWrite";
+		}
+	// 2) 추가한 QnA 저장하기
+		@PostMapping("/notice/QnAWrite")
+		public String QnAWrite(QnADto qdto, Model model) {
+			//게시글 1개 저장
+			noticeService.insertQnA(qdto);
+			String result = "i_success";
+			return "redirect:/notice/QnA?result="+result;
+		}	
 	
+// 4. QnA 삭제하기 ------------------------------------------------------------------	
+		@RequestMapping("/notice/QnADelete")
+		public String QnADelete(int qnano) {
+			//System.out.println("boardDelete : "+bno);
+			noticeService.deleteQnAOne(qnano);
+			return "redirect:QnA";
+		}	
 	
+// 5. QnA 답변달기- 불러오기
+		@GetMapping("/notice/QnAReply")
+		public String QnAReply(int qnano,Model model) {
+			HashMap<String, Object> map3 = noticeService.selectQROne(qnano);
+			model.addAttribute("qdto",map3.get("qdto"));
+			System.out.println("controller qgroup:"+map3.get("qgroup"));
+			return "notice/QnAReply";
+		}
 	
-	
-	
-	
-	
+// 6. QnA 답글달기 - 저장
+		@PostMapping("/notice/QnAReply") 
+		public String doQnAReply(QnADto qdto, Model model) throws Exception {
+
+			noticeService.doQnAReply(qdto);
+			return "redirect:QnA";
+		}
+		
 	
 	
 	

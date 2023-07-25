@@ -5,16 +5,16 @@
 <!DOCTYPE HTML>
 <html>
    <head>
-      <title>QnA 추가하기</title>
+      <title>QnA 답변하기</title>
       <!-- 제이쿼리 최신 -->
       <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
       <link rel="stylesheet" href="../css/main_yang.css" />
       <script>
-	     function writeQnABtn(){
-	    	 alert("QnA가 등록되었습니다");
-	    	 writeQnAFrm.submit(); //전송
+	     function replyQnABtn(){
+	    	 alert("QnA 답변이 등록되었습니다");
+	    	 replyQnAFrm.submit(); //전송
 	    	 
 	     }
 	  </script>
@@ -63,7 +63,7 @@
 									              <div class="x_panel">
 
 									                <div class="x_content">
-									                  <form class="" action="/notice/QnAWrite" method="post" name="writeQnAFrm" enctype="multipart/form-data"
+									                  <form class="" action="/notice/QnAReply" method="post" name="replyQnAFrm" enctype="multipart/form-data"
 									                    novalidate="">
 									                    
 									                   
@@ -71,18 +71,22 @@
 									                    <!-- no 디폴트값을 그냥 0으로 넣고 쿼리문에서 nextval로 넣어둠 -->
 								                        <input class="form-control" name="notino" type="hidden" >
 								                        
+								                        <input type="hidden" name="qgroup" value="${qdto.qgroup }">
+													    <input type="hidden" name="qstep" value="${qdto.qstep }">
+													    <input type="hidden" name="qindent" value="${qdto.qindent }">
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성자<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" name="id" >
+									                        <input class="form-control" type="text" name="id" value="MeeVoo">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">제목<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" name="qnatitle" >
+									                        <input class="form-control" type="text" name="qnatitle" value="[답변] ${qdto.qnatitle }">
 									                      </div>
 									                    </div>
 									                    
@@ -90,7 +94,7 @@
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성일<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="qnadate"  type="date" value="currentDate"> 
+									                        <input class="form-control" name="qnadate"  type="date" value="sysdate"> 
 									                      </div>
 									                    </div>
 									                    
@@ -98,7 +102,7 @@
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">답변현황<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input type="text" class="form-control" name="qnastatus" value="답변대기">
+									                        <input type="text" class="form-control" name="qnastatus" value="답변완료">
 									                      </div>
 									                    </div>
 									                        
@@ -106,14 +110,21 @@
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">내용<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <textarea  name="qnacontent"></textarea>
+									                        <textarea  name="qnacontent">
+									                        
+									                        	[답글]
+			
+																---------------------------
+																${qdto.qnacontent }
+									                        
+									                        </textarea>
 									                      </div>
 									                    </div>
 									                   
 									                    <div class="ln_solid">
 									                      <div class="form-group">
 									                        <div class="col-md-6 offset-md-3">
-									                          <button type="button" onclick="writeQnABtn()" class="btn btn-primary" style="margin: 0 auto;">Submit</button>
+									                          <button type="button" onclick="replyQnABtn()" class="btn btn-primary" style="margin: 0 auto;">Submit</button>
 									                          <button type="reset" class="btn btn-success">Reset</button>
 									                        </div>
 									                      </div>

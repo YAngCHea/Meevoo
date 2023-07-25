@@ -11,6 +11,7 @@
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
       <link rel="stylesheet" href="../css/main_new_yang.css" />
+      
    </head>
    <body class="is-preload">
 
@@ -73,7 +74,12 @@
                                     <c:forEach var="qnalist" items="${qnalist}">
                                     <tr>
                                        <td>${qnalist.qnano}</td>
-                                       <td><a href="/notice/QnAView?qnano=${qnalist.qnano}" class="lightgray">${qnalist.qnatitle} </a></td>
+                                       <td>
+	                                       <c:forEach begin="1" end="${qnalist.qindent}" step="1" >
+									           <img src="/images/icon_reply.png">
+									        </c:forEach>
+                                       <a href="/notice/QnAView?qnano=${qnalist.qnano}" class="lightgray">${qnalist.qnatitle} </a>
+                                       </td>
                                        <td>${qnalist.id}</td>
                                        <td>${qnalist.qnadate}</td>
                                        <td>${qnalist.qnastatus}</td>
@@ -88,7 +94,7 @@
 									<!-- Table -->
 									<div class="table-wrapper">
 										<div style="text-align: right;">
-											<a href="/notice/FAQWrite"><button type="button" class="button primary">QnA 작성</button></a>
+											<a href="/notice/QnAWrite"><button type="button" class="button primary">QnA 작성</button></a>
 										</div>
 									</div>
 								
