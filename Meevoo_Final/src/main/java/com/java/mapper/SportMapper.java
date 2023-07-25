@@ -46,17 +46,16 @@ public interface SportMapper {
 	//리뷰글 번호 가져오기
 	SportReviewDto selectSrenoOne(int sreno);
 
-	//1. 시설물 찜하기 등록(인서트)
+	//1. 시설물 찜하기 등록
 	void sportPick(SportPickDto spickDto);
 	//찜한 데이터 1개 가져오기
 	SportPickDto selectSpOne(SportPickDto spickDto);
 	//찜한 데이터 전체 가져오기
 	ArrayList<SportPickDto> selectSpAll(int sfno);
-	
-	// 2. 시설물 찜하기 취소(업뎃)
-	void sportPickCancel(SportPickDto spickDto);
-	// 3. 시설물 다시 찜하기(업뎃)
-	void sportPickUpdate(SportPickDto spickDto);
+	// 2. 시설물 찜하기 취소
+	void sportPickCancel(int spickno);
+	// 찜 Count(sfno,sessionId)
+	int selectSpCount(int sfno, String id);
 	
 
 

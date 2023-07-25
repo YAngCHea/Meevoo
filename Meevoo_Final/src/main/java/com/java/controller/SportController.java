@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,8 +30,9 @@ import com.java.service.SportService;
 @Controller
 public class SportController {
 
-	@Autowired
-	SportService sportService;
+	@Autowired SportService sportService;
+	@Autowired HttpSession session;
+	
 	
 	@RequestMapping("/sport/sportList")
 	public String sportList(@RequestParam(defaultValue ="1")int page,
@@ -51,7 +54,7 @@ public class SportController {
 	
 	@RequestMapping("/sport/sportListView")
 	public String sportListView(@RequestParam(defaultValue = "1") int sfno,
-			@RequestParam(defaultValue = "1")int page, Model model) {
+			@RequestParam(defaultValue = "1")int page,Model model) {
 
 		// 게시글 1개 가져오기
 		HashMap<String, Object> map = sportService.selectOne(sfno);
@@ -64,6 +67,13 @@ public class SportController {
 		// 찜하기 목록 전체 가져오기
 		ArrayList<SportPickDto> spickList = sportService.selectSpAll(sfno); 
 		model.addAttribute("spickList", spickList);
+		
+		// 찜 Count(sfno,sessionId)
+		String id = (String)session.getAttribute("sessionId");
+		System.out.println("controller id :"+id);
+		System.out.println("controller sfno :"+sfno);
+		int spickcount = sportService.selectSpCount(sfno,id); 
+		model.addAttribute("spickcount", spickcount);
 		
 		model.addAttribute("page", page);
 		return "/sport/sportListView";
@@ -85,30 +95,16 @@ public class SportController {
 	
 	@RequestMapping("/sport/sportPickCancel")
 	@ResponseBody //데이터로 리턴해서 가져와라
-	public SportPickDto sportPickCancel(SportPickDto spickDto, Model model) {
+	public SportPickDto sportPickCancel(int spickno) {
 		
-		// 2. 찜하기 취소(업뎃)
-		SportPickDto spdto = sportService.sportPickCancel(spickDto);
+		// 2. 찜하기 취소
+		sportService.sportPickCancel(spickno);
+		System.out.println("ajax 넘어온 데이터 : "+spickno);
 		
-		System.out.println("등록 ajax에서 넘어온 아이디 : "+spickDto.getId());
-		System.out.println("등록 ajax에서 넘어온 시설번호 : "+spickDto.getSfno());
-		System.out.println("등록 ajax에서 넘어온 spickyn : "+spickDto.getSpickyn());
-		return spdto;
+		return null;
 	}
 	
 	
-	@RequestMapping("/sport/sportPickUpdate")
-	@ResponseBody //데이터로 리턴해서 가져와라
-	public SportPickDto sportPickUpdate(SportPickDto spickDto, Model model) {
-		
-		// 3. 시설물 다시 찜하기(업뎃)
-		SportPickDto spdto = sportService.sportPickUpdate(spickDto);
-		
-		System.out.println("등록 ajax에서 넘어온 아이디 : "+spickDto.getId());
-		System.out.println("등록 ajax에서 넘어온 시설번호 : "+spickDto.getSfno());
-		System.out.println("등록 ajax에서 넘어온 spickyn : "+spickDto.getSpickyn());
-		return spdto;
-	}
 	
 	
 	@RequestMapping("/sport/reviewInsert")

@@ -46,7 +46,7 @@ public class SportReportController {
 	
 	@RequestMapping("/sportreport/sportReportListView")
 	public String sportReportListView(@RequestParam(defaultValue = "1") int srepno, 
-			int page, String category, String srep_word, Model model) {
+			@RequestParam(defaultValue = "1") int page, String category, String srep_word, Model model) {
 
 		// 문의글 1개 가져오기
 		HashMap<String, Object> map = sportReportService.selectOne(srepno);

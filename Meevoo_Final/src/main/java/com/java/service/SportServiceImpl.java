@@ -118,51 +118,41 @@ public class SportServiceImpl implements SportService {
 
 	@Override
 	public SportPickDto sportPick(SportPickDto spickDto) {
-		// 시설물 찜하기 등록
+		// 1. 시설물 찜하기 등록
 		sportMapper.sportPick(spickDto);
 		
 		//찜하기 1개 가져오기
 		SportPickDto pickdto = sportMapper.selectSpOne(spickDto);
 		
-		System.out.println("찜한 id"+spickDto.getId());
-		System.out.println("찜한 id"+spickDto.getSfno());
-		System.out.println("찜한 id"+spickDto.getSpickyn());
+		System.out.println("찜한 id : "+spickDto.getId());
+		System.out.println("찜한 sfno : "+spickDto.getSfno());
+		System.out.println("찜한 spickyn : "+spickDto.getSpickyn());
 		
 		return pickdto;
+	}
+	
+	@Override
+	public void sportPickCancel(int spickno) {
+		// 2. 시설물 찜하기 취소
+		sportMapper.sportPickCancel(spickno);
+		
 	}
 
-	@Override
-	public SportPickDto sportPickCancel(SportPickDto spickDto) {
-		// 시설물 찜하기 취소
-		sportMapper.sportPickCancel(spickDto);
-		
-		//찜하기 1개 가져오기
-		SportPickDto pickdto = sportMapper.selectSpOne(spickDto);
-		System.out.println("찜취소 id service :"+spickDto.getId());
-		System.out.println("찜취소 sfno service :"+spickDto.getSfno());
-		System.out.println("찜취소 spickyn service :"+spickDto.getSpickyn());
-		return pickdto;
-	}
-	
-	
-	@Override
-	public SportPickDto sportPickUpdate(SportPickDto spickDto) {
-		// 3. 시설물 다시 찜하기
-		sportMapper.sportPickUpdate(spickDto);
-		//찜하기 1개 가져오기
-		SportPickDto pickdto = sportMapper.selectSpOne(spickDto);
-		System.out.println("다시 찜한 id service :"+spickDto.getId());
-		System.out.println("다시 찜한 sfno service :"+spickDto.getSfno());
-		System.out.println("다시 찜한 spickyn service :"+spickDto.getSpickyn());
-		return pickdto;
-	}
-	
 	
 	@Override
 	public ArrayList<SportPickDto> selectSpAll(int sfno) {
 		// 찜하기 전체 가져오기
 		ArrayList<SportPickDto> spickList = sportMapper.selectSpAll(sfno);
 		return spickList;
+	}
+
+	@Override
+	public int selectSpCount(int sfno, String id) {
+		// 찜 Count(sfno,sessionId)
+		
+		int spickcount = sportMapper.selectSpCount(sfno,id);
+		System.out.println(spickcount);
+		return spickcount;
 	}
 
 

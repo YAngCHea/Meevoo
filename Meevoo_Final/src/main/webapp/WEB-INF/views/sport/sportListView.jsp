@@ -221,16 +221,26 @@
                     
                     // 7. 찜하기 버튼(insert)
        				function sPickBtn(sfno){
+       					if("${sessionId}"==""){
+    						alert("로그인을 하셔야 찜하기가 가능합니다.");
+    						location.href="/member/login";
+    						return false;
+    					}
        					if(confirm("찜하기를 등록하시겠습니까?")){
        						const spickyn = $("#spicklike").data("value");
                         	  $.ajax({
                         		  url:"/sport/sportPick",
                         		  type:"post",
-                        		  data:{"id":"${sessionId}",
+                        		  data:{"id": "${sessionId}",
                         			  	"sfno" : sfno,
                         			  	"spickyn" : spickyn},
                         		  success:function(data){
                         			  alert("찜하기가 등록되었습니다.");
+                        			  
+                        			  var dataHtml="";
+                        			  dataHtml += "<a class='button primary' id='spickcancel' onclick=\"sPickCancelBtn("+data.sfno+"','"+data.spickno+"')\">시설 찜하기 취소</a>";
+                          			  $("#"+spickno).html(dataHtml);
+                        			  
                         		  },
                         		  error:function(){
                         			  alert("실패");
@@ -240,25 +250,22 @@
                       }//찜하기 버튼 끝
                       
                       
-                    // 8. 찜하기 취소 버튼(update)
-       				function sPickCancelBtn(sfno){
-       					if(confirm("찜하기를 취소하시겠습니까?")){
-       						const spickyn = $("#spickcancel").data("value");
+                   // 8. 찜하기 취소하기(delete)
+      				function sPickCancelBtn(sfno,spickno){
+                    	  if(confirm("찜하기를 취소하시겠습니까?")){
                         	  $.ajax({
                         		  url:"/sport/sportPickCancel",
                         		  type:"post",
-                        		  data:{"id":"${sessionId}",
-                        			  	"sfno" : sfno,
-                        			  	"spickyn" : spickyn},
+                        		  data:{"sfno" : sfno,
+                        			  	"spickno" : spickno}, // 댓글번호
                         		  success:function(data){
-                        			  alert("찜하기가 취소되었습니다.");
+                        			  alert("찜하기가 취소 되었습니다.");
+                        			  $("#"+spickno).remove();  // 삭제
                         			  
-                        			  var dataHtml="";
-                          			  
-                          			  //댓글화면 변경
-                          			  dataHtml += "<a class='button' id='spicklikeupdate' onclick=\"sPickUpdateBtn("+sfno+")\" data-value='Yes'>시설 찜하기</a>";
-                          			  $("#"+sfno).html(dataHtml);
-                          			  
+                        			  let dataHtml="";
+                        			  dataHtml += "<a class='button' id='spicklike' onclick=\"sPickBtn("+data.sfno+")\" data-value='Yes'>시설 찜하기 등록</a>";
+                        			  
+                          			  $("#"+sfno).html(dataHtml)
                         			  
                         		  },
                         		  error:function(){
@@ -266,36 +273,7 @@
                         		  }
                         	  });//ajax
                     	  }//if
-                      }//찜하기 취소 버튼 끝
-                      
-                      
-                    // 9. 다시 찜하기 버튼(update)
-       				function sPickUpdateBtn(sfno){
-       					if(confirm("찜하기를 선택하시겠습니까?")){
-       						const spickyn = $("#spicklikeupdate").data("value");
-                        	  $.ajax({
-                        		  url:"/sport/sportPickUpdate",
-                        		  type:"post",
-                        		  data:{"id":"${sessionId}",
-                        			  	"sfno" : sfno,
-                        			  	"spickyn" : spickyn},
-                        		  success:function(data){
-                        			  alert("찜하기가 선택되었습니다.");
-                        			  
-									  let dataHtml="";
-                          			  
-                          			  //댓글화면 변경
-                          			  dataHtml += "<a class='button primary' id='spickcancel' onclick=\"sPickCancelBtn("+sfno+")\" data-value='No'>시설 찜하기 취소</a>";
-                          			  
-                          			  $("#"+sfno).html(dataHtml);
-                        			  
-                        		  },
-                        		  error:function(){
-                        			  alert("실패");
-                        		  }
-                        	  });//ajax
-                    	  }//if
-                      }//찜하기 취소 버튼 끝
+                      }//삭제버튼 -->
                       
 			</script>
 			
@@ -388,35 +366,41 @@
 									<br>
 									<!-- Buttons 수정 ->  main.css (1294번째)-->
 									<ul class="actions">
-										<c:forEach var="spickDto" items="${spickList}">
-											<c:if test="${sessionId == spickDto.id}">
-												<c:if test="${spickDto.sfno == sdto.sfno}">
-													<!-- 1. 찜을 한 상태일 때(업뎃) -->
-													<c:if test="${spickDto.spickyn == 'Yes'}">
-													  <li id="${spickDto.sfno}"><a class="button primary" id="spickcancel" onclick="sPickCancelBtn(${spickDto.sfno})" data-value="No">시설 찜하기 취소</a></li>
-													</c:if>
-													<!-- 2. 찜을 하지 않은 상태일 때(업뎃) -->
-													<c:if test="${spickDto.spickyn == 'No'}">
-													  <li id="${spickDto.sfno}"><a class="button" id="spicklikeupdate" onclick="sPickUpdateBtn(${spickDto.sfno})" data-value="Yes">시설 찜하기</a></li>
-													</c:if>
-												</c:if>
-												<c:if test="${spickDto.sfno == 7}">
-													<!-- 3. 아예 찜을 처음 누를 때(인서트) -->
-										  			<li><a class="button" id="spicklike" onclick="sPickBtn(${sdto.sfno})" data-value="Yes">${sdto.sfno}시설 찜하기 등록</a></li>
-												</c:if>
+											<c:if test="${spickcount == 0}">
+											 <!-- 1. 찜하기 -->
+											 <li id="${sdto.sfno}"><a class="button" id="spicklike" onclick="sPickBtn(${sdto.sfno})" data-value="Yes">시설 찜하기 등록</a></li>
 											</c:if>
-										</c:forEach>
-											<%-- <c:if test="${sessionId != spickDto.id}">
-												<c:if test="${spickDto.sfno != sdto.sfno}">
-													<!-- 3. 아예 찜을 처음 누를 때(인서트) -->
-										  			<li id="${sdto.sfno}"><a class="button" id="spicklike" onclick="sPickBtn(${sdto.sfno})" data-value="Yes">시설 찜하기 등록</a></li>
-												</c:if>
-											</c:if> --%>
+											<c:if test="${spickcount == 1}">
+												 <c:forEach var="spickDto" items="${spickList}">
+												 <c:if test="${sessionId == spickDto.id}">
+												 <c:if test="${spickDto.sfno == sdto.sfno}">					 
+												 <li id="${sdto.sfno}"><a class="button primary" id="spickcancel" onclick="sPickCancelBtn(${sdto.sfno},'${spickDto.spickno}')">시설 찜하기 취소</a></li>
+												 </c:if>
+												 </c:if>
+												 </c:forEach>
+										    </c:if>
 										<li><a href="/sportreport/sportReportWrite?sfno=${sdto.sfno}" class="button primary">시설 문의글 작성</a></li>
-										<li><a href="/club/cWrite" class="button primary">모임 생성</a></li>
+										<li><button onclick="openChildWindow()" class="button primary">모임 생성</button></li>
 										<li><a href="sportList?page=${page}" class="button primary">시설 목록으로</a></li>
 									</ul>
 								</section>
+								<script>
+							        function openChildWindow() {
+							        	// 부모 페이지의 URL에서 "sfno" 키의 값을 추출
+							            var parentURL = window.location.href;
+							            var sfnoValue = getURLParameter("sfno", parentURL);
+
+							            // URL에 전달할 데이터를 포함하여 자식 창 열기
+							            var url = "http://localhost:8000/club/cWrite?sfno=" + encodeURIComponent(sfnoValue);
+							            window.open(url, "_self", "height=300,width=400");
+							        }
+							
+							        // URL 파라미터를 가져오는 함수
+							        function getURLParameter(name, url) {
+							            var params = new URLSearchParams(new URL(url).search);
+							            return params.get(name);
+							        }
+							    </script>
 								
 								<!-- 시설 리뷰 -->
 								<!-- 리뷰 css -> main.css (78번째) -->

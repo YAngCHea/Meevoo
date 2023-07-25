@@ -38,17 +38,10 @@ public interface SportService {
 	ArrayList<SportPickDto> selectSpAll(int sfno);
 	// 1. 시설물 찜하기 등록
 	SportPickDto sportPick(SportPickDto spickDto);
-	// 2. 시설물 찜하기 취소(업뎃)
-	SportPickDto sportPickCancel(SportPickDto spickDto);
-	// 3. 시설물 다시 찜하기(업뎃)
-	SportPickDto sportPickUpdate(SportPickDto spickDto);
+	// 2. 시설물 찜하기 취소
+	void sportPickCancel(int spickno);
+	// 찜 Count(sfno,sessionId)
+	int selectSpCount(int sfno, String id);
 
-	
-	
-//	// 게시글 전체 가져오기
-//	ArrayList<SportDto> selectAll();
-//
-//	// 게시글 1개 가져오기
-//	SportDto selectOne(int fcltyno);
 
 }
