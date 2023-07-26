@@ -27,20 +27,22 @@ public class MySBoardServiceImpl implements MySBoardService {
 	public HashMap<String, Object> selectSportPickAll(PageDto pageDto) {
 		HashMap<String, Object> map = new HashMap<>();
 		ArrayList<SListPickDto> list = null;
+		
+		String id = null;
+		if(session.getAttribute("sessionId") !=null) {
+			//sessionId를 가져오기 위해 추가 
+			id = (String)session.getAttribute("sessionId");
+		}
 				
 	
-		//sessionId를 가져오기 위해 추가 
-		String id = (String)session.getAttribute("sessionId");
 
-		//페이지정보 메소드호출
-		pageDto = pageMethod1(pageDto, id);
 		
 		if(id!=null) {
+			//페이지정보 메소드호출
+			pageDto = pageMethod1(pageDto, id);
 			//게시글 전체 가져오기
 			list = mySBoardMapper.selectSportPickAll(pageDto, id);
-			map.put("loginCheck", "success");
-		}else {
-			map.put("loginCheck", "fail");
+			
 		}
 		
 		

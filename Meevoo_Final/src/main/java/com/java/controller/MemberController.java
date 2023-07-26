@@ -76,11 +76,11 @@ public class MemberController {
 		
 		
 		for(int i=0;i<scate.length;i++) { 
-			System.out.println("scate : "+scate[i]);
+			//System.out.println("scate : "+scate[i]);
 		} 
 
 		for(int i=0;i<dongcate.length;i++) { 
-			System.out.println("dongcate : "+dongcate[i]);
+			//System.out.println("dongcate : "+dongcate[i]);
 		} 
 		
 		model.addAttribute("scate", scate);
@@ -137,7 +137,7 @@ public class MemberController {
 	//회원 탈퇴하기
 	@RequestMapping("/member/deleteUser")
 	public String deleteUser(String id) {
-		System.out.println("MemberController id : "+id);
+		//System.out.println("MemberController id : "+id);
 		//회원 탈퇴
 		memberService.deleteUser(id);
 		session.invalidate();

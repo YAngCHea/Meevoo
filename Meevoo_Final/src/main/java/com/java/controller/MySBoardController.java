@@ -25,13 +25,15 @@ public class MySBoardController {
 	@RequestMapping("/mypage/mySportPick")
 	public String mySportPick(PageDto pageDto, Model model) {
 		
-		HashMap<String, Object> map = mySBoardService.selectSportPickAll(pageDto);
-		String loginCheck = (String)(map.get("loginCheck"));
-		//System.out.println("loginCheck : "+loginCheck);
-		
-		if(loginCheck.equals("fail")) {
+		if(session.getAttribute("sessionId") == null) {
 			return "member/login";
 		}
+		
+		
+		
+		HashMap<String, Object> map = mySBoardService.selectSportPickAll(pageDto);
+		
+		
 		
 		model.addAttribute("list", map.get("list"));
 		model.addAttribute("pageDto", map.get("pageDto"));
@@ -62,7 +64,6 @@ public class MySBoardController {
 		
 		HashMap<String, Object> map = mySBoardService.selectSportCurrAll(pageDto);
 		String loginCheck = (String)(map.get("loginCheck"));
-		//System.out.println("loginCheck : "+loginCheck);
 		
 		if(loginCheck.equals("fail")) {
 			
@@ -80,12 +81,13 @@ public class MySBoardController {
 	@RequestMapping("/mypage/mySportReview")
 	public String mySportReview(PageDto pageDto, Model model) {
 		
-		//System.out.println("MyCBoardController list : "+list.get(0).getid());
-		//System.out.println("MySBoardController page"+pageDto.getPage());
+		if(session.getAttribute("sessionId") == null) {
+			return "member/login";
+		}
+		
 		HashMap<String, Object> map = mySBoardService.selectSportReviewAll(pageDto);
 		
 		String loginCheck = (String)(map.get("loginCheck"));
-		//System.out.println("loginCheck : "+loginCheck);
 				
 		if(loginCheck.equals("fail")) {
 			return "member/login";

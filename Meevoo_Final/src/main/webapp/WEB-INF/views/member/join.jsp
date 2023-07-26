@@ -142,7 +142,37 @@ function id_check() {
 </script> -->
 
 <!-- 사용할페이지 -->
-<!-- <script type="text/javascript"> /* 글자수, 입력 조건 스크립트 */
+<script type="text/javascript">
+function idcheckBtn(){ //ajax은 페이지가 아닌 값으로 넘겨준다.
+		//alert("아이디 중복검사");
+	$.ajax({
+		url:"idcheck",
+		type:"get",
+		data:{"id" :$("#id").val()},
+		success:function(result){
+			//alert("아이디를 확인하였습니다.");
+			/* checkId = result; */
+			console.log("checkedId : "+result);
+			if($("#id").val()!=""){
+				if(result=="success"){
+					$("#idCheckText").html("<span class='mvalign orange'>* 사용가능한 아이디입니다.</span>")
+				}else{
+					$("#idCheckText").html("<span class='mvalign black'>* 아이디를 사용할 수 없습니다.</span>")
+					$("#id").val("");
+				}
+			}else{
+				alert("아이디를 입력 후 중복확인을 해주세요");
+				$("#id").focus();
+			}
+		},
+		error:function(){
+			alert("실패");
+			$("#id").focus();
+		}
+	});
+}
+</script>
+<script type="text/javascript"> /* 글자수, 입력 조건 스크립트 */
 	function joinform_check(){
 		let nameCheck = /^[ㄱ-ㅎ가-힣]{2,}$/ //^[ㄱ-ㅎ가-힣].{1,}$/ ; // ^ 는 시작 [모든 국문자] + 는 하나이상 $ 는 끝
 		let numCheck = /^[0-9]+$/ ;  //숫자인지
@@ -156,12 +186,10 @@ function id_check() {
 		let pwCheck2 = /^[0-9]{5}$/ ;
 		let phoneCheck = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/ ; 010-1111-1111
 		
-		if(!nameCheck.test($("#mem_name").val())){
+		if(!nameCheck.test($("#name").val())){
 			alert("2글자 이상, 한글만 입력가능합니다.");
-			$("#mem_name").focus();
+			$("#name").focus();
 			return false;
-		}else{
-			alert("성공");
 		}
 		
 		//이름 입력, 두글자 이상 입력 가능
@@ -219,12 +247,12 @@ function id_check() {
 		    return false;
 		}
 
-		//이메일 주소 입력
+		/* //이메일 주소 입력
 		if ($("#email2").val()=="") {
 		    alert("이메일을 입력하세요.");
 		    $("#email2").focus();
 		    return false;
-		}
+		} */
 		
 		
 		//우편번호, 도로명 주소 입력
@@ -248,6 +276,13 @@ function id_check() {
 		    return false;
 		}
 		
+		//관심지역 입력
+		if ($("#dongcate").val()=="") {
+			alert("관심지역을 선택하세요.");
+			$("#dongcate").focus();
+		    return false;
+		}
+
 		//운동종목 입력
 		if ($("#scate").val()=="") {
 			alert("운동종목을 선택하세요.");
@@ -256,11 +291,11 @@ function id_check() {
 		}
 		
 		
+			alert("가입을 축하합니다^^")
+			memberFrm.submit(); //전송
 		
-		
-		alert("회원정보를 저장합니다.");
 	}
-</script> --> <!-- 사용할페이지 -->
+</script> <!-- 사용할페이지 -->
 
 
 
@@ -316,8 +351,9 @@ function id_check() {
 	}
 </script> -->
 
+<!-- 우편번호찾기 스크립트 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript"> /* 우편번호찾기 스크립트 */
+<script type="text/javascript"> 
 function addrBtn() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -423,36 +459,7 @@ function addrBtn() {
 															</ul>
 														</td>
 													</tr>
-													<!-- <script> <사용할 스크립트>
-														function idcheckBtn(){ //ajax은 페이지가 아닌 값으로 넘겨준다.
-																//alert("아이디 중복검사");
-															$.ajax({
-																url:"idcheck",
-																type:"get",
-																data:{"id" :$("#id").val()},
-																success:function(result){
-																	//alert("아이디를 확인하였습니다.");
-																	/* checkId = result; */
-																	console.log("checkedId : "+result);
-																	if($("#id").val()!=""){
-																		if(result=="success"){
-																			$("#idCheckText").html("<span class='mvalign orange'>* 사용가능한 아이디입니다.</span>")
-																		}else{
-																			$("#idCheckText").html("<span class='mvalign black'>* 아이디를 사용할 수 없습니다.</span>")
-																			$("#id").val("");
-																		}
-																	}else{
-																		alert("아이디를 입력 후 중복확인을 해주세요");
-																		$("#id").focus();
-																	}
-																},
-																error:function(){
-																	alert("실패");
-																	$("#id").focus();
-																}
-															});
-														}
-													</script> <사용할 스크립트> -->
+													
 													<tr>
 														<th scope="row"><span>비밀번호 *</span></th>
 														<td>
@@ -530,7 +537,7 @@ function addrBtn() {
 																<input type="hidden" name="email" id="email" value=""> -->
 																<li id="chk_e"><a onclick="emailBtn()" style="cursor: pointer;" class="button primary small fit">인증코드 발송</a></li>
 															</ul>
-															<script>
+															<!-- <script>
 																$("#email1").blur(function(){
 																	email();
 																});
@@ -545,7 +552,7 @@ function addrBtn() {
 																		$("#email").val(email1+middle+email2);
 																	}
 																}
-															</script>
+															</script> -->
 															<!-- <script> <사용할 스크립트>
 																let temp_code=""; //전역변수로 사용
 																
@@ -705,12 +712,7 @@ function addrBtn() {
 					
 										</div>
 										
-										<script>
-											function joinform_check(){
-												alert("가입을 축하합니다^^")
-												memberFrm.submit(); //전송
-											}
-										</script>
+										
 										
 										<!-- Btn Area -->
 										<div class="btnArea" style="padding:0 0 20px 0;">
