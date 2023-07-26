@@ -46,6 +46,7 @@ public class MySBoardServiceImpl implements MySBoardService {
 		
 		map.put("list", list);
 		map.put("pageDto", pageDto);
+
 		
 		return map;
 	}
@@ -55,7 +56,6 @@ public class MySBoardServiceImpl implements MySBoardService {
 		
 		//전체 게시글 수 저장
 		pageDto.setListCount(mySBoardMapper.selectListSPick(pageDto, id));
-		//System.out.println("getListCount"+pageDto.getListCount());
 		//최대 넘버링 페이지
 		pageDto.setMaxPage((int)Math.ceil((double)pageDto.getListCount()/10));
 		//시작 넘버링 페이지
@@ -160,7 +160,6 @@ public class MySBoardServiceImpl implements MySBoardService {
 		
 		//전체 게시글 수 저장
 		pageDto.setListCount(mySBoardMapper.selectListSReview(pageDto, id));
-		System.out.println("getListCount"+pageDto.getListCount());
 		//최대 넘버링 페이지
 		pageDto.setMaxPage((int)Math.ceil((double)pageDto.getListCount()/10));
 		//시작 넘버링 페이지

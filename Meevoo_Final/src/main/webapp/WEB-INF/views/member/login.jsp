@@ -54,7 +54,7 @@
 								    			$(".idtype").focus();
 								    			return false;
 								    		}else{
-									    		alert("환영합니다!!");
+									    		/* alert("환영합니다!!"); */
 								    			
 								    		}
 								    		loginFrm.submit();

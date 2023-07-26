@@ -131,13 +131,33 @@ body.slider input[type="range"] {
 						</ul>
 					</li>
 					<li>
+					<script>
+						function loginCheckBtn(urldata){
+							if("${sessionId}"== null || "${sessionId}" == ""){
+								alert("로그인을 하셔야 페이지 정보를 볼 수 있습니다.");
+								location.href="/member/login";
+							}else{
+								if(urldata=="myProfil"){
+									//alert("myProfil 페이지");
+									location.href="/mypage/myProfil";
+								}else if(urldata=="myClubJoin"){
+									//alert("myClubJoin 페이지");
+									location.href="/mypage/myClubJoin";
+								}else{
+									//alert("mySportReview 페이지");
+									location.href="/mypage/mySportReview";
+								}
+							}
+						}
+					</script>
 						<span class="opener">내 페이지</span>
 						<ul>
-							<li><a href="/mypage/myProfil">내 정보</a></li>
-							<li><a href="/mypage/myClubJoin">내 운동모임</a></li>
-							<li><a href="/mypage/mySportReview">내 체육시설</a></li>
+							<li><a onclick="loginCheckBtn('myProfil');">내 정보</a></li>
+							<li><a onclick="loginCheckBtn('myClubJoin');">내 운동모임</a></li>
+							<li><a onclick="loginCheckBtn('mySportReview');">내 체육시설</a></li>
 						</ul>
 					</li>
+					
 					<li>
 					 <span class="opener">고객센터</span>
 					 	<ul>

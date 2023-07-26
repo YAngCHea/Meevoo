@@ -56,7 +56,6 @@ public class MyCBoardServiceImpl implements MyCBoardService {
 		
 		//전체 게시글 수 저장
 		pageDto.setListCount(myCBoardMapper.selectListCPick(pageDto,id));
-		System.out.println("getListCount"+pageDto.getListCount());
 		//최대 넘버링 페이지
 		pageDto.setMaxPage((int)Math.ceil((double)pageDto.getListCount()/10));
 		//시작 넘버링 페이지
@@ -181,8 +180,8 @@ public class MyCBoardServiceImpl implements MyCBoardService {
 		//endPage가 최대페이지 보다 더 크면 최대페이지까지만 노출
 		if(pageDto.getEndPage()>=pageDto.getMaxPage()) pageDto.setEndPage(pageDto.getMaxPage());
 		
-		System.out.println("getEndPage : "+pageDto.getEndPage());
-		System.out.println("getMaxPage : "+pageDto.getMaxPage());
+		//System.out.println("getEndPage : "+pageDto.getEndPage());
+		//System.out.println("getMaxPage : "+pageDto.getMaxPage());
 		
 		return pageDto;
 	}

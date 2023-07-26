@@ -62,7 +62,7 @@ public class MySBoardController {
 		
 		HashMap<String, Object> map = mySBoardService.selectSportCurrAll(pageDto);
 		String loginCheck = (String)(map.get("loginCheck"));
-		System.out.println("loginCheck : "+loginCheck);
+		//System.out.println("loginCheck : "+loginCheck);
 		
 		if(loginCheck.equals("fail")) {
 			
@@ -85,7 +85,7 @@ public class MySBoardController {
 		HashMap<String, Object> map = mySBoardService.selectSportReviewAll(pageDto);
 		
 		String loginCheck = (String)(map.get("loginCheck"));
-		System.out.println("loginCheck : "+loginCheck);
+		//System.out.println("loginCheck : "+loginCheck);
 				
 		if(loginCheck.equals("fail")) {
 			return "member/login";
@@ -101,7 +101,7 @@ public class MySBoardController {
 	//후기 작성한 리스트 1개 삭제
 	@RequestMapping("/mypage/deleteSReview")
 	public String deleteSReview(int sfno) {
-		System.out.println("MySBoardController sfno : "+sfno);
+		//System.out.println("MySBoardController sfno : "+sfno);
 		//후기 작성한 리스트 1개 삭제
 		mySBoardService.deleteSReview(sfno);
 		
