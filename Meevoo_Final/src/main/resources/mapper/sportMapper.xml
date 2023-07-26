@@ -63,7 +63,7 @@
 	
 	<!-- 찜하기 취소(삭제)하기 -->
 	<delete id="sportPickCancel">
-		delete sportpick where spickno=#{spickno}
+		delete sportpick where sfno=#{sfno} and id=#{id}
 	</delete>
 	
 	<!-- 찜 Count -->

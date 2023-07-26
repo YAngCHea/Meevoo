@@ -63,12 +63,13 @@
               			  dataHtml += "</span>&nbsp;&nbsp;별점&nbsp;"+data.sstar+"</li>";
               			  dataHtml += "<li class='txt'>"+ data.srecontent +"</li>";
               			  dataHtml += "<li class='btn'>";
-              			  dataHtml += "<a onclick=\"updateBtn("+data.sreno+",'"+data.id+"','"+data.sredate+"','"+data.srecontent+"')\" class='button primary small'>수정</a>&nbsp";
+              			  dataHtml += "<a onclick=\"updateBtn("+data.sreno+",'"+data.id+"','"+data.sredate+"','"+data.sstar+"','"+data.srecontent+"')\" class='button primary small'>수정</a>&nbsp";
               			  dataHtml += "<a onclick=\"deleteBtn("+data.sreno+")\" class='button small'>삭제</a>";
               			  dataHtml += "</li>";
               			  dataHtml += "</ul>";
               			  
               			  $("#reviewBox").prepend(dataHtml);  //prepend(위),append(아래),html(모두삭제후 추가)
+              			  $("#"+sreno).html(dataHtml);
               			  
               			  //글자삭제
               			  $("#sreviewContent").val("");
@@ -117,7 +118,7 @@
                   		  url:"/sport/reviewUpdateSave",
                   		  type:"post",
                   		  data:{ "sreno":sreno,
-                  			     "srecontent":$("#updateContent").val() }, 
+                  			     "srecontent":$("#updateContent").val()}, 
                   		  success:function(data){
                   			  alert(sreno+"번 리뷰가 수정되었습니다.");
                   			  
@@ -130,7 +131,7 @@
 	       	      			  dataHtml += "</span>&nbsp;&nbsp;별점 "+data.sstar+"</li>";
                   			  dataHtml += "<li class='txt'>"+ data.srecontent +"</li>";
                   			  dataHtml += "<li class='btn'>";
-                  			  dataHtml += "<a onclick=\"updateBtn("+data.sreno+",'"+data.id+"','"+data.sredate+"','"+data.srecontent+"')\" class='button primary small'>수정</a>&nbsp";
+                  			  dataHtml += "<a onclick=\"updateBtn("+data.sreno+",'"+data.id+"','"+data.sredate+"','"+data.sstar+"','"+data.srecontent+"')\" class='button primary small'>수정</a>&nbsp";
                 			  dataHtml += "<a onclick=\"deleteBtn("+data.sreno+")\" class='button small'>삭제</a>";
                 			  dataHtml += "</li>";
                   			  
@@ -151,7 +152,6 @@
 					if(confirm("댓글을 수정하시겠습니까?")){
             		 let dataHtml="";
 	            	 
-            		 dataHtml += "<ul>";
 	      			 dataHtml += "<li class='name'>"+ id +"<span>&nbsp;&nbsp;&nbsp;[ "+ moment(sredate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
 	      			 dataHtml += "<li class='star'>";
 	      			 dataHtml += "<span class='srestar' style='color: rgba(250, 208, 0, 0.99);'>";
@@ -164,7 +164,6 @@
             		 dataHtml += "<a onclick=\"updateSave("+sreno+")\" class='button primary small'>저장</a>&nbsp;";
             		 dataHtml += "<a onclick=\"cancelBtn("+sreno+",'"+id+"','"+sredate+"','"+sstar+"','"+srecontent+"')\" class='button small'>취소</a>";
             		 dataHtml += "</li>";
-            		 dataHtml += "</ul>";
 	
             		 $("#"+sreno).html(dataHtml);
 	            	  }//if
@@ -197,9 +196,10 @@
  	      			  dataHtml += "</span>&nbsp;&nbsp;별점 "+sstar+"</li>";
            			  dataHtml += "<li class='txt'>"+ srecontent +"</li>";
            			  dataHtml += "<li class='btn'>";
-           			  dataHtml += "<a onclick=\"updateBtn("+sreno+",'"+id+"','"+sredate+"','"+srecontent+"')\" class='button primary small'>수정</a>&nbsp";
+           			  dataHtml += "<a onclick=\"updateBtn("+sreno+",'"+id+"','"+sredate+"','"+sstar+"','"+srecontent+"')\" class='button primary small'>수정</a>&nbsp";
            			  dataHtml += "<a onclick=\"deleteBtn("+sreno+")\" class='button small'>삭제</a>";
            			  dataHtml += "</li>";
+           			  
           			  $("#"+sreno).html(dataHtml);
                   	  
                     }//리뷰 수정 취소 끝
@@ -241,11 +241,17 @@
                         			  	"spickyn" : spickyn},
                         		  success:function(data){
                         			  alert("찜하기가 등록되었습니다.");
-                        			  
+                        			  alert(spickno)
                         			  var dataHtml="";
-                        			  dataHtml += "<a class='button primary' id='spickcancel' onclick=\"sPickCancelBtn("+data.sfno+"','"+data.spickno+"')\">♥ 시설 찜하기 [ ${spickList.size()} ]</a>";
-                          			  $("#"+spickno).html(dataHtml);
                         			  
+                        			  dataHtml += "<li>";
+                        			  dataHtml += "<a class='button primary' id='spickcancel' onclick=\"sPickCancelBtn("+sfno+")\">♥ 시설 찜하기 [ ${spickList.size()+1} ]</a>";
+                        			  dataHtml += "</li>";
+                          			  $("#"+sfno).html(dataHtml);
+                          			  
+                          			  /* dataHtml += "<a class='button primary' id='spickcancel' onclick=\"sPickCancelBtn("+data.sfno+"','"+data.spickno+"')\">♥ 시설 찜하기 [ ${spickList.size()+1} ]</a>";
+                        			  $("#"+spickno).html(dataHtml); */
+                          			  
                         		  },
                         		  error:function(){
                         			  alert("실패");
@@ -262,14 +268,18 @@
                         		  url:"/sport/sportPickCancel",
                         		  type:"post",
                         		  data:{"sfno" : sfno,
+                        			  	"id" : "${sessionId}",
                         			  	"spickno" : spickno}, // 댓글번호
                         		  success:function(data){
                         			  alert("찜하기가 취소 되었습니다.");
-                        			  $("#"+spickno).remove();  // 삭제
+                        			  /* $("#"+spickno).remove(); */  // 삭제
                         			  
                         			  let dataHtml="";
-                        			  dataHtml += "<a class='button' id='spicklike' onclick=\"sPickBtn("+data.sfno+")\" data-value='Yes'>♡ 시설 찜하기 [ ${spickList.size()} ]</a>";
                         			  
+                        			  dataHtml += "<li>";
+                        			  dataHtml += "<a class='button' id='spicklike' onclick=\"sPickBtn("+sfno+")\" data-value='Yes'>♡ 시설 찜하기 [ ${spickList.size()-1} ]</a>";
+                        			  dataHtml += "</li>";
+                        			  //dataHtml += "<a class='button' id='spicklike' onclick=\"sPickBtn("+data.sfno+")\" data-value='Yes'>♡ 시설 찜하기 [ ${spickList.size()-1} ]</a>";
                           			  $("#"+sfno).html(dataHtml)
                         			  
                         		  },
@@ -371,19 +381,21 @@
 									<br>
 									<!-- Buttons 수정 ->  main.css (1294번째)-->
 									<ul class="actions">
+									       <div id="${sdto.sfno}">
 											<c:if test="${spickcount == 0 || spickcount == null}">
-											 <!-- 1. 찜하기 -->
-											 <li id="${sdto.sfno}"><a class="button" id="spicklike" onclick="sPickBtn(${sdto.sfno})" data-value="Yes">♡ 시설 찜하기 [ ${spickList.size()} ]</a></li>
+												<li><a class="button" id="spicklike" onclick="sPickBtn(${sdto.sfno})" data-value="Yes">♡ 시설 찜하기 [ ${spickList.size()} ]</a></li>
 											</c:if>
 											<c:if test="${spickcount == 1}">
-												 <c:forEach var="spickDto" items="${spickList}">
+												<%-- <c:forEach var="spickDto" items="${spickList}">
 												 <c:if test="${sessionId == spickDto.id}">
 												 <c:if test="${spickDto.sfno == sdto.sfno}">					 
 												 <li id="${sdto.sfno}"><a class="button primary" id="spickcancel" onclick="sPickCancelBtn(${sdto.sfno},'${spickDto.spickno}')">♥ 시설 찜하기 [ ${spickList.size()} ]</a></li>
 												 </c:if>
 												 </c:if>
-												 </c:forEach>
-										    </c:if>
+												 </c:forEach> --%>
+												<li><a class="button primary" id="spickcancel" onclick="sPickCancelBtn(${sdto.sfno})">♥ 시설 찜하기 [ ${spickList.size()} ]</a></li>
+											</c:if>
+									       </div>
 										<li><a href="/sportreport/sportReportWrite?sfno=${sdto.sfno}" class="button primary">시설 문의글 작성</a></li>
 										<li><button onclick="openChildWindow()" class="button primary">모임 생성</button></li>
 										<li><a href="sportList?page=${page}&slist_word=${slist_word}" class="button primary">시설 목록으로</a></li>
