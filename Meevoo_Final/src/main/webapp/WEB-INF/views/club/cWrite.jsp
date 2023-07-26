@@ -53,8 +53,8 @@
 								        -->
 										<input type="button" value="모임장소 찾기" class="default" onclick="javascript:location.href='/club/cWriteSearchSF'" style="float: right;" />
 								        <input type="text" placeholder="모임장소(체육시설번호)" class="sfno" id="inputField" style="width: 89%; float: left; margin-bottom: 3em;"/>
-								        <input type="text" name="dongcate" class="dongcate" placeholder="동이름">
-								        <input type="text" name="cloc" class="cloc" placeholder="주소">
+								        <!-- <input type="text" name="dongcate" class="dongcate" placeholder="동이름">
+								        <input type="text" name="cloc" class="cloc" placeholder="주소"> -->
 								      </div>
 								      <!-- 운동모임 장소 선택 칸 끝-->
 								      <script>

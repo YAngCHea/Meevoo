@@ -83,7 +83,8 @@ public class ClubController {
 	
 	@PostMapping("/club/cWrite") 
 	public String doCWrite(ClubDto cdto, List<MultipartFile> files, Model model)  { 
-		
+		System.out.println("sfno : "+cdto.getSfno());
+		System.out.println("cdodate : "+cdto.getDateStr());
 		//모임목록 글 1개 저장
 		clubService.insertClub(cdto, files);
 	    String result="i_success"; //insert가 성공한다

@@ -85,8 +85,8 @@
 	 									 
 	 									 <div class="col-12"; style="postion:flex; width: 100%;">
 										   <ul class="actions" style="justify-content: flex-end;">
-											 <li><input type="reset" value="다음에 작성" /></li>
-											 <li><input type="submit" value="작성하러 가기" class="primary" /></li>
+											 <li><input type="reset" onclick="javascript:location.href='/club/club'" value="다음에 작성" /></li>
+											 <li><input type="submit" onclick="javascript:location.href='/sport/sportListView?sfno=${sport.sfno}&page=${page}'" value="작성하러 가기" class="primary" /></li>
 										   </ul>
 									     </div>
 									  

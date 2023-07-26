@@ -280,7 +280,7 @@
 									  </div>
 								   
 								   <div class="col-12">
-								     <button type="button" onclick="" id="apply-btn" class="button primary fit">신청하기</button>
+								     <button type="button" onclick="javascript:location.href='/club/cMEvaluation'" id="apply-btn" class="button primary fit">신청하기</button>
 								   </div>
 								   
 								   <!-- 모임글 상태에 따른 버튼 적용

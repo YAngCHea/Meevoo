@@ -103,7 +103,7 @@
   
   <insert id="insertClub">
 	  insert into clublist values 
-	    (clublist_seq.nextval,#{id},#{cnm},sysdate,#{cimg},#{sfno},#{dongcate},#{cloc},#{cdodate},
+	    (clublist_seq.nextval,#{id},#{cnm},sysdate,#{cimg},#{sfno},to_date(#{cdodate}),
 	    #{ccontent},#{ctotalpick},#{crecruitlimit},#{cnowrecruit},#{cnowstatus},#{scate})
   </insert>
 
