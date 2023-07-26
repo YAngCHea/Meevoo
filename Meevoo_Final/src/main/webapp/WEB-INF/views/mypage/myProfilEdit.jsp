@@ -83,7 +83,8 @@
 											<div class="profile" style="">
 			                                    <div id="preview1" class="img">
 				                                   	<div>
-				                                   	<c:if test="${mdto.userimg == null }">
+				                                   	<div id="preview" class="profile-img"><img src="${mdto.userimg}"></div>
+				                                   	<%-- <c:if test="${mdto.userimg == null }">
 				                                   		<img src="https://cdn-icons-png.flaticon.com/512/848/848043.png" width="150px"/>
 				                                   		<input type="file" name="file" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg"/>
 														<label for="file">* 파일 선택을 눌러 프로필 사진을 수정해주세요</label>
@@ -92,7 +93,8 @@
 				                                   		<img src="/upload/${mdto.userimg }" width="150px"/>
 				                                   		<input type="file" name="file" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg"/>
 														<label for="file">* 파일 선택을 눌러 프로필 사진을 수정해주세요</label>
-				                                   	</c:if>
+				                                   	</c:if> --%>
+				                                   	
 													<%-- <c:if test="${file == null}">
 				                                   		<img src="https://cdn-icons-png.flaticon.com/512/848/848043.png"/>
 				                                   		<input type="file" name="file" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg"/>
