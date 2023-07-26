@@ -30,7 +30,7 @@ public interface AdminService {
 	HashMap<String, Object> selectAll(int page, SearchDto search);
 
 	//전체 모임 하단 넘버링 
-	HashMap<String, Object> selectClubAll(PageDto pageDto1);
+	HashMap<String, Object> selectClubAll(PageDto pageDto1, SearchDto search);
 
 	//회원 그래프 데이터 생성하기
 	List<UserGraphDto> selectUserGraphAll();

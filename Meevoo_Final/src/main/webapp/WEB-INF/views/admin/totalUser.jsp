@@ -135,13 +135,13 @@
 										
 										<!--회원 리스트-->
 										<div class="card card_border">
-				        					<div class="drop_list" style="display: none;">
+				        					<!-- <div class="drop_list" style="display: none;">
 				        						<ul>
 				        							<li><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">dropButton name1</a></li>
 				        							<li><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">dropButton name2</a></li>
 				        							<li><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">dropButton name3</a></li>
 				        						</ul>
-				        					</div>
+				        					</div> -->
 						                    
 						                    
 						        			<!--card_title-->
@@ -191,16 +191,7 @@
 						                                      </td>
 														    </tr>
 						                                </c:forEach>
-						                                      <!-- <td>1</td>
-						                                        <td><div class="id_photo"><img src="./Admin Template - Light_files/icon_loginID.png"></div></td>
-						                                        <td>Data Name</td>
-						                                        <td>222</td>
-						                                        <td>v0.0.1</td>
-						                                        <td>20,840,512</td>
-						                                        <td>OFF</td>
-						                                        <td>OFF</td>
-						                                        <td>AA</td>
-						                                        <td><button class="btn_simple btn_blue">확인</button><button class="btn_simple btn_green">수정</button></td> -->
+						                                      
 						                                </tbody>
 						                                
 						                            </table>

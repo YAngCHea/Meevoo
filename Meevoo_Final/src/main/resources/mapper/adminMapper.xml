@@ -108,7 +108,7 @@
 		)where rnum between #{startRow} and #{endRow}
    </select>
    
-    <!--전체 회원 가져오기   -->
+    <!--전체 회원 가져오기 : 하단 넘버링을 위한 카운트!   -->
    <select id="selectMemberListCount" resultType="int">
       select count(*) from userlist
       <if test="category == 'all'">
@@ -128,14 +128,60 @@
    <!-- 전체 모임 하단 넘버링  -->
    <select id = "selectClubAll" resultType="com.java.dto.ClubDto">
       select * from ( select rownum rnum,a.* from
-		(select * from clublist order by cWrDate desc) a
-		)where rnum between #{startRow} and #{endRow}
+		(select * from clublist 
+		
+		
+	   <if test="search.category == 'all'">
+		   where id like '%'||#{search.search_input}||'%' or cnm like '%'||#{search.search_input}||'%' or sfno like '%'||#{search.search_input}||'%'
+	   </if>
+	   <if test="search.category == 'id'">
+		   where id like '%'||#{search.search_input}||'%'
+	   </if>
+	   <if test="search.category == 'cnm'">
+		   where cnm like '%'||#{search.search_input}||'%'
+	   </if>
+	   <if test="search.category == 'sfno'">
+		   where sfno like '%'||#{search.search_input}||'%'
+	   </if>
+		
+		order by cWrDate desc) a
+		)where rnum between #{pageDto1.startRow} and #{pageDto1.endRow}
    </select>
    
    <!-- 전체 모임 가져오기 -->
    <select id = "selectClubListCount" resultType="int">
       select count(*) from clublist
+      
+      <if test="category == 'all'">
+		   where id like '%'||#{search_input}||'%' or cnm like '%'||#{search_input}||'%' or sfno like '%'||#{search_input}||'%'
+	   </if>
+	   <if test="category == 'id'">
+		   where id like '%'||#{search_input}||'%'
+	   </if>
+	   <if test="category == 'cnm'">
+		   where cnm like '%'||#{search_input}||'%'
+	   </if>
+	   <if test="category == 'sfno'">
+		   where sfno like '%'||#{search_input}||'%'
+	   </if>
+      
    </select>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
    <!-- Sport 신고 게시물 상위 5개 -->
    <select id="selectSFive" resultType="com.java.dto.SportReportDto">

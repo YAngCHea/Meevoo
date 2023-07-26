@@ -58,41 +58,43 @@
 					        			
 					        			
 					        			
+					        			<script>
+										    	function clubSearchBtn(){
+										    		
+										    		if($("#search_input").val().length<2){
+										    			alert("2글자 이상 입력하셔야 합니다.")
+										    			$("#search_input").focus();
+										    			return false;
+										    		}
+										    		
+										    		userSearch.submit();
+										    	}
+										</script>
 					        			
-					        			<!--card-->
-					        			<div class="card card_border bg_lightblue">
-					                        <div class="card_option ">
-					                        
-						                         <!-- 2차 구현에서 하자....
-						                        <div class="option_section" style="width:30%;">
-					                                <span class="first_tit" style="float:left;text-align : center" ><br>가입 날짜 :</span>
-					                                <input type="text" class="Datepicker cald_St hasDatepicker" id="dp1689135199476" style="width:100px; float:left;">
-					                                <span style="float:left;"><br> ~ </span>
-					                                <input type="text" class="Datepicker cald_St hasDatepicker" id="dp1689135199477" style="width:100px; float:left;">
-						                        </div>
-						                        <div class="option_section">
-					                                <span style="float:left;"><br>현재 상태 :</span>
-					                                <select style="width:100px; float:left;">
-					                                    <option>가입</option>
-					                                    <option>탈퇴</option>
-					                                </select>
-						                        </div> -->
-						                        
-						                        <div class="option_section" style="width:100%;">
-					                            	<span style="float:left;"><br>회원 이름 검색 :</span>
-					                            	<!-- 이 부분이 원래 벝은
-					                            	<input type="text" style="width:120px; float:left;">
-					                                <button class="btn_small btn_blue" style="float:left;">검색</button> -->
-					                                <!-- 검색부분!! -->
-					                            <form class='userSearchBtn' method="post" action="/admin/totalUser" name="userSearch" style="display:flex; align-items:center; place-content: center; ">    
-													<input tye="search" style="width:400px; margin: 0 0 0 1px;" name="serch_input" id="serch_input" value="${serch_input}" placeholder="검색어를 입력해주세요." />
-													<button type="button" class="btn_small btn_blue" onclick="userSearchBtn()" style="height: 40px; margin: 0 0 0 1px;">검색</button>
-												</form>
-						                        </div>
-						                        
-					                        </div>
-					        			</div>
+					        				
+										
 										<!--card-->
+										<div class="card card_border bg_lightblue">
+										    <div class="card_option">
+										        <form class="clubSearchBtn" method="post" action="/admin/totalWrite" name="userSearch" style="display: flex; align-items: center; justify-content: center;">
+										            <select name="category" id="category" style="width: 10%; padding: 0 0 0 0; margin: 0;">
+										                <option value="all">전체</option>
+										                <option value="id">작성자</option>
+										                <option value="cnm">모임이름</option>
+										                <option value="sfno">모임장소</option>
+										            </select>
+										
+										            <div class="option_section" style="width: 30%; display: flex; align-items: center;">
+										                <input type="search" style="width: 400px; margin: 0 0 0 1px;" name="search_input" id="search_input" value="${search_input}" placeholder="검색어를 입력해주세요." />
+										                <button type="button" class="btn_small btn_blue" onclick="userSearchBtn()" style="height: 40px; margin: 0 0 0 1px;">검색</button>
+										            </div>
+										        </form>
+										    </div>
+										</div>
+										<!--card-->
+
+										
+										
 										
 										<!--회원 리스트-->
 										<div class="card card_border">
@@ -173,83 +175,89 @@
 						        			<!-- 하단 넘버링 버튼 -->
 											<div class="col-12" style="margin: 0px auto;">
 												<ul class="pagination">
-												    <!-- 첫 페이지 이동 -->
-												    <c:if test="${pageDto.page !=1}">
-													  <li>
-													    <a href="/admin/totalWrite?page=1" class="button">
-													      <img src="../images/general/pageFirst.png" style="width:15px; " />
-													    </a>
-													  </li>
-												    </c:if>
-												    <c:if test="${pageDto.page ==1}">
-													  <li>
-													    <span class="button disabled">
-													      <img src="../images/general/pageFirst.png" style="width:15px; vertical-align: middle;" />
-													    </span>
-													  </li>
-												    </c:if>
-													<!-- 첫 페이지 이동 끝-->
-													<!-- 이전 페이지 이동 -->
-													<c:if test="${pageDto.page>1}">
-													  <li>
-													    <a href="/admin/totalWrite?page=${pageDto.page-1}" class="button">
-													      <img src="../images/general/pagePrevious.png" style="width:15px; vertical-align: middle;" />
-													    </a>
-													  </li>
-													</c:if>
-													<c:if test="${pageDto.page==1}">
-													  <li>
-													    <span class="button disabled">
-													      <img src="../images/general/pagePrevious.png" style="width:15px; vertical-align: middle;" />
-													    </span>
-													  </li>
-													</c:if>
-													<!-- 이전 페이지 이동 끝 -->
-													<!-- 페이지 리스트 -->
-													<c:forEach var="num" begin="${pageDto.startPage}" end="${pageDto.endPage}" step="1" >
-													  <c:if test="${num != pageDto.page}" >
-													    <li><a href="/admin/totalWrite?page=${num}" class="page">${num}</a></li>
-													  </c:if>
-													  <c:if test="${num == pageDto.page}" >
-													    <li><a href="/admin/totalWrite?page=${num}" class="page active">${num}</a></li>
-													  </c:if>
-													</c:forEach>
-													<!-- 페이지 리스트 끝-->
-													<!-- 다음 페이지 이동 -->
-													<c:if test="${pageDto.page<pageDto.maxPage}">
-													  <li>
-													    <a href="/admin/totalWrite?page=${pageDto.page+1}" class="button">
-													      <img src="../images/general/pageNext.png" style="width:15px; vertical-align: middle;" />
-													    </a>
-													  </li>
-													</c:if>
-													<c:if test="${pageDto.page==pageDto.maxPage}">
-													  <li>
-													    <span class="button disabled">
-													      <img src="../images/general/pageNext.png" style="width:15px; vertical-align: middle;" />
-													    </span>
-													  </li>
-													</c:if>
-													<!-- 다음 페이지 이동 끝-->
-													<!-- 끝 페이지 이동 -->
-												    <c:if test="${pageDto.page != pageDto.maxPage}">
-													  <li>
-													    <a href="/admin/totalWrite?page=${pageDto.maxPage}" class="button">
-													      <img src="../images/general/pageLast.png" style="width:15px; vertical-align: middle;" />
-													    </a>
-													  </li>
-												    </c:if>
-												    <c:if test="${pageDto.page == pageDto.maxPage}">
-													  <li>
-													    <span class="button disabled">
-													      <img src="../images/general/pageLast.png" style="width:15px; vertical-align: middle;" />
-													    </span>
-													  </li>
-												    </c:if>
-													<!-- 끝 페이지 이동 끝-->
-													
-											</ul>
-										</div>
+											      <!-- 첫페이지 이동 -->
+											      <c:if test="${pageDto1.page != 1 }">
+												      <li class="first">
+												         <a href="/admin/totalWrite?page=1&search_input=${search.search_input}" class="button">
+												            <img src="../images/general/pageFirst.png" style="width: 15px;" />
+												         </a>
+												      </li>
+											      </c:if>
+											      <c:if test="${pageDto1.page == 1 }">
+												      <li class="first">
+												         <span class="button disabled"> 
+												            <img src="../images/general/pageFirst.png" style="width: 15px; vertical-align: middle;" />
+														 </span>
+												      </li>
+											      </c:if>
+											      <!-- 첫 페이지 이동 끝-->
+											      <!-- 이전페이지 이동 -->
+											      <c:if test="${pageDto1.page>1}">
+											        <li class="prev">
+											           <a href="/admin/totalWrite?page=${pageDto1.page-1}&search_input=${search.search_input}" class="button">
+											              <img src="../images/general/pagePrevious.png" style="width: 15px; vertical-align: middle;" />
+											           </a>
+											        </li>
+											      </c:if>
+											      <c:if test="${pageDto1.page==1}">
+											         <li class="prev">
+											            <span class="button disabled"> 
+											               <img src="../images/general/pagePrevious.png" style="width: 15px; vertical-align: middle;" />
+														</span>
+											         </li>
+											      </c:if>
+											      <!-- 이전 페이지 이동 끝 -->
+											      <!-- 페이지리스트 -->
+											      <c:forEach begin="${pageDto1.startPage}" end="${pageDto1.endPage}" step="1" var="num">
+											        <c:if test="${num != pageDto1.page }">
+												       <li class="num">
+												          <a href="/admin/totalWrite?page=${num}&search_input=${search.search_input}" class="page">
+												           <div>${num}</div>
+												          </a>
+												       </li>
+											        </c:if>
+											        <c:if test="${num == pageDto1.page }">
+											            <li class="num on">
+											               <a href="/admin/totalWrite?page=${num}" class="page active">
+											                  <div>${num}</div>
+											               </a>
+											            </li>
+											        </c:if>
+											      </c:forEach>
+											      <!-- 페이지 리스트 끝-->
+											      <!-- 다음페이지 이동 -->
+											      <c:if test="${pageDto1.page<pageDto1.maxPage}">
+											        <li class="next">
+											           <a href="/admin/totalWrite?page=${pageDto1.page+1}&search_input=${search.search_input}" class="button">
+											              <img src="../images/general/pageNext.png" style="width: 15px; vertical-align: middle;" />
+											           </a>
+											        </li>
+											      </c:if>
+											      <c:if test="${pageDto1.page==pageDto1.maxPage }">
+											        <li class="next">
+											           <span class="button disabled"> 
+											              <img src="../images/general/pageNext.png" style="width: 15px; vertical-align: middle;" />
+													   </span>
+											        </li>
+											      </c:if>
+											      <!-- 다음 페이지 이동 끝-->
+											      <!-- 끝페이지 이동 -->
+											      <c:if test="${pageDto1.page != pageDto1.maxPage }">
+											        <li class="last">
+												      <a href="/admin/totalWrite?page=${pageDto1.maxPage}&search_input=${search.search_input}" class="button">
+												         <img src="../images/general/pageLast.png" style="width: 15px; vertical-align: middle;" />
+												      </a>
+											        </li>
+											      </c:if>
+											      <c:if test="${pageDto1.page == pageDto1.maxPage }">
+												      <li class="last">
+											            <span class="button disabled"> <img src="../images/general/pageLast.png" style="width: 15px; vertical-align: middle;" />
+														</span>
+												      </li>
+											      </c:if>
+											      
+											    </ul>
+											</div>	
 						        			
 						        			
 						        			

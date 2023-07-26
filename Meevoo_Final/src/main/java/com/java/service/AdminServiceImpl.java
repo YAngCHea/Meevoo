@@ -57,7 +57,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		//endPage가 최대페이지보다 더 크면 최대페이지까지만 노출
 		if(endPage>maxPage) endPage=maxPage;
-		System.out.println("endPage : "+endPage);
+		//System.out.println("endPage : "+endPage);
 		ArrayList<MemberDto> list = adminMapper.selectAll(startRow, endRow, search);
 
 		map.put("list", list);
@@ -99,28 +99,42 @@ public class AdminServiceImpl implements AdminService {
 	
 	//전체 모임 하단 넘버링 =========================================================================================
 	@Override
-	public HashMap<String, Object> selectClubAll(PageDto pageDto1) {
+	public HashMap<String, Object> selectClubAll(PageDto pageDto1,SearchDto search) {
 		HashMap<String, Object> map1 = new HashMap<>();
 		//페이지 정보 메소드 호출하기
-		pageDto1 = pageMethod1(pageDto1);
+		pageDto1 = pageMethod1(pageDto1,search);
+		
+		//endPage가 최대페이지보다 더 크면 최대페이지까지만 노출
+		//if(pageDto1.getEndPage()>pageDto1.getMaxPage()) endPage=maxPage;
+		
+		if (pageDto1.getEndPage() > pageDto1.getMaxPage()) pageDto1.setEndPage(pageDto1.getMaxPage());
+		
 		
 		//모임 전체 가져오기
-		ArrayList<ClubDto> clublist = adminMapper.selectClubAll(pageDto1);
+		ArrayList<ClubDto> clublist = adminMapper.selectClubAll(pageDto1, search);
 		
 		map1.put("clublist", clublist);
 		map1.put("pageDto1", pageDto1);
+		map1.put("page", pageDto1.getPage());
+		map1.put("listCount", pageDto1.getListCount());
+		map1.put("startPage", pageDto1.getStartPage());
+		map1.put("endPage",pageDto1.getEndPage());
+		map1.put("maxPage",pageDto1.getMaxPage());
+		map1.put("category",search.getCategory());
+		map1.put("search_input",search.getSearch_input());
+		
+		System.out.println("Impl endPage : "+pageDto1.getEndPage());
 		
 		return map1;
 	}
 
 	//페이지정보 메소드
-	public PageDto pageMethod1(PageDto pageDto1) {
+	public PageDto pageMethod1(PageDto pageDto1,SearchDto search) {
 
-		
 		//전체게시글 수-142,현재페이지,최대페이지,시작페이지,끝페이지 1-시작,2,3,4,5-현재,6,7,8,9,10-끝  15-최대
 		//시작번호,끝나는번호 1-10,11-20,21-30
 		//전체게시글 수 저장
-		pageDto1.setListCount(adminMapper.selectClubListCount());
+		pageDto1.setListCount(adminMapper.selectClubListCount(search));
 		// 최대 넘버링페이지
 		pageDto1.setMaxPage((int)Math.ceil((double)pageDto1.getListCount()/10));
 		// 시작 넘버링페이지
@@ -131,6 +145,8 @@ public class AdminServiceImpl implements AdminService {
 		pageDto1.setStartRow((pageDto1.getPage()-1)*10+1);
 		// 끝나는번호
 		pageDto1.setEndRow(pageDto1.getStartRow()+10-1);
+		
+		
 		
 		return pageDto1;
 	}

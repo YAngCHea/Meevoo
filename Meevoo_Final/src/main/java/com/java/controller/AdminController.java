@@ -2,6 +2,7 @@ package com.java.controller;
 
 import java.io.File;
 
+
 import java.net.URLEncoder;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -65,8 +66,8 @@ public class AdminController {
 			model.addAttribute("category",map.get("category"));
 			model.addAttribute("search_input",map.get("search_input"));
 		
-			System.out.println("search"+search);
-			System.out.println("page"+page);
+			//System.out.println("search"+search);
+			//System.out.println("page"+page);
 			
 			return "admin/totalUser";
 		}
@@ -140,14 +141,21 @@ public class AdminController {
 		
 // 1. 전체 모임 게시글 하단 넘버링 -------------------------------------------------------------
 	@RequestMapping("/admin/totalWrite")
-	public String totalWrite(PageDto pageDto1, Model model) {
+	public String totalWrite(PageDto pageDto1, SearchDto search, Model model) {
 		//System.out.println("AdminController totalWrite page : "+pageDto1.getPage());
 		
 		//게시글 전체가져오기
-		HashMap<String, Object> map1 = adminService.selectClubAll(pageDto1);
+		HashMap<String, Object> map1 = adminService.selectClubAll(pageDto1,search);
 		model.addAttribute("clublist",map1.get("clublist"));
 		model.addAttribute("pageDto1",map1.get("pageDto1"));
-		
+		model.addAttribute("page",map1.get("page"));
+		model.addAttribute("listCount",map1.get("listCount"));
+		model.addAttribute("startPage",map1.get("startPage"));
+		model.addAttribute("endPage",map1.get("endPage"));
+		model.addAttribute("maxPage",map1.get("maxPage"));
+		model.addAttribute("category",map1.get("category"));
+		model.addAttribute("search_input",map1.get("search_input"));
+		System.out.println("controller endPage"+map1.get("endPage"));
 		return "admin/totalWrite";
 	}
 	

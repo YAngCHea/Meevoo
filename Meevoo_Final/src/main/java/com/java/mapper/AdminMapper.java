@@ -31,10 +31,10 @@ public interface AdminMapper {
 	int selectMemberListCount(SearchDto search);
 
 	//전체 모임 하단 넘버링 
-	ArrayList<ClubDto> selectClubAll(PageDto pageDto1);
+	ArrayList<ClubDto> selectClubAll(PageDto pageDto1,SearchDto search);
 	
 	//전체 모임 가져오기
-	int selectClubListCount();
+	int selectClubListCount(SearchDto search);
 
 	//회원 그래프 데이터 생성하기
 	List<UserGraphDto> selectUserGraphAll();
