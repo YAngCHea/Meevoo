@@ -112,16 +112,13 @@ public class SportServiceImpl implements SportService {
 	}
 
 	@Override
-	public HashMap<String, Object> selectSrenoOne(int sreno) {
+	public ArrayList<SportReviewDto> selectSrenoOne(int sreno) {
 		
 		//리뷰글 번호 가져오기
-		HashMap<String, Object> map = new HashMap<>();
-		
+		ArrayList<SportReviewDto> sreList = sportMapper.selectSrenoOne(sreno);
 		//게시글 1개 가져오기
-		SportReviewDto sreDto = sportMapper.selectSrenoOne(sreno);
-		map.put("sreDto", sreDto);
-		
-		return map;
+		System.out.println("임플리먼트에서 찍히는 거 : "+sreList);
+		return sreList;
 	}
 
 	@Override

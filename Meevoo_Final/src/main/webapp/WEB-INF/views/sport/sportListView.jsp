@@ -215,8 +215,13 @@
                     	
     				 	if(confirm("리뷰글을 신고 하시겠습니까?")){
     				 		location.href="/sport/sportReviewReport?sfno="+sfno+"&page=${page}&sreno="+sreno+"&id="+id;
+    				 		alert(sreno);
+    				 		alert(id);
+    				 		alert(sfno);
                   		  	return false;
     				 	}
+    				 	
+    				 	
     				}
                     
                     // 7. 찜하기 버튼(insert)
@@ -464,7 +469,7 @@
 												</c:if>
 												<c:if test="${sessionId != sreDto.id }">
 													<li class="btn">
-														<a onclick="reportBtn(${sreDto.sreno},'${sreDto.id}','${sdto.sfno}' )" class="button primary small">신고</a>
+														<a name="rerepclick" onclick="reportBtn(${sreDto.sreno},'${sreDto.id}','${sreDto.sfno}' )" class="button primary small">신고</a>
 													</li>
 												</c:if>
 											</ul>

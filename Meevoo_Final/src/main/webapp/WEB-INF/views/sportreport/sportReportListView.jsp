@@ -67,6 +67,9 @@
 											  <li><a href="sportReportUpdate?srepno=${srdto.srepno}&page=${page}&category=${category}&srep_word=${srep_word}" class="button primary">수정</a></li>
 											  <li><a onclick="srpdeleteBtn()" class="button">삭제</a></li>
 											</c:if>
+											<c:if test="${sessionId == 'admin'}">
+											  <li><a onclick="srpdeleteBtn()" class="button">삭제</a></li>
+											</c:if>
 										<li><a href="sportReportList?page=${page}&category=${category}&srep_word=${srep_word}" class="button primary">문의 목록으로</a></li>
 									</ul>
 								</section>

@@ -32,7 +32,7 @@ public interface SportService {
 	// 리뷰글에 대한 신고글 1개 작성
 	void insertReportOne(SportReviewReportDto srerepDto);
 	//리뷰글 번호 가져오기
-	HashMap<String, Object> selectSrenoOne(int sreno);
+	ArrayList<SportReviewDto> selectSrenoOne(int sreno);
 
 	
 	

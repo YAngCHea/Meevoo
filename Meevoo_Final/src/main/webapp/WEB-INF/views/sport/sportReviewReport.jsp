@@ -51,15 +51,15 @@
 										</div>
 										<div class="day">
 											<p class="txt">리뷰 작성자
-											  <span>quickly
-												<input type="hidden" name="id" value="id"/>
+											  <span>${serList.id}
+												<input type="hidden" name="id" value="${serList.id}"/>
 											  </span>
 											</p>
 										</div>
 										<div class="day">
 											<p class="txt">리뷰번호
-											  <span>59
-												<input type="hidden" name="sreno" value="sreno"/>
+											  <span>${serList.sreno}
+												<input type="hidden" name="srepno" value="${serList.sreno}"/>
 											  </span>
 											</p>
 										</div>

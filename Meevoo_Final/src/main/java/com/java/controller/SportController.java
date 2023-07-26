@@ -162,9 +162,9 @@ public class SportController {
 	public String sportReviewReport(int sreno, Model model) {
 		
 		//리뷰글 번호, 아이디 가져오기
-		HashMap<String, Object> map = sportService.selectSrenoOne(sreno);
-		model.addAttribute("sreList", map.get("sreList"));
-		
+		ArrayList<SportReviewDto> sreList = sportService.selectSrenoOne(sreno); 
+		model.addAttribute("sreList", sreList);
+		System.out.println("컨트롤러에서 찍히는거 : "+sreList);
 		
 		return "sport/sportReviewReport";
 	} // sportReviewReport
