@@ -86,7 +86,7 @@
 										
 										            <div class="option_section" style="width: 30%; display: flex; align-items: center;">
 										                <input type="search" style="width: 400px; margin: 0 0 0 1px;" name="search_input" id="search_input" value="${search_input}" placeholder="검색어를 입력해주세요." />
-										                <button type="button" class="btn_small btn_blue" onclick="userSearchBtn()" style="height: 40px; margin: 0 0 0 1px;">검색</button>
+										                <button type="button" class="btn_small btn_blue" onclick="clubSearchBtn()" style="height: 40px; margin: 0 0 0 1px;">검색</button>
 										            </div>
 										        </form>
 										    </div>
@@ -150,7 +150,7 @@
 						                                   <tr>
 															  <td>${clublist.cno}</td>
 															  <td>${clublist.id}</td>
-															  <td><a href="/" class="lightgray">${clublist.cnm}</a></td>
+															  <td><a href="/club/cView?cno=${clublist.cno }" class="lightgray">${clublist.cnm}</a></td>
 															  <td><fmt:formatDate value="${clublist.cwrdate}" pattern="yyyy-MM-dd"/></td>
 															  <td><fmt:formatDate value="${clublist.cdodate}" pattern="yyyy-MM-dd"/></td>
 															  <td>${clublist.cloc}</td>

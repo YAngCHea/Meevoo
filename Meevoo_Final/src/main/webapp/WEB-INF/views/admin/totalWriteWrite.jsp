@@ -82,46 +82,42 @@
 									                      </div>
 									                    </div> -->
 									                    
-									                    <div class="field item form-group">
+									                    <!-- <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">no<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" name="cno" type="number">
 									                      </div>
-									                    </div>
-									                    
+									                    </div> -->
+									                    <input class="form-control" name="cno" type="hidden" value="1">
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성자<span
-									                          class="required">*</span></label>
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성자<span class="required"> </span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="id" name="id" >  <!-- data-validate-linked="email" -->
+									                        <input class="form-control" type="id" name="id" value="${sessionId }">  <!-- data-validate-linked="email" -->
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">모임 이름<span
-									                          class="required">*</span></label>
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">모임 이름<span class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" type="text" name="cnm" >
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">글 작성일<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">운동종목<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="cwrdate"  type="date">  <!-- required="required" -->
-									                      </div>
-									                    </div>
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">사진<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="file" type="file">
+									                        <input class="form-control" type="text" name="scate">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">시설 번호<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
+										                      <select name="sfno">
+																	<c:forEach var="sportlist" items="${list}">
+																		<option value="${sportlist.sfno}">${sportlist.sfno}</option>
+																	</c:forEach>
+															  </select>
 									                        <input class="form-control" type="number" name="sfno" >
 									                      </div>
 									                    </div>
@@ -146,11 +142,19 @@
 									                        <input class="form-control" type="date" name="cdodate">
 									                      </div>
 									                    </div>
+									                    <!-- <div class="field item form-group">
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">글 작성일<span class="required">*</span></label>
+									                      <div class="col-md-6 col-sm-6">
+									                        <input class="form-control" name="cwrdate"  type="date" >  required="required"
+									                      </div>
+									                    </div> -->
+									                    <input class="form-control" name="cwrdate"  type="hidden" value="2023/07/01">
+									                    
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">운동종목<span
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">사진<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" name="scate">
+									                        <input class="form-control" name="file" type="file">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
@@ -174,30 +178,6 @@
 									                        <input type="file" class="form-control" name="file">
 									                      </div>
 									                    </div> -->
-									                    
-									                    <!-- <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Time<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="time" name="time" required="required">
-									                      </div>
-									                    </div>
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Repeat password<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="password" name="password2" data-validate-linked="password"
-									                          required="required">
-									                      </div>
-									                    </div>
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Telephone<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="tel" name="phone" required="required"
-									                          data-validate-length-range="8,20">
-									                      </div>
-									                    </div>
 									                   <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심온도<span
 									                          class="required">*</span></label>

@@ -161,7 +161,7 @@
 						                                <input class="form-check-input m-0" type="checkbox">
 						                                <div class="w-100 ms-3">
 						                                    <div class="d-flex w-100 align-items-center justify-content-between">
-						                                        <span><a href="/sportreport/sportReportListView?srepno=${sRelist.sfno}">${sRelist.sfno}</a></span>
+						                                        <span><a href="/sportreport/sportListView?srepno=${sRelist.sfno}">${sRelist.sfno}</a></span>
 						                                        <span><a href="/sportreport/sportReportListView?srepno=${sRelist.srepno}">${sRelist.srepcontent}</a></span>
 						                                        <span><a><fmt:formatDate pattern="yyyy-MM-dd" value="${sRelist.srepdate}"/></a></span>
 						                                        <!-- <button class="btn btn-sm"><i class="fa fa-times"></i></button> -->

@@ -39,24 +39,27 @@ public class MemberController {
 		//System.out.println("memberDto2 PW : "+memberDto.getNicknm());
 		MemberDto mdto = memberService.selectLogin(memberDto);
 		
-		 if(mdto!=null) {
-			 if(mdto.getId().equals("admin")) {
-				 session.setAttribute("sessionId", mdto.getId()); //sessionId
-				 session.setAttribute("sessionName", mdto.getUsernm());
-				 session.setAttribute("sessionNicknm", mdto.getNicknm());
-				 return "/main";
-			 }else {
-				 session.setAttribute("sessionId", mdto.getId()); //sessionId
-				 session.setAttribute("sessionName", mdto.getUsernm());
-				 session.setAttribute("sessionNicknm", mdto.getNicknm());
-			 }
-		 }else {
-			 model.addAttribute("loginCheck", "fail");
-			 //String loginCheck="fail"; 과 같은 구문(그런데 웹에서는 안되서 java에서는 안됨)
-			 //loginCheck라는 변수에 fail 값을 넣어줌
-			 return "/member/login";
-		 }
-		
+			if(mdto!=null && mdto.getNowjoin() == 1) {   //현재 상태 1 : 가입// 현재 상태 0 : 탈퇴
+				
+					if(mdto.getId().equals("admin")) {
+						session.setAttribute("sessionId", mdto.getId()); //sessionId
+						session.setAttribute("sessionName", mdto.getUsernm());
+						session.setAttribute("sessionNicknm", mdto.getNicknm());
+						return "/main";
+					}else {
+						session.setAttribute("sessionId", mdto.getId()); //sessionId
+						session.setAttribute("sessionName", mdto.getUsernm());
+						session.setAttribute("sessionNicknm", mdto.getNicknm());
+					}
+						
+			}else {
+				model.addAttribute("loginCheck", "fail");
+				//String loginCheck="fail"; 과 같은 구문(그런데 웹에서는 안되서 java에서는 안됨)
+				//loginCheck라는 변수에 fail 값을 넣어줌
+				return "/member/login";
+			}
+			
+						
 		return "redirect:/main";
 	}
 
