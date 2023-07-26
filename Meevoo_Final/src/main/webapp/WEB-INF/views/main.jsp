@@ -99,12 +99,12 @@
 										<h2>가장 많이 찜한 운동모임</h2>
 									</header>
 									<div class="features">
-										<c:forEach items="${list}" var="item">
+										<c:forEach items="${list}" var="clist">
 											<article>
-												<span><img src="images/clubPick1.png"><%-- ${item.cimg } --%></span>
+												<span><img src="${clist.cimg }"/></span>
 												<div class="content">
-													<h2>&nbsp;&nbsp;&nbsp;&nbsp;${item.cnm }</h2>
-													<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${item.dongcate }</p>
+													<a href="/club/cView?cno=${clist.cno }&page=${page}"><h2>&nbsp;&nbsp;&nbsp;&nbsp;${clist.cnm }</h2></a>
+													<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${clist.dongcate }</p>
 												</div>
 											</article>
 										</c:forEach>

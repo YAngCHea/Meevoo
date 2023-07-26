@@ -17,7 +17,7 @@ public interface MyCBoardMapper {
 	ArrayList<CListPickDto> selectClubPickAll(PageDto pageDto, String id);
 
 	//운동모임 - 찜한 리스트 전체 게시글 수
-	int selectListCPick();
+	int selectListCPick(PageDto pageDto, String id);
 
 	//운동모임 - 찜하기 취소 버튼
 	void cancelCPick(String id, int cno);
@@ -34,7 +34,8 @@ public interface MyCBoardMapper {
 	ArrayList<CListJoinDto> selectClubJoinAll(PageDto pageDto, String id);
 	
 	//운동모임 - 참여한 리스트 전체 게시글 수
-	int selectListCJoin();
+	int selectListCJoin(PageDto pageDto, String id);
+	
 	
 	//참여한 리스트 1개 삭제
 	void deleteCJoin(int cno);

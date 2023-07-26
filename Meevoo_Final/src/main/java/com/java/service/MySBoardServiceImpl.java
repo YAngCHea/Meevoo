@@ -28,11 +28,12 @@ public class MySBoardServiceImpl implements MySBoardService {
 		HashMap<String, Object> map = new HashMap<>();
 		ArrayList<SListPickDto> list = null;
 				
-		//페이지정보 메소드호출
-		pageDto = pageMethod1(pageDto);
-		
+	
 		//sessionId를 가져오기 위해 추가 
 		String id = (String)session.getAttribute("sessionId");
+
+		//페이지정보 메소드호출
+		pageDto = pageMethod1(pageDto, id);
 		
 		if(id!=null) {
 			//게시글 전체 가져오기
@@ -42,6 +43,7 @@ public class MySBoardServiceImpl implements MySBoardService {
 			map.put("loginCheck", "fail");
 		}
 		
+		
 		map.put("list", list);
 		map.put("pageDto", pageDto);
 		
@@ -49,10 +51,11 @@ public class MySBoardServiceImpl implements MySBoardService {
 	}
 	
 	//체육시설 - 찜한 리스트 페이지정보 메소드
-	public PageDto pageMethod1(PageDto pageDto) {
+	public PageDto pageMethod1(PageDto pageDto, String id) {
 		
 		//전체 게시글 수 저장
-		pageDto.setListCount(mySBoardMapper.selectListSPick());
+		pageDto.setListCount(mySBoardMapper.selectListSPick(pageDto, id));
+		//System.out.println("getListCount"+pageDto.getListCount());
 		//최대 넘버링 페이지
 		pageDto.setMaxPage((int)Math.ceil((double)pageDto.getListCount()/10));
 		//시작 넘버링 페이지
@@ -63,6 +66,12 @@ public class MySBoardServiceImpl implements MySBoardService {
 		pageDto.setStartRow((pageDto.getPage()-1)*10+1);
 		//끝나는번호
 		pageDto.setEndRow(pageDto.getStartRow()+10-1);
+		
+		//endPage가 최대페이지 보다 더 크면 최대페이지까지만 노출
+		if(pageDto.getEndPage()>=pageDto.getMaxPage()) pageDto.setEndPage(pageDto.getMaxPage());
+		
+		//System.out.println("getEndPage : "+pageDto.getEndPage());
+		//System.out.println("getMaxPage : "+pageDto.getMaxPage());
 		
 		return pageDto;
 	}
@@ -79,11 +88,12 @@ public class MySBoardServiceImpl implements MySBoardService {
 		HashMap<String, Object> map = new HashMap<>();
 		ArrayList<SListCurrDto> list = null;
 		
-		//페이지 정보 메소드 호출
-		pageDto = pageMethod2(pageDto);
 		
 		//sessionId를 가져오기 위해 추가
 		String id = (String)session.getAttribute("sessionId");
+		
+		//페이지 정보 메소드 호출
+		pageDto = pageMethod2(pageDto);
 		
 		if(id!=null) {
 			//게시글 전체 가져오기
@@ -124,13 +134,13 @@ public class MySBoardServiceImpl implements MySBoardService {
 		HashMap<String, Object> map = new HashMap<>(); 
 		ArrayList<SListReviewDto> list = null;		
 		
-		//페이지 정보 메소드 호출
-		pageDto = pageMethod3(pageDto);
-		
 		//sessionId를 가져오기 위해 추가
 		String id = (String)session.getAttribute("sessionId");
 		
-		System.out.println("MySBoardServiceImpl id : "+id);
+		//페이지 정보 메소드 호출
+		pageDto = pageMethod3(pageDto,id);
+		
+		//System.out.println("MySBoardServiceImpl id : "+id);
 		
 		if(id!=null) {
 			list = mySBoardMapper.selectSportReviewAll(pageDto, id);
@@ -146,10 +156,11 @@ public class MySBoardServiceImpl implements MySBoardService {
 	}
 
 	//체육시설 - 후기 작성한 리스트 페이지정보 메소드
-	public PageDto pageMethod3(PageDto pageDto) {
+	public PageDto pageMethod3(PageDto pageDto,String id) {
 		
 		//전체 게시글 수 저장
-		pageDto.setListCount(mySBoardMapper.selectListSReview());
+		pageDto.setListCount(mySBoardMapper.selectListSReview(pageDto, id));
+		System.out.println("getListCount"+pageDto.getListCount());
 		//최대 넘버링 페이지
 		pageDto.setMaxPage((int)Math.ceil((double)pageDto.getListCount()/10));
 		//시작 넘버링 페이지
@@ -160,6 +171,12 @@ public class MySBoardServiceImpl implements MySBoardService {
 		pageDto.setStartRow((pageDto.getPage()-1)*10+1);
 		//끝나는번호
 		pageDto.setEndRow(pageDto.getStartRow()+10-1);
+		
+		//endPage가 최대페이지 보다 더 크면 최대페이지까지만 노출
+		if(pageDto.getEndPage()>=pageDto.getMaxPage()) pageDto.setEndPage(pageDto.getMaxPage());
+		
+		//System.out.println("getEndPage : "+pageDto.getEndPage());
+		//System.out.println("getMaxPage : "+pageDto.getMaxPage());
 		
 		return pageDto;
 	}

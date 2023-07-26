@@ -17,22 +17,25 @@ public interface MySBoardMapper {
 	ArrayList<SListPickDto> selectSportPickAll(PageDto pageDto, String id);
 
 	//체육시설 - 찜한 리스트 전체 게시글 수
-	int selectListSPick();
+	int selectListSPick(PageDto pageDto, String id);
 
 	//체육시설 - 찜하기 취소 버튼
 	void cancelSPick(String id, int sfno);
 
+	
 	//체육시설 - 최근본 리스트 전체 가져오기
 	ArrayList<SListCurrDto> selectSportCurrAll(PageDto pageDto, String id);
 
 	//체육시설 - 최근본 리스트 전체 게시글 수
 	int selectListSCurr();
 
+	
 	//체육시설 - 후기 작성한 리스트 전체 가져오기
 	ArrayList<SListReviewDto> selectSportReviewAll(PageDto pageDto, String id);
 
 	//체육시설 - 후기 작성한 리스트 전체 게시글 수
-	int selectListSReview();
+	int selectListSReview(PageDto pageDto, String id);
+	
 
 	//후기 작성한 리스트 1개 삭제
 	void deleteSReview(int sfno);

@@ -19,8 +19,8 @@
 	
 	<!-- 운동모임 - 찜한 리스트 전체 게시글 수 -->
 	<select id="selectListCPick" resultType="int">
-		select count(*) from clubPick
-		<!-- select count(*) from clubPick where cpickyn='YES' and id=#{id} -->
+		<!-- select count(*) from clubPick -->
+		select count(*) from clubPick where cpickyn='YES' and id=#{id}
 	</select>
 	
 	<!-- 체육시설 - 찜하기 취소-->
@@ -77,8 +77,8 @@
 	
 	<!-- 운동모임 - 참여한 리스트 전체 게시글 수 -->
 	<select id="selectListCJoin" resultType="int">
-		select count(*) from clubReviewTemp
-		<!-- select count(*) from clubReviewTemp where giveid=#{id}	 -->	
+		<!-- select count(*) from clubReviewTemp -->
+		select count(*) from clubReviewTemp where giveid=#{id}		
 	</select>
 	
 	<!-- 참여한 리스트 1개 삭제 -->

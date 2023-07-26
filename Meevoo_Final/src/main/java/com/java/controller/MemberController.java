@@ -44,7 +44,7 @@ public class MemberController {
 				 session.setAttribute("sessionId", mdto.getId()); //sessionId
 				 session.setAttribute("sessionName", mdto.getUsernm());
 				 session.setAttribute("sessionNicknm", mdto.getNicknm());
-				 return "redirect:/main";
+				 return "/main";
 			 }else {
 				 session.setAttribute("sessionId", mdto.getId()); //sessionId
 				 session.setAttribute("sessionName", mdto.getUsernm());

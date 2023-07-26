@@ -30,8 +30,9 @@ public class MyCBoardServiceImpl implements MyCBoardService {
 		
 		//sessionId를 가져오기 위해 추가 
 		String id = (String)session.getAttribute("sessionId");
+		
 		//페이지정보 메소드호출
-		pageDto = pageMethod1(pageDto);
+		pageDto = pageMethod1(pageDto, id);
 		
 		//System.out.println("MyCBoardServiceImpl id : "+id);
 		
@@ -45,16 +46,17 @@ public class MyCBoardServiceImpl implements MyCBoardService {
 		
 		map.put("list", list);
 		map.put("pageDto", pageDto);
-		map.put("id", id);
+		/* map.put("id", id); */
 		
 		return map;
 	}
 	
 	//운동모임 - 찜한 리스트 페이지정보 메소드
-	public PageDto pageMethod1(PageDto pageDto) {
+	public PageDto pageMethod1(PageDto pageDto,String id) {
 		
 		//전체 게시글 수 저장
-		pageDto.setListCount(myCBoardMapper.selectListCPick());
+		pageDto.setListCount(myCBoardMapper.selectListCPick(pageDto,id));
+		System.out.println("getListCount"+pageDto.getListCount());
 		//최대 넘버링 페이지
 		pageDto.setMaxPage((int)Math.ceil((double)pageDto.getListCount()/10));
 		//시작 넘버링 페이지
@@ -66,6 +68,12 @@ public class MyCBoardServiceImpl implements MyCBoardService {
 		//끝나는번호
 		pageDto.setEndRow(pageDto.getStartRow()+10-1);
 		
+		//endPage가 최대페이지 보다 더 크면 최대페이지까지만 노출
+		if(pageDto.getEndPage()>=pageDto.getMaxPage()) pageDto.setEndPage(pageDto.getMaxPage());
+		
+		//System.out.println("getEndPage : "+pageDto.getEndPage());
+		//System.out.println("getMaxPage : "+pageDto.getMaxPage());
+				
 		return pageDto;
 	}
 	
@@ -129,11 +137,12 @@ public class MyCBoardServiceImpl implements MyCBoardService {
 		HashMap<String, Object> map = new HashMap<>();
 		ArrayList<CListJoinDto> list = null;
 		
-		pageDto = pageMethod3(pageDto);
 		
 		//sessionId 를 가져오기 위해 추가
 		String id = (String)session.getAttribute("sessionId");
-		System.out.println("MyCBoardServiceImpl : "+id);
+		//System.out.println("MyCBoardServiceImpl : "+id);
+		
+		pageDto = pageMethod3(pageDto,id);
 		
 		if(id!=null) {
 			//게시글 전체 가져오기
@@ -150,14 +159,14 @@ public class MyCBoardServiceImpl implements MyCBoardService {
 	}
 
 	//운동모임 - 찜한 리스트 페이지정보 메소드
-	public PageDto pageMethod3(PageDto pageDto) {
+	public PageDto pageMethod3(PageDto pageDto,String id) {
 		//System.out.println("MyCBoardServiceImpl count :"+pageDto.getListCount());
 		//System.out.println("MyCBoardServiceImpl count :"+pageDto.getMaxPage());
 		//System.out.println("MyCBoardServiceImpl count :"+pageDto.getStartPage());
 		//System.out.println("MyCBoardServiceImpl count :"+pageDto.getStartRow());
 		//System.out.println("MyCBoardServiceImpl getPage :"+pageDto.getPage());
 		//전체 게시글 수 저장
-		pageDto.setListCount(myCBoardMapper.selectListCJoin());
+		pageDto.setListCount(myCBoardMapper.selectListCJoin(pageDto,id));
 		//최대 넘버링 페이지
 		pageDto.setMaxPage((int)Math.ceil((double)pageDto.getListCount()/10));
 		//시작 넘버링 페이지
@@ -168,6 +177,12 @@ public class MyCBoardServiceImpl implements MyCBoardService {
 		pageDto.setStartRow((pageDto.getPage()-1)*10+1);
 		//끝나는번호
 		pageDto.setEndRow(pageDto.getStartRow()+10-1);
+		
+		//endPage가 최대페이지 보다 더 크면 최대페이지까지만 노출
+		if(pageDto.getEndPage()>=pageDto.getMaxPage()) pageDto.setEndPage(pageDto.getMaxPage());
+		
+		System.out.println("getEndPage : "+pageDto.getEndPage());
+		System.out.println("getMaxPage : "+pageDto.getMaxPage());
 		
 		return pageDto;
 	}
