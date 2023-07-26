@@ -184,12 +184,13 @@
 									                        								                        
 									                        <select name="srepcontent">
 																<c:if test="${mdto.nowjoin == '1'}">
-																	<option value="1" selected>가입되어있는 회원</option>
-																	<option value="0">탈퇴한 회원</option>
+																	<option value="1" <c:if test="srepcontent == 1">selected</c:if>   >가입되어있는 회원</option>
+																	<option value="0" <c:if test="srepcontent == 0">selected</c:if>   >탈퇴한 회원</option>
+																	
 																</c:if>
 																<c:if test="${mdto.nowjoin == '0'}">
-																	<option value="1">가입되어있는 회원</option>
-																	<option value="0" selected>탈퇴한 회원</option>
+																	<option value="1" <c:if test="srepcontent == 1">selected</c:if> >가입되어있는 회원</option>
+																	<option value="0" <c:if test="srepcontent == 0">selected</c:if> >탈퇴한 회원</option>
 																</c:if>
 															</select>
 									                        

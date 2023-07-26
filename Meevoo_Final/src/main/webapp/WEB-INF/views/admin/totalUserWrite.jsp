@@ -144,7 +144,7 @@
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">태어난 연도<span class="required"> </span></label>
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">태어난 연도<span class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" type="number" name="birth">
 									                      </div>
@@ -157,6 +157,7 @@
 									                      </div>
 									                    </div>  -->
 								                        <input class="form-control" type="hidden" name="joindate" value="2023/07/30">
+								                        <input class="form-control" type="hidden" name="nowjoin" value="1">
 								                        
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">프로필 사진<span class="required"> </span></label>

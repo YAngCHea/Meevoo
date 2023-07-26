@@ -300,7 +300,7 @@
 										<div class="table-wrapper">
 											
 											<div style="text-align: right;">
-												<a href="/admin/totalUserWrite"><button type="button" class="button primary">문의글 작성</button></a>
+												<a href="/admin/totalUserWrite"><button type="button" class="button primary">회원 추가</button></a>
 											</div>
 										</div>
 									</section>
