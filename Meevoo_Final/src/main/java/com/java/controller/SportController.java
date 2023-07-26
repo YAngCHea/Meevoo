@@ -76,10 +76,12 @@ public class SportController {
 		
 		// 찜 Count(sfno,sessionId)
 		String id = (String)session.getAttribute("sessionId");
+		if(id != null) {
+			int spickcount = sportService.selectSpCount(sfno,id); 
+			model.addAttribute("spickcount", spickcount);
+		}
 		System.out.println("controller id :"+id);
 		System.out.println("controller sfno :"+sfno);
-		int spickcount = sportService.selectSpCount(sfno,id); 
-		model.addAttribute("spickcount", spickcount);
 		
 		model.addAttribute("page", page);
 		

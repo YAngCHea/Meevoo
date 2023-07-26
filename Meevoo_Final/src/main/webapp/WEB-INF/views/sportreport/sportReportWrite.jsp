@@ -27,7 +27,7 @@
 							<script>
 								function srepwriteBtn(){
 									if("${sessionId}"== ""){
-										alert("로그인을 하셔야 댓글입력이 가능합니다.");
+										alert("로그인을 하셔야 문의글 작성이 가능합니다.");
 										location.href="/member/login";
 										return false;
 									}
