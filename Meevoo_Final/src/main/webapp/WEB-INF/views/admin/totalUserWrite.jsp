@@ -5,7 +5,7 @@
 <!DOCTYPE HTML>
 <html>
    <head>
-      <title>회원수정하기+회원추가</title>
+      <title>회원 추가</title>
       <!-- 제이쿼리 최신 -->
       <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
       <meta charset="utf-8" />
@@ -13,7 +13,7 @@
       <link rel="stylesheet" href="../css/main_yang.css" />
       <script>
 	     function writeBtn(){
-	    	 alert("test");
+	    	 alert("회원정보가 추가되었습니다.");
 	    	 writeFrm.submit(); //전송
 	    	 
 	     }
@@ -82,6 +82,8 @@
 									                      </div>
 									                    </div> -->
 									                    
+									                    							                    
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">이름<span
 									                          class="required">*</span></label>
@@ -112,43 +114,37 @@
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">EMAIL<span
-									                          class="required">*</span></label>
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">EMAIL<span class="required"> </span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" name="email" required="required" type="email">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">성별<span
-									                          class="required">*</span></label>
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">성별<span class="required"> </span></label> 
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" type="text" name="gender" >
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">주소<span
-									                          class="required">*</span></label>
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">주소<span class="required"> </span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" type="text" name="addr" >
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심지역<span
-									                          class="required">*</span></label>
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심지역<span class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" type="text" name="dongcate"  >
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심스포츠<span
-									                          class="required">*</span></label>
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심스포츠<span class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" type="text" name="scate">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">태어난 연도<span
-									                          class="required">*</span></label>
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">태어난 연도<span class="required"> </span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" type="number" name="birth">
 									                      </div>
@@ -157,55 +153,33 @@
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">가입일자<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="date" name="joindate" >
+									                        
 									                      </div>
 									                    </div>  -->
+								                        <input class="form-control" type="hidden" name="joindate" value="2023/07/30">
+								                        
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">프로필 사진<span
-									                          class="required">*</span></label>
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">프로필 사진<span class="required"> </span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input type="file" class="form-control" name="file">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">자기소개<span
-									                          class="required">*</span></label>
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">자기소개<span class="required"> </span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <textarea  name="selfintro"></textarea>
 									                      </div>
 									                    </div>
-									                    
-									                    <!-- <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Time<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="time" name="time" required="required">
-									                      </div>
-									                    </div>
+									                    <!-- 
 									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Repeat password<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="password" name="password2" data-validate-linked="password"
-									                          required="required">
-									                      </div>
-									                    </div>
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Telephone<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="tel" name="phone" required="required"
-									                          data-validate-length-range="8,20">
-									                      </div>
-									                    </div>
-									                   <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심온도<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" type="number" name="number" data-validate-minmax="10,100"
 									                          required="required">
 									                      </div>
-									                    </div> -->
+									                    </div> 
+									                    -->
 									                    <div class="ln_solid">
 									                      <div class="form-group">
 									                        <div class="col-md-6 offset-md-3">

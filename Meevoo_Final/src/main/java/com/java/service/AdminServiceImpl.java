@@ -293,6 +293,12 @@ public class AdminServiceImpl implements AdminService {
 		return shtlist;
 	}
 
+
+	
+	
+	
+	
+	
 	//1) 모임 - 스포츠 종류별 count 
 	@Override
 	public ArrayList<DonutChartsClubDto> selectDonutChartClub() {
@@ -372,6 +378,8 @@ public class AdminServiceImpl implements AdminService {
 		adminMapper.deleteTCMOne(cdto);
 		
 	}
+
+	
 
 
 

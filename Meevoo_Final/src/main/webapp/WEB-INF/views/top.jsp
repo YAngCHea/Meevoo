@@ -21,7 +21,7 @@ function logoutBtn(){
 			<li><a href="/member/login">LOGIN</a></li>
 			<li><a href="/member/agree">JOIN</a></li>
 			<c:if test="${sessionId == 'admin' }">
-				<li><a href="/admin/adminStatic">Admin Page</a></li>
+				<li><a href="/admin/adminStatic">Admin</a></li>
 			</c:if>
 			
 			

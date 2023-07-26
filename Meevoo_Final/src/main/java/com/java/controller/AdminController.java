@@ -342,9 +342,20 @@ public class AdminController {
 		model.addAttribute("shtlist",shtlist);
 		System.out.println("controller shtlist:"+shtlist);
 		
+		
 
 		return "admin/adminStatic";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//오른쪽 아래 도넛 그래프 - 모임--------------------------------------------------------------------------------------
 	@RequestMapping("/admin/adminStatic5")

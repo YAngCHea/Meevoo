@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="../css/main_new_yang.css" />
 
 
+
 </head>
 
 <body class="is-preload">
@@ -160,9 +161,10 @@
 						                                <input class="form-check-input m-0" type="checkbox">
 						                                <div class="w-100 ms-3">
 						                                    <div class="d-flex w-100 align-items-center justify-content-between">
-						                                        <span>${sRelist.sfno}</span>
-						                                        <span><a href="/sportreport/sportReportListView?srepno=${srdto.srepno}">${sRelist.srepcontent}</a></span>
-						                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+						                                        <span><a href="/sportreport/sportReportListView?srepno=${sRelist.sfno}">${sRelist.sfno}</a></span>
+						                                        <span><a href="/sportreport/sportReportListView?srepno=${sRelist.srepno}">${sRelist.srepcontent}</a></span>
+						                                        <span><a><fmt:formatDate pattern="yyyy-MM-dd" value="${sRelist.srepdate}"/></a></span>
+						                                        <!-- <button class="btn btn-sm"><i class="fa fa-times"></i></button> -->
 						                                    </div>
 						                                </div>
 						                            </div>
@@ -188,7 +190,8 @@
 								                                    <div class="d-flex w-100 align-items-center justify-content-between">
 								                                        <span>${cRelist.cno}</span>
 								                                        <span><a href="#">${cRelist.crepcontent}</a></span>
-								                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+								                                        <span><a><fmt:formatDate pattern="yyyy-MM-dd" value="${cRelist.crepdate}"/></a></span>
+								                                        <!-- <button class="btn btn-sm"><i class="fa fa-times"></i></button> -->
 								                                    </div>
 								                                </div>
 								                            </div>

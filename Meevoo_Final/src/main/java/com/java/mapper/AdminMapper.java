@@ -54,6 +54,8 @@ public interface AdminMapper {
 	//모임 신고 게시물 상위 5개
 	ArrayList<ClubReportDto> selectCFive();
 
+
+	
 	//회원 추가하기
 	void insertMember(MemberDto memberDto);
 
@@ -86,6 +88,8 @@ public interface AdminMapper {
 
 	//모임 삭제하기
 	void deleteTCMOne(ClubDto cdto);
+
+
 
 
 

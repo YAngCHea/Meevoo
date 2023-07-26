@@ -50,6 +50,23 @@ public interface AdminService {
 	//모임 신고 게시물 상위 5개
 	ArrayList<ClubReportDto> selectCFive();
 
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//회원 추가하기
 	void insertUser(MemberDto memberDto, @RequestPart MultipartFile files);
 
@@ -82,6 +99,11 @@ public interface AdminService {
 
 	//모임 삭제하기
 	void deleteTCMOne(ClubDto cdto);
+
+	
+	
+	
+	
 
 
 

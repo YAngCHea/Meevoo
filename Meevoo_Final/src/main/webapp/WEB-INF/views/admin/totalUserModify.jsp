@@ -112,21 +112,21 @@
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">EMAIL<span
-									                          class="required">*</span></label>
+									                          class="required"> </span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" value="${mdto.email }" name="email" required="required" type="email">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">성별<span
-									                          class="required">*</span></label>
+									                          class="required"> </span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" value="${mdto.gender }" type="text" name="gender" >
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">주소<span
-									                          class="required">*</span></label>
+									                          class="required"> </span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" value="${mdto.addr}" type="text" name="addr" >
 									                      </div>
@@ -155,15 +155,23 @@
 									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">프로필 사진<span
-									                          class="required">*</span></label>
+									                          class="required"> </span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input type="file" class="form-control" value="${mdto.userimg}" name="file">
 									                        <input type="text" class="form-control" value="${mdto.userimg}" name="userimg">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
+									                      <label class="col-form-label col-md-3 col-sm-3  label-align">가입날짜<span
+									                          class="required"> </span></label>
+									                      <div class="col-md-6 col-sm-6">
+									                        <span name="joindate"><fmt:formatDate value="${mdto.joindate}" pattern="yyyy-MM-dd" /></span>
+									                        <!-- <input type="number" class="form-control"  name="joindate" readonly> -->
+									                      </div>
+									                    </div>
+									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">자기소개<span
-									                          class="required">*</span></label>
+									                          class="required"> </span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <textarea  name="selfintro">${mdto.selfintro }</textarea>
 									                      </div>
@@ -254,18 +262,16 @@
 					        <!--//content-->
 						</div>
 						<!-- 회원관리 리스트 나오게! End -->			
+					 <%@ include file="../footer.jsp" %> 
 						
 							 
-					 <%@ include file="../footer.jsp" %> 
 					 
                   </div>
-                  
+               </div>
+
                <!-- Sidebar Start -->
 					<%@ include file="../sidebar.jsp" %>
 		       <!-- Sidebar End -->
-                  
-               </div>
-
 
          </div>
          <!-- Scripts -->
