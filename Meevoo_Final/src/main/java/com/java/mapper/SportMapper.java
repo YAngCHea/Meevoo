@@ -57,13 +57,5 @@ public interface SportMapper {
 	// 찜 Count(sfno,sessionId)
 	int selectSpCount(int sfno, String id);
 
-
-	
-//	//게시글 전체 가져오기
-//	ArrayList<SportDto> selectAll();
-//
-//	//게시글 1개 가져오기
-//	SportDto selectOne(int fcltyno);
-
 	
 }

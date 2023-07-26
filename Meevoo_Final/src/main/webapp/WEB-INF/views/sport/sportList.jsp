@@ -47,6 +47,7 @@
 						    			$("#slist_word").focus();
 						    			return false;
 						    		}
+									if
 									var chksports = $("[name=sports]");
 									var chkdong = $("input:radio[name=dong]:checked").val();
 									var chkArray = [];

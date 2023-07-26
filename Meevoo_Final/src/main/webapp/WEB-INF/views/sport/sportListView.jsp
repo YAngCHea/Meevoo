@@ -238,7 +238,7 @@
                         			  alert("찜하기가 등록되었습니다.");
                         			  
                         			  var dataHtml="";
-                        			  dataHtml += "<a class='button primary' id='spickcancel' onclick=\"sPickCancelBtn("+data.sfno+"','"+data.spickno+"')\">시설 찜하기 취소</a>";
+                        			  dataHtml += "<a class='button primary' id='spickcancel' onclick=\"sPickCancelBtn("+data.sfno+"','"+data.spickno+"')\">♥ 시설 찜하기 [ ${spickList.size()} ]</a>";
                           			  $("#"+spickno).html(dataHtml);
                         			  
                         		  },
@@ -263,7 +263,7 @@
                         			  $("#"+spickno).remove();  // 삭제
                         			  
                         			  let dataHtml="";
-                        			  dataHtml += "<a class='button' id='spicklike' onclick=\"sPickBtn("+data.sfno+")\" data-value='Yes'>시설 찜하기 등록</a>";
+                        			  dataHtml += "<a class='button' id='spicklike' onclick=\"sPickBtn("+data.sfno+")\" data-value='Yes'>♡ 시설 찜하기 [ ${spickList.size()} ]</a>";
                         			  
                           			  $("#"+sfno).html(dataHtml)
                         			  
@@ -366,15 +366,15 @@
 									<br>
 									<!-- Buttons 수정 ->  main.css (1294번째)-->
 									<ul class="actions">
-											<c:if test="${spickcount == 0}">
+											<c:if test="${spickcount == 0 || spickcount == null}">
 											 <!-- 1. 찜하기 -->
-											 <li id="${sdto.sfno}"><a class="button" id="spicklike" onclick="sPickBtn(${sdto.sfno})" data-value="Yes">시설 찜하기 등록</a></li>
+											 <li id="${sdto.sfno}"><a class="button" id="spicklike" onclick="sPickBtn(${sdto.sfno})" data-value="Yes">♡ 시설 찜하기 [ ${spickList.size()} ]</a></li>
 											</c:if>
 											<c:if test="${spickcount == 1}">
 												 <c:forEach var="spickDto" items="${spickList}">
 												 <c:if test="${sessionId == spickDto.id}">
 												 <c:if test="${spickDto.sfno == sdto.sfno}">					 
-												 <li id="${sdto.sfno}"><a class="button primary" id="spickcancel" onclick="sPickCancelBtn(${sdto.sfno},'${spickDto.spickno}')">시설 찜하기 취소</a></li>
+												 <li id="${sdto.sfno}"><a class="button primary" id="spickcancel" onclick="sPickCancelBtn(${sdto.sfno},'${spickDto.spickno}')">♥ 시설 찜하기 [ ${spickList.size()} ]</a></li>
 												 </c:if>
 												 </c:if>
 												 </c:forEach>

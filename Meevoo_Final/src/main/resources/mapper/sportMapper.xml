@@ -84,7 +84,6 @@
 	
 	
 	
-	
 	<!-- 게시글 하단 리뷰 모두 가져오기 -->
 	<select id="selectReAll" resultType="com.java.dto.SportReviewDto">
 		select * from sportreview where sfno=#{sfno} order by sredate desc

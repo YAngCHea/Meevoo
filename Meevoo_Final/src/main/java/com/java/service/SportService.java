@@ -45,8 +45,6 @@ public interface SportService {
 	// 찜 Count(sfno,sessionId)
 	int selectSpCount(int sfno, String id);
 	
-	
-	
 
 
 }
