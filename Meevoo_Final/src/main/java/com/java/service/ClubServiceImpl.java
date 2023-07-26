@@ -1,16 +1,20 @@
 package com.java.service;
 
-import java.time.LocalDate;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.ClubDto;
-import com.java.dto.ClubSearch;
 import com.java.dto.PageDto;
 import com.java.mapper.ClubMapper;
 
@@ -29,6 +33,9 @@ public class ClubServiceImpl implements ClubService {
 		
 		//모임목록 전체 가져오기
 		ArrayList<ClubDto> list = clubMapper.selectClubAll(pageDto);
+		
+		//endPage가 최대페이지보다 더 크면 최대페이지까지만 노출
+		if(pageDto.getEndPage()>pageDto.getMaxPage()) pageDto.setEndPage(pageDto.getMaxPage());
 		
 		map.put("list", list);
 		map.put("pageDto", pageDto);
@@ -83,6 +90,52 @@ public class ClubServiceImpl implements ClubService {
 		ArrayList<ClubDto> filterList = clubMapper.selectClubFilter(clubDto); 
 		return filterList;
 	}
+
+
+	@Override //모임목록 글 1개 저장
+	public void insertClub(ClubDto cdto, List<MultipartFile> files) {
+		
+		String cimg = ""; //파일저장이름
+		String tempFile = ""; //임시사용이름
+		String oriFile = ""; //원본파일이름
+		String[] cimgs = new String[3];
+		
+		for(int i=0; i<3; i++) {  //files.size() :위치가 중요하면 사용함 -> 이미지 등록 개수 만큼 저장
+			tempFile = "";		//초기화
+			if(!files.get(i).isEmpty()) {
+				oriFile = files.get(i).getOriginalFilename();  //원본파일이름 저장
+				UUID uuid = UUID.randomUUID(); //랜덤번호
+				tempFile = uuid + "_" + oriFile;
+				String uploadURL = "c:/upload/";	//파일 저장 위치
+				File f = new File(uploadURL+tempFile);
+				try { 
+					files.get(i).transferTo(f);		//파일을 서버에 저장
+				} catch (Exception e) { e.printStackTrace(); } 
+			}//if
+			
+			//3번 돈것 파일이름을 1개로 합치기
+			if(i==0) cimg = tempFile;
+			else cimg += ","+tempFile;
+			
+			
+			// dto에 cimg이름 저장
+			cdto.setCimg(cimg);
+			
+		}//for
+		
+		//파일이름 출력
+		System.out.println("파일이름 1개로 묶은 이름 : "+cimg);
+		
+		//파일이름 1개로 묶은 이름 String 배열로 분리
+		cimgs = cimg.split(",");
+		
+		System.out.println("cimgs 배열 출력 :"+Arrays.toString(cimgs));
+		System.out.println("cimgs 배열 개수 :"+cimgs.length);
+		
+		//mapper로 전송 - 모임목록 글 1개 저장
+		clubMapper.insertClub(cdto);
+		
+	}//모임목록 글 1개 저장
 
 
 

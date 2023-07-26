@@ -13,6 +13,9 @@
 		<link rel="stylesheet" href="../css/main_kim.css" />
 		<link rel="icon" href="../images/main/logo2.png">
 	</head>
+	
+	<c:if test="${result =='i_success' }"><script>alert("게시글이 등록되었습니다.")</script></c:if>
+	
 	<body class="is-preload">
 		<!-- Wrapper -->
 			<div id="wrapper">

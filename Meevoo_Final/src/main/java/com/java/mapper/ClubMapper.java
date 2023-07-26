@@ -32,6 +32,11 @@ public interface ClubMapper {
 	// 필터 input 반영해서 모임목록 가져오기 (필터검색)
 	public ArrayList<ClubDto> selectClubFilter(ClubDto clubDto);
 
+	//모임목록 글 1개 저장
+	void insertClub(ClubDto cdto);
+	
+	
+
 
 
 

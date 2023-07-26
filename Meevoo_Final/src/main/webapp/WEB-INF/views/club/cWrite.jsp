@@ -1,36 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>모집하기</title>
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<title>모집하기</title>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<link rel="stylesheet" href="../css/main_kim.css" />
 		<link rel="icon" href="../images/main/logo2.png">
+		
+<c:if test="${sessionId==null}">
+ <script>
+   alert ("로그인을 하셔야 모임글 작성이 가능합니다.");
+   location.href="/member/login";
+ </script>
+</c:if>
+
 	</head>
 	<body class="is-preload">
-
 		<!-- Wrapper -->
 			<div id="wrapper">
-
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-
 							<!-- Header -->
-								<header id="header">
-									<a href="main.jsp" class="logo"><strong>Meevoo</strong></a>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
-									</ul>
-								</header>
-
+							<%@ include file="../top.jsp" %>
 							<!-- Banner -->
 								<section id="banner">
 									<div class="content">
@@ -40,60 +37,62 @@
 											<h4>다양한 사람들과 공통된 관심사로 새로운 연결을 가져봅시다.</h4>
 										</header>
 									</div>
-								</section>
+								</section> 
 
-							<!-- Section -->
+							    <!-- Section: 모임모집 작성 입력 -->
 								<section>
-								 <form action="doCWrite" method="get" name="cwrite">
-								  <div class="inner">
+								 <form action="/club/cWrite" method="post" name="cWriteFrom" enctype="multipart/form-data">
+								    <!-- recruit-form -->
 								    <div class="recruit-form">
-								      <div class="line subject">
-								        <input type="text" name="cnm" placeholder="제목" autofocus>
+								      <!-- 운동모임 장소 선택 칸 -->
+								      <div class="line location" style="margin-bottom: 1em; margin-top: 2em; ">
+								        <!-- 부모 페이지로부터 전달받은 "sfno" 값을 자동으로 입력할 입력 칸 -->
+								        <!-- 
+								        <input type="text" placeholder="모임장소 이름" class="sfnm" style="width: 89%; float: left; margin-bottom: 3em;"/>
+								        <input type="text" placeholder="모임장소 주소" class="addr" style="width: 89%; float: left; margin-bottom: 3em;"/> 
+								        -->
+										<input type="button" value="모임장소 찾기" class="default" onclick="javascript:location.href='/club/cWriteSearchSF'" style="float: right;" />
+								        <input type="text" placeholder="모임장소(체육시설번호)" class="sfno" id="inputField" style="width: 89%; float: left; margin-bottom: 3em;"/>
+								        <input type="text" name="dongcate" class="dongcate" placeholder="동이름">
+								        <input type="text" name="cloc" class="cloc" placeholder="주소">
+								      </div>
+								      <!-- 운동모임 장소 선택 칸 끝-->
+								      <script>
+								        window.onload = function() {
+								            // URL 파라미터를 가져오는 함수
+								            function getURLParameter(name) {
+								                return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null;
+								            }
+								
+								            // 자식 창의 입력 칸을 가져옴
+								            var inputField = document.getElementById("inputField");
+								
+								            // 부모 창에서 전달받은 "sfno" 값을 가져와서 자식 창의 입력 칸에 기입
+								            var sfnoFromParent = getURLParameter("sfno");
+								            inputField.value = sfnoFromParent;
+								        };
+								      </script>
+								      <!-- 운동모임 제목 입력 칸 -->
+								      <div class="line subject" >
+								        <input type="text" name="cnm" class="cnm" placeholder="제목">
 								      </div>
 								      <p class="txt">&nbsp;&nbsp;* 최대 한글 25글자 까지 입력 가능</p>
-								      <br>
-								      <br>
+								      <!-- 운동모임 제목 입력 칸 끝 -->
+								      <!-- 운동모임 날짜 입력 칸 -->
 								      <div class="line select-date">
-								        <input type="datetime-local" style="width:100%;" id="select_Date" name="cdodate" placeholder="모집일시" onfocus="this.blur()" class="hasDatePicker">
+								        <input type="datetime-local" style="width:100%;" id="select_Date" class="cdodate" name="dateStr" placeholder="모집일시" onfocus="this.blur()" class="hasDatePicker">
 								      </div>
 								      <p class="txt">&nbsp;&nbsp;* 최대 30일까지 선택 가능</p>
+								      <!-- 운동모임 날짜 입력 칸 끝 -->
+								      <!-- 운동모임 인원수 입력 칸 -->
 								      <div class="line member">
-								        <input type="number" min="2" max="15" style="width:100%;" class="input-form" id="crecruitlimit" name="crecruitlimit" placeholder="모집인원" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+								        <input type="number" min="2" max="15" style="width:100%;" class="crecruitlimit" id="crecruitlimit" name="crecruitlimit" placeholder="모집인원" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 								      </div>
 								      <p class="txt">&nbsp;&nbsp;* 모집인원 최대 15명</p>
-								      <div class="line location">
-								        <button type="button" id="clickAddress" style="display:block">모집장소</button>
-								      </div>
-								      <!-- 지도를 표시할 div 입니다 -->
-										<div id="map" style="width: 100%; height: 350px;"></div>
-									
-										<script type="text/javascript"
-											src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f8bdf42277d512cacec989b9a12be5a8"></script>
-										<script>
-											var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-											mapOption = {
-												center : new kakao.maps.LatLng(37.50534965, 126.8511775), // 지도의 중심좌표
-												level : 3
-											// 지도의 확대 레벨
-											};
-									
-											// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-											var map = new kakao.maps.Map(mapContainer, mapOption);
-											
-											// 마커가 표시될 위치입니다 
-											var markerPosition  = new kakao.maps.LatLng(37.50534965, 126.8511775); 
-								
-											// 마커를 생성합니다
-											var marker = new kakao.maps.Marker({
-											    position: markerPosition
-											});
-								
-											// 마커가 지도 위에 표시되도록 설정합니다
-											marker.setMap(map);
-								
-										</script>
-								      <br>
-								      <div class="col-4 col-12-small">
+								      <!-- 운동모임 인원수 입력 칸 끝 -->
+								      
+								      <!-- 운동모임 운동종목 선택 칸 -->
+								      <div class="col-4 col-12-small" style="margin-bottom: 1em; margin-top: 3em;">
 								          <div style="margin-bottom: 1em;">운동종목</div>  
 								          <input type="radio" name="scate" id="basketball" value="basketball" />
 								          <label for="basketball"><img src="../images/sports/basketballIcon.png" style="width: 2em;"> 농구</label>
@@ -118,100 +117,59 @@
 								          <input type="radio" name="scate" id="tennis" value="tennis" />
 								          <label for="tennis"><img src="../images/sports/tennisIcon.png" style="width: 2em;"> 테니스</label>
 								      </div>
+								      <!-- 운동모임 운동종목 선택 칸 끝-->
 								      <br>
 								      <br>
+								      <!-- 운동모임 내용 입력 칸 -->
 								      <div class="line ccontent">
-								        <textarea name="ccontent" placeholder="모입 모집을 위한 게시글을 작성해주세요. (최대 한글 250자 까지 입력 가능)" cols="40" rows="5" style="margin-right: 0.5em;"></textarea>
+								        <textarea name="ccontent" class="ccontent" placeholder="모입 모집을 위한 게시글을 작성해주세요. (최대 한글 250자 까지 입력 가능)" cols="40" rows="5" style="margin-right: 0.5em;"></textarea>
 								      </div>
+								      <!-- 운동모임 내용 입력 칸 끝-->
 								      <br>
 								      <br>
-								      <div class="line cimg">
-									    <label for="camera-wrap">이미지 추가</label>
-								        <div class="preview"></div>
-								        <div class="copy_html">
-								        <button type="button">
-									      <input type="file" name="image_file[]" multiple="" accept="image/*">
-							        	</button>
-								      </div>
-								    </div>
-								  </div>
+								      <!-- 운동모임 사진 업로드 칸 -->
+									  <label for="cimg">이미지 추가</label>
+									  <input type="file" name="files" id = "cimg" class="file" style="margin-bottom: 3em;"/>
+									  <input type="file" name="files" id = "cimg" class="file"  style="margin-bottom: 3em;"/>
+									  <input type="file" name="files" id = "cimg" class="file"  style="margin-bottom: 3em;"/>
+								      <!-- 운동모임 사진 업로드 칸 끝 -->
+								      <label for="id">작성자</label>
+								      ${sessionId }
+								      <input type="hidden" name="id" id = "id" value="${sessionId }" style="margin-bottom: 3em;" >
+								      
 								  <br>
 								  <hr>
-								  <br>
-								  <div class="col-12">
+								  <script>
+									function cWriteChkBtn(){
+										alert("모임글이 등록되었습니다.")
+										cWriteFrom.submit(); //전송
+									}
+								  </script>
+								  <!-- 운동모임 작성 입력 버튼 -->
+								  <div class="col-12" style="float: right;">
 									<ul class="actions">
+										<li><input type="button" value="취소" onclick="javascript:location.href='/club/club';" /></li>
 										<li><input type="reset" value="초기화" /></li>
-										<li><input type="submit" value="등록" class="primary" /></li>
+										<li><input type="button" value="등록" class="primary" onclick="cWriteChkBtn()" /></li>
 									</ul>
 								  </div>
-							     </form>
-								</section>
+								  <!-- 운동모임 작성 입력 버튼 끝-->
+								  <br>
+								</div>
+								<!-- recruit-form 끝-->
+							   </form>
+						     </section>
+							 <!-- Section: 모임모집 입력 작성 끝-->
 
 							
 
-						</div>
-					</div>
-
-				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
-
-							<!-- Search -->
-								<section id="search" class="alt">
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="Search" />
-									</form>
-								</section>
-
-							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>메뉴</h2>
-									</header>
-									<ul>
-										<li>
-											<span class="opener">운동 모임</span>
-											<ul>
-												<li><a href="#">모임 목록</a></li>
-												<li><a href="#">모임 검색하기</a></li>
-												<li><a href="#">모임 작성하기</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">체육 시설</span>
-											<ul>
-												<li><a href="#">시설 목록</a></li>
-												<li><a href="#">시설 검색하기</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">내 페이지</span>
-											<ul>
-												<li><a href="#">내 프로필</a></li>
-												<li><a href="#">운동 모임</a></li>
-												<li><a href="#">체육 시설</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">고객 센터</span>
-											<ul>
-												<li><a href="#">고객 센터</a></li>
-												<li><a href="#">공지 사항</a></li>
-												<li><a href="#">FQA/Q&A</a></li>
-											</ul>
-										</li>
-									</ul>
-								</nav>
 
 							
 
-							<!-- Footer -->
-								<footer id="footer">
-								</footer>
-
+							    <!-- Footer -->
+								<%@ include file="../footer.jsp" %>
 						</div>
 					</div>
-
 			</div>
 
 		<!-- Scripts -->
@@ -220,6 +178,5 @@
 			<script src="../js/breakpoints.min.js"></script>
 			<script src="../js/util.js"></script>
 			<script src="../js/main.js"></script>
-
 	</body>
 </html>

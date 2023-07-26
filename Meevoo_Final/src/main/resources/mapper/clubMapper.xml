@@ -80,7 +80,7 @@
   <select id="selectClubOne" resultType="com.java.dto.ClubDto">
     select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus,
            b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
-           c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
+           c.sfno, c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
     	from clublist a 
         	left join userlist b on a.id = b.id(+)
         	left join sportlist c on a.sfno = c.sfno
@@ -100,6 +100,12 @@
            and cnowstatus = #{cnowstatus}
            and cdodate between sysdate and sysdate + #{dateDifference}
   </select>
+  
+  <insert id="insertClub">
+	  insert into clublist values 
+	    (clublist_seq.nextval,#{id},#{cnm},sysdate,#{cimg},#{sfno},#{dongcate},#{cloc},#{cdodate},
+	    #{ccontent},#{ctotalpick},#{crecruitlimit},#{cnowrecruit},#{cnowstatus},#{scate})
+  </insert>
 
 
 </mapper>
