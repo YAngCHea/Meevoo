@@ -116,11 +116,6 @@
 	</update>
 	
 	
-	<!-- 리뷰글 번호 가져오기 -->
-	<select id="selectSrenoOne" resultType="com.java.dto.SportReviewDto">
-		select * from sportreview where sreno=#{sreno}
-	</select>
-	
 	<!-- 리뷰글에 대한 신고글 1개 작성 -->
 	<insert id="insertReportOne">
 		insert into sportreviewreport

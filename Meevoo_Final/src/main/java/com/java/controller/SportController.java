@@ -159,12 +159,7 @@ public class SportController {
 	
 	
 	@GetMapping("/sport/sportReviewReport")
-	public String sportReviewReport(int sreno, Model model) {
-		
-		//리뷰글 번호, 아이디 가져오기
-		ArrayList<SportReviewDto> sreList = sportService.selectSrenoOne(sreno); 
-		model.addAttribute("sreList", sreList);
-		System.out.println("컨트롤러에서 찍히는거 : "+sreList);
+	public String sportReviewReport(Model model) {
 		
 		return "sport/sportReviewReport";
 	} // sportReviewReport
@@ -173,6 +168,11 @@ public class SportController {
 	@PostMapping("/sport/sportReviewReport")
 	public String sportReportWrite(SportReviewReportDto srerepDto, Model model) {
 		
+		System.out.println("SportController 리뷰 작성자 : "+srerepDto.getId());
+		System.out.println("SportController 리뷰 번호 : "+srerepDto.getSreno());
+		System.out.println("SportController 리뷰 신고 유형 : "+srerepDto.getSrerepcontent());
+		System.out.println("SportController 리뷰 신고글 : "+srerepDto.getSrerepinput());
+		System.out.println("SportController 리뷰 신고글 이미지 : "+srerepDto.getSrerepimg());
 		// 리뷰글에 대한 신고글 1개 작성
 		sportService.insertReportOne(srerepDto);
 		

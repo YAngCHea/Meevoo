@@ -35,7 +35,7 @@
 		
 		<!-- 아랫부분 공통영역 -->
 		<![CDATA[
-		   order by srepno asc) a)
+		   order by srepdate desc) a)
 		   where rnum>=#{startRow} and rnum<=#{endRow}
 		]]>
 	</select>

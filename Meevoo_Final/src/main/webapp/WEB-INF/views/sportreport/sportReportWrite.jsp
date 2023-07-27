@@ -73,7 +73,7 @@
 											<p class="txt">해당시설번호
 												<select name="sfno">
 													<c:forEach var="sportlist" items="${list}">
-														<option value="${sportlist.sfno}">${sportlist.sfno}</option>
+														<option value="${sportlist.sfno}" <c:if test="${param.sfno == sportlist.sfno }"> selected</c:if>  >${sportlist.sfno}</option>
 													</c:forEach>
 												</select>
 											</p>

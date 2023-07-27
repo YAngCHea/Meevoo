@@ -69,7 +69,6 @@
               			  dataHtml += "</ul>";
               			  
               			  $("#reviewBox").prepend(dataHtml);  //prepend(위),append(아래),html(모두삭제후 추가)
-              			  $("#"+sreno).html(dataHtml);
               			  
               			  //글자삭제
               			  $("#sreviewContent").val("");
@@ -215,9 +214,6 @@
                     	
     				 	if(confirm("리뷰글을 신고 하시겠습니까?")){
     				 		location.href="/sport/sportReviewReport?sfno="+sfno+"&page=${page}&sreno="+sreno+"&id="+id;
-    				 		alert(sreno);
-    				 		alert(id);
-    				 		alert(sfno);
                   		  	return false;
     				 	}
     				 	

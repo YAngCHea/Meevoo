@@ -27,12 +27,22 @@
 
 							<script>
 								function sreReportBtn(){
+									if("${sessionId}"== ""){
+										alert("로그인을 하셔야 리뷰 신고가 가능합니다.");
+										location.href="/member/login";
+										return false;
+									}
 									if($("#srerepinput").val() == ""){
 										alert("신고 내용을 입력해주세요.");
 										$("#srerepinput").focus();
 										return false;
 									}
 									alert("신고 접수가 완료되었습니다.");
+									/* alert($("#id").val());
+									alert($("#sreno").val());
+									alert($("#srerepcontent").val());
+									alert($("#srerepinput").val());
+									alert($("#srerepimg").val()); */
 									$("#srerepwrite").submit();
 					          	  
 					            }// 문의글 수정
@@ -41,7 +51,8 @@
 								<section class="sportlistview">
 									<!-- 상세설명 css -> main.css(63번째)  -->
 									<div class="viewHead">
-									  <form action="sportReviewReport" name="srerepwrite" id="srerepwrite" method="post">
+									  <form action="sportReviewReport" name="srerepwrite" id="srerepwrite" method="post" enctype="multipart/form-data">
+									  <input type="hidden" name="srerepimg" id="srerepimg" value="이미지 없음"/>
 										<div class="day">
 											<p class="txt">신고자
 											  <span>${sessionId}
@@ -50,22 +61,22 @@
 											</p>
 										</div>
 										<div class="day">
-											<p class="txt">리뷰 작성자
-											  <span>${serList.id}
-												<input type="hidden" name="id" value="${serList.id}"/>
+											<p class="txt">리뷰번호
+											  <span>${param.sreno}
+												<input type="hidden" name="sreno" id="sreno" value="${param.sreno}"/>
 											  </span>
 											</p>
 										</div>
 										<div class="day">
-											<p class="txt">리뷰번호
-											  <span>${serList.sreno}
-												<input type="hidden" name="srepno" value="${serList.sreno}"/>
+											<p class="txt">리뷰 작성자
+											  <span>${param.id}
+												<input type="hidden" name="id" id="id" value="${param.id}"/>
 											  </span>
 											</p>
 										</div>
 										<div class="day">
 											<p class="txt">신고유형
-												<select name="srerepcontent">
+												<select name="srerepcontent" id="srerepcontent">
 														<option value="스팸홍보/도배글입니다.">스팸홍보/도배글입니다.</option>
 														<option value="음란물입니다.">음란물입니다.</option>
 														<option value="불법정보를 포함하고 있습니다.">불법정보를 포함하고 있습니다.</option>
@@ -86,7 +97,7 @@
 								</section>
 								<div style="text-align: right;">
 									<button type="button" class="button primary" id="srereport" onclick="sreReportBtn()">제출</button>
-									<button type="button" class="button" onclick="javascript:location.href='sportList'">취소</button>
+									<button type="button" class="button" onclick="javascript:location.href='sportListView?sfno=${param.sfno}&page=${param.page}'">취소</button>
 								</div>
 							  </form>
 								

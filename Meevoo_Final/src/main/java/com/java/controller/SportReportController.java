@@ -82,6 +82,8 @@ public class SportReportController {
 		//문의글 1개저장
 		sportReportService.insertOne(srDto,files);
 		String result="i_success";
+		System.out.println(srDto.getSrepdate());
+		System.out.println(srDto.getSrepno());
 		
 		return "redirect:/sportreport/sportReportList?result="+result;
 	} // sportReportWrite

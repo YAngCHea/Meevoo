@@ -109,17 +109,12 @@ public class SportServiceImpl implements SportService {
 		
 		// 리뷰글에 대한 신고글 1개 작성
 		sportMapper.insertReportOne(srerepDto);
+		System.out.println("SportServiceImpl 리뷰 작성자 : "+srerepDto.getId());
+		System.out.println("SportServiceImpl 리뷰 번호 : "+srerepDto.getSreno());
+		System.out.println("SportServiceImpl 리뷰 신고 유형 : "+srerepDto.getSrerepcontent());
+		System.out.println("SportServiceImpl 리뷰 신고글 이미지 : "+srerepDto.getSrerepimg());
 	}
 
-	@Override
-	public ArrayList<SportReviewDto> selectSrenoOne(int sreno) {
-		
-		//리뷰글 번호 가져오기
-		ArrayList<SportReviewDto> sreList = sportMapper.selectSrenoOne(sreno);
-		//게시글 1개 가져오기
-		System.out.println("임플리먼트에서 찍히는 거 : "+sreList);
-		return sreList;
-	}
 
 	@Override
 	public SportPickDto sportPick(SportPickDto spickDto) {
@@ -140,6 +135,7 @@ public class SportServiceImpl implements SportService {
 	public void sportPickCancel(int spickno) {
 		// 2. 시설물 찜하기 취소
 		sportMapper.sportPickCancel(spickno);
+		System.out.println("impl : "+spickno);
 		
 	}
 

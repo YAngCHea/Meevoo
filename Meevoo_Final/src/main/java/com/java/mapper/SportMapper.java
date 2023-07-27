@@ -43,9 +43,6 @@ public interface SportMapper {
 	void insertReportOne(SportReviewReportDto srerepDto);
 
 
-	//리뷰글 번호 가져오기
-	ArrayList<SportReviewDto> selectSrenoOne(int sreno);
-
 	//1. 시설물 찜하기 등록
 	void sportPick(SportPickDto spickDto);
 	//찜한 데이터 1개 가져오기

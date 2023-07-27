@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -45,17 +46,19 @@
 										<div class="day">
 											<p class="txt">해당시설 번호<span>${srdto.sfno}</span></p>
 											<p class="txt">문의유형<span>${srdto.srepcontent}</span></p>
-										</div>
-										<div class="day">
 											<p class="txt">작성자<span>${srdto.id}</span></p>
 											<p class="txt">작성일<span><fmt:formatDate value="${srdto.srepdate}" pattern="yyyy-MM-dd"/></span></p>
 										</div>
 										<div class="day">
 											<p class="txt">내용<span>${srdto.srepinput}</span></p>
 										</div>
-										<c:if test="${srdto.srepimg == null}">
+										<c:if test="${srdto.srepimg != null}">
 										<div class="day">
-											<p class="txt">사진<span><img src="${srdto.srepimg}"></span></p>
+											<p class="txt">사진<span><br>
+											<c:forEach var="image" items="${fn:split(srdto.srepimg, ',')}">
+												<img style="heigth:330px;width:330px" src="/upload/${image}"/>
+											</c:forEach>
+											</p>
 										</div>
 										</c:if>
 									
@@ -104,23 +107,10 @@
 											<br>
 											<li class="txt"> 관리자가 답변을 달아줌</li>
 											<li class="btn">
-												<a onclick="fixBtn()" class="button primary small">수정</a>
 												<a onclick="deleteBtn()" class="button small">삭제</a>
 											</li>
 										</ul>
 										
-										<!-- 3. 내가 쓴 글 수정 부분 -->
-										<ul>
-											<li class="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hong <span>&nbsp;&nbsp;&nbsp;[2023-07-06&nbsp;&nbsp;15:01:59]</span></li>
-											<div>
-												<textarea class="col-auto form-control" type="text" id="fixContents"
-													  placeholder="작성한 답변 글을 수정해주세요!" ></textarea>
-										 	</div>
-											<li class="btn">
-												<a onclick="saveBtn()" class="button primary small">저장</a>
-												<a onclick="cancleBtn()" class="button small">취소</a>
-											</li>
-										</ul> 
 									</div>
 								</fieldset>
 								<!-- //댓글 -->

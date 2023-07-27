@@ -31,9 +31,6 @@ public interface SportService {
 	
 	// 리뷰글에 대한 신고글 1개 작성
 	void insertReportOne(SportReviewReportDto srerepDto);
-	//리뷰글 번호 가져오기
-	ArrayList<SportReviewDto> selectSrenoOne(int sreno);
-
 	
 	
 	// 찜하기 목록 전체 가져오기

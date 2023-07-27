@@ -77,33 +77,33 @@
 										<table>
 											<colgroup>
 												<col width="5%"  />
-												<col width="10%" />
-												<col width="20%"/>
+												<col width="24%"/>
 												<col width="*" />
-												<col width="7%"/>
+												<col width="10%"/>
 												<col width="15%"/>
+												<col width="10%" />
 											</colgroup>
 											<thead>
 												<tr>
 													<th>NO.</th>
-													<th>답변여부</th>
 													<th>문의유형</th>
 													<th>제목</th>
 													<th>작성자</th>
 													<th>작성일</th>
+													<th>답변여부</th>
 												</tr>
 											</thead>
 											<tbody>
 												<c:forEach var="sportreport" items="${list}">
 												<tr>
 													<td>${sportreport.srepno}</td>
-													<td>답변예정</td>
 													<td>${sportreport.srepcontent}</td>
 													<td><a href="/sportreport/sportReportListView?srepno=${sportreport.srepno}&page=${page}&category=${category}&srep_word=${srep_word}">볼링장에 고라니가 나타났어요!!!</a></td>
 													<td>${sportreport.id}</td>
 													<td>
 													<fmt:formatDate value="${sportreport.srepdate}" pattern="yyyy-MM-dd"/>
 													</td>
+													<td>답변예정</td>
 												</tr>
 												</c:forEach>
 											</tbody>
