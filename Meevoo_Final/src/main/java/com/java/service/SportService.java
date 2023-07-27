@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.java.dto.SListCurrDto;
 import com.java.dto.SportDto;
 import com.java.dto.SportPickDto;
 import com.java.dto.SportReviewDto;
@@ -41,6 +42,15 @@ public interface SportService {
 	void sportPickCancel(int spickno);
 	// 찜 Count(sfno,sessionId)
 	int selectSpCount(int sfno, String id);
+	
+	// 별점 총 갯수
+	int updateStarAll(int sfno);
+	// 리뷰 총 갯수
+	int updatePeoAll(int sfno);
+	
+	//최근본 시설 게시물 데이터 기록하기
+	//아이디 있을때 Dto에 저장
+	void insertSCurr(SListCurrDto scurrdto);
 	
 
 

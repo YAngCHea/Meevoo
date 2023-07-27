@@ -63,7 +63,7 @@
 	
 	<!-- 찜하기 취소(삭제)하기 -->
 	<delete id="sportPickCancel">
-		delete sportpick where sfno=#{sfno} and id=#{id}
+		delete sportpick where spickno=#{spickno}
 	</delete>
 	
 	<!-- 찜 Count -->
@@ -82,6 +82,28 @@
 		select * from sportpick where spickno=#{spickno}
 	</select>
 	
+	
+	<!-- 최근본 시설 게시물 데이터 기록하기 -->
+	<insert id="insertSCurr">
+		insert into sportcurr values (sportcurr_seq.nextval, #{id}, #{sfno}, sysdate)
+	</insert>
+	
+	
+	<!-- 별점 총 갯수 -->
+	<update id="updateStarAll">
+		update sportlist set stotalstar = coalesce(
+		(select sum(sstar) from sportreview 
+		where sportreview.sfno = sportlist.sfno 
+		group by sfno), 0)
+	</update>
+	
+	<!-- 리뷰 총 갯수 -->
+	<update id="updatePeoAll">
+		update sportlist set stotalpeo = coalesce(
+		(select count(srecontent) from sportreview
+		where sportreview.sfno = sportlist.sfno
+		group by sfno), 0)
+	</update>
 	
 	
 	<!-- 게시글 하단 리뷰 모두 가져오기 -->

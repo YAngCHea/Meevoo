@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.dto.SListCurrDto;
 import com.java.dto.SportDto;
 import com.java.dto.SportPickDto;
 import com.java.dto.SportReviewDto;
@@ -156,5 +157,26 @@ public class SportServiceImpl implements SportService {
 		return spickcount;
 	}
 
+	@Override
+	public int updateStarAll(int sfno) {
+		// 별점 총 갯수
+		int srestarTotal = sportMapper.updateStarAll(sfno); 
+		return srestarTotal;
+	}
+
+	@Override
+	public int updatePeoAll(int sfno) {
+		// 리뷰 총 갯수
+		int srepeoTotal = sportMapper.updatePeoAll(sfno); 
+		return srepeoTotal;
+	}
+
+	@Override //최근본 시설 게시물 데이터 기록하기
+	public void insertSCurr(SListCurrDto scurrdto) {
+		sportMapper.insertSCurr(scurrdto);
+		
+	}
+
+	
 
 }

@@ -38,11 +38,6 @@
 										return false;
 									}
 									alert("신고 접수가 완료되었습니다.");
-									/* alert($("#id").val());
-									alert($("#sreno").val());
-									alert($("#srerepcontent").val());
-									alert($("#srerepinput").val());
-									alert($("#srerepimg").val()); */
 									$("#srerepwrite").submit();
 					          	  
 					            }// 문의글 수정

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.java.dto.SListCurrDto;
 import com.java.dto.SportDto;
 import com.java.dto.SportPickDto;
 import com.java.dto.SportReportDto;
@@ -60,7 +61,8 @@ public class SportController {
 	@RequestMapping("/sport/sportListView")
 	public String sportListView(@RequestParam(defaultValue = "1") int sfno,
 			@RequestParam(defaultValue = "1")int page,
-			String slist_word,Model model) {
+			String slist_word,
+			SListCurrDto scurrdto,Model model) {
 
 		// 게시글 1개 가져오기
 		HashMap<String, Object> map = sportService.selectOne(sfno);
@@ -73,6 +75,14 @@ public class SportController {
 		// 찜하기 목록 전체 가져오기
 		ArrayList<SportPickDto> spickList = sportService.selectSpAll(sfno); 
 		model.addAttribute("spickList", spickList);
+		
+		// 별점 총 갯수
+		int srestarTotal = sportService.updateStarAll(sfno); 
+		model.addAttribute("srestarTotal", srestarTotal);
+		
+		// 리뷰 총 갯수
+		int srepeoTotal = sportService.updatePeoAll(sfno); 
+		model.addAttribute("srepeoTotal", srepeoTotal);
 		
 		// 찜 Count(sfno,sessionId)
 		String id = (String)session.getAttribute("sessionId");
@@ -87,6 +97,17 @@ public class SportController {
 		
 		//검색 필터
 		model.addAttribute("slist_word", slist_word);
+		
+		
+		//최근본 시설 게시물 데이터 기록하기
+		//아이디 있을때 Dto에 저장
+		if(id!=null) {
+			session.setAttribute("ssessionId", id);
+			scurrdto.setId(id);
+		} else {
+			return "/sport/sportListView";
+		}
+		sportService.insertSCurr(scurrdto);
 		
 		return "/sport/sportListView";
 	} // sportListView

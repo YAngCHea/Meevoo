@@ -382,14 +382,14 @@
 												<li><a class="button" id="spicklike" onclick="sPickBtn(${sdto.sfno})" data-value="Yes">♡ 시설 찜하기 [ ${spickList.size()} ]</a></li>
 											</c:if>
 											<c:if test="${spickcount == 1}">
-												<%-- <c:forEach var="spickDto" items="${spickList}">
+												<c:forEach var="spickDto" items="${spickList}">
 												 <c:if test="${sessionId == spickDto.id}">
 												 <c:if test="${spickDto.sfno == sdto.sfno}">					 
-												 <li id="${sdto.sfno}"><a class="button primary" id="spickcancel" onclick="sPickCancelBtn(${sdto.sfno},'${spickDto.spickno}')">♥ 시설 찜하기 [ ${spickList.size()} ]</a></li>
+												 <li><a class="button primary" id="spickcancel" onclick="sPickCancelBtn(${sdto.sfno},'${spickDto.spickno}')">♥ 시설 찜하기 [ ${spickList.size()} ]</a></li>
 												 </c:if>
 												 </c:if>
-												 </c:forEach> --%>
-												<li><a class="button primary" id="spickcancel" onclick="sPickCancelBtn(${sdto.sfno})">♥ 시설 찜하기 [ ${spickList.size()} ]</a></li>
+												 </c:forEach>
+												<%-- <li><a class="button primary" id="spickcancel" onclick="sPickCancelBtn(${sdto.sfno})">♥ 시설 찜하기 [ ${spickList.size()} ]</a></li> --%>
 											</c:if>
 									       </div>
 										<li><a href="/sportreport/sportReportWrite?sfno=${sdto.sfno}" class="button primary">시설 문의글 작성</a></li>
