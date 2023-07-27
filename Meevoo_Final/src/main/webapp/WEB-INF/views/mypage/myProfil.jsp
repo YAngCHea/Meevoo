@@ -70,8 +70,19 @@
 										<div class="wrapper1">
 										<!-- 프로필 사진 넣는 부분 -->
 											<div class="profile">
-			                                    <div id="preview" class="profile-img"><img src="${mdto.userimg}"></div>
-<%-- 			                                    <div id="preview" class="profile-img"><img src="/images/${mdto.userimg}"></div> --%>
+												<c:if test="${mdto.userimg == null }">
+			                                   		<img src="https://cdn-icons-png.flaticon.com/512/848/848043.png" width="150px"/>
+			                                   		
+			                                   	</c:if>
+												<c:if test="${mdto.userimg != null }">
+			                                   		<img src="/upload/${mdto.userimg }" width="150px"/>
+			                                   	</c:if>
+			                                   	
+			                                    <%-- <div id="preview" class="profile-img"><img src="${mdto.userimg}"></div> --%> <!-- DB에 주소로 저장된 내용 불러옴 -->
+			                                    <%-- <input type="hidden" id="preview" class="profile-img" src="${mdto.userimg}"/> --%> <!-- 사진을 수정하고 DB에 입력한 이미지 불러옴 -->
+												
+												
+												<%-- <div id="preview" class="profile-img"><img src="/images/${mdto.userimg}"></div> --%>
 												<!-- <input type="file" name="mb_picture" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg" id="profile-photo" />
 												<label for="profile-photo">프로필 사진 수정</label> -->
 											</div>

@@ -10,7 +10,7 @@
 -->
 <html>
 	<head>
-		<title>myProfilEdit</title>
+		<title>myprofil</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main.lee.css" />
@@ -23,13 +23,14 @@
 			.main1{width:400px; margin:0 auto;}
 			.main1 h2{margin: 35px 0 35px 0; text-align: center; border-bottom: 1px solid lightgray; font-size: 40px;}
 			.profile{height: 180px; text-align: center; margin:20px 0;}
-			#preview1{margin:0 0 20px;}
+			#preview{margin:0 0 20px;}
+			#preview img{width:150px;}
 			#info1_1, #info1_2,#info1_3, #info1_4, #info1_5, #info1_6, #info1_7, #info1_8
 				{width:150px; margin:20px 100px 10px 100px; font-size:15px; float:left;}
-			#info1_11, #info1_12{float:left;}
-			#info1_21, #info1_22{float:left; }
-			#info1_31, #info1_32{float:left;}
-			#info1_41, #info1_42{float:left;}
+			#info1_11, #info1_12{display: flex; flex-direction: row;}
+			#info1_21, #info1_22{display: flex; flex-direction: row;}
+			#info1_31, #info1_32{display: flex; flex-direction: row;}
+			#info1_41, #info1_42{display: flex; flex-direction: row;}
 			.wrapper1{border-bottom:1px dotted #f56a6a; width:800px; height:500px; margin:0 auto;}
 			.wrapper2{width:800px; height:400px; margin:10px auto;}
 			.info2 .info3{width:370px; margin:10px 50px 10px 50px; font-size:15px; display: inline-block; font-size:15px;
@@ -65,36 +66,24 @@
 												<h2>내 정보 수정하기</h2>
 											</header>
 										</div>
-										<!-- 내 프로필 사진 스크립트 -->
-										<script>
-										  function readURL(input) {
-											  if (input.files && input.files[0]) {
-											    var reader = new FileReader();
-											    reader.onload = function(e) {
-											      document.getElementById('preview').src = e.target.result;
-											    };
-											    reader.readAsDataURL(input.files[0]);
-											  } else {
-											    document.getElementById('preview').src = "";
-											  }
-											}
-										</script>
+										
+										<div class="wrapper1">
 										<!-- 프로필 사진 넣는 부분 -->
-											<div class="profile" style="">
-			                                    <div id="preview1" class="img">
+											<div class="profile">
+												<div id="preview1" class="img">
 				                                   	<div>
-				                                   	<div id="preview" class="profile-img"><img src="${mdto.userimg}"></div>
-				                                   	<%-- <c:if test="${mdto.userimg == null }">
+				                                   	<c:if test="${mdto.userimg == null }">
 				                                   		<img src="https://cdn-icons-png.flaticon.com/512/848/848043.png" width="150px"/>
 				                                   		<input type="file" name="file" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg"/>
 														<label for="file">* 파일 선택을 눌러 프로필 사진을 수정해주세요</label>
 				                                   	</c:if>
 													<c:if test="${mdto.userimg != null }">
 				                                   		<img src="/upload/${mdto.userimg }" width="150px"/>
+				                                   		<input type="hidden" name="userimg" value="${mdto.userimg}" />
+  														 
 				                                   		<input type="file" name="file" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg"/>
 														<label for="file">* 파일 선택을 눌러 프로필 사진을 수정해주세요</label>
-				                                   	</c:if> --%>
-				                                   	
+				                                   	</c:if>
 													<%-- <c:if test="${file == null}">
 				                                   		<img src="https://cdn-icons-png.flaticon.com/512/848/848043.png"/>
 				                                   		<input type="file" name="file" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg"/>
@@ -102,43 +91,33 @@
 				                                   	</c:if> --%>
 				                                   	</div>
 			                                   	</div>
-		                                   	</div>
-									
-												<%-- <div class="profile">
-				                                    <div id="preview" class="img">
-				                                   	 <img src="/images/${mdto.userimg }">
-				                                   	</div>
-													<input type="file" value="${mdto.userimg }" name="uesrimg" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg" id="uesrimg" />
-													<label for="uesrimg">프로필 사진 수정</label>
-												</div> --%>
 											</div>
-										<div class="wrapper1">
 											<div class="info1">
 												<div>
 													<div id="info1_1">
 														<div id="info1_11">이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-														</div>
-														<div id="info1_12">
+														<!-- </div>
+														<div id="info1_12" name="usernm"> -->
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.usernm }</div>
 													</div>
 													<div id="info1_2">	
 														<div id="info1_21">아이디&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 														<!-- </div>
-														<div id="info1_22"> --><input type="text" name="id" value="${mdto.id }" readonly />
-														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+														<div id="info1_22" name="id"> --><input type="hidden" name="id" value="${mdto.id }" />
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.id }</div>
 													</div>
 												</div>
 												<div>
 													<div id="info1_3">
 														<div id="info1_31">성별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 														<!-- </div>
-														<div id="info1_32"> -->
+														<div id="info1_32" name="gender"> -->
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.gender }</div>
 													</div>
 													<div id="info1_4">	
 														<div id="info1_41">비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 														<!-- </div>
-														<div id="info1_42"> -->
+														<div id="info1_42" name="pw"> -->
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.pw }</div>
 													</div>
 												</div>
@@ -146,13 +125,13 @@
 													<div id="info1_5">
 														<div id="info1_51">나이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 														<!-- </div>
-														<div id="info1_52"> -->
+														<div id="info1_52" name="birth"> -->
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.birth } 년생</div>
 													</div>
 													<div id="info1_6">
 														<div id="info1_61">이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 														<!-- </div>
-														<div id="info1_62"> -->
+														<div id="info1_62" name="email"> -->
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.email }</div>
 													</div>
 												</div>
@@ -160,15 +139,16 @@
 													<div id="info1_7">
 														<div id="info1_71">내 온도&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 														<!-- </div>
-														<div id="info1_72"> -->
+														<div id="info1_72" name="totaltemp"> -->
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.totaltemp }℃</div>
 													</div>
 													<div id="info1_8">
 														<div id="info1_81">회원가입일자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-														<!-- </div>
+														<!--  </div>
 														<div id="info1_82"> -->
 														<td>
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${mdto.joindate}" pattern="yyyy-MM-dd HH:mm" />
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															<fmt:formatDate value="${mdto.joindate}" pattern="yyyy-MM-dd" />
 														</td>
 														</div>
 													</div>
@@ -182,8 +162,8 @@
 												<div class="nic1">
 													<div class="nic2">
 														<div>닉네임&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-													<div><input type="text" name="nicknm" value="${mdto.nicknm }"/></div>
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<input type="text" name="nicknm" value="${mdto.nicknm }"/></div>
 													</div>
 												</div>
 												<div>
@@ -332,15 +312,14 @@
 												</div>
 											</div>
 										</div>
-										</div>
+	
 									</div>
 									<!-- Btn Area -->
 									<div class="btnArea">
 										<div class="bCenter">
 											<ul>
-												<li><button type="button" cursor:pointer;" onclick="memberBtn()" class="button small fit">수정완료</button></li>
+												<li><button type="button" style="cursor:pointer;" onclick="memberBtn()" class="button small fit">수정완료</button></li>
 											</ul>
-											
 											<script>
 												function memberBtn(){
 													if(confirm("수정을 하시겠습니까?")){

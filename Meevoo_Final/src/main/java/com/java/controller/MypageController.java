@@ -6,6 +6,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,19 +77,31 @@ public class MypageController {
 	
 	//회원정보 수정 저장
 	@RequestMapping("/mypage/updateSaveUser")
-	public String updateSaveUser(MemberDto memberDto/* , MultipartFile file */) /* throws Exception */ {
+	public String updateSaveUser(MemberDto memberDto,
+			MultipartFile file) throws Exception {
 		
-		/*
-		 * //이미지 파일 있을 경우 저장 String fileName = ""; if(!file.isEmpty()) {
-		 * 
-		 * String ori_fileName = file.getOriginalFilename(); //실제 파일 이름 UUID uuid =
-		 * UUID.randomUUID(); //랜덤숫자생성 fileName = uuid + "_" + ori_fileName; //변경파일이름 -
-		 * 중복방지 String uploadUrl = "c:/upload/"; //파일업로드 위치 File f = new
-		 * File(uploadUrl+fileName); file.transferTo(f); //파일 저장
-		 * memberDto.setUserimg(fileName); }
-		 */
 		
-		System.out.println("MypageController img : "+memberDto.getUserimg());
+		System.out.println("MypageController img1 : "+memberDto.getUserimg());
+		//이미지 파일 있을 경우 저장
+		String fileName = "";
+		if(!file.isEmpty()) {
+			
+			String ori_fileName = file.getOriginalFilename(); //실제 파일 이름
+			UUID uuid = UUID.randomUUID(); //랜덤숫자생성
+			fileName = uuid + "_" + ori_fileName; //변경파일이름 - 중복방지
+			String uploadUrl = "c:/upload/"; //파일업로드 위치
+			File f = new File(uploadUrl+fileName);
+			file.transferTo(f); //파일 저장
+			memberDto.setUserimg(fileName);
+		}else {
+			
+			//수정하기전 이미지 저장
+			/* memberDto.setUserimg(req.getParameter("${mdto.userimg}")); */
+			/* memberDto.setUserimg(fileName); */
+			 
+		}
+		
+		System.out.println("MypageController img2 : "+memberDto.getUserimg());
 		
 		//회원정보 수정 저장
 		memberService.updateSaveUser(memberDto);

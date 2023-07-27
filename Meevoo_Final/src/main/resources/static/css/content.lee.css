@@ -406,7 +406,7 @@
 /* MEMBER WRITE */
 .memberbd{width:100%; margin:10px 0 0 0; border-bottom:1px #eaeaea solid; overflow:hidden;}
 .memberWrite{width:100%;border-color:#eaeaea;border-width:0;border-spacing:0;border-style:none;font-size:12px;}
-.memberWrite th{border-color:#eaeaea;border-width:1px 0 0 0;color:#666;font-weight:bold;border-style:solid none none none;text-align:left;padding:13px 0 12px 0;vertical-align:top;font-size:14px; word-break:keep-all;}
+.memberWrite th{width:40%; border-color:#eaeaea;border-width:1px 0 0 0;color:#666;font-weight:bold;border-style:solid none none none;text-align:right;padding:13px 0 12px 0;vertical-align:top;font-size:14px; word-break:keep-all;}/*width:40%; 추가, 이전코드:text-align:left; */
 .memberWrite th span{display:block; padding:0 0 0 10px;line-height:1.2;}
 .memberWrite th label{padding:0 0 0 10px;}
 .memberWrite td{border-color:#eaeaea;border-width:1px 0 0 0;padding:10px 0 10px 10px;text-align:left;border-style:solid none none none;color:#444;vertical-align:middle; word-break:keep-all;}
@@ -553,6 +553,8 @@
 .pta li span.mvalign{font-size:12px; font-weight:600; line-height:20px; color:#999;}
 .pta li span.black{color:#5a524c; font-weight:normal;}
 .pta li span.orange{color:#f7703c; font-weight:normal;}
+.pta li span.blue{color:#0000FF; font-weight:bold;} /*추가 부분-지원*/
+.pta li span.red{color:#FF0000; font-weight:bold;} /*추가 부분-지원*/
 .pta li label.star{padding:2px 20px 0 2px;}
 .pta li label.star img{margin:4px 0 0 0;}
 .question{float:left;}

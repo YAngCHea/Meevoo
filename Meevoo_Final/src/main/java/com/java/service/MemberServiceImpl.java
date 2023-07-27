@@ -63,6 +63,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override //회원정보 수정 저장
 	public void updateSaveUser(MemberDto memberDto) {
+		
 		//System.out.println(""+memberDto.getDongcate());
 		//System.out.println(""+memberDto.getScate());
 		//System.out.println(""+memberDto.getSelfintro());

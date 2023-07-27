@@ -31,6 +31,7 @@ public class MemberController {
 		return "member/login";
 	}
 
+
 	@PostMapping("/member/login") //login 체크!!!
 	public String login(MemberDto memberDto, Model model) {
 		
@@ -62,7 +63,7 @@ public class MemberController {
 						
 		return "redirect:/main";
 	}
-
+	
 	//로그아웃 시
 	@RequestMapping("/member/logout")
 	public String logout() {
