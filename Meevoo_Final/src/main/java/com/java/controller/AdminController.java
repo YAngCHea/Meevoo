@@ -29,6 +29,7 @@ import com.java.dto.DonutChartsClubDto;
 import com.java.dto.MemberDto;
 import com.java.dto.PageDto;
 import com.java.dto.SearchDto;
+import com.java.dto.SportDto;
 import com.java.dto.SportReportDto;
 import com.java.dto.StaticHeadOneDto;
 import com.java.dto.StaticHeadTwoDto;
@@ -66,9 +67,6 @@ public class AdminController {
 			model.addAttribute("category",map.get("category"));
 			model.addAttribute("search_input",map.get("search_input"));
 		
-			//System.out.println("search"+search);
-			//System.out.println("page"+page);
-			
 			return "admin/totalUser";
 		}
 	
@@ -142,7 +140,6 @@ public class AdminController {
 // 1. 전체 모임 게시글 하단 넘버링 -------------------------------------------------------------
 	@RequestMapping("/admin/totalWrite")
 	public String totalWrite(PageDto pageDto1, SearchDto search, Model model) {
-		//System.out.println("AdminController totalWrite page : "+pageDto1.getPage());
 		
 		//게시글 전체가져오기
 		HashMap<String, Object> map1 = adminService.selectClubAll(pageDto1,search);
@@ -155,7 +152,7 @@ public class AdminController {
 		model.addAttribute("maxPage",map1.get("maxPage"));
 		model.addAttribute("category",map1.get("category"));
 		model.addAttribute("search_input",map1.get("search_input"));
-		System.out.println("controller endPage"+map1.get("endPage"));
+		//System.out.println("controller endPage"+map1.get("endPage"));
 		return "admin/totalWrite";
 	}
 	
@@ -164,7 +161,13 @@ public class AdminController {
 		
 	// 1) 모임 추가하기
 		@GetMapping("/admin/totalWriteWrite")
-		public String totalWriteWrite() {
+		public String totalWriteWrite(Model model) {
+			
+			// 시설번호 전체 가져오기
+			ArrayList<SportDto> sportlist = adminService.selectSportList();
+			model.addAttribute("sportlist", sportlist);
+			
+			
 			return "admin/totalWriteWrite";
 		}
 		

@@ -20,8 +20,6 @@ function logoutBtn(){
 		<c:if test="${sessionId == null }">
 			<li><a href="/member/login">LOGIN</a></li>
 			<li><a href="/member/agree">JOIN</a></li>
-			
-			
 		</c:if>
 		<c:if test="${sessionId != null }">
 			<li><a href="#">${sessionName }님 환영합니다!</a></li>

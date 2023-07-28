@@ -23,6 +23,7 @@ import com.java.dto.DonutChartsClubDto;
 import com.java.dto.MemberDto;
 import com.java.dto.PageDto;
 import com.java.dto.SearchDto;
+import com.java.dto.SportDto;
 import com.java.dto.SportReportDto;
 import com.java.dto.StaticHeadOneDto;
 import com.java.dto.StaticHeadTwoDto;
@@ -336,6 +337,14 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 
+	
+	//새로 모임 추가할때 시설 리스트중에서 선택하게 리스트 가져오기
+		@Override
+		public ArrayList<SportDto> selectSportList() {
+			ArrayList<SportDto> sportlist = adminMapper.selectSportList();
+			return sportlist;
+		}
+	
 	//수정할 모임 정보 가져오기
 	@Override
 	public ClubDto selectTCMOne(int cno) {
@@ -378,6 +387,8 @@ public class AdminServiceImpl implements AdminService {
 		adminMapper.deleteTCMOne(cdto);
 		
 	}
+
+	
 
 	
 

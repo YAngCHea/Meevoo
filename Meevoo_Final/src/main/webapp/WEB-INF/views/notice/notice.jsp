@@ -30,9 +30,8 @@
 									<div class="tab equal">
 										<ul class="nav">
 											<li class="active" title="선택된 탭"><a href="notice"> 공지사항 </a></li>
-											<li><a href="QnA"> 질의응답(QnA) </a></li>
-											<!-- <li class="active" title="선택된 탭"><a href="QnA"> 질의응답(QnA) </a></li>  -->
 											<li><a href="FAQ"> 자주 물어보는 질문(FAQ) </a></li>
+											<li><a href="QnA"> 질의응답(QnA) </a></li>
 										</ul>
 									</div>
 								</div>
@@ -56,7 +55,9 @@
 								<th>작성자</th>
 								<th>작성일</th>
 								<th>조회수</th>
-								<th>Edit</th>
+								<c:if test="${sessionId=='admin' }">
+									<th>Edit</th>
+								</c:if>
 							</tr>
 						</thead>
 						<tbody>
@@ -69,29 +70,29 @@
 									<td><fmt:formatDate value="${nlist.notidate}"
 											pattern="yyyy-MM-dd" /></td>
 									<td>${nlist.notihit}</td>
-									<td><a href="/notice/noticeModify?notino=${nlist.notino }"><button class="btn_simple btn_blue">수정</button></a> <!-- <button class="btn_simple btn_green">삭제</button>  -->
-									</td>
+									
+									<c:if test="${sessionId=='admin' }">
+										<td><a href="/notice/noticeModify?notino=${nlist.notino }"><button class="btn_simple btn_blue">수정</button></a></td>
+									</c:if>
+									
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-
-					<!-- Section -->
-					<section>
-						<!-- Table -->
-						<div class="table-wrapper">
-							
-							<div style="text-align: right;">
-								<a href="/notice/noticeWrite"><button type="button" class="button primary">공지사항 작성</button></a>
+					
+					
+					<c:if test="${sessionId=='admin' }">
+						<!-- 공지사항작성 Start -->
+						<section>
+							<!-- Table -->
+							<div class="table-wrapper">
+								<div style="text-align: right;">
+									<a href="/notice/noticeWrite"><button type="button" class="button primary">공지사항 작성</button></a>
+								</div>
 							</div>
-						</div>
-					</section>
-					<!-- // Section -->
-
-
-
-
-
+						</section>
+						<!-- 공지사항 작성 End -->
+					</c:if>
 
 
 				<div class="col-12" style="margin: 0px auto;">

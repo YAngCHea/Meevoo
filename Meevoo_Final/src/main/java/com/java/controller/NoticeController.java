@@ -128,13 +128,18 @@ public class NoticeController {
 
 // 1. 전체 FAQ 하단 넘버링  -------------------------------------------------------------------
 	@RequestMapping("/notice/FAQ")
-	public String FAQ(PageDto pageDto, Model model) {
+	public String FAQ(PageDto pageDto1, Model model) {
 		
 		//게시글 전체가져오기
-		HashMap<String, Object> map1 = noticeService.selectFAQAll(pageDto);
+		HashMap<String, Object> map1 = noticeService.selectFAQAll(pageDto1);
 		model.addAttribute("faqlist",map1.get("faqlist"));
-		model.addAttribute("pageDto",map1.get("pageDto"));
-	
+		model.addAttribute("pageDto1",map1.get("pageDto1"));
+		model.addAttribute("page",map1.get("page"));
+		model.addAttribute("listCount",map1.get("listCount"));
+		model.addAttribute("startPage",map1.get("startPage"));
+		model.addAttribute("endPage",map1.get("endPage"));
+		model.addAttribute("maxPage",map1.get("maxPage"));
+		//System.out.println("controller endPage"+map1.get("endPage"));
 		return "notice/FAQ";
 	}	
 // 2. FAQ 새로 추가하기------------------------------------------------------------------

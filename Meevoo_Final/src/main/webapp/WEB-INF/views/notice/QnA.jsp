@@ -39,8 +39,8 @@
 									<div class="tab equal">
 										<ul class="nav">
 											<li><a href="notice"> 공지사항 </a></li>
-											<li class="active" title="선택된 탭"><a href="QnA"> 질의응답(QnA) </a></li>
 											<li><a href="FAQ"> 자주 물어보는 질문(FAQ) </a></li>
+											<li class="active" title="선택된 탭"><a href="QnA"> 질의응답(QnA) </a></li>
 											<!-- <li class="active" title="선택된 탭"><a href="QnA"> 질의응답(QnA) </a></li>  -->
 										</ul>
 									</div>
@@ -90,15 +90,12 @@
                             </div>
                               
                               
-                               
-									<!-- Table -->
+								<!-- Table -->
 									<div class="table-wrapper">
 										<div style="text-align: right;">
 											<a href="/notice/QnAWrite"><button type="button" class="button primary">QnA 작성</button></a>
 										</div>
 									</div>
-								
-                              
                               
                               
                               

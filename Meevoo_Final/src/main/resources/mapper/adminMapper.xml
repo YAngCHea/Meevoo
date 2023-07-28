@@ -193,9 +193,10 @@
 	  <select id="selectAll" resultType="com.java.dto.MemberDto">
 	     select * from ( select rownum rnum,a.* from
 			(select * from userlist 
-			
 		   <if test="search.category == 'all'">
-			   where id like '%'||#{search.search_input}||'%' or usernm like '%'||#{search.search_input}||'%' or nicknm like '%'||#{search.search_input}||'%'
+			   where id like '%'||#{search.search_input}||'%' 
+			   or usernm like '%'||#{search.search_input}||'%' 
+			   or nicknm like '%'||#{search.search_input}||'%'
 		   </if>
 		   <if test="search.category == 'id'">
 			   where id like '%'||#{search.search_input}||'%'
@@ -206,16 +207,16 @@
 		   <if test="search.category == 'nicknm'">
 			   where nicknm like '%'||#{search.search_input}||'%'
 		   </if>
-			
 			order by joindate desc) a
 			)where rnum between #{startRow} and #{endRow}
 	   </select>
-   
     <!--2) 전체 회원 가져오기 : 하단 넘버링을 위한 카운트!   -->
 	   <select id="selectMemberListCount" resultType="int">
 	      select count(*) from userlist
 	      <if test="category == 'all'">
-			   where id like '%'||#{search_input}||'%' or usernm like '%'||#{search_input}||'%' or nicknm like '%'||#{search_input}||'%'
+			   where id like '%'||#{search_input}||'%' 
+			   or usernm like '%'||#{search_input}||'%' 
+			   or nicknm like '%'||#{search_input}||'%'
 		   </if>
 		   <if test="category == 'id'">
 			   where id like '%'||#{search_input}||'%'
@@ -315,10 +316,16 @@
 			null,
 			#{crecruitlimit},
 			null,
-			null,
+			#{cnowstatus},
 			#{scate}
 			)
 	   </insert>
+   
+   <!-- 새로 모임 추가할때 시설 리스트중에서 선택하게 리스트 가져오기 -->
+	<select id="selectSportList" resultType="com.java.dto.SportDto">
+		select * from sportlist
+	</select>
+   
    
    <!-- 4) 수정할 모임 정보 가져오기 -->
 	   <select id="selectTCMOne">
@@ -336,6 +343,37 @@
 	   <delete id="deleteTCMOne">
 	     delete clublist where cno=#{cno}
 	  </delete>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
    
    
