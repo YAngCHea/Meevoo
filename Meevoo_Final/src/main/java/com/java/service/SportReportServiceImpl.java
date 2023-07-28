@@ -13,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.SportDto;
 import com.java.dto.SportReportDto;
+import com.java.dto.SportReviewAnswerDto;
+import com.java.dto.SportReviewDto;
 import com.java.mapper.SportReportMapper;
 
 @Service
@@ -176,6 +178,34 @@ public class SportReportServiceImpl implements SportReportService {
 		//mapper 전송 - 문의글 1개 수정
 		sportReportMapper.updateOne(srDto);
 	}
+
+	
+	@Override
+	public ArrayList<SportReviewAnswerDto> selectAnAll(int srepno) {
+		// 문의글 답변 전체 가져오기
+		ArrayList<SportReviewAnswerDto> sreanList = sportReportMapper.selectAnAll(srepno);
+		return sreanList;
+	}
+	
+	
+	@Override
+	public SportReviewAnswerDto answerInsert(SportReviewAnswerDto srepanDto) {
+		//문의글 하단 답변저장 후
+		sportReportMapper.answerInsert(srepanDto);
+
+		//답변 1개 가져오기
+		SportReviewAnswerDto srepandto = sportReportMapper.selectAnOne(srepanDto);
+		return srepandto;
+	}
+
+	@Override
+	public void answerDelete(int srepanno) {
+		// 답변 1개 삭제하기
+		sportReportMapper.answerDelete(srepanno);
+		
+	}
+
+
 
 
 }

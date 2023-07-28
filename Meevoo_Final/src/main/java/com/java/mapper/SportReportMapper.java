@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.java.dto.SportDto;
 import com.java.dto.SportReportDto;
+import com.java.dto.SportReviewAnswerDto;
 
 @Mapper
 public interface SportReportMapper {
@@ -35,6 +36,15 @@ public interface SportReportMapper {
 	
 	// 문의글 삭제하기
 	void deleteOne(int srepno);
+
+	// 문의글 답변 전체 가져오기
+	ArrayList<SportReviewAnswerDto> selectAnAll(int srepno);
+	//답변 저장
+	void answerInsert(SportReviewAnswerDto srepanDto);
+	//답변 1개 가져오기
+	SportReviewAnswerDto selectAnOne(SportReviewAnswerDto srepanDto);
+	// 답변 1개 삭제하기
+	void answerDelete(int srepanno);
 	
 	
 

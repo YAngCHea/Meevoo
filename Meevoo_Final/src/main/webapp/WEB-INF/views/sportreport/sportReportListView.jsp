@@ -22,6 +22,86 @@
 				  location.href="sportReportListDelete?srepno=${srdto.srepno}";
 			  }
 		  }
+		  
+		// 1. 답변 달기
+			function answerBtn(){
+				if("${sessionId}"!="admin"){
+					alert("관리자만 답변 등록이 가능합니다.");
+					location.href="/member/login";
+					return false;
+				}
+				
+				if($("#srepanContent").val() == ""){
+					alert("글을 작성하셔야 답변 등록이 가능합니다.");
+					$("#srepanContent").focus();
+					return false;
+				}
+				
+				alert("답변 등록이 완료되었습니다.");
+				
+				//ajax구문
+        	  	$.ajax({
+        		  url:"/sportreport/answerInsert",
+        		  type:"post",
+        		data:{"id":"${sessionId}",
+    			    "srepno":"${srdto.srepno}",
+    			    "srepancontent":$("#srepanContent").val(),
+    		  },
+    		  success:function(data){
+    			  var dataHtml="";
+    			  alert("답변 등록 성공");
+    			  alert(srepno);
+    			  //하단리뷰 1개 가져오기
+    			  console.log(data);
+    			  //하단에 리뷰추가코드
+    			  dataHtml += "<ul id='"+ data.srepanno +"'>";
+    			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp;&nbsp;&nbsp;[ "+ moment(data.srepandate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
+       			  dataHtml += "<li class='txt'>"+ data.srepancontent +"</li>";
+       			  dataHtml += "<li class='btn'>";
+       			  dataHtml += "<a onclick=\"deleteBtn("+data.srepanno+")\" class='button small'>삭제</a>";
+       			  dataHtml += "</li>";
+       			  dataHtml += "</ul>";
+       			  
+       			  
+       			  $("#answerBox").prepend(dataHtml);  //prepend(위),append(아래),html(모두삭제후 추가)
+       			  
+       			  //글자삭제
+       			  $("#srepanContent").val("");
+       			  
+       			  //총개수 수정
+             	  var annum = Number($("#annum").text())+1;
+             	  $("#annum").text(annum);
+       			  
+       			  
+       		  },
+       		  error:function(){
+       			  alert("실패");
+       		  }
+       	  });//ajax
+		} // 답변 등록
+		
+		
+		// 2. 답변쓴거 삭제하기
+		function deleteBtn(srepanno){
+       	  if(confirm("리뷰를 삭제하시겠습니까?")){
+           	  $.ajax({
+           		  url:"/sportreport/answerDelete",
+           		  type:"post",
+           		  data:{"srepanno":srepanno }, // 답변번호
+           		  success:function(data){
+           			  alert(srepanno+"번 답변이 삭제되었습니다.");
+           			  $("#"+srepanno).remove();  // 삭제
+           			  
+           			//총개수 수정
+               	  	var annum = Number($("#annum").text())-1;
+               	 	$("#annum").text(annum);
+           		  },
+           		  error:function(){
+           			  alert("실패");
+           		  }
+           	  });//ajax
+       	  }//if
+         }//삭제버튼 -->
 		</script>
 		
 		<!-- Wrapper -->
@@ -40,7 +120,7 @@
 									<div class="viewHead">
 										<div class="subject">
 											<ul>
-												<li>${srdto.srepno}. 볼링장에 고라니가 나타났어요!!</span></li>
+												<li>${srdto.srepno}. ${srdto.sreptitle}</span></li>
 											</ul>
 										</div>
 										<div class="day">
@@ -80,17 +160,19 @@
 								<!-- 시설 리뷰 -->
 								<!-- 리뷰 css -> main.css (78번째) -->
 								<section class="sportreview">
-									<div class="replyBox">
+									<div class="replyBox" >
 										<br>
 										<ul>
 											<li class="in">
-												<li class="name"><span>${comList.size() }</span> 관리자의 답변이 달렸습니다.</li>
+												<li class="name">
+												<c:if test="${sreanList.size() == 0}"> 답변예정 입니다.</c:if>
+												<c:if test="${sreanList.size() > 0 }"><span id="annum">${sreanList.size()}</span>개의 답변이 달렸습니다.</c:if>
+												</li>
 												<form name="myform" id="myform" method="post" >
 													<div style="display: flex;">
-														<textarea class="col-auto form-control" type="text" id="reviewContents"
-																  placeholder="시설 리뷰글을 작성해주세요!" ></textarea>
-																  <!-- 버튼 크기 수정 main.css 1644번째 -->
-													    <li class="btn"><a onclick="reviewBtn()" class="button primary large">등록</a></li>
+														<textarea type="text" class="srepanContent" id="srepanContent" placeholder="답변을 작성해주세요!" ></textarea>
+														  <!-- 버튼 크기 수정 main.css 1644번째 -->
+													    <li class="btn"><a onclick="answerBtn()" id="swrite"  class="button primary large">등록</a></li>
 													</div>
 												</form>	
 											</li>
@@ -98,22 +180,25 @@
 									</div>
 									
 								<fieldset>
-									<div class="replyBox">
+								
+									<div class="replyBox" id="answerBox">
 										<!-- 관리자가 쓴 답변  -->
-										<ul>
-											<li class="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;관리자 <span>&nbsp;&nbsp;&nbsp;[2023-07-06&nbsp;&nbsp;15:01:59]</span>
-											
-											</li>
-											<br>
-											<li class="txt"> 관리자가 답변을 달아줌</li>
-											<li class="btn">
-												<a onclick="deleteBtn()" class="button small">삭제</a>
-											</li>
-										</ul>
-										
+										<c:forEach var="srepanDto" items="${sreanList}">
+											<ul id="${srepanDto.srepanno}">
+												<li class="name">${srepanDto.id}<span>&nbsp;&nbsp;&nbsp;&nbsp;[ ${srepanDto.srepandate} ]</span></li>
+												<li class="txt">${srepanDto.srepancontent }</li>
+												<!-- 관리자 답변이 아닌경우 버튼노출 안됨 -->
+												<!-- sessionId와 sreDto.id가 같을 때만 삭제 노출 -->
+												<c:if test="${sessionId == 'admin' }">
+													<li class="btn">
+														<a onclick="deleteBtn(${srepanDto.srepanno})" class="button small">삭제</a>
+													</li>
+												</c:if>
+											</ul>
+										</c:forEach>
 									</div>
 								</fieldset>
-								<!-- //댓글 -->
+								<!-- //관리자가 쓴 답변  -->
 								
 								</section>
 								

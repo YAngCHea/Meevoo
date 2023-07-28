@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.SportDto;
 import com.java.dto.SportReportDto;
+import com.java.dto.SportReviewAnswerDto;
 
 @Service
 public interface SportReportService {
@@ -29,6 +30,16 @@ public interface SportReportService {
 	
 	// 문의글 삭제하기
 	void deleteOne(int srepno);
+
+	
+	//답변 전체 가져오기
+	ArrayList<SportReviewAnswerDto> selectAnAll(int srepanno);
+	//답변 저장, 1개 가져오기
+	SportReviewAnswerDto answerInsert(SportReviewAnswerDto srepanDto);
+	//답변 1개 삭제하기
+	void answerDelete(int srepanno);
+
+
 
 
 

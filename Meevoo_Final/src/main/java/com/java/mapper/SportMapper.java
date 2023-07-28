@@ -15,13 +15,13 @@ import com.java.dto.SportReviewReportDto;
 public interface SportMapper {
 	
 	//게시글 전체 가져오기
-	ArrayList<SportDto> selectAll(int startRow, int endRow, String[] sports, String dong, String slist_word);
+	ArrayList<SportDto> selectAll(int startRow, int endRow, String slist_word, SportDto sportDto);
 	
 	//게시글 1개 가져오기
 	SportDto selectOne(int sfno);
 	
 	//게시글 전체개수
-	int selectListCount(String[] sports, String dong, String slist_word);
+	int selectListCount(String slist_word, SportDto sportDto);
 
 	
 	// 문의글,리뷰신고글 작성으로 인한 시설번호 전체 가져오기

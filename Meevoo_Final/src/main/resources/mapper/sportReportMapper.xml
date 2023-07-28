@@ -8,11 +8,11 @@
 	<select id="selectListCount" resultType="int">
 		select count(*) from sportreport
 		<if test="category == 'all'">
-		   where srepcontent like '%'||#{srep_word}||'%' or srepcontent like '%'||#{srep_word}||'%'
+		   where srepcontent like '%'||#{srep_word}||'%' or srepcontent like '%'||#{srep_word}||'%' sreptitle like '%'||#{srep_word}||'%'
 		</if>
-		<!-- <if test="category == 'sreptitle'">
+		<if test="category == 'sreptitle'">
 		   where sreptitle like '%'||#{srep_word}||'%'
-		</if> -->
+		</if>
 		<if test="category == 'srepcontent'">
 		   where srepcontent like '%'||#{srep_word}||'%'
 		</if>
@@ -24,11 +24,11 @@
 		(select * from sportreport
 		
 		<if test="category == 'all'">
-		   where srepcontent like '%'||#{srep_word}||'%' or srepcontent like '%'||#{srep_word}||'%'
+		   where srepcontent like '%'||#{srep_word}||'%' or srepcontent like '%'||#{srep_word}||'%' or sreptitle like '%'||#{srep_word}||'%'
 		</if>
-		<!-- <if test="category == 'sreptitle'">
+		<if test="category == 'sreptitle'">
 		   where sreptitle like '%'||#{srep_word}||'%'
-		</if> -->
+		</if>
 		<if test="category == 'srepcontent'">
 		   where srepcontent like '%'||#{srep_word}||'%'
 		</if>
@@ -53,19 +53,44 @@
 	<insert id="insertOne">
 		insert into sportreport
 		values(sportreport_seq.nextval,#{id},#{sfno},#{srepcontent},
-		sysdate,#{srepinput},#{srepimg})
+		sysdate,#{srepinput},#{srepimg},#{sreptitle})
 	</insert>
 	
 	<!-- 문의글 1개 수정하기 -->
 	<update id="updateOne">
 		update sportreport set
 		srepcontent=#{srepcontent}, srepdate=sysdate,
-		srepinput=#{srepinput},srepimg=#{srepimg} where srepno=#{srepno}
+		srepinput=#{srepinput},srepimg=#{srepimg},sreptitle=#{sreptitle} where srepno=#{srepno}
 	</update>
 	
 	<!-- 문의글 1개 삭제하기 -->
 	<delete id="deleteOne">
 		delete sportreport where srepno=#{srepno}
+	</delete>
+	
+	
+	
+	<!-- 문의글 답변 저장하기 -->
+	<insert id="answerInsert">
+	  <selectKey resultType="int" keyProperty="srepanno" order="BEFORE">
+		select sportreviewanswer_seq.nextval from dual
+	  </selectKey>
+	  insert into sportreviewanswer values
+	  (#{srepanno},#{srepno},#{id},#{srepancontent},sysdate)
+	</insert>
+	
+	<!-- 문의글 답변 모두 가져오기 -->
+	<select id="selectAnAll" resultType="com.java.dto.SportReviewAnswerDto">
+		select * from sportreviewanswer where srepno=#{srepno} order by srepandate desc
+	</select>
+	
+	<!-- 답변 1개 가져오기 -->
+	<select id="selectAnOne" resultType="com.java.dto.SportReviewAnswerDto">
+		select * from sportreviewanswer where srepanno=#{srepanno}
+	</select>
+	<!-- 답변 1개 삭제하기 -->
+	<delete id="answerDelete">
+		delete sportreviewanswer where srepanno=#{srepanno}
 	</delete>
 
 </mapper>

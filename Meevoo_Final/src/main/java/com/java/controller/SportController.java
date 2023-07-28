@@ -35,12 +35,17 @@ public class SportController {
 	
 	@RequestMapping("/sport/sportList")
 	public String sportList(@RequestParam(defaultValue ="1")int page,
-			@RequestParam(name = "sports", required = false) String[] sports, 
-			@RequestParam(name = "dong", required = false)String dong, 
-			String slist_word,Model model) {
+			String slist_word,Model model,
+			SportDto sportDto) {
+		
+		if(sportDto.getSportsAll() != null) { // 체크박스 배열에 값 들어오면
+			sportDto.setSport(String.join("|",sportDto.getSportsAll()));
+			// locString에 스트링 하나로 변환
+			// locString을 MyBatis 매개변수로 전달
+		}
 
 		// 게시글 전체 가져오기
-		HashMap<String,Object> map = sportService.selectAll(page,sports,dong,slist_word);
+		HashMap<String,Object> map = sportService.selectAll(page,slist_word,sportDto);
 		model.addAttribute("list", map.get("list"));
 		
 		model.addAttribute("page", map.get("page"));
@@ -50,9 +55,10 @@ public class SportController {
 		model.addAttribute("maxPage", map.get("maxPage"));
 		
 		// 검색필터
-		model.addAttribute("sports", map.get("sports"));
-		model.addAttribute("dong", map.get("dong"));
 		model.addAttribute("slist_word", map.get("slist_word"));
+		model.addAttribute("sportDto", map.get("sportDto"));
+		
+		System.out.println(sportDto.getSportsAll());
 		
 		return "/sport/sportList";
 	} // sportList

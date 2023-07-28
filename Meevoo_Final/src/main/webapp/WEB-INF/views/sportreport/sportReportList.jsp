@@ -60,7 +60,7 @@
 											style="display:flex; align-items:center; place-content: center; ">
 												<select name="category" style="width:200px;">
 													<option value="all">전체</option>
-											        <!-- <option value="sreptitle">제목</option> -->
+											        <option value="sreptitle">제목</option>
 											        <option value="srepcontent">문의유형</option>
 												</select>
 												<input type="text" style="width:400px; margin: 0 0 0 1px;" name="srep_word" id="srep_word" value="${srep_word}" placeholder="검색어를 입력해주세요." />
@@ -77,11 +77,10 @@
 										<table>
 											<colgroup>
 												<col width="5%"  />
-												<col width="24%"/>
+												<col width="20%"/>
 												<col width="*" />
-												<col width="10%"/>
 												<col width="15%"/>
-												<col width="10%" />
+												<col width="20%"/>
 											</colgroup>
 											<thead>
 												<tr>
@@ -90,7 +89,6 @@
 													<th>제목</th>
 													<th>작성자</th>
 													<th>작성일</th>
-													<th>답변여부</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -98,12 +96,11 @@
 												<tr>
 													<td>${sportreport.srepno}</td>
 													<td>${sportreport.srepcontent}</td>
-													<td><a href="/sportreport/sportReportListView?srepno=${sportreport.srepno}&page=${page}&category=${category}&srep_word=${srep_word}">볼링장에 고라니가 나타났어요!!!</a></td>
+													<td><a href="/sportreport/sportReportListView?srepno=${sportreport.srepno}&page=${page}&category=${category}&srep_word=${srep_word}">${sportreport.sreptitle}</a></td>
 													<td>${sportreport.id}</td>
 													<td>
 													<fmt:formatDate value="${sportreport.srepdate}" pattern="yyyy-MM-dd"/>
 													</td>
-													<td>답변예정</td>
 												</tr>
 												</c:forEach>
 											</tbody>

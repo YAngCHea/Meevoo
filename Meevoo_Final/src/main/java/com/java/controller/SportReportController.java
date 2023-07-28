@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.SportDto;
 import com.java.dto.SportReportDto;
+import com.java.dto.SportReviewAnswerDto;
+import com.java.dto.SportReviewDto;
 import com.java.service.SportReportService;
 
 @Controller
@@ -52,8 +55,10 @@ public class SportReportController {
 		HashMap<String, Object> map = sportReportService.selectOne(srepno);
 		model.addAttribute("srdto", map.get("srdto"));
 		
-//		model.addAttribute("prevDto", map.get("prevDto"));
-//		model.addAttribute("nextDto", map.get("nextDto"));
+		//답변 전체 가져오기
+		ArrayList<SportReviewAnswerDto> sreanList = sportReportService.selectAnAll(srepno); 
+		model.addAttribute("sreanList", sreanList);
+		
 		
 		model.addAttribute("category", category);
 		model.addAttribute("srep_word", srep_word);
@@ -84,6 +89,7 @@ public class SportReportController {
 		String result="i_success";
 		System.out.println(srDto.getSrepdate());
 		System.out.println(srDto.getSrepno());
+		System.out.println(srDto.getSreptitle());
 		
 		return "redirect:/sportreport/sportReportList?result="+result;
 	} // sportReportWrite
@@ -133,6 +139,35 @@ public class SportReportController {
 		sportReportService.deleteOne(srepno);
 		return "redirect:sportReportList";
 	}// boardDelete
+	
+	
+	@RequestMapping("/sportreport/answerInsert")
+	@ResponseBody //데이터로 리턴해서 가져와라
+	public SportReviewAnswerDto answerInsert(SportReviewAnswerDto srepanDto) {
+		System.out.println("등록 ajax에서 넘어온 아이디 : "+srepanDto.getId());
+		System.out.println("등록 ajax에서 넘어온 답변번호 : "+srepanDto.getSrepanno());
+		System.out.println("등록 ajax에서 넘어온 문의글번호 : "+srepanDto.getSrepno());
+		System.out.println("등록 ajax에서 넘어온 답변 데이터 : "+srepanDto.getSrepancontent());
+
+		//답변 저장, 1개 가져오기
+		SportReviewAnswerDto srepandto = sportReportService.answerInsert(srepanDto);
+		
+		return srepandto;
+	} //answerInsert
+	
+	
+	@RequestMapping("/sportreport/answerDelete")
+	@ResponseBody //데이터로 리턴해서 가져와라
+	public String answerDelete(int srepanno) {
+		System.out.println("ajax 넘어온 데이터 : "+srepanno);
+		
+		//답변 1개 삭제하기
+		sportReportService.answerDelete(srepanno);
+		System.out.println(srepanno);
+		
+		String result = "success";
+		return result;
+	} //answerDelete
 	
 	
 	

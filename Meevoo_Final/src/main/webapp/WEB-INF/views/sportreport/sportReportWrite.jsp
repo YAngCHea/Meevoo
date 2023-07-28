@@ -36,6 +36,11 @@
 										$("#srepinput").focus();
 										return false;
 									}
+									if($("#sreptitle").val() == ""){
+										alert("제목을 입력해주셔야 합니다.");
+										$("#sreptitle").focus();
+										return false;
+									}
 									alert("작성한 문의글을 저장합니다.");
 									$("#srpwrite").submit();
 					          	  
@@ -55,7 +60,7 @@
 										</div>
 										<div class="day">
 											<p class="txt">제목
-												<input type="text" placeholder="제목을 입력해주세요." />
+												<input type="text" name="sreptitle" id="sreptitle" placeholder="제목을 입력해주세요." />
 											</p>
 										</div>
 										<div class="day">

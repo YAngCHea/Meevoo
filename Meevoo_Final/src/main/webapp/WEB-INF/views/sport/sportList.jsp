@@ -47,15 +47,13 @@
 						    			$("#slist_word").focus();
 						    			return false;
 						    		}
-									if
 									var chksports = $("[name=sports]");
-									var chkdong = $("input:radio[name=dong]:checked").val();
 									var chkArray = [];
 									
 									$("input:checkbox[name=sports]:checked").each(function(){
 										chkArray.push(this.value);
 									})
-									var checkedValue = chkArray.join(',')+','+chkdong
+									var checkedValue = chkArray.join(',')
 									 $('#query').val(checkedValue);
 							        alert($('#query').val());
 									
@@ -73,7 +71,7 @@
 												<label for="golf"class="golf">골프</label>
 												<input type="checkbox" name="sports" id="climbing" value="클라이밍">
 												<label for="climbing"class="climbing">클라이밍</label>
-												<input type="checkbox" name="sport" id="tennis" value="테니스">
+												<input type="checkbox" name="sports" id="tennis" value="테니스">
 												<label for="tennis"class="tennis">테니스</label>
 												<input type="checkbox" name="sports" id="tabletennis" value="탁구">
 												<label for="tabletennis"class="tabletennis">탁구</label>
@@ -124,7 +122,6 @@
 										<div class="day" id="serachbutton11">
 											<p class="txt">
 												<input type="text" style="width:700px;" name="slist_word" id="slist_word" value="${slist_word}" placeholder="검색어를 입력해주세요." />
-												<!-- <input type="text" style="width:300px;" name="query" id="query" placeholder="검색어를 입력해주세요." /> -->
 												<button class="button primary small" onclick="sportfilterBtn()">검색</button>
 											</p>
 										</div>

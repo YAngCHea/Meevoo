@@ -9,14 +9,11 @@
 		select count(*) from sportlist
 		<if test="slist_word != null">
 		   where sfnm like '%'||#{slist_word}||'%' or
-		   scate like '%'||#{slist_word}||'%' or 
 		   dongcate like '%'||#{slist_word}||'%'
 		</if>
-		<!-- where scate in 
-		<foreach item="item" collection="sports" open="(" separator="," close=")">
-		#{sports}
-		</foreach>
-		and dongcate=#{dong} -->
+		<!-- <if test="sport != null">
+			and regexp_like(scate,#{sport})
+		</if> -->
 	</select>
 	
 	<!-- 게시글 전체 가져오기 -->
@@ -25,15 +22,11 @@
 		(select * from sportlist
 		<if test="slist_word != null">
 		   where sfnm like '%'||#{slist_word}||'%' or
-		   scate like '%'||#{slist_word}||'%' or 
 		   dongcate like '%'||#{slist_word}||'%'
 		</if>
-		
-		<!-- where scate in 
-		<foreach item="item" collection="sports" open="(" separator="," close=")">
-		#{sports}
-		</foreach>
-		and dongcate=#{dong} -->
+		<!-- <if test="sport != null">
+			and regexp_like(scate,#{sport})
+		</if> -->
 		
 		<!-- 아랫부분 공통영역 -->
 		<![CDATA[
