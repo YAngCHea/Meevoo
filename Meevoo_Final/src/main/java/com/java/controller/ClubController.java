@@ -1,8 +1,6 @@
 package com.java.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -71,6 +69,8 @@ public class ClubController {
 		ClubDto cdto = clubService.selectClubOne(cno);
 		model.addAttribute("cdto", cdto);
 		
+		 
+		 
 		return "club/cView";
 	}
 
@@ -82,29 +82,17 @@ public class ClubController {
 	
 	
 	@PostMapping("/club/cWrite") 
-	public String doCWrite(ClubDto cdto, List<MultipartFile> files, Model model)  { 
+	public String doCWrite(ClubDto cdto, List<MultipartFile> files, Model model) throws Exception  { 
 		System.out.println("sfno : "+cdto.getSfno());
-		System.out.println("cdodate : "+cdto.getDateStr());
+		System.out.println("id : "+cdto.getId());
+		
+		//날짜가 올바르게 변환되었는지 확인
+		System.out.println("cdodate: " + cdto.getCdodate());
+		System.out.println("cdotime: " + cdto.getCdotime());
+		
 		//모임목록 글 1개 저장
 		clubService.insertClub(cdto, files);
 	    String result="i_success"; //insert가 성공한다
-	    
-	    //입력받은 cdodate를 sql에 넣을 수 있도록 형변환 (string -> date)
-	    String dateStr = cdto.getDateStr();
-		// 포맷터
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-		// Date 는 import java.util.Date;
-		Date dateD = null;
-		try {
-			
-			dateD = formatter.parse(dateStr);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println(dateD);
-		java.sql.Date sqlPackageDate = new java.sql.Date(dateD.getTime());
-		
-		cdto.setCdodate(sqlPackageDate);
 	    
 	 
 		return "redirect:/club/club?result="+result; 
@@ -122,9 +110,9 @@ public class ClubController {
 		return "club/cWriteSearchSF";
 	}
 	
-	@RequestMapping("/club/cWriteEdit")
-	public String cWriteEdit() {
-		return "club/cWriteEdit";
+	@RequestMapping("/club/cWriteUpdate")
+	public String cWriteUpdate() {
+		return "club/cWriteUpdate";
 	}
 
 	@RequestMapping("/club/cMEvaluation")

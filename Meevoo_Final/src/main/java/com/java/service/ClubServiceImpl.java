@@ -123,22 +123,17 @@ public class ClubServiceImpl implements ClubService {
 			
 		}//for
 		
-		//파일이름 출력
-		System.out.println("파일이름 1개로 묶은 이름 : "+cimg);
-		
 		//파일이름 1개로 묶은 이름 String 배열로 분리
 		cimgs = cimg.split(",");
-		
-//		System.out.println("cimgs 배열 출력 :"+Arrays.toString(cimgs));
-//		System.out.println("cimgs 배열 개수 :"+cimgs.length);
 		
 		//mapper로 전송 - 모임목록 글 1개 저장
 		clubMapper.insertClub(cdto);
 		
 	}//모임목록 글 1개 저장
 
-
-
+	
+	  
+	 
 
 	
 

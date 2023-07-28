@@ -139,7 +139,10 @@
 													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">${club.dongcate }</span>
 													&nbsp;
 													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
-													  <fmt:formatDate value="${club.cdodate}" type="both" dateStyle ="long" pattern="yy-MM-dd (E) a hh:mm" />
+													  <fmt:formatDate value="${club.cdodate}" type="both" dateStyle ="long" pattern="yy-MM-dd (E)" />
+													</span>
+													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
+													  <fmt:formatDate value="${club.cdotime}" type="both" dateStyle ="short" pattern="a hh:mm" />
 													</span>
 													<!-- 회원님을 위한 모임추천 내용 셋째줄 끝: 모임위치(동이름), 모임일시 -->
 												</div>
@@ -279,7 +282,10 @@
 												htmlData +='<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">'+data[i].dongcate+'</span>';
 												htmlData +='&nbsp;';
 												htmlData +='<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">';
-												htmlData +=(moment(data[i].cdodate).format("YY-MM-DD ddd HH:mm a"));
+												htmlData +=(moment(data[i].cdodate).format("YY-MM-DD ddd"));
+												htmlData +='</span>';
+												htmlData +='<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">';
+												htmlData +=(moment(data[i].cdotime).format("HH:mm a"));
 												htmlData +='</span>';
 												<!-- 회원님을 기다리는 모임들 내용 셋째줄 끝: 모임위치(동이름), 모임일시 -->
 												htmlData +='</div>';
@@ -389,7 +395,10 @@
 													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">${club.dongcate }</span>
 													&nbsp;
 													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
-													  <fmt:formatDate value="${club.cdodate}" type="both" dateStyle ="long" pattern="yy-MM-dd (E) a hh:mm" />
+													  <fmt:formatDate value="${club.cdodate}" type="both" dateStyle ="long" pattern="yy-MM-dd (E)" />
+													</span>
+													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
+													  <fmt:formatDate value="${club.cdotime}" type="both" dateStyle ="short" pattern="a hh:mm" />
 													</span>
 													<!-- 회원님을 기다리는 모임들 내용 셋째줄 끝: 모임위치(동이름), 모임일시 -->
 												</div>

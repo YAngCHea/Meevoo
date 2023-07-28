@@ -3,11 +3,9 @@ package com.java.mapper;
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.java.dto.ClubDto;
-import com.java.dto.ClubSearch;
 import com.java.dto.PageDto;
 
 @Repository
@@ -36,7 +34,7 @@ public interface ClubMapper {
 	void insertClub(ClubDto cdto);
 	
 	
-
+	 
 
 
 

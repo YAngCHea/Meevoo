@@ -29,9 +29,9 @@ public interface ClubService {
 
 	//모임목록 글 1개 저장
 	void insertClub(ClubDto cdto, List<MultipartFile> files);
-
-
 	
+	
+	 
 
 
 }

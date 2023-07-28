@@ -10,9 +10,9 @@
   select * from 
       (select rownum rnum, a.* from 
       (select * from 
-          (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
+          (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.cdotime, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
                   b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
-                  c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
+                  c.sfno, c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
              from clublist a 
               left join userlist b on a.id = b.id(+)
               left join sportlist c on a.sfno = c.sfno)
@@ -47,9 +47,9 @@
   	 select * from 
        (select rownum rnum, a.* from 
          (select * from 
-           (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
+           (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.cdotime, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
                    b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
-                   c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
+                   c.sfno, c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
               from clublist a 
                 left join userlist b on a.id = b.id(+)
                 left join sportlist c on a.sfno = c.sfno)
@@ -63,9 +63,9 @@
       (select rownum rnum, a.* from 
         (select * from 
           (select a.* from 
-            (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
+            (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.cdotime, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
                     b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
-                    c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
+                    c.sfno, c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
                from clublist a 
                  left join userlist b on a.id = b.id(+)
                  left join sportlist c on a.sfno = c.sfno)
@@ -78,7 +78,7 @@
   
   <!-- 모임목록 1개 가져오기 -->
   <select id="selectClubOne" resultType="com.java.dto.ClubDto">
-    select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus,
+    select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.cdotime, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus,
            b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
            c.sfno, c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
     	from clublist a 
@@ -90,9 +90,9 @@
   <!-- 필터 input 반영해서 모임목록 가져오기 (필터검색) -->
   <select id="selectClubFilter" resultType="com.java.dto.ClubDto">
        select * from 
- 	     (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
+ 	     (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.cdotime, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
                  b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
-                 c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
+                 c.sfno, c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
             from clublist a 
               left join userlist b on a.id = b.id(+)
               left join sportlist c on a.sfno = c.sfno)
@@ -101,10 +101,27 @@
            and cdodate between sysdate and sysdate + #{dateDifference}
   </select>
   
+   
+   
   <insert id="insertClub">
-	  insert into clublist values 
-	    (clublist_seq.nextval,#{id},#{cnm},sysdate,#{cimg},#{sfno},to_date(#{cdodate}),
-	    #{ccontent},#{ctotalpick},#{crecruitlimit},#{cnowrecruit},#{cnowstatus},#{scate})
+	  insert into clublist values ( 
+    	clublist_seq.nextval,													<!-- cno -->
+    	#{id},																	<!-- id -->
+    	#{cnm},																	<!-- cnm -->
+    	sysdate,																<!-- cwrdate -->
+    	#{cimg},																<!-- cimg -->
+    	#{sfno},																<!-- sfno -->
+    	#{dongcate},															
+    	#{cloc},																
+    	#{cdodate},																<!-- cdodate -->
+    	#{ccontent},															<!-- ccontent -->
+    	#{ctotalpick},															<!-- ctotalpick -->
+    	#{crecruitlimit},														<!-- crecruitlimit -->
+    	#{cnowrecruit},															<!-- cnowrecruit -->
+    	#{cnowstatus},															<!-- cnowstatus -->
+    	#{scate},																<!-- scate -->
+    	#{cdotime}
+)
   </insert>
 
 

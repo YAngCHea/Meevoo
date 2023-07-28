@@ -30,6 +30,12 @@
 			.dropdown-content a:hover {background-color: #f1f1f1 opacity: 0.3;}
 			.dropdown:hover .dropdown-content {display: block;}
 		</style>
+		<c:if test="${sessionId==null}">
+		 <script>
+		   alert ("로그인을 하셔야 모임글 상세 페이지에 접속이 가능합니다.");
+		   location.href="/member/login";
+		 </script>
+		</c:if>			
 	</head>
 	<body class="is-preload">
 		<!-- Wrapper -->
@@ -50,7 +56,7 @@
 										         <div><span><a href="/club/club"><img src="../images/general/previousPage.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;뒤로 가기</a></span></div>
 										         <div><span><a href="#"><img src="../images/general/index.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;저장 하기</a></span></div>
 										         <div><span><a href="#"><img src="../images/general/report.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;신고 하기</a></span></div>
-										         <div><span><a href="/club/cWriteEdit"><img src="../images/general/write.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;수정 하기</a></span></div>
+										         <div><span><a href="/club/cWriteUdate"><img src="../images/general/write.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;수정 하기</a></span></div>
 										         <div><span><a href="#"><img src="../images/general/delete.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;삭제 하기</a></span></div>
 										      </div>
 										  </div>
@@ -125,7 +131,13 @@
 									<div class="features" style="margin: 0; width: 100%;">
 									    <article style="margin: 0; width: 100%;">
 											<span style="margin: 25px;">
-											  <img src="../images/profile/profile1.jpeg" style="width:110px; border-radius: 50%;" />
+											  <c:if test="${mdto.userimg == null }">
+			                                   		<img src="https://cdn-icons-png.flaticon.com/512/848/848043.png" style="width:110px; border-radius: 50%;"/>
+			                                   		
+			                                   	</c:if>
+												<c:if test="${mdto.userimg != null }">
+			                                   		<img src="/upload/${mdto.userimg }" width="150px"/>
+												</c:if>
 											</span>
 											<div class="content" style="margin:  0, 0, 100px, 0;">
 												<h3 style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; margin:0.5em;">${cdto.nicknm}</h3>
@@ -175,7 +187,12 @@
 													      </span>
 												        </c:if>
 										        </span>&nbsp;&nbsp;
-										        <fmt:formatDate value="${cdto.cdodate}" type="both" dateStyle ="long" pattern="yyyy-MM-dd (E) a hh:mm" />
+										        <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
+										          <fmt:formatDate value="${cdto.cdodate}" type="both" dateStyle ="long" pattern="yyyy-MM-dd (E)" />
+										        </span>
+										        <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
+										          <fmt:formatDate value="${cdto.cdotime}" type="both" dateStyle ="short" pattern="a hh:mm" />
+										        </span>
 										      </p>
 										      <!-- 운동모임 모임 정보\d-day, 일자 끝-->
 										      <p style="margin-bottom: 1em;">모임장소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cdto.sfnm}</p>
@@ -240,6 +257,17 @@
 								            <a href="/sport/sportListView?sfno=${cdto.sfno}" class="button primary">모임장소 상세보기</a>
 								          </div>
 									</div>
+									<div>
+								      ${cdto.ccontent}
+									</div>
+								    <div>
+								      <c:if test="${cdto.cimg!=',,'}">
+								        <img src="../images/${cdto.cimg}" style="width:100%;"/>
+								      </c:if>
+								      <c:if test="${cdto.cimg==',,'}">
+								       <p>업로드 된 파일 없습니다.</p>
+								      </c:if>
+								   </div>
 								</section>
 								<!-- Section: 운동모임 모임 정보 끝-->
 								

@@ -1029,6 +1029,9 @@ input[type="email"],
 input[type="tel"],
 input[type="search"],
 input[type="url"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
 select,
 textarea {
   -moz-appearance: none;
@@ -1051,6 +1054,9 @@ textarea {
   input[type="tel"]:invalid,
   input[type="search"]:invalid,
   input[type="url"]:invalid,
+  input[type="date"],
+  input[type="time"],
+  input[type="number"],
   select:invalid,
   textarea:invalid {
     box-shadow: none; }
@@ -1060,6 +1066,9 @@ textarea {
   input[type="tel"]:focus,
   input[type="search"]:focus,
   input[type="url"]:focus,
+  input[type="date"],
+  input[type="time"],
+  input[type="number"],
   select:focus,
   textarea:focus {
     border-color: #f56a6a;
@@ -1087,6 +1096,9 @@ input[type="email"],
 input[type="tel"],
 input[type="search"],
 input[type="url"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
 select {
   height: 2.75em; }
 
@@ -1175,6 +1187,25 @@ input[type="radio"] + label:before {
 :-ms-input-placeholder {
   color: #9fa3a6 !important;
   opacity: 1.0; }
+  
+input[type="number"],  
+input[type="date"],
+input[type="time"] {
+  /* 기존 스타일 */
+  background: #ffffff;
+  border-radius: 0.375em;
+  border: none;
+  border: solid 0.5px rgba(210, 215, 217, 0.75);
+  color: inherit;
+  display: block;
+  outline: 0;
+  padding: 0 1em;
+  text-decoration: none;
+  width: 100%;
+  border-color: rgba(210, 215, 217, 0.75); /* 테두리 색상을 빨간색으로 변경 */
+  box-shadow: 0 0 0 1px rgba(210, 215, 217, 0.75); /* 테두리가 초점을 받을 때 빨간색으로 설정 */
+
+}
 
 /* Box */
 .box {

@@ -1,6 +1,8 @@
 package com.java.dto;
 
-import java.sql.Date;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,12 +23,12 @@ public class ClubDto {
 	private int sfno;
 	//private String dongcate;
 	private String cloc;
-	private Date cdodate;
-	private String dateStr;		//jsp단에서 submit시 'yyyy-mm-ddT12:30'가 String으로 전달 되지만 일단 받고 controller단에서 형변환에 활용할 목적으로 만든 임시 변수 
+	@DateTimeFormat(pattern = "yyyy-MM-dd") private Date cdodate;
+	@DateTimeFormat(pattern = "HH:mm") private Date cdotime;
 	private String ccontent;
 	private int ctotalpick;
 	private int crecruitlimit;
-	private int cnowrecruit;
+	private int cnowrecruit = 1; //운동모임 현재모집된 인원, defalut 1명 : 작성자는 무조건 참여함
 	private String cnowstatus;
 	//private String scate;
 	//------------------------------------------- from clublist 끝---------------------------------------//
@@ -54,6 +56,8 @@ public class ClubDto {
 	private String slope;			//clublist에서 sportlist 외래키로 join시 '체육시설 편의시설 입구경사로 여부'
 	private String imgurl1;			//clublist에서 sportlist 외래키로 join시 '체육시설 이미지1'
 	//------------------------------------------- from sportlist 끝 ------------------------------------//
+	
+	
 	
 
 }

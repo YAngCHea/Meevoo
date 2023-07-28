@@ -38,7 +38,47 @@
 										</header>
 									</div>
 								</section> 
-
+								<%-- 
+								<!-- 입력칸 -->
+								<section>
+								<div>
+								  <ul>
+								    <li>*표시된 항목은 필수 항목이므로 반드시 입력하셔야 모임등록이 진행됩니다.</li>
+								  </ul>
+								</div>
+								<form action="/club/cWrite" method="post" name="cWriteFrom" enctype="multipart/form-data" >
+								  <div class = "table-wrapper">
+								    <table>
+								      <colgroup>
+								        <col width="22%" />
+								        <col width="*" />
+								      </colgroup>
+									  <tbody>
+									    <tr>
+										  <th>모임이름 *</th>
+										  <td>
+										    <ul>
+										      <li><input type="text" name="cnm" class="cnm" placeholder="한글로 최대 25자 까지 입력 가능"></li>
+										    </ul>
+										  </td>
+									    </tr>
+									    <tr>
+										  <th>모임장소 *</th>
+										  <td>
+										    <ul>
+										      <li><button class="sfno" type="button" placeholder="모임장소 찾기" style="display:block; margin-bottom:0.5em;"  ></button></li>
+										      <li><input type="text" name="dongcate" class="dongcate" placeholder="동 이름" style="margin-bottom:0.5em;"></li>
+										      <li><input type="text" name="cloc" class="cloc" placeholder="주소" style="margin-bottom:0.5em;"></li>
+										      <li><input type="text" name="sCate" class="sCate" placeholder="운동종목"></li>
+										    </ul>
+										  </td>
+									    </tr>
+									  </tbody>
+								    </table>
+								  </div>
+								</form>
+								</section>
+								 --%>
 							    <!-- Section: 모임모집 작성 입력 -->
 								<section>
 								 <form action="/club/cWrite" method="post" name="cWriteFrom" enctype="multipart/form-data">
@@ -46,32 +86,9 @@
 								    <div class="recruit-form">
 								      <!-- 운동모임 장소 선택 칸 -->
 								      <div class="line location" style="margin-bottom: 1em; margin-top: 2em; ">
-								        <!-- 부모 페이지로부터 전달받은 "sfno" 값을 자동으로 입력할 입력 칸 -->
-								        <!-- 
-								        <input type="text" placeholder="모임장소 이름" class="sfnm" style="width: 89%; float: left; margin-bottom: 3em;"/>
-								        <input type="text" placeholder="모임장소 주소" class="addr" style="width: 89%; float: left; margin-bottom: 3em;"/> 
-								        -->
-										<input type="button" value="모임장소 찾기" class="default" onclick="javascript:location.href='/club/cWriteSearchSF'" style="float: right;" />
-								        <input type="text" placeholder="모임장소(체육시설번호)" class="sfno" id="inputField" style="width: 89%; float: left; margin-bottom: 3em;"/>
-								        <!-- <input type="text" name="dongcate" class="dongcate" placeholder="동이름">
-								        <input type="text" name="cloc" class="cloc" placeholder="주소"> -->
+								        <label for="sfno">시설번호</label>
+								        <input type="number" name="sfno" id = "sfno" style="margin-bottom: 3em;" >
 								      </div>
-								      <!-- 운동모임 장소 선택 칸 끝-->
-								      <script>
-								        window.onload = function() {
-								            // URL 파라미터를 가져오는 함수
-								            function getURLParameter(name) {
-								                return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null;
-								            }
-								
-								            // 자식 창의 입력 칸을 가져옴
-								            var inputField = document.getElementById("inputField");
-								
-								            // 부모 창에서 전달받은 "sfno" 값을 가져와서 자식 창의 입력 칸에 기입
-								            var sfnoFromParent = getURLParameter("sfno");
-								            inputField.value = sfnoFromParent;
-								        };
-								      </script>
 								      <!-- 운동모임 제목 입력 칸 -->
 								      <div class="line subject" >
 								        <input type="text" name="cnm" class="cnm" placeholder="제목">
@@ -80,41 +97,48 @@
 								      <!-- 운동모임 제목 입력 칸 끝 -->
 								      <!-- 운동모임 날짜 입력 칸 -->
 								      <div class="line select-date">
-								        <input type="datetime-local" style="width:100%;" id="select_Date" class="cdodate" name="dateStr" placeholder="모집일시" onfocus="this.blur()" class="hasDatePicker">
+								        <label for="cdodate">모임일자</label>
+								        <input type="date" style="width:100%;" id="cdodate" class="cdodate" name="cdodate" placeholder="모집일시" onfocus="this.blur()" />
 								      </div>
-								      <p class="txt">&nbsp;&nbsp;* 최대 30일까지 선택 가능</p>
+								      <p class="txt">&nbsp;&nbsp;* 오늘부터 최대 30일까지 선택가능</p>
 								      <!-- 운동모임 날짜 입력 칸 끝 -->
+								      <!-- 운동모임 시간 입력 칸 -->
+								      <div class="line select-time">
+								        <label for="cdotime">모임시간</label>
+								        <input type="time" style="width:100%;" id="cdotime" class="cdotime" name="cdotime" placeholder="모집시간" onfocus="this.blur()" />
+								      </div>
+								      <!-- 운동모임 시간 입력 칸 끝 -->
 								      <!-- 운동모임 인원수 입력 칸 -->
-								      <div class="line member">
-								        <input type="number" min="2" max="15" style="width:100%;" class="crecruitlimit" id="crecruitlimit" name="crecruitlimit" placeholder="모집인원" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+								      <div class="line member" style="margin-top: 4em;" >
+								        <input type="number" min="2" max="15" style="width:100%;" class="crecruitlimit" id="crecruitlimit" name="crecruitlimit" placeholder="모집인원" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 								      </div>
 								      <p class="txt">&nbsp;&nbsp;* 모집인원 최대 15명</p>
 								      <!-- 운동모임 인원수 입력 칸 끝 -->
 								      
 								      <!-- 운동모임 운동종목 선택 칸 -->
-								      <div class="col-4 col-12-small" style="margin-bottom: 1em; margin-top: 3em;">
+								      <div class="col-4 col-12-small" style="margin-bottom: 1em; margin-top: 3em; -moz-appearance: none; -webkit-appearance: none;-ms-appearance: none; appearance: none; background: #ffffff; border-radius: 0.375em; border: none; border: solid 1px rgba(210, 215, 217, 0.75); color: inherit; display: block; outline: 0; padding: 0 1em; text-decoration: none; width: 100%;" >
 								          <div style="margin-bottom: 1em;">운동종목</div>  
-								          <input type="radio" name="scate" id="basketball" value="basketball" />
+								          <input type="radio" name="scate" id="basketball" value="농구" />
 								          <label for="basketball"><img src="../images/sports/basketballIcon.png" style="width: 2em;"> 농구</label>
 								          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								          <input type="radio" name="scate" id="badminton" value="badminton" />
+								          <input type="radio" name="scate" id="badminton" value="배드민턴" />
 								          <label for="badminton"><img src="../images/sports/badmintonIcon.png" style="width: 2em;"> 배드민턴</label>
-								          <input type="radio" name="scate" id="bowling" value="bowling" />
+								          <input type="radio" name="scate" id="bowling" value="볼링" />
 								          <label for="bowling"><img src="../images/sports/bowlingIcon.png" style="width: 2em;"> 볼링</label>
 								          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								          <input type="radio" name="scate" id="climbing" value="climbing" />
+								          <input type="radio" name="scate" id="climbing" value="클라이밍" />
 								          <label for="climbing"><img src="../images/sports/climbingIcon.png" style="width: 2em;"> 클라이밍</label>
-								          <input type="radio" name="scate" id="futsal" value="futsal" />
+								          <input type="radio" name="scate" id="futsal" value="풋살" />
 								          <label for="futsal"><img src="../images/sports/futsalIcon.png" style="width: 2em;"> 풋살</label>
 								          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								          <input type="radio" name="scate" id="iceSkate" value="iceSkate" />
+								          <input type="radio" name="scate" id="iceSkate" value="스케이트" />
 								          <label for="iceSkate"><img src="../images/sports/iceSkateIcon.png" style="width: 2em;"> 스케이트</label>
-								          <input type="radio" name="scate" id="golf" value="golf" />
+								          <input type="radio" name="scate" id="golf" value="골프" />
 								          <label for="golf"><img src="../images/sports/golfIcon.png" style="width: 2em;"> 골프</label>
 								          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								          <input type="radio" name="scate" id="tableTennis" value="tableTennis" />
+								          <input type="radio" name="scate" id="tableTennis" value="탁구" />
 								          <label for="tableTennis"><img src="../images/sports/tableTennisIcon.png" style="width: 2em;"> 탁구</label>
-								          <input type="radio" name="scate" id="tennis" value="tennis" />
+								          <input type="radio" name="scate" id="tennis" value="테니스" />
 								          <label for="tennis"><img src="../images/sports/tennisIcon.png" style="width: 2em;"> 테니스</label>
 								      </div>
 								      <!-- 운동모임 운동종목 선택 칸 끝-->
@@ -133,9 +157,14 @@
 									  <input type="file" name="files" id = "cimg" class="file"  style="margin-bottom: 3em;"/>
 									  <input type="file" name="files" id = "cimg" class="file"  style="margin-bottom: 3em;"/>
 								      <!-- 운동모임 사진 업로드 칸 끝 -->
-								      <label for="id">작성자</label>
-								      ${sessionId }
+								      <label for="id"></label>
 								      <input type="hidden" name="id" id = "id" value="${sessionId }" style="margin-bottom: 3em;" >
+								      <label for="cnowstatus"></label>
+								      <input type="hidden" name="cnowstatus" id = "cnowstatus" value="모집중" style="margin-bottom: 3em;" >
+								      <label for="dongcate"></label>
+								      <input type="hidden" name="dongcate" id = "dongcate" value="구로동" style="margin-bottom: 3em;" >
+								      <label for="cloc"></label>
+								      <input type="hidden" name="cloc" id = "cloc" value="서울특별시 테스트구 테스트동" style="margin-bottom: 3em;" >
 								      
 								  <br>
 								  <hr>
