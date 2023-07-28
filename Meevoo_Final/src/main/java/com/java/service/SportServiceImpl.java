@@ -31,7 +31,7 @@ public class SportServiceImpl implements SportService {
 		HashMap<String, Object> map = new HashMap<>();
 		
 		//게시글 전체개수
-		int listCount = sportMapper.selectListCount(slist_word,sportDto);
+		int listCount = sportMapper.selectListCount(slist_word,sportDto.getSport(),sportDto.getDong_one());
 
 		//최대페이지
 		int maxPage = (int)Math.ceil((double)listCount/10); // 최대페이지(전체 게시물/10 -> 4개page)
@@ -43,7 +43,7 @@ public class SportServiceImpl implements SportService {
 		
 		//endPage가 maxPage보다 더 크면 maxPage만 노출
 		if(endPage>maxPage) endPage=maxPage;
-		ArrayList<SportDto> list = sportMapper.selectAll(startRow,endRow, slist_word,sportDto);
+		ArrayList<SportDto> list = sportMapper.selectAll(startRow,endRow, slist_word,sportDto.getSport(),sportDto.getDong_one());
 		
 		map.put("list", list);
 		map.put("listCount", listCount);
@@ -57,7 +57,9 @@ public class SportServiceImpl implements SportService {
 		map.put("sportDto", sportDto);
 		
 		System.out.println(slist_word);
-		System.out.println(sportDto);
+		System.out.println("Impl sportDto : "+sportDto);
+		System.out.println("Impl sportDto sport : "+sportDto.getSport());
+		System.out.println("Impl sportDto Dong_one : "+sportDto.getDong_one());
 		
 		return map;
 	}

@@ -17,8 +17,10 @@ public class SportDto {
 	private String sfnm;
 	private String scate;
 	//검색 필터
+	private String[] sports;
+	private String[] dong;
 	private String sport;
-	private String[] sportsAll;
+	private String dong_one;
 	//
 	private String dongcate;
 	private String lat;

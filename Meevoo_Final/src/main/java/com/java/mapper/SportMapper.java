@@ -10,18 +10,19 @@ import com.java.dto.SportDto;
 import com.java.dto.SportPickDto;
 import com.java.dto.SportReviewDto;
 import com.java.dto.SportReviewReportDto;
+import com.java.dto.SportSearchDto;
 
 @Mapper
 public interface SportMapper {
 	
 	//게시글 전체 가져오기
-	ArrayList<SportDto> selectAll(int startRow, int endRow, String slist_word, SportDto sportDto);
+	ArrayList<SportDto> selectAll(int startRow, int endRow, String slist_word, String sport, String dong_one);
 	
 	//게시글 1개 가져오기
 	SportDto selectOne(int sfno);
 	
 	//게시글 전체개수
-	int selectListCount(String slist_word, SportDto sportDto);
+	int selectListCount(String slist_word, String sport, String dong_one);
 
 	
 	// 문의글,리뷰신고글 작성으로 인한 시설번호 전체 가져오기
@@ -62,6 +63,7 @@ public interface SportMapper {
 
 	//최근본 시설 게시물 데이터 기록하기
 	void insertSCurr(SListCurrDto scurrdto);
+
 
 
 	

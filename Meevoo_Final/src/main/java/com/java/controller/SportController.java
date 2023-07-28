@@ -38,11 +38,17 @@ public class SportController {
 			String slist_word,Model model,
 			SportDto sportDto) {
 		
-		if(sportDto.getSportsAll() != null) { // 체크박스 배열에 값 들어오면
-			sportDto.setSport(String.join("|",sportDto.getSportsAll()));
+		if(sportDto.getSports() != null) { // 체크박스 배열에 값 들어오면
+			sportDto.setSport(String.join("|",sportDto.getSports()));
 			// locString에 스트링 하나로 변환
 			// locString을 MyBatis 매개변수로 전달
 		}
+		if(sportDto.getDong() != null) { // 체크박스 배열에 값 들어오면
+			sportDto.setDong_one(String.join("|",sportDto.getDong()));
+			// locString에 스트링 하나로 변환
+			// locString을 MyBatis 매개변수로 전달
+		}
+		System.out.println(sportDto);
 
 		// 게시글 전체 가져오기
 		HashMap<String,Object> map = sportService.selectAll(page,slist_word,sportDto);
@@ -57,8 +63,6 @@ public class SportController {
 		// 검색필터
 		model.addAttribute("slist_word", map.get("slist_word"));
 		model.addAttribute("sportDto", map.get("sportDto"));
-		
-		System.out.println(sportDto.getSportsAll());
 		
 		return "/sport/sportList";
 	} // sportList

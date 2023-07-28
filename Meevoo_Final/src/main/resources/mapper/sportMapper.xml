@@ -8,11 +8,14 @@
 	<select id="selectListCount" resultType="int">
 		select count(*) from sportlist
 		<if test="slist_word != null">
-		   where sfnm like '%'||#{slist_word}||'%' or
-		   dongcate like '%'||#{slist_word}||'%'
+		   where sfnm like '%'||#{slist_word}||'%'
+		   <!-- or dongcate like '%'||#{slist_word}||'%' -->
 		</if>
 		<if test="sport != null">
 			and regexp_like(scate,#{sport})
+		</if>
+		<if test="dong_one != null">
+			and regexp_like(dongcate,#{dong_one})
 		</if>
 	</select>
 	
@@ -21,12 +24,15 @@
 		select * from (select rownum rnum, a.* from
 		(select * from sportlist
 		<if test="slist_word != null">
-		   where sfnm like '%'||#{slist_word}||'%' or
-		   dongcate like '%'||#{slist_word}||'%'
+		   where sfnm like '%'||#{slist_word}||'%'
+		   <!-- or dongcate like '%'||#{slist_word}||'%' -->
 		</if>
-		<!-- <if test="sport != null">
+		<if test="sport != null">
 			and regexp_like(scate,#{sport})
-		</if> -->
+		</if>
+		<if test="dong_one != null">
+			and regexp_like(dongcate,#{dong_one})
+		</if>
 		
 		<!-- 아랫부분 공통영역 -->
 		<![CDATA[

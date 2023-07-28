@@ -49,22 +49,30 @@
 						    		}
 									var chksports = $("[name=sports]");
 									var chkArray = [];
+									var chkdong = $("[name=dong]");
+									var chkArray2 = [];
 									
 									$("input:checkbox[name=sports]:checked").each(function(){
 										chkArray.push(this.value);
 									})
-									var checkedValue = chkArray.join(',')
-									 $('#query').val(checkedValue);
-							        alert($('#query').val());
+									$("input:checkbox[name=dong]:checked").each(function(){
+										chkArray2.push(this.value);
+									})
 									
-							        schksearch.submit();
+									var checkedValue = chkArray.join('|')
+									var checkedValue2 = chkArray2.join('|')
+									 
+							        alert(checkedValue);
+							        alert(checkedValue2);
+									
+							        $("#schksearch").submit();
 								}
 								</script>
 								
 								<!-- 시설 검색바  -->
 								<section class="searchBar">
 									<div class="sportListSearch" id="sport11" >
-									  <form class='searchbutton' name="schksearch" method="post" action="/sport/sportList" enctype="multipart/form-data">
+									  <form class='searchbutton' name="schksearch" id="schksearch" method="post" action="/sport/sportList" enctype="multipart/form-data">
 										<div class="day">
 											<p class="txt">운동종목
 												<input type="checkbox" name="sports" id="golf" value="골프">
@@ -89,39 +97,28 @@
 										</div>
 										<div class="day">
 											<p class="txt">동이름
-												<input type="radio" name="dong" id="dong_1" value="구로동">
+												<input type="checkbox" name="dong" id="dong_1" value="구로동">
 												<label for="dong_1"class="dong_1">구로동</label>
-												<input type="radio" name="dong" id="dong_2" value="개봉동">
+												<input type="checkbox" name="dong" id="dong_2" value="개봉동">
 												<label for="dong_2"class="dong_2">개봉동</label>
-												<input type="radio" name="dong" id="dong_3" value="고척동">
+												<input type="checkbox" name="dong" id="dong_3" value="고척동">
 												<label for="dong_3"class="dong_3">고척동</label>
-												<input type="radio" name="dong" id="dong_4" value="신도림동">
+												<input type="checkbox" name="dong" id="dong_4" value="신도림동">
 												<label for="dong_4"class="dong_4">신도림동</label>
-												<input type="radio" name="dong" id="dong_5" value="항동">
+												<input type="checkbox" name="dong" id="dong_5" value="항동">
 												<label for="dong_5"class="dong_5">항동</label>
-												<input type="radio" name="dong" id="dong_6" value="오류동">
+												<input type="checkbox" name="dong" id="dong_6" value="오류동">
 												<label for="dong_6"class="dong_6">오류동</label>
-												<input type="radio" name="dong" id="dong_7" value="가리봉동">
+												<input type="checkbox" name="dong" id="dong_7" value="가리봉동">
 												<label for="dong_7"class="dong_7">가리봉동</label>
-												<input type="radio" name="dong" id="dong_8" value="궁동">
+												<input type="checkbox" name="dong" id="dong_8" value="궁동">
 												<label for="dong_8"class="dong_8">궁동</label>
 											</p>
 										</div>
-										<!-- <div class="day">
-											<p class="txt">편의시설
-												<input type="checkbox" name="convenient" id="wifi" value="와이파이">
-												<label for="wifi"class="wifi">와이파이</label>
-												<input type="checkbox" name="convenient" id="pet" value="반려동물">
-												<label for="pet"class="pet">반려동물</label>
-												<input type="checkbox" name="parking" id="parking" value="주차장">
-												<label for="parking"class="parking">주차장</label>
-												<input type="checkbox" name="convenient" id="slope" value="출입구경사로">
-												<label for="slope"class="slope">출입구경사로</label>
-											</p>
-										</div> -->
 										<div class="day" id="serachbutton11">
 											<p class="txt">
 												<input type="text" style="width:700px;" name="slist_word" id="slist_word" value="${slist_word}" placeholder="검색어를 입력해주세요." />
+												<!-- <input type="text" style="width:300px;" name="query" id="query" placeholder="검색어를 입력해주세요." /> -->
 												<button class="button primary small" onclick="sportfilterBtn()">검색</button>
 											</p>
 										</div>

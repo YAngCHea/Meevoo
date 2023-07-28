@@ -11,6 +11,7 @@ import com.java.dto.SportDto;
 import com.java.dto.SportPickDto;
 import com.java.dto.SportReviewDto;
 import com.java.dto.SportReviewReportDto;
+import com.java.dto.SportSearchDto;
 
 public interface SportService {
 	
