@@ -51,7 +51,7 @@
 										</div>
 										<div class="day">
 											<p class="txt">제목
-												<input type="text" placeholder="제목을 입력해주세요."/>
+												<input style="width: 300px;"type="text" name="sretitle" value="${srdto.sreptitle}" placeholder="제목을 입력해주세요."/>
 											</p>
 										</div>
 										<div class="day">

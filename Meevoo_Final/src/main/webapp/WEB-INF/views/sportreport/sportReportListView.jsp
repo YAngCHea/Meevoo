@@ -25,12 +25,6 @@
 		  
 		// 1. 답변 달기
 			function answerBtn(){
-				if("${sessionId}"!="admin"){
-					alert("관리자만 답변 등록이 가능합니다.");
-					location.href="/member/login";
-					return false;
-				}
-				
 				if($("#srepanContent").val() == ""){
 					alert("글을 작성하셔야 답변 등록이 가능합니다.");
 					$("#srepanContent").focus();
@@ -168,13 +162,15 @@
 												<c:if test="${sreanList.size() == 0}"> 답변예정 입니다.</c:if>
 												<c:if test="${sreanList.size() > 0 }"><span id="annum">${sreanList.size()}</span>개의 답변이 달렸습니다.</c:if>
 												</li>
+												<c:if test="${sessionId == 'admin'}">
 												<form name="myform" id="myform" method="post" >
 													<div style="display: flex;">
-														<textarea type="text" class="srepanContent" id="srepanContent" placeholder="답변을 작성해주세요!" ></textarea>
+														<textarea type="text" class="srepanContent" id="srepanContent" style="resize:none;" placeholder="답변을 작성해주세요!" ></textarea>
 														  <!-- 버튼 크기 수정 main.css 1644번째 -->
 													    <li class="btn"><a onclick="answerBtn()" id="swrite"  class="button primary large">등록</a></li>
 													</div>
 												</form>	
+												</c:if>
 											</li>
 										</ul>
 									</div>

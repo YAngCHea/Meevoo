@@ -11,9 +11,9 @@
 		   where sfnm like '%'||#{slist_word}||'%' or
 		   dongcate like '%'||#{slist_word}||'%'
 		</if>
-		<!-- <if test="sport != null">
+		<if test="sport != null">
 			and regexp_like(scate,#{sport})
-		</if> -->
+		</if>
 	</select>
 	
 	<!-- 게시글 전체 가져오기 -->

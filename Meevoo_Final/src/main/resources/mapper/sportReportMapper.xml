@@ -8,7 +8,7 @@
 	<select id="selectListCount" resultType="int">
 		select count(*) from sportreport
 		<if test="category == 'all'">
-		   where srepcontent like '%'||#{srep_word}||'%' or srepcontent like '%'||#{srep_word}||'%' sreptitle like '%'||#{srep_word}||'%'
+		   where sreptitle like '%'||#{srep_word}||'%' or srepcontent like '%'||#{srep_word}||'%'
 		</if>
 		<if test="category == 'sreptitle'">
 		   where sreptitle like '%'||#{srep_word}||'%'
@@ -24,7 +24,7 @@
 		(select * from sportreport
 		
 		<if test="category == 'all'">
-		   where srepcontent like '%'||#{srep_word}||'%' or srepcontent like '%'||#{srep_word}||'%' or sreptitle like '%'||#{srep_word}||'%'
+		   where sreptitle like '%'||#{srep_word}||'%' or srepcontent like '%'||#{srep_word}||'%'
 		</if>
 		<if test="category == 'sreptitle'">
 		   where sreptitle like '%'||#{srep_word}||'%'
