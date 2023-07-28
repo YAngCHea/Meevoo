@@ -1,0 +1,68 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.java.mapper.ClubReportMapper">
+
+<!-- 1) 전체 모임 하단 넘버링  -->
+	   <select id = "selectAll" resultType="com.java.dto.ClubReportDto">
+	      select * from ( select rownum rnum,a.* from
+			(select * from clubreport 
+			
+		   <if test="search.category == 'all'">
+			   where crepcontent like '%'||#{search.search_input}||'%' or id like '%'||#{search.search_input}||'%' 
+		   </if>
+		   <if test="search.category == 'crepcontent'">
+			   where crepcontent like '%'||#{search.search_input}||'%'
+		   </if>
+		   <if test="search.category == 'id'">
+			   where id like '%'||#{search.search_input}||'%'
+		   </if>
+			
+			order by crepdate desc) a
+			)where rnum between #{pagedto.startRow} and #{pagedto.endRow}
+	   </select>
+   
+   <!-- 1-1) 전체 모임 가져오기 -->
+	   <select id = "selectListCount" resultType="int">
+	      select count(*) from clubreport
+	      
+	      <if test="category == 'all'">
+			   where crepcontent like '%'||#{search_input}||'%' or id like '%'||#{search_input}||'%' 
+		   </if>
+		   <if test="category == 'crepcontent'">
+			   where crepcontent like '%'||#{search_input}||'%'
+		   </if>
+		   <if test="category == 'id'">
+			   where id like '%'||#{search_input}||'%'
+		   </if>
+	      
+	   </select>
+
+<!--  2. clubReportView 상세페이지  -->
+ 	<select id="selectOne" resultType="com.java.dto.ClubReportDto">
+ 		select * from clubreport where crepno=#{crepno}
+ 	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
