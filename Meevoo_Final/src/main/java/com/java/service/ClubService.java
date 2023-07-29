@@ -2,12 +2,10 @@ package com.java.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.ClubDto;
-import com.java.dto.ClubSearch;
 import com.java.dto.PageDto;
 
 public interface ClubService {
@@ -28,7 +26,7 @@ public interface ClubService {
 	ArrayList<ClubDto> selectClubFilter(ClubDto clubDto);
 
 	//모임목록 글 1개 저장
-	void insertClub(ClubDto cdto, List<MultipartFile> files);
+	void insertClub(ClubDto cdto, String id, String cnm, MultipartFile files);
 	
 	
 	 

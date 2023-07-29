@@ -1,8 +1,9 @@
 package com.java.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -82,18 +84,33 @@ public class ClubController {
 	
 	
 	@PostMapping("/club/cWrite") 
-	public String doCWrite(ClubDto cdto, List<MultipartFile> files, Model model) throws Exception  { 
-		System.out.println("sfno : "+cdto.getSfno());
-		System.out.println("id : "+cdto.getId());
+	public String doCWrite(ClubDto cdto, String id, String cnm, @RequestPart MultipartFile file, Model model) throws Exception { 
+		id = (String)session.getAttribute("sessionId");
+		model.addAttribute("cnm",cnm);
+		model.addAttribute("cdto", cdto);
 		
-		//날짜가 올바르게 변환되었는지 확인
-		System.out.println("cdodate: " + cdto.getCdodate());
-		System.out.println("cdotime: " + cdto.getCdotime());
+		
+		//System.out.println("ClubController cnm: " +cdto.getCnm());
+		System.out.println("ClubController cimg: " +cdto.getCimg());
+		
+		//사진 1개 저장
+		String fileName="";
+		
+		//파일이 있을경우 파일저장
+		if(!file.isEmpty()) {
+			String ori_fileName = file.getOriginalFilename();//실제파일이름
+			UUID uuid = UUID.randomUUID(); //랜덤숫자생성
+			fileName = uuid+"_"+ori_fileName; //변경파일이름 - 중복방지
+			String uploadUrl = "c:/upload/"; //파일업로드위치
+			File f = new File(uploadUrl+fileName);
+			file.transferTo(f); //파일저장시킴
+		}
+		System.out.println("doCWrite cimg :"+fileName);
+		cdto.setCimg(fileName);
 		
 		//모임목록 글 1개 저장
-		clubService.insertClub(cdto, files);
+		clubService.insertClub(cdto, id, cnm, file);
 	    String result="i_success"; //insert가 성공한다
-	    
 	 
 		return "redirect:/club/club?result="+result; 
 	}

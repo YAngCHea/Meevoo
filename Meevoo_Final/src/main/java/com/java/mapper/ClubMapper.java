@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.ClubDto;
 import com.java.dto.PageDto;
@@ -31,7 +32,7 @@ public interface ClubMapper {
 	public ArrayList<ClubDto> selectClubFilter(ClubDto clubDto);
 
 	//모임목록 글 1개 저장
-	void insertClub(ClubDto cdto);
+	void insertClub(ClubDto cdto, String id, String cnm, MultipartFile file);
 	
 	
 	 

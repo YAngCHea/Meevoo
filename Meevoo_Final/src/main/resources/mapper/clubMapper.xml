@@ -6,35 +6,16 @@
 
   <!-- 모임목록 전체 가져오기 (페이지, 키워드 검색 포함) -->
   <select id="selectClubAll" resultType="com.java.dto.ClubDto">
-  
   select * from 
       (select rownum rnum, a.* from 
       (select * from 
-          (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.cdotime, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
-                  b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
-                  c.sfno, c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
-             from clublist a 
-              left join userlist b on a.id = b.id(+)
-              left join sportlist c on a.sfno = c.sfno)
+          (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate_date, a.cdodate_time, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus,
+       b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
+       c.sfno, c.sfnm, c.scate, c.dongcate, c.lat, c.lng, c.addr, c.telno, c.homepage, c.wifi, c.pet, c.parking, c.slope, c.stotalpick, c.savgstar, c.imgurl1
+  from clublist a
+    left join userlist b on a.id = b.id(+)
+    left join sportlist c on a.sfno = c.sfno)
       order by cno desc) a )where rnum between #{startRow} and #{endRow}
-  
-    <!-- 
-    select * from 
-      (select rownum rnum, a.* from 
-        (select * from 
-          (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
-                  b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
-                  c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
-             from clublist a 
-               left join userlist b on a.id = b.id(+)
-               left join sportlist c on a.sfno = c.sfno)
-          where id like '%'||#{search.s_word}||'%'
-             or cnm like '%'||#{search.s_word}||'%'
-             or dongcate like '%'||#{search.s_word}||'%''
-             or ccontent like '%'||#{search.s_word}||'%'
-             or scate like '%'||#{search.s_word}||'%'
-          order by cno desc) a )where rnum between #{startRow} and #{endRow} 
-          -->
   </select>
   
   <!-- 전체 게시글 수 (넘버링) -->
@@ -47,12 +28,12 @@
   	 select * from 
        (select rownum rnum, a.* from 
          (select * from 
-           (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.cdotime, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
-                   b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
-                   c.sfno, c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
-              from clublist a 
-                left join userlist b on a.id = b.id(+)
-                left join sportlist c on a.sfno = c.sfno)
+           (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate_date, a.cdodate_time, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus,
+       b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
+       c.sfno, c.sfnm, c.scate, c.dongcate, c.lat, c.lng, c.addr, c.telno, c.homepage, c.wifi, c.pet, c.parking, c.slope, c.stotalpick, c.savgstar, c.imgurl1
+  from clublist a
+    left join userlist b on a.id = b.id(+)
+    left join sportlist c on a.sfno = c.sfno)
            where cnowstatus = '모집중' order by ctotalpick desc, cno desc) a
       )where rnum between 1 and 2
   </select>
@@ -63,12 +44,12 @@
       (select rownum rnum, a.* from 
         (select * from 
           (select a.* from 
-            (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.cdotime, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
-                    b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
-                    c.sfno, c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
-               from clublist a 
-                 left join userlist b on a.id = b.id(+)
-                 left join sportlist c on a.sfno = c.sfno)
+            (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate_date, a.cdodate_time, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus,
+       b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
+       c.sfno, c.sfnm, c.scate, c.dongcate, c.lat, c.lng, c.addr, c.telno, c.homepage, c.wifi, c.pet, c.parking, c.slope, c.stotalpick, c.savgstar, c.imgurl1
+  from clublist a
+    left join userlist b on a.id = b.id(+)
+    left join sportlist c on a.sfno = c.sfno)
              a inner join userlist b on a.dongcate = b.dongcate and a.scate = b.scate
            where b.id = #{id})
          where cnowstatus = '모집중' order by ctotalpick desc, cno desc) a
@@ -78,50 +59,36 @@
   
   <!-- 모임목록 1개 가져오기 -->
   <select id="selectClubOne" resultType="com.java.dto.ClubDto">
-    select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.cdotime, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus,
-           b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
-           c.sfno, c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
-    	from clublist a 
-        	left join userlist b on a.id = b.id(+)
-        	left join sportlist c on a.sfno = c.sfno
-    	where cno = #{cno}
+    	select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate_date, a.cdodate_time, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus,
+       b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
+       c.sfno, c.sfnm, c.scate, c.dongcate, c.lat, c.lng, c.addr, c.telno, c.homepage, c.wifi, c.pet, c.parking, c.slope, c.stotalpick, c.savgstar, c.imgurl1
+  from clublist a
+    left join userlist b on a.id = b.id(+)
+    left join sportlist c on a.sfno = c.sfno
+    where cno = #{cno}
   </select>
   
   <!-- 필터 input 반영해서 모임목록 가져오기 (필터검색) -->
   <select id="selectClubFilter" resultType="com.java.dto.ClubDto">
        select * from 
- 	     (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate, a.cdotime, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus, 
-                 b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
-                 c.sfno, c.sfnm, c.scate, c.dongcate, c.addr, c.wifi, c.pet, c.parking, c.slope, c.imgurl1
-            from clublist a 
-              left join userlist b on a.id = b.id(+)
-              left join sportlist c on a.sfno = c.sfno)
+ 	     (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate_date, a.cdodate_time, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus,
+       b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
+       c.sfno, c.sfnm, c.scate, c.dongcate, c.lat, c.lng, c.addr, c.telno, c.homepage, c.wifi, c.pet, c.parking, c.slope, c.stotalpick, c.savgstar, c.imgurl1
+  from clublist a
+    left join userlist b on a.id = b.id(+)
+    left join sportlist c on a.sfno = c.sfno)
          where scate = #{scate}
            and cnowstatus = #{cnowstatus}
-           and cdodate between sysdate and sysdate + #{dateDifference}
+           and cdodate_date between sysdate and sysdate + #{dateDifference}
   </select>
   
    
    
   <insert id="insertClub">
-	  insert into clublist values ( 
-    	clublist_seq.nextval,													<!-- cno -->
-    	#{id},																	<!-- id -->
-    	#{cnm},																	<!-- cnm -->
-    	sysdate,																<!-- cwrdate -->
-    	#{cimg},																<!-- cimg -->
-    	#{sfno},																<!-- sfno -->
-    	#{dongcate},															
-    	#{cloc},																
-    	#{cdodate},																<!-- cdodate -->
-    	#{ccontent},															<!-- ccontent -->
-    	#{ctotalpick},															<!-- ctotalpick -->
-    	#{crecruitlimit},														<!-- crecruitlimit -->
-    	#{cnowrecruit},															<!-- cnowrecruit -->
-    	#{cnowstatus},															<!-- cnowstatus -->
-    	#{scate},																<!-- scate -->
-    	#{cdotime}
-)
+	  insert into clublist 
+(cno, id, cnm, cwrdate, cimg, sfno, dongcate,cloc,cdodate,ccontent,ctotalpick,crecruitlimit,cnowrecruit, cnowstatus, scate, cdodate_time, cdodate_date) 
+values 
+(clublist_seq.nextval,#{id},#{cnm},sysdate,#{cimg},#{sfno},#{dongcate},#{cloc}, #{cdodate}, #{ccontent},#{ctotalpick},#{crecruitlimit},#{cnowrecruit},#{cnowstatus},#{scate},TO_DATE(#{cdodate_time}, 'HH24:MI'), TO_DATE(#{cdodate_date}, 'YYYY-MM-DD'))
   </insert>
 
 

@@ -131,12 +131,11 @@
 									<div class="features" style="margin: 0; width: 100%;">
 									    <article style="margin: 0; width: 100%;">
 											<span style="margin: 25px;">
-											  <c:if test="${mdto.userimg == null }">
+											  <c:if test="${cdto.userimg == null }">
 			                                   		<img src="https://cdn-icons-png.flaticon.com/512/848/848043.png" style="width:110px; border-radius: 50%;"/>
-			                                   		
 			                                   	</c:if>
-												<c:if test="${mdto.userimg != null }">
-			                                   		<img src="/upload/${mdto.userimg }" width="150px"/>
+												<c:if test="${cdto.userimg != null }">
+			                                   		<img src="${cdto.userimg }" style="width:150px; border-radius: 50%; border: 1px solid rgba(210, 215, 217, 0.75);" />
 												</c:if>
 											</span>
 											<div class="content" style="margin:  0, 0, 100px, 0;">
@@ -158,7 +157,7 @@
 										  <div style="width: 40%; padding: 1em;">
 									        <span class="sfinfo" style="width: 40%; ">
 									          <a href="#" class="image" style="width:100%;">
-									            <img src="${cdto.imgurl1}" style="width:100%;"/>
+									            <img src="${cdto.imgurl1}" style="width:100%; "/>
 									          </a>
 									        </span>
 									       </div>
@@ -169,7 +168,7 @@
 										        <span style="font-weight: bold; color: #f56a6a">
 										          <jsp:useBean id="nowRecsLoginList" class="java.util.Date" />
 												    <fmt:parseNumber value="${nowRecsLoginList.time / (1000*60*60*24)}" integerOnly="true" var="nowfmtTime" scope="request"/>
-												    <fmt:parseNumber value="${cdto.cdodate.time / (1000*60*60*24)}" integerOnly="true" var="dbDtParse" scope="request"/>
+												    <fmt:parseNumber value="${cdto.cdodate_date.time / (1000*60*60*24)}" integerOnly="true" var="dbDtParse" scope="request"/>
 												      <c:set var="num" value="${nowfmtTime - dbDtParse}" />
 												        <c:if test ="${(nowfmtTime - dbDtParse)>0}">
 													      <span style="color: #f56a6a; font-weight: bold; ">
@@ -188,10 +187,10 @@
 												        </c:if>
 										        </span>&nbsp;&nbsp;
 										        <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
-										          <fmt:formatDate value="${cdto.cdodate}" type="both" dateStyle ="long" pattern="yyyy-MM-dd (E)" />
+										          <fmt:formatDate value="${cdto.cdodate_date}" type="both" dateStyle ="long" pattern="yyyy-MM-dd (E)" />
 										        </span>
 										        <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
-										          <fmt:formatDate value="${cdto.cdotime}" type="both" dateStyle ="short" pattern="a hh:mm" />
+										          <fmt:formatDate value="${cdto.cdodate_time}" type="both" dateStyle ="short" pattern="a hh:mm" />
 										        </span>
 										      </p>
 										      <!-- 운동모임 모임 정보\d-day, 일자 끝-->
@@ -257,14 +256,16 @@
 								            <a href="/sport/sportListView?sfno=${cdto.sfno}" class="button primary">모임장소 상세보기</a>
 								          </div>
 									</div>
+									<hr style="margin-top: 5em; ">
 									<div>
 								      ${cdto.ccontent}
 									</div>
+									&nbsp;
 								    <div>
-								      <c:if test="${cdto.cimg!=',,'}">
-								        <img src="../images/${cdto.cimg}" style="width:100%;"/>
+								      <c:if test="${cdto.cimg != null}">
+								        <img src="${cdto.cimg}" style="width:10%;"/>
 								      </c:if>
-								      <c:if test="${cdto.cimg==',,'}">
+								      <c:if test="${cdto.cimg == null}">
 								       <p>업로드 된 파일 없습니다.</p>
 								      </c:if>
 								   </div>
@@ -289,7 +290,7 @@
 									      </div>
 									      
 									  <style>
-									    #progress {appearance: none; width: 100%; height: 20px; border: 1px solid #8f8f8f; border-radius: 50px; }
+									    #progress {appearance: none; width: 100%; height: 20px; border: 1px solid rgba(210, 215, 217, 0.75); border-radius: 50px; }
 									    #progress::-webkit-progress-bar {background:#ffffff; border-radius:10px; }
 									    #progress::-webkit-progress-value {border-radius:10px; background: #f56a6a; }
 									  </style>    
@@ -297,11 +298,11 @@
 									    <progress id="progress" value="71.4" min="0" max="100" style="margin-bottom: 0.7em;"></progress>
 									      <div style="display: flex; justify-content: space-between; width: 100%; hight: 100%; font-weight: bold;">
 									        <div>
-									          <span style="color: #f56a6a;">5</span>
+									          <span style="color: #f56a6a;">${cdto.cnowrecruit}</span>
 									          <span>명</span>
 									        </div>
 									        <div>
-									          <span>7</span>
+									          <span>${cdto.crecruitlimit}</span>
 									          <span>명</span>
 									        </div>
 									      </div>

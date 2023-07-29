@@ -18,18 +18,19 @@ public class ClubDto {
 	private String id;
 	private String cnm;
 	private Date cwrdate;
-	private String[] cimgs;		//list 출력할때 사용하는 이름: 배열로 한번에 저장
-	private String cimg;		//파일저장이름
+	private String cimg;		
+	private String[] cimgs;		
 	private int sfno;
 	//private String dongcate;
 	private String cloc;
-	@DateTimeFormat(pattern = "yyyy-MM-dd") private Date cdodate;
-	@DateTimeFormat(pattern = "HH:mm") private Date cdotime;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") private Date cdodate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd") private Date cdodate_date;
+	@DateTimeFormat(pattern = "HH:mm") private Date cdodate_time;
 	private String ccontent;
 	private int ctotalpick;
 	private int crecruitlimit;
 	private int cnowrecruit = 1; //운동모임 현재모집된 인원, defalut 1명 : 작성자는 무조건 참여함
-	private String cnowstatus;
+	private String cnowstatus = "모집중";
 	//private String scate;
 	//------------------------------------------- from clublist 끝---------------------------------------//
 	
@@ -49,11 +50,17 @@ public class ClubDto {
 	private String sfnm;			//clublist에서 sportlist 외래키로 join시 '체육시설 이름'
 	private String scate;			//clublist에서 sportlist 외래키로 join시 '체육시설 운동종목'
 	private String dongcate;		//clublist에서 sportlist 외래키로 join시 '체육시설 동이름'
+	private String lat;		//clublist에서 sportlist 외래키로 join시 '체육시설 위도'
+	private String lng;		//clublist에서 sportlist 외래키로 join시 '체육시설 경도'
 	private String addr;			//clublist에서 sportlist 외래키로 join시 '체육시설 주소'
+	private String telno;			//clublist에서 sportlist 외래키로 join시 '체육시설 전화번호'
+	private String homepage;			//clublist에서 sportlist 외래키로 join시 '체육시설 홈페이지'
 	private String wifi;			//clublist에서 sportlist 외래키로 join시 '체육시설 편의시설 와이파이 여부'
 	private String pet;				//clublist에서 sportlist 외래키로 join시 '체육시설 편의시설 반려동물 여부'
 	private String parking;			//clublist에서 sportlist 외래키로 join시 '체육시설 편의시설 주차장 여부'
 	private String slope;			//clublist에서 sportlist 외래키로 join시 '체육시설 편의시설 입구경사로 여부'
+	private String stotalpick;			//clublist에서 sportlist 외래키로 join시 '체육시설 편의시설 저장 수'
+	private String savgstar;			//clublist에서 sportlist 외래키로 join시 '체육시설 편의시설 별점'
 	private String imgurl1;			//clublist에서 sportlist 외래키로 join시 '체육시설 이미지1'
 	//------------------------------------------- from sportlist 끝 ------------------------------------//
 	

@@ -31,15 +31,15 @@
 									</header>
 								</section>
 									
-									
-							<!-- Search -->
+							<!-- 		
+							Search
 								<section id="search" class="alt">
 									<form method="post" action="#">
 										<input type="text" name="query" id="query" placeholder="키워드를 검색하세요." />
 									</form>
 								</section>
 
-							<!-- 지도를 표시할 div 입니다 -->
+							지도를 표시할 div 입니다
 								<div id="map" style="width: 100%; height: 350px;"></div>
 							
 								<script type="text/javascript"
@@ -67,6 +67,8 @@
 									marker.setMap(map);
 						
 								</script>
+								 -->
+								
 									<hr class="major" />
 
 									<h2 style="margin-bottom: 2em">체육시설 목록</h2>
