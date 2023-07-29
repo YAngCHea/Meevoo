@@ -65,6 +65,7 @@
 												</select>
 												<input type="text" style="width:400px; margin: 0 0 0 1px;" name="srep_word" id="srep_word" value="${srep_word}" placeholder="검색어를 입력해주세요." />
 												<button type="button" class="button primary small" onclick="repsearchBtn()" style="height: 40px; margin: 0 0 0 1px;">검색</button>
+												<a class="button small" href="/sportreport/sportReportList" style="height: 40px;">초기화</a>
 											</form>
 										</div>
 									</div>
