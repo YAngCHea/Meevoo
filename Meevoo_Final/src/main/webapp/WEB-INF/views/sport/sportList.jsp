@@ -71,10 +71,10 @@
 								
 								<!-- 시설 검색바  -->
 								<section class="searchBar">
-									<div class="sportListSearch" id="sport11" >
+									<div class="sportListSearch" id="sport11">
 									  <form class='searchbutton' name="schksearch" id="schksearch" method="post" action="/sport/sportList" enctype="multipart/form-data">
-										<div class="day">
-											<p class="txt">운동종목
+										<div class="day" style="display:inline-flex; align-items:center; place-content: center;">
+											<p class="txt" style="font-size: 1.3em;">운동종목
 												<input type="checkbox" name="sports" id="golf" value="골프">
 												<label for="golf"class="golf">골프</label>
 												<input type="checkbox" name="sports" id="climbing" value="클라이밍">
@@ -95,8 +95,8 @@
 												<label for="skate"class="skate">스케이트</label>
 											</p>
 										</div>
-										<div class="day">
-											<p class="txt">동이름
+										<div class="day" style="display:inline-flex; align-items:center; place-content: center;">
+											<p class="txt" style="font-size: 1.3em;">동이름
 												<input type="checkbox" name="dong" id="dong_1" value="구로동">
 												<label for="dong_1"class="dong_1">구로동</label>
 												<input type="checkbox" name="dong" id="dong_2" value="개봉동">
@@ -115,11 +115,11 @@
 												<label for="dong_8"class="dong_8">궁동</label>
 											</p>
 										</div>
-										<div class="day" id="serachbutton11">
-											<p class="txt">
+										<div class="day" id="serachbutton11" style="display:inline-flex; align-items:center; place-content: center;">
+											<p class="txt" style="font-size: 1.3em;">
 												<input type="text" style="width:700px;" name="slist_word" id="slist_word" value="${slist_word}" placeholder="검색어를 입력해주세요." />
-												<!-- <input type="text" style="width:300px;" name="query" id="query" placeholder="검색어를 입력해주세요." /> -->
 												<button class="button primary small" onclick="sportfilterBtn()">검색</button>
+												<a class="button small" href="/sport/sportList">초기화</a>
 											</p>
 										</div>
 									  </form>

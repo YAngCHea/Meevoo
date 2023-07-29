@@ -118,19 +118,19 @@
 											</ul>
 										</div>
 										<div class="day">
-											<p class="txt">해당시설 번호<span>${srdto.sfno}</span></p>
-											<p class="txt">문의유형<span>${srdto.srepcontent}</span></p>
-											<p class="txt">작성자<span>${srdto.id}</span></p>
-											<p class="txt">작성일<span><fmt:formatDate value="${srdto.srepdate}" pattern="yyyy-MM-dd"/></span></p>
+											<p class="txt" style="font-size: 1.3em;">해당시설 번호<span style="font-size: 20px;">${srdto.sfno}</span></p>
+											<p class="txt" style="font-size: 1.3em;">문의유형<span style="font-size: 20px;">${srdto.srepcontent}</span></p>
+											<p class="txt" style="font-size: 1.3em;">작성자<span style="font-size: 20px;">${srdto.id}</span></p>
+											<p class="txt" style="font-size: 1.3em;">작성일<span style="font-size: 20px;"><fmt:formatDate value="${srdto.srepdate}" pattern="yyyy-MM-dd"/></span></p>
 										</div>
-										<div class="day">
-											<p class="txt">내용<span>${srdto.srepinput}</span></p>
+										<div class="day"">
+											<p class="txt" style="font-size: 1.3em;">내용<span style="font-size: 20px;">${srdto.srepinput}</span></p>
 										</div>
 										<c:if test="${srdto.srepimg != null}">
 										<div class="day">
-											<p class="txt">사진<span><br>
+											<p class="txt">
 											<c:forEach var="image" items="${fn:split(srdto.srepimg, ',')}">
-												<img style="heigth:330px;width:330px" src="/upload/${image}"/>
+												<img style="heigth:650px;width:650px" src="/upload/${image}"/><br>
 											</c:forEach>
 											</p>
 										</div>

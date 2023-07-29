@@ -397,6 +397,7 @@
 										<li><a href="sportList?page=${page}&slist_word=${slist_word}" class="button primary">시설 목록으로</a></li>
 									</ul>
 								</section>
+								
 								<script>
 							        function openChildWindow() {
 							        	// 부모 페이지의 URL에서 "sfno" 키의 값을 추출
@@ -405,6 +406,18 @@
 
 							            // URL에 전달할 데이터를 포함하여 자식 창 열기
 							            var url = "http://localhost:8000/club/cWrite?sfno=" + encodeURIComponent(sfnoValue);
+							            
+							            var sfnmValue = "${sdto.sfnm }";
+							            var dongcateValue = "${sdto.dongcate }";
+							            var clocValue = "${sdto.addr}";
+							            var scateValue = "${sdto.scate}";
+							            
+							            // URL에 추가 파라미터를 붙여서 자식 창을 열기
+							            url += "&sfnm=" + encodeURIComponent(sfnmValue);
+							            url += "&dongcate=" + encodeURIComponent(dongcateValue);
+							            url += "&cloc=" + encodeURIComponent(clocValue);
+							            url += "&scate=" + encodeURIComponent(scateValue);
+							            
 							            window.open(url, "_self", "height=300,width=400");
 							        }
 							

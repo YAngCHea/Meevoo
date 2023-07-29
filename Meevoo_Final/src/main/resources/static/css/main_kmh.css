@@ -185,7 +185,7 @@ input, select, textarea {
   
 /*운동시설 검색 옵션 선택*/
 #main > .inner > .searchBar {
-      padding: 0 0 4em 0 ;
+      padding: 0 0 0 0 ;
       border-top: solid 2px rgba(210, 215, 217, 0.75); }
       #main > .inner > .sportlistview:first-of-type {
         border-top: 0 !important; }
@@ -220,9 +220,9 @@ input, select, textarea {
 
 
 /*시설물 검색 옵션*/
-#serachbutton11 .txt {display: inline-flex;}
+#serachbutton11 .txt {display: inline-flex; }
 .searchbutton .day{position:relative; width:100%; font-size:14px; font-weight:600; color:#666; border-bottom:1px #d9d9d9 solid; overflow:hidden;}
-.searchbutton .day p.txt{float:left; padding:13px 0 ; margin:0 0 0 20px; color:#666; }
+.searchbutton .day p.txt{float:left; padding:13px 0 ; margin:0 0 0 20px; color:#666;}
 .searchbutton .day p.txt span{font-size:13px; color:#666; font-weight:normal; padding:0 18px 0 14px;}
 .searchbutton .day p label{padding:0 18px 0 20px;}
 /*checkbox,radio 선택*/
@@ -2172,7 +2172,7 @@ button,
     margin: 0 auto;
     max-width: 110em; }
     #main > .inner > section {
-      padding: 1em 0 4em 0 ;
+      padding: 1em 0 0 0 ;
       border-top: solid 2px rgba(210, 215, 217, 0.75); }
       #main > .inner > section:first-of-type {
         border-top: 0 !important; }
@@ -2180,17 +2180,17 @@ button,
     #main > .inner {
       padding: 0 5em 0.1em 5em ; }
       #main > .inner > section {
-        padding: 1em 0 3em 0 ; } }
+        padding: 1em 0 0 0 ; } }
   @media screen and (max-width: 1280px) {
     #main > .inner {
       padding: 0 4em 0.1em 4em ; }
       #main > .inner > section {
-        padding: 1em 0 2em 0 ; } }
+        padding: 1em 0 0 0 ; } }
   @media screen and (max-width: 736px) {
     #main > .inner {
       padding: 0 2em 0.1em 2em ; }
       #main > .inner > section {
-        padding: 1em 0 1em 0 ; } }
+        padding: 1em 0 0 0 ; } }
 
 /* Sidebar */
 #search form {
