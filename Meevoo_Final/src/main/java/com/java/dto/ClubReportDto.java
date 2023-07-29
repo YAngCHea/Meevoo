@@ -18,5 +18,6 @@ public class ClubReportDto {
 	private Timestamp crepdate;
 	private String crepinput;
 	private String crepimg;
-
+	private String creptitle;
+	
 }

@@ -1,11 +1,17 @@
 package com.java.service;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.java.dto.ClubDto;
 import com.java.dto.ClubReportDto;
 import com.java.dto.PageDto;
 import com.java.dto.SearchDto;
@@ -21,10 +27,6 @@ public class ClubReportServiceImpl implements ClubReportService {
 	public HashMap<String, Object> selectAll(PageDto pagedto, SearchDto search) {
 		//게시글 전체 가져오기
 		HashMap<String, Object> map = new HashMap<>();
-		
-		
-		System.out.println("impl"+pagedto.getStartPage());
-		
 		
 		//page정보 메소드 호출하기
 		pagedto = pageMethod(pagedto,search);
@@ -45,8 +47,6 @@ public class ClubReportServiceImpl implements ClubReportService {
 		map.put("maxPage",pagedto.getMaxPage());
 		map.put("category",search.getCategory());
 		map.put("search_input",search.getSearch_input());
-		
-		System.out.println("impl ListCount" + pagedto.getListCount());
 		
 		return map;
 	}
@@ -82,6 +82,57 @@ public class ClubReportServiceImpl implements ClubReportService {
 
 		
 		return map1;
+	}
+// 3. clubReportWrite 신고글 작성하기
+
+	// 3-1.신고글 작성을 위해 모임 번호랑 모임 제목 가져오기
+	@Override
+	public ArrayList<ClubDto> selectClist() {
+		ArrayList<ClubDto> clist = new ArrayList<>();
+		clist = clubReportMapper.selectClist();
+		return clist;
+	}
+
+	// 3-2. 신고글 저장하기
+	@Override
+	public void insertOne(ClubReportDto crdto, List<MultipartFile> files) {
+		String crepimg = ""; //파일저장이름
+		String tempFile = ""; //임시사용이름
+		String oriFile = ""; //원본파일이름
+		String[] crepimgs = new String[3];
+		
+		for(int i=0;i<3;i++) {   //files.size()->이미지 등록개수만큼 저장
+			tempFile = ""; //초기화
+			if(!files.get(i).isEmpty()) {
+				oriFile = files.get(i).getOriginalFilename(); //원본파일이름저장
+				UUID uuid = UUID.randomUUID(); //랜덤번호
+				tempFile = uuid + "_" + oriFile;  // 38749379137_1.jpg
+				String uploadURL = "c:/upload/";  // 파일저장위치
+				File f = new File(uploadURL+tempFile);
+				try {
+					files.get(i).transferTo(f); //파일을 서버에 저장
+				} catch (Exception e) { e.printStackTrace(); }
+			}//if
+			
+			//파일이름을 1개로 묶음
+			if(i==0) crepimg = tempFile;
+			else crepimg += ","+tempFile;     //452424_1.jpg,324134_2.jpg,341413_3.jpg
+	
+			// crDto에 crepimg이름 저장
+			crdto.setCrepimg(crepimg);
+		}//for
+		
+		//파일이름 출력
+		System.out.println("파일이름 1개로 묶은 이름 : "+crepimg);
+		
+		//파일이름 1개로 묶은 이름 String배열로 분리
+		crepimgs = crepimg.split(",");
+		
+		System.out.println("bfiles 배열 출력 : "+Arrays.toString(crepimgs));
+		System.out.println("bfiles 배열 개수 : "+crepimgs.length);
+		
+		//mapper 전송 - 문의글 1개 저장
+		clubReportMapper.insertOne(crdto);
 	}
 	 
 	

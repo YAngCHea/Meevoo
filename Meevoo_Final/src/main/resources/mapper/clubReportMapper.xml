@@ -44,11 +44,26 @@
  		select * from clubreport where crepno=#{crepno}
  	</select>
 
+<!-- 3. clubReportWrite 신고글 작성하기 -->
+	<!-- 3-1.신고글 작성을 위해 모임 번호랑 모임 제목 가져오기 -->
+	<select id="selectClist" resultType="com.java.dto.ClubDto">
+		select * from clublist
+	</select>
 
-
-
-
-
+	<!-- // 3-2. 신고글 저장하기 -->
+    <insert id="insertOne">
+    insert into clubreport values
+    (
+    clubreport_seq.nextval,
+    #{id},
+    #{cno},
+    #{crepcontent},
+	sysdate,
+	#{crepinput},
+	#{crepimg},
+	#{creptitle}
+	)
+    </insert>
 
 
 

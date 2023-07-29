@@ -1,12 +1,18 @@
 package com.java.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.java.dto.ClubDto;
 import com.java.dto.ClubReportDto;
 import com.java.dto.PageDto;
 import com.java.dto.SearchDto;
@@ -49,19 +55,31 @@ public class ClubReportController {
 		model.addAttribute("category", map1.get("category"));
 		model.addAttribute("search_input", map1.get("search_input"));
 		model.addAttribute("page", map1.get("page"));
+		//model.addAttribute("pagedto", map1.get("pagedto"));
 
-		System.out.println("controller crdto1:" + map1.get("crdto1"));
 
 		return "clubreport/clubReportView";
 	}
 	 
+// 3. clubReportWrite 신고글 작성하기
 	
-
+	// 3-1.신고글 작성을 위해 모임 번호랑 모임 제목 가져오기
+	@GetMapping("/clubreport/clubReportWrite")
+	public String clubReportWrite(Model model) {
+		ArrayList<ClubDto> clist = new ArrayList<>();
+		clist = clubReportService.selectClist();
+		model.addAttribute("clist",clist);
+		
+		return "clubreport/clubReportWrite";
+	}
 	
-	
-	
-	
-	
+	// 3-2. 신고글 저장하기
+    @PostMapping("/clubreport/clubReportWrite")
+	public String clubReportWrite(ClubReportDto crdto,List<MultipartFile> files, Model model) {
+		clubReportService.insertOne(crdto,files);
+		String result="i_success";
+    	return "redirect:/clubreport/clubReportList?result="+result;
+    }
 	
 	
 	
