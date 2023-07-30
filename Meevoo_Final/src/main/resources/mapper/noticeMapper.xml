@@ -18,12 +18,7 @@
       <!-- 공지사항 전체개수 -->
    <select id="selectListCount" resultType="int">
        select count(*) from notice
-	   
    </select>
-   
-   
-   
-   
    
    <!-- 공지사항 가져오기   -->
    <select id="selectNoticeListCount" resultType="int">
@@ -71,8 +66,17 @@ sysdate,
 
    <!-- 1. FAQ 전체 가져오기 -->
    <select id="selectFAQAll" resultType="com.java.dto.FAQDto">
-      select * from faq 
+          select * from ( select rownum rnum,a.* from
+			(select * from faq 
+			order by faqno desc) a
+			)where rnum between #{startRow} and #{endRow}
    </select>
+   
+   <!-- 2) 전체 FAQ 가져오기: 전체 개수 카운팅 -->
+	   <select id = "selectFAQListCount" resultType="int">
+	      select count(*) from faq
+	   </select>
+   
    
    <!-- 2. FAQ 추가하기 -->
    <insert id="insertFAQ">
@@ -100,8 +104,26 @@ sysdate,
    
    <!-- QnA 전체 가져오기 -->
    <select id="selectQnAAll" resultType="com.java.dto.QnADto">
-      select * from qna
-      order by qgroup desc, qstep asc
+         select * from ( select rownum rnum,a.* from
+			(select * from qna 
+			
+			
+		   <!-- <if test="search.category == 'all'">
+			   where id like '%'||#{search.search_input}||'%' or cnm like '%'||#{search.search_input}||'%' or sfno like '%'||#{search.search_input}||'%'
+		   </if>
+		   <if test="search.category == 'id'">
+			   where id like '%'||#{search.search_input}||'%'
+		   </if>
+		   <if test="search.category == 'cnm'">
+			   where cnm like '%'||#{search.search_input}||'%'
+		   </if>
+		   <if test="search.category == 'sfno'">
+			   where sfno like '%'||#{search.search_input}||'%'
+		   </if> -->
+			
+			order by qgroup desc, qstep asc) a
+			)where rnum between #{pageDto.startRow} and #{pageDto.endRow}
+      
    </select>
    
    <!-- QnA 가져오기   -->

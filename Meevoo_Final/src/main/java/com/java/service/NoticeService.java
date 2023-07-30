@@ -10,6 +10,7 @@ import com.java.dto.FAQDto;
 import com.java.dto.NoticeDto;
 import com.java.dto.PageDto;
 import com.java.dto.QnADto;
+import com.java.dto.SearchDto;
 
 public interface NoticeService {
 
@@ -35,7 +36,7 @@ public interface NoticeService {
 
 // == FAQ =======================================================
 // 1. FAQ 전체 가져오기 
-	HashMap<String, Object> selectFAQAll(PageDto pageDto);
+	HashMap<String, Object> selectFAQAll(PageDto pageDto1);
 
 // 2. FAQ 추가하기
 	void insertFAQ(FAQDto fdto);
@@ -50,7 +51,7 @@ public interface NoticeService {
 
 // == QnA =======================================================	
 // 1. QnA 전체 가져오기
-	HashMap<String, Object> selectQnAAll(PageDto pageDto, String search_input);
+	HashMap<String, Object> selectQnAAll(PageDto pageDto,SearchDto search);
 
 // 2. QnA 불러오기
 	HashMap<String, Object> selectQnAOne(int qnano);

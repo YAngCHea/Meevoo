@@ -13,7 +13,7 @@
       <link rel="stylesheet" href="../css/main_yang.css" />
       <script>
 	     function writeNoticeBtn(){
-	    	 alert("test");
+	    	 alert("공지사항이 등록되었습니다.");
 	    	 writeNoticeFrm.submit(); //전송
 	    	 
 	     }
@@ -75,7 +75,7 @@
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성자<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" name="notiid" >  <!-- data-validate-linked="email" -->
+									                        <input class="form-control" type="text" name="notiid" value="${sessionId }"> 
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">

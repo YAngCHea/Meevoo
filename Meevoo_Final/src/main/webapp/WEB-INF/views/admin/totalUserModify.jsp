@@ -135,16 +135,15 @@
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심지역<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" value="${mdto.dongcate }" name="dongcate"  >
-									                        <select name="dongcate" defaultValue="${mdto.dongcate }">
-																	<option value="구로동">구로동</option>
-																	<option value="개봉동">개봉동</option>
-																	<option value="고척동">고척동</option>
-																	<option value="신도림동">신도림동</option>
-																	<option value="항동">항동</option>
-																	<option value="오류동">오류동</option>
-																	<option value="가리봉동">가리봉동</option>
-																	<option value="궁동">궁동</option>
+									                        <select name="dongcate" >
+																	<option value="구로동" <c:if test="${mdto.dongcate == '구로동' }">selected</c:if>> 구로동</option>
+																	<option value="개봉동" <c:if test="${mdto.dongcate == '개봉동' }">selected</c:if>>개봉동</option>
+																	<option value="고척동" <c:if test="${mdto.dongcate == '고척동' }">selected</c:if>>고척동</option>
+																	<option value="신도림동" <c:if test="${mdto.dongcate == '신도림동' }">selected</c:if>>신도림동</option>
+																	<option value="항동" <c:if test="${mdto.dongcate == '항동' }">selected</c:if>>항동</option>
+																	<option value="오류동" <c:if test="${mdto.dongcate == '오류동' }">selected</c:if>>오류동</option>
+																	<option value="가리봉동" <c:if test="${mdto.dongcate == '가리봉동' }">selected</c:if>>가리봉동</option>
+																	<option value="궁동" <c:if test="${mdto.dongcate == '궁동' }">selected</c:if>>궁동</option>
 															</select>
 									                      </div>
 									                    </div>
@@ -152,12 +151,22 @@
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심스포츠<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" value="${mdto.scate }" name="scate">
+									                        <select name="scate">
+																	<option value="골프" <c:if test="${mdto.scate == '골프' }">selected</c:if>>골프</option>
+																	<option value="농구" <c:if test="${mdto.scate == '농구' }">selected</c:if>>농구</option>
+																	<option value="배드민턴" <c:if test="${mdto.scate == '배드민턴' }">selected</c:if>>농구</option>
+																	<option value="볼링" <c:if test="${mdto.scate == '볼링' }">selected</c:if>>볼링</option>
+																	<option value="스케이트" <c:if test="${mdto.scate == '스케이트' }">selected</c:if>>스케이트</option>
+																	<option value="클라이밍" <c:if test="${mdto.scate == '클라이밍' }">selected</c:if>>클라이밍</option>
+																	<option value="탁구" <c:if test="${mdto.scate == '탁구' }">selected</c:if>>탁구</option>
+																	<option value="테니스" <c:if test="${mdto.scate == '테니스' }">selected</c:if>>테니스</option>
+																	<option value="풋살" <c:if test="${mdto.scate == '풋살' }">selected</c:if>>풋살</option>
+															</select>
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">태어난 연도<span
-									                          class="required">*</span></label>
+									                          class="required"> </span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" type="number" value="${mdto.birth }" name="birth">
 									                      </div>
@@ -167,8 +176,8 @@
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">프로필 사진<span
 									                          class="required"> </span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input type="file" class="form-control" value="${mdto.userimg}" name="file">
-									                        <input type="text" class="form-control" value="${mdto.userimg}" name="userimg">
+										                        <input type="file" class="form-control" value="${mdto.userimg}" name="file">
+										                        <input type="text" class="form-control" value="${mdto.userimg}" name="userimg">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
@@ -190,11 +199,8 @@
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">가입 상태(가입/탈퇴)<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <!-- <input class="form-control" type="number" value="${mdto.nowjoin}" name="nowjoin" > -->
-									                        			
-									                        			
 									                       
-									                       <select name="joinchange">
+									                       <select name="nowjoin">
 																<c:if test="${mdto.nowjoin == '1'}">
 																	<option value="1" selected>가입되어있는 회원</option>
 																	<option value="0">탈퇴한 회원</option>
@@ -204,11 +210,8 @@
 																	<option value="0" selected>탈퇴한 회원</option>
 																</c:if>
 															</select> 
-									                        
-									                        
 									                      
 									                      </div>
-									                      
 									                    </div>
 									                    
 									                    <!-- <div class="field item form-group">

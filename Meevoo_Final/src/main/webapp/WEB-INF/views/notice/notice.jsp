@@ -140,7 +140,7 @@
 				        </c:if>
 				        <c:if test="${num == page }">
 				            <li class="num on">
-				               <a href="/notice/FAQ?page=${num}" class="page active">
+				               <a href="/notice/notice?page=${num}" class="page active">
 				                  <div>${num}</div>
 				               </a>
 				            </li>

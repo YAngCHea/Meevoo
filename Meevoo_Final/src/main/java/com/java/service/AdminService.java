@@ -27,12 +27,6 @@ import com.java.mapper.AdminMapper;
 public interface AdminService {
 
 
-	//전체 회원 하단 넘버링 
-	HashMap<String, Object> selectAll(int page, SearchDto search);
-
-	//전체 모임 하단 넘버링 
-	HashMap<String, Object> selectClubAll(PageDto pageDto1, SearchDto search);
-
 	//회원 그래프 데이터 생성하기
 	List<UserGraphDto> selectUserGraphAll();
 
@@ -51,22 +45,18 @@ public interface AdminService {
 	//모임 신고 게시물 상위 5개
 	ArrayList<ClubReportDto> selectCFive();
 
+	//1) 신규가입자, 최근 게시물, 최근리뷰 값을 리스트에 채워서 데려오기
+	ArrayList<StaticHeadOneDto> selectSHOne();
+	
+	//2) 접속자 수 리스트에 채워서 데려오기
+	ArrayList<StaticHeadTwoDto> selectSHTwo();
+	
+	//1) 모임 - 스포츠 종류별 count 
+	ArrayList<DonutChartsClubDto> selectDonutChartClub();
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//전체 회원 하단 넘버링 
+	HashMap<String, Object> selectAll(int page, SearchDto search);
 	
 	//회원 추가하기
 	void insertUser(MemberDto memberDto, @RequestPart MultipartFile files);
@@ -80,21 +70,20 @@ public interface AdminService {
 	//회원 탈퇴처리
 	void deleteTUMOne(MemberDto mdto);
 
-	//1) 신규가입자, 최근 게시물, 최근리뷰 값을 리스트에 채워서 데려오기
-	ArrayList<StaticHeadOneDto> selectSHOne();
 
-	//2) 접속자 수 리스트에 채워서 데려오기
-	ArrayList<StaticHeadTwoDto> selectSHTwo();
-
-	//1) 모임 - 스포츠 종류별 count 
-	ArrayList<DonutChartsClubDto> selectDonutChartClub();
+	
+	
+	//전체 모임 하단 넘버링 
+	HashMap<String, Object> selectClubAll(PageDto pageDto1, SearchDto search);
 
 	//모임 추가하기
 	void insertClub(ClubDto cdto, MultipartFile files);
 	
 	//새로 모임 추가할때 시설 리스트중에서 선택하게 리스트 가져오기
 	ArrayList<SportDto> selectSportList();
-
+	
+	
+	
 	//수정할 모임 정보 불러오기
 	ClubDto selectTCMOne(int cno);
 
@@ -106,35 +95,4 @@ public interface AdminService {
 
 	
 
-	
-	
-	
-	
-
-
-
-
-	
-
-	
-
-
-
-
-	
-
-	
-    
-
-	
-	
-
-	
-
-	
-	
-
-	
-
-	
 }

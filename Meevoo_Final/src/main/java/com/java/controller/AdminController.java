@@ -228,15 +228,6 @@ public class AdminController {
 			return "redirect:/admin/totalWrite"; 
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-	
 	//전체 모임 - 모임 수정하기
 	@RequestMapping("/admin/totalWriteModify")
 	public String totalWriteModify() {

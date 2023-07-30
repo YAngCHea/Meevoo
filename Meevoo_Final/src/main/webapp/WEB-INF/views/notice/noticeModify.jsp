@@ -78,7 +78,7 @@
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성자<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" name="notiid" value="${ndto.notiid }">  <!-- data-validate-linked="email" -->
+									                        <input class="form-control" type="text" name="notiid" value="${sessionId}">  <!-- data-validate-linked="email" -->
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">

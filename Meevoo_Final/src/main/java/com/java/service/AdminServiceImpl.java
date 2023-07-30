@@ -339,11 +339,21 @@ public class AdminServiceImpl implements AdminService {
 
 	
 	//새로 모임 추가할때 시설 리스트중에서 선택하게 리스트 가져오기
-		@Override
-		public ArrayList<SportDto> selectSportList() {
-			ArrayList<SportDto> sportlist = adminMapper.selectSportList();
-			return sportlist;
-		}
+	@Override
+	public ArrayList<SportDto> selectSportList() {
+		ArrayList<SportDto> sportlist = adminMapper.selectSportList();
+		return sportlist;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//수정할 모임 정보 가져오기
 	@Override
@@ -387,6 +397,8 @@ public class AdminServiceImpl implements AdminService {
 		adminMapper.deleteTCMOne(cdto);
 		
 	}
+
+	
 
 	
 

@@ -104,7 +104,7 @@
 						<ul class="pagination">
 							<!-- 첫 페이지 이동 -->
 							<c:if test="${pageDto.page !=1}">
-								<li><a href="/notice/FAQ?page=1" class="button"> <img
+								<li><a href="/notice/QnA?page=1" class="button"> <img
 										src="../images/general/pageFirst.png" style="width: 15px;" />
 								</a></li>
 							</c:if>
@@ -117,7 +117,7 @@
 							<!-- 첫 페이지 이동 끝-->
 							<!-- 이전 페이지 이동 -->
 							<c:if test="${pageDto.page>1}">
-								<li><a href="/notice/FAQ?page=${pageDto.page-1}"
+								<li><a href="/notice/QnA?page=${pageDto.page-1}"
 									class="button"> <img
 										src="../images/general/pagePrevious.png"
 										style="width: 15px; vertical-align: middle;" />
@@ -134,17 +134,17 @@
 							<c:forEach var="num" begin="${pageDto.startPage}"
 								end="${pageDto.endPage}" step="1">
 								<c:if test="${num != pageDto.page}">
-									<li><a href="/notice/FAQ?page=${num}" class="page">${num}</a></li>
+									<li><a href="/notice/QnA?page=${num}" class="page">${num}</a></li>
 								</c:if>
 								<c:if test="${num == pageDto.page}">
-									<li><a href="/notice/FAQ?page=${num}"
+									<li><a href="/notice/QnA?page=${num}"
 										class="page active">${num}</a></li>
 								</c:if>
 							</c:forEach>
 							<!-- 페이지 리스트 끝-->
 							<!-- 다음 페이지 이동 -->
 							<c:if test="${pageDto.page<pageDto.maxPage}">
-								<li><a href="/notice/FAQ?page=${pageDto.page+1}"
+								<li><a href="/notice/QnA?page=${pageDto.page+1}"
 									class="button"> <img src="../images/general/pageNext.png"
 										style="width: 15px; vertical-align: middle;" />
 								</a></li>
@@ -158,7 +158,7 @@
 							<!-- 다음 페이지 이동 끝-->
 							<!-- 끝 페이지 이동 -->
 							<c:if test="${pageDto.page != pageDto.maxPage}">
-								<li><a href="/notice/FAQ?page=${pageDto.maxPage}"
+								<li><a href="/notice/QnA?page=${pageDto.maxPage}"
 									class="button"> <img src="../images/general/pageLast.png"
 										style="width: 15px; vertical-align: middle;" />
 								</a></li>

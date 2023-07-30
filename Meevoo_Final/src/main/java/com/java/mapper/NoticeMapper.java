@@ -9,6 +9,7 @@ import com.java.dto.FAQDto;
 import com.java.dto.NoticeDto;
 import com.java.dto.PageDto;
 import com.java.dto.QnADto;
+import com.java.dto.SearchDto;
 
 @Mapper
 public interface NoticeMapper {
@@ -46,7 +47,10 @@ public interface NoticeMapper {
 // == FAQ =========================================================================
 	
 // 1. 전체 FAQ 하단 넘버링 --------------------------------------------------------
-	ArrayList<NoticeDto> selectFAQAll(PageDto pageDto);
+	ArrayList<FAQDto> selectFAQAll(PageDto pageDto1);
+	
+	// 1-1. 전체 FAQ 하단 넘버링 카운트
+	int selectFAQListCount();
 
 // 2. FAQ 추가하기(글쓰기)
 	void insertFAQ(FAQDto fdto);
@@ -62,10 +66,10 @@ public interface NoticeMapper {
 
 // == QnA ============================================================================
 // 1. 전체 QnA 가져오기
-	ArrayList<QnADto> selectQnAAll(@Param("pDto")PageDto pageDto, String search_input);
+	ArrayList<QnADto> selectQnAAll(PageDto pageDto, SearchDto search);
 
 	//QnA 하단 넘버링
-	int selectQnAListCount();
+	int selectQnAListCount(SearchDto search);
 
 	//QnA 상세페이지
 	QnADto selectQnAOne(int qnano);
@@ -84,6 +88,7 @@ public interface NoticeMapper {
 
 	// 7. QnA qstep1 증가
 	void updateQstepCount(QnADto qdto);
+
 
 	
 

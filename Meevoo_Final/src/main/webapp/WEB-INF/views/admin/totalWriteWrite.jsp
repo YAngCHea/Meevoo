@@ -74,6 +74,7 @@
 									                    
 									                    <input class="form-control" name="cno" type="hidden" value="1">
 									                    <input class="form-control" name="cnowstatus" type="hidden" value="모집중">
+									                    <input class="form-control" name="cwrdate"  type="hidden" value="2023-07-01"> <!--  value="2023-07-01" -->
 									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성자<span class="required"> </span></label>
@@ -88,8 +89,6 @@
 									                        <input class="form-control" type="text" name="cnm" >
 									                      </div>
 									                    </div>
-									                    
-									                    <input class="form-control" name="cwrdate"  type="hidden" value="2023-07-01">
 									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">시설 번호<span
@@ -126,6 +125,7 @@
 															  </select>
 									                      </div>
 									                    </div>
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">상세지역<span
 									                          class="required">*</span></label>
@@ -133,6 +133,7 @@
 									                        <input class="form-control" type="text" name="cloc"  >
 									                      </div>
 									                    </div>
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">모임 날짜<span
 									                          class="required">*</span></label>

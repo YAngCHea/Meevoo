@@ -98,23 +98,6 @@
 										
 										<!--회원 리스트-->
 										<div class="card card_border">
-											<!--card_title-->
-						        			<!-- <div class="card_title"> -->
-						                        <!-- <div class="rightArea"> -->
-						                        	<!-- <button class="btn_small btn_red">Option</button> -->
-						                        	<!-- <div class="dropBtn"> -->
-								        				<!-- <button class="btn_small btn_blue">Button Name<span><i class="demo-icon icon-down-open"></i></span></button> -->
-							        					<div class="drop_list" style="display: none;">
-							        						<ul>
-							        							<li><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">dropButton name1</a></li>
-							        							<li><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">dropButton name2</a></li>
-							        							<li><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">dropButton name3</a></li>
-							        						</ul>
-							        					</div>
-							        				<!-- </div> -->
-						                        <!-- </div> -->
-						                    <!-- </div> -->
-						        			<!--card_title-->
 						        			<div class="card paddingnone">
 						        				<!--table-->
 												<div class="tableStyle_A">
@@ -132,7 +115,7 @@
 						                                    <col width="*%">
 						                                </colgroup>
 						                                <thead>
-						                                    <!-- <tr> -->
+						                                    <tr>
 						                                        <th>번호</th>
 						                                        <th>작성자</th>
 						                                        <th>모임 이름</th>
@@ -141,7 +124,7 @@
 						                                        <th>모임장소</th>
 						                                        <th>모임시설</th>
 						                                        <th>Edit</th>
-						                                    <!-- </tr> -->
+						                                    </tr>
 						                                </thead>
 						                                
 						                                <tbody>
@@ -264,16 +247,16 @@
 						        			
 						        			
 											<!-- 관리자가 새로운 모임 작성 -->
+												<!-- Section -->
 												<section>
 													<!-- Table -->
 													<div class="table-wrapper">
-														
 														<div style="text-align: right;">
-															<a href="/admin/totalWriteWrite"><button type="button" class="button primary">새 모임 작성</button></a>
+															<a href="/admin/totalWriteWrite"><button type="button" class="button primary">회원 추가</button></a>
 														</div>
 													</div>
 												</section>
-											<!-- // Section -->
+												<!-- // Section -->
 											
 											
 											

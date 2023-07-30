@@ -1,6 +1,7 @@
 package com.java.dto;
 
-import java.util.Date;
+import java.sql.Date;
+
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,11 +25,11 @@ public class ClubDto {
 	//private String dongcate;
 	private String cloc;
 	private Date cdodate;
-	/*
-	 * @DateTimeFormat(pattern = "yyyy-MM-dd") private Date cdodate_date;
-	 * 
-	 * @DateTimeFormat(pattern = "HH24:mm") private Date cdodate_time;
-	 */
+	
+	 @DateTimeFormat(pattern = "yyyy-MM-dd") private Date cdodate_date;
+	 
+	 @DateTimeFormat(pattern = "HH24:mm") private Date cdodate_time;
+	 
 	private String ccontent;
 	private int ctotalpick;
 	private int crecruitlimit;

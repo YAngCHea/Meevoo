@@ -298,7 +298,16 @@
 		   </if>
 	      
 	   </select>
-  
+
+	<!-- 새로 모임 추가할때 시설 리스트중에서 선택하게 리스트 가져오기 -->
+	  <select id="selectSportList">
+	     select * from sportlist
+	  </select>
+
+
+
+
+
    <!-- 3) 모임 추가하기 -->
 	   <insert id="insertClub">
 	      insert into clubList values 
@@ -317,14 +326,13 @@
 			#{crecruitlimit},
 			null,
 			#{cnowstatus},
-			#{scate}
+			#{scate},
+			sysdate,
+			sysdate
 			)
 	   </insert>
    
-   <!-- 새로 모임 추가할때 시설 리스트중에서 선택하게 리스트 가져오기 -->
-	<select id="selectSportList" resultType="com.java.dto.SportDto">
-		select * from sportlist
-	</select>
+
    
    
    <!-- 4) 수정할 모임 정보 가져오기 -->

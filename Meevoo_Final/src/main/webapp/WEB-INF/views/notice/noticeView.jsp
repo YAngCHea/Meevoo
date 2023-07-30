@@ -11,7 +11,14 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main_kmh.css" />
-	</head>
+	<script>
+		function deleteBtn() {
+			if (confirm("게시글을 삭제하시겠습니까?")) {
+				location.href = "noticeDelete?notino=${ndto.notino}";
+			}
+		}
+	</script>
+</head>
 	<body class="is-preload">
 		
 
@@ -27,7 +34,7 @@
 
 
 							<!-- Section -->
-								<section class="sportlistview">
+								<section class="noticelistview">
 									<!-- 상세설명 css -> main.css(63번째)  -->
 									<div class="viewHead">
 										<div class="subject">
@@ -65,7 +72,8 @@
 									<!-- Buttons 수정 ->  main.css (1294번째)-->
 									<ul class="actions">
 										<li><a href="/notice/noticeModify?notino=${ndto.notino}" class="button primary">수정하기</a></li>
-										<li><a href="sportList?page=${page}" class="button primary">삭제하기</a></li>
+										<li><a onclick="deleteBtn()"><button type="button"  class="button primary">삭제하기</button></a></li>
+										<li><a href="/notice/notice?page=${page}" class="button primary">목록으로</a></li>
 									</ul>
 								
 								

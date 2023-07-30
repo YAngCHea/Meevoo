@@ -17,6 +17,7 @@ import com.java.dto.MemberDto;
 import com.java.dto.NoticeDto;
 import com.java.dto.PageDto;
 import com.java.dto.QnADto;
+import com.java.dto.SearchDto;
 import com.java.mapper.NoticeMapper;
 
 @Service
@@ -168,39 +169,52 @@ public class NoticeServiceImpl implements NoticeService {
 // == FAQ ==================================================================
 // 1. 전체 FAQ 하단 넘버링 --------------------------------------------------------
 	@Override
-	public HashMap<String, Object> selectFAQAll(PageDto pageDto) {
+	public HashMap<String, Object> selectFAQAll(PageDto pageDto1) {
 		HashMap<String, Object> map1 = new HashMap<>();
 		//페이지 정보 메소드 호출하기
-		pageDto = pageMethod(pageDto);
+		pageDto1 = pageMethod1(pageDto1);
+		
+		//endPage가 최대페이지보다 더 크면 최대페이지까지만 노출
+		if (pageDto1.getEndPage() > pageDto1.getMaxPage()) pageDto1.setEndPage(pageDto1.getMaxPage());
 		
 		//모임 전체 가져오기
-		ArrayList<NoticeDto> faqlist = noticeMapper.selectFAQAll(pageDto);
+		ArrayList<FAQDto> faqlist = noticeMapper.selectFAQAll(pageDto1);
 		
 		map1.put("faqlist", faqlist);
-		map1.put("pageDto", pageDto);
+		map1.put("pageDto1", pageDto1);
+		map1.put("page", pageDto1.getPage());
+		map1.put("listCount", pageDto1.getListCount());
+		map1.put("startPage", pageDto1.getStartPage());
+		map1.put("endPage",pageDto1.getEndPage());
+		map1.put("maxPage",pageDto1.getMaxPage());
+		
+		System.out.println("Impl endPage : "+pageDto1.getEndPage());
+		
 		return map1;
 	}
 
 	//페이지정보 메소드
-	public PageDto pageMethod(PageDto pageDto) {
-			
-			//전체게시글 수-142,현재페이지,최대페이지,시작페이지,끝페이지 1-시작,2,3,4,5-현재,6,7,8,9,10-끝  15-최대
-			//시작번호,끝나는번호 1-10,11-20,21-30
-			//전체게시글 수 저장
-			pageDto.setListCount(noticeMapper.selectNoticeListCount());
-			// 최대 넘버링페이지
-			pageDto.setMaxPage((int)Math.ceil((double)pageDto.getListCount()/10));
-			// 시작 넘버링페이지
-			pageDto.setStartPage((int)((pageDto.getPage()-1)/10)*10 + 1);
-			// 끝 넘버링페이지
-			pageDto.setEndPage(pageDto.getStartPage()+10-1);
-			// 시작번호
-			pageDto.setStartRow((pageDto.getPage()-1)*10+1);
-			// 끝나는번호
-			pageDto.setEndRow(pageDto.getStartRow()+10-1);
-			
-			return pageDto;
-		}
+	public PageDto pageMethod1(PageDto pageDto1) {
+
+		//전체게시글 수-142,현재페이지,최대페이지,시작페이지,끝페이지 1-시작,2,3,4,5-현재,6,7,8,9,10-끝  15-최대
+		//시작번호,끝나는번호 1-10,11-20,21-30
+		//전체게시글 수 저장
+		pageDto1.setListCount(noticeMapper.selectFAQListCount());
+		// 최대 넘버링페이지
+		pageDto1.setMaxPage((int)Math.ceil((double)pageDto1.getListCount()/10));
+		// 시작 넘버링페이지
+		pageDto1.setStartPage((int)((pageDto1.getPage()-1)/10)*10 + 1);
+		// 끝 넘버링페이지
+		pageDto1.setEndPage(pageDto1.getStartPage()+10-1);
+		// 시작번호
+		pageDto1.setStartRow((pageDto1.getPage()-1)*10+1);
+		// 끝나는번호
+		pageDto1.setEndRow(pageDto1.getStartRow()+10-1);
+		
+		
+		
+		return pageDto1;
+	}
 
 // 2. FAQ 추가하기(글쓰기)
 	@Override
@@ -231,27 +245,36 @@ public class NoticeServiceImpl implements NoticeService {
 	
 // 1. QnA 전체 가져오기
 	@Override
-	public HashMap<String, Object> selectQnAAll(PageDto pageDto, String search_input) {
+	public HashMap<String, Object> selectQnAAll(PageDto pageDto,SearchDto search) {
 		HashMap<String, Object> map2 = new HashMap<>();
 		//페이지 정보 메소드 호출하기
-		pageDto = pageMethod1(pageDto,search_input);
-		
+		pageDto = pageMethod1(pageDto,search);
+		// endPage가 최대페이지보다 더 크면 최대페이지까지만 노출
+		// if(pageDto1.getEndPage()>pageDto1.getMaxPage()) endPage=maxPage;
+
+		if (pageDto.getEndPage() > pageDto.getMaxPage()) pageDto.setEndPage(pageDto.getMaxPage());
 		//모임 전체 가져오기
-		ArrayList<QnADto> qnalist = noticeMapper.selectQnAAll(pageDto, search_input);
+		ArrayList<QnADto> qnalist = noticeMapper.selectQnAAll(pageDto, search);
 		
 		map2.put("qnalist", qnalist);
-		map2.put("search_input", search_input);
 		map2.put("pageDto", pageDto);
+		map2.put("page", pageDto.getPage());
+		map2.put("listCount", pageDto.getListCount());
+		map2.put("startPage", pageDto.getStartPage());
+		map2.put("endPage",pageDto.getEndPage());
+		map2.put("maxPage",pageDto.getMaxPage());
+		map2.put("category",search.getCategory());
+		map2.put("search_input",search.getSearch_input());
 		return map2;
 	}
 	
 	//페이지정보 메소드
-		public PageDto pageMethod1(PageDto pageDto, String search_input) {
+		public PageDto pageMethod1(PageDto pageDto,SearchDto search) {
 				
 			//전체게시글 수-142,현재페이지,최대페이지,시작페이지,끝페이지 1-시작,2,3,4,5-현재,6,7,8,9,10-끝  15-최대
 			//시작번호,끝나는번호 1-10,11-20,21-30
 			//전체게시글 수 저장
-			pageDto.setListCount(noticeMapper.selectQnAListCount());
+			pageDto.setListCount(noticeMapper.selectQnAListCount(search));
 			// 최대 넘버링페이지
 			pageDto.setMaxPage((int)Math.ceil((double)pageDto.getListCount()/10));
 			// 시작 넘버링페이지

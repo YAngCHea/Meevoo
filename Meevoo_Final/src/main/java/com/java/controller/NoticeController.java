@@ -25,6 +25,7 @@ import com.java.dto.MemberDto;
 import com.java.dto.NoticeDto;
 import com.java.dto.PageDto;
 import com.java.dto.QnADto;
+import com.java.dto.SearchDto;
 import com.java.service.NoticeService;
 
 @Controller
@@ -133,13 +134,14 @@ public class NoticeController {
 		//게시글 전체가져오기
 		HashMap<String, Object> map1 = noticeService.selectFAQAll(pageDto1);
 		model.addAttribute("faqlist",map1.get("faqlist"));
-		model.addAttribute("pageDto1",map1.get("pageDto1"));
+		//model.addAttribute("pageDto1",map1.get("pageDto1"));
 		model.addAttribute("page",map1.get("page"));
 		model.addAttribute("listCount",map1.get("listCount"));
 		model.addAttribute("startPage",map1.get("startPage"));
 		model.addAttribute("endPage",map1.get("endPage"));
 		model.addAttribute("maxPage",map1.get("maxPage"));
-		//System.out.println("controller endPage"+map1.get("endPage"));
+		System.out.println("controller endPage"+map1.get("endPage"));
+		
 		return "notice/FAQ";
 	}	
 // 2. FAQ 새로 추가하기------------------------------------------------------------------
@@ -187,13 +189,19 @@ public class NoticeController {
 	
 // 1. 전체 QnA 하단 넘버링  -------------------------------------------------------------------
 	@RequestMapping("/notice/QnA")
-	public String QnA(PageDto pageDto, String search_input, Model model) {
+	public String QnA(PageDto pageDto,  SearchDto search, Model model) {
 		
 		//게시글 전체가져오기
-		HashMap<String, Object> map2 = noticeService.selectQnAAll(pageDto, search_input);
+		HashMap<String, Object> map2 = noticeService.selectQnAAll(pageDto, search);
 		model.addAttribute("qnalist",map2.get("qnalist"));
-		model.addAttribute("search_input",map2.get("search_input"));
 		model.addAttribute("pageDto",map2.get("pageDto"));
+		model.addAttribute("page",map2.get("page"));
+		model.addAttribute("listCount",map2.get("listCount"));
+		model.addAttribute("startPage",map2.get("startPage"));
+		model.addAttribute("endPage",map2.get("endPage"));
+		model.addAttribute("maxPage",map2.get("maxPage"));
+		model.addAttribute("category",map2.get("category"));
+		model.addAttribute("search_input",map2.get("search_input"));
 	
 		return "notice/QnA";
 	}
