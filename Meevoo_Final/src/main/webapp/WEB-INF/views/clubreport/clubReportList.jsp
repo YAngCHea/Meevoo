@@ -96,7 +96,7 @@
 												<tr>
 													<td>${list.crepno}</td>
 													<td>${list.crepcontent}</td>
-													<td><a href="/clubreport/clubReportView?crepno=${list.crepno}&page=${page}&category=${category}&search_input=${search_input}">${list.crepcontent}</a></td>
+													<td><a href="/clubreport/clubReportView?crepno=${list.crepno}&page=${page}&category=${category}&search_input=${search_input}">${list.creptitle}</a></td>
 													<td>${list.id}</td>
 													<td>
 													<fmt:formatDate value="${list.crepdate}" pattern="yyyy-MM-dd"/>

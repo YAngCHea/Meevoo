@@ -134,13 +134,34 @@
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심지역<span class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" name="dongcate"  >
+									                        
+									                        <select name="dongcate">
+																	<option value="구로동">구로동</option>
+																	<option value="개봉동">개봉동</option>
+																	<option value="고척동">고척동</option>
+																	<option value="신도림동">신도림동</option>
+																	<option value="항동">항동</option>
+																	<option value="오류동">오류동</option>
+																	<option value="가리봉동">가리봉동</option>
+																	<option value="궁동">궁동</option>
+															</select>
+									                        
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심스포츠<span class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" name="scate">
+									                        <select name="scate">
+																	<option value="골프">골프</option>
+																	<option value="농구">농구</option>
+																	<option value="배드민턴">농구</option>
+																	<option value="볼링">볼링</option>
+																	<option value="스케이트">스케이트</option>
+																	<option value="클라이밍">클라이밍</option>
+																	<option value="탁구">탁구</option>
+																	<option value="테니스">테니스</option>
+																	<option value="풋살">풋살</option>
+															</select>
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">

@@ -136,6 +136,16 @@
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" type="text" value="${mdto.dongcate }" name="dongcate"  >
+									                        <select name="dongcate" defaultValue="${mdto.dongcate }">
+																	<option value="구로동">구로동</option>
+																	<option value="개봉동">개봉동</option>
+																	<option value="고척동">고척동</option>
+																	<option value="신도림동">신도림동</option>
+																	<option value="항동">항동</option>
+																	<option value="오류동">오류동</option>
+																	<option value="가리봉동">가리봉동</option>
+																	<option value="궁동">궁동</option>
+															</select>
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">

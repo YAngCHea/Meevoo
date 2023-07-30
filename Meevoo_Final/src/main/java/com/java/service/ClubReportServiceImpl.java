@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.ClubDto;
 import com.java.dto.ClubReportDto;
+import com.java.dto.ClubReportAnswerDto;
 import com.java.dto.PageDto;
 import com.java.dto.SearchDto;
 import com.java.mapper.ClubReportMapper;
@@ -70,7 +71,6 @@ public class ClubReportServiceImpl implements ClubReportService {
 	}
 
 	// 2. clubReportView 상세페이지
-	  
 	@Override
 	public HashMap<String, Object> selectOne(ClubReportDto crdto) {
 
@@ -83,6 +83,15 @@ public class ClubReportServiceImpl implements ClubReportService {
 		
 		return map1;
 	}
+	
+	// 2-1. 답글 가져오기
+	@Override
+	public ArrayList<ClubReportAnswerDto> selectAnAll(ClubReportDto crdto) {
+		ArrayList<ClubReportAnswerDto> creanList = clubReportMapper.selectAnAll(crdto); 
+		return creanList;
+	}
+	
+	
 // 3. clubReportWrite 신고글 작성하기
 
 	// 3-1.신고글 작성을 위해 모임 번호랑 모임 제목 가져오기
@@ -134,7 +143,29 @@ public class ClubReportServiceImpl implements ClubReportService {
 		//mapper 전송 - 문의글 1개 저장
 		clubReportMapper.insertOne(crdto);
 	}
-	 
+
+
+	
+// 4. 관리자 답글달기	
+	// 4-1.답글 저장하기
+	@Override
+	public ClubReportAnswerDto answerInsert(ClubReportAnswerDto crepanDto) {
+		System.out.println("impl 등록 ajax에서 넘어온 아이디 : "+crepanDto.getId());
+		System.out.println("impl 등록 ajax에서 넘어온 답변번호 : "+crepanDto.getCrepanno());
+		System.out.println("impl 등록 ajax에서 넘어온 문의글번호 : "+crepanDto.getCrepno());
+		System.out.println("impl 등록 ajax에서 넘어온 답변 데이터 : "+crepanDto.getCrepancontent());
+		
+		clubReportMapper.answerInsert(crepanDto);
+		return crepanDto;
+	}
+
+	// 4-2. 답글 삭제하기
+	@Override
+	public void answerDelete(int crepanno) {
+		clubReportMapper.answerDelete(crepanno);
+		
+	}
+ 
 	
 	
 	

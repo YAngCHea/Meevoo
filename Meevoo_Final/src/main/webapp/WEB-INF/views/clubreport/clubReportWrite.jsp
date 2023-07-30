@@ -5,7 +5,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>체육시설 문의글 작성</title>
+		<title>모임 신고글 작성</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main_kmh.css" />
@@ -25,67 +25,72 @@
 							<%@ include file="../top.jsp" %>
 							
 							<script>
-								function srepwriteBtn(){
+								function crepwriteBtn(){
 									if("${sessionId}"== ""){
 										alert("로그인을 하셔야 문의글 작성이 가능합니다.");
 										location.href="/member/login";
 										return false;
 									}
-									if($("#srepinput").val() == ""){
+									if($("#crepinput").val() == ""){
 										alert("내용을 입력해주셔야 합니다.");
-										$("#srepinput").focus();
+										$("#crepinput").focus();
 										return false;
 									}
-									if($("#sreptitle").val() == ""){
+									if($("#creptitle").val() == ""){
 										alert("제목을 입력해주셔야 합니다.");
-										$("#sreptitle").focus();
+										$("#creptitle").focus();
 										return false;
 									}
 									alert("작성한 문의글을 저장합니다.");
-									$("#srpwrite").submit();
+									$("#crepwrite").submit();
 					          	  
 					            }// 문의글 저장
 							</script>
+							
 							<!-- Section -->
 								<section class="sportlistview">
 									<!-- 상세설명 css -> main.css(63번째)  -->
 									<div class="viewHead">
-									  <form action="sportReportWrite" name="srpwrite" id="srpwrite" method="post" enctype="multipart/form-data">
+									  <form action="clubReportWrite" name="crepwrite" id="crepwrite" method="post" enctype="multipart/form-data">
 										<div class="day">
 											<p class="txt">작성자
 											  <span>${sessionId}
-												<input type="hidden" name="id" value="${sessionId}" placeholder="ID가 표시됨" />
+												<input type="hidden" name="id" value="${sessionId}" /><!-- placeholder="ID가 표시됨" --> 
 											  </span>
 											</p>
 										</div>
 										<div class="day">
 											<p class="txt">제목
-												<input type="text" name="sreptitle" id="sreptitle" placeholder="제목을 입력해주세요." />
+												<input type="text" name="creptitle" id="creptitle" placeholder="제목을 입력해주세요." />
 											</p>
 										</div>
 										<div class="day">
 											<p class="txt">문의유형
-												<select name="srepcontent">
-														<option value="폐업한 시설입니다.">폐업한 시설입니다.</option>
-														<option value="전화번호가 변경되었습니다.">전화번호가 변경되었습니다.</option>
-														<option value="영업시간이 변경되었습니다.">영업시간이 변경되었습니다.</option>
-														<option value="위치가 달라졌습니다.">위치가 달라졌습니다.</option>
-														<option value="기타 요청사항">기타 요청사항</option>
+												<select name="crepcontent">
+														<option value="개인정보 노출 게시물입니다.">개인정보 노출 게시물입니다.</option>
+														<option value="불법정보를 포함가고 있습니다.">불법정보를 포함가고 있습니다.</option>
+														<option value="불쾌한 표현이 있습니다.">불쾌한 표현이 있습니다.</option>
+														<option value="스팸홍보/도배글입니다.">스팸홍보/도배글입니다.</option>
+														<option value="욕설/생명경시/혐오/차별적 표현입니다.">욕설/생명경시/혐오/차별적 표현입니다.</option>
+														<option value="음란물입니다.">음란물입니다.</option>
+														<option value="장소와 관련없는 리뷰 이미지 또는 내용입니다.">장소와 관련없는 리뷰 이미지 또는 내용입니다.</option>
+														<option value="청소년에게 유해한 내용입니다.">청소년에게 유해한 내용입니다.</option>
+														<option value="기타 요청사항">기타 문의사항</option>
 												</select>
 											</p>
 										</div>
 										<div class="day" >
-											<p class="txt">해당시설번호
-												<select name="sfno">
-													<c:forEach var="sportlist" items="${list}">
-														<option value="${sportlist.sfno}" <c:if test="${param.sfno == sportlist.sfno }"> selected</c:if>  >${sportlist.sfno}</option>
+											<p class="txt">해당모임번호
+												<select name="cno">
+													<c:forEach var="clublist" items="${clist}">
+														<option value="${clublist.cno}" <c:if test="${param.cno == clublist.cno }"> selected</c:if>  >${clublist.cno}.${clublist.cnm}</option>
 													</c:forEach>
 												</select>
 											</p>
 										</div>
 										<div class="day">
 											<p class="txt">내용
-												<textarea name="srepinput" id="srepinput" cols="110" rows="10" style="resize:none;" placeholder="내용을 입력해주세요."></textarea>
+												<textarea name="crepinput" id="crepinput" cols="110" rows="10" style="resize:none;" placeholder="내용을 입력해주세요."></textarea>
 											</p>
 										</div>
 										<div class="day">
@@ -107,7 +112,7 @@
 									<br>
 								</section>
 								<div style="text-align: right;">
-									<button type="button" class="button primary" id="srpwrite" onclick="srepwriteBtn()">저장</button>
+									<button type="button" class="button primary" id="crepwrite" onclick="crepwriteBtn()">저장</button>
 									<button type="button" class="button" onclick="javascript:location.href='sportReportList'">취소</button>
 								</div>
 							  </form>

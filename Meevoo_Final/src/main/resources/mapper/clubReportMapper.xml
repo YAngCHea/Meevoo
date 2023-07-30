@@ -44,6 +44,11 @@
  		select * from clubreport where crepno=#{crepno}
  	</select>
 
+	<!-- 2-1. 답글 가져오기 -->
+	<select id="selectAnAll" resultType="com.java.dto.ClubReportAnswerDto">
+		select * from clubreportanswer where crepno=#{crepno} order by crepandate desc
+	</select>
+
 <!-- 3. clubReportWrite 신고글 작성하기 -->
 	<!-- 3-1.신고글 작성을 위해 모임 번호랑 모임 제목 가져오기 -->
 	<select id="selectClist" resultType="com.java.dto.ClubDto">
@@ -65,11 +70,20 @@
 	)
     </insert>
 
+<!-- 4. 관리자 답글달기	 -->
+	<!--  4-1.답글 저장하기 -->
+	<insert id="answerInsert">
+	  <selectKey resultType="int" keyProperty="crepanno" order="BEFORE">
+		select clubreportanswer_seq.nextval from dual
+	  </selectKey>
+	  insert into clubreportanswer values
+	  (#{crepanno},#{crepno},#{id},#{crepancontent},sysdate)
+	</insert>
 
-
-
-
-
+	<!-- 4-2. 답글 삭제하기 -->
+	<delete id="answerDelete">
+		delete clubreportanswer where crepanno=#{crepanno}
+	</delete>
 
 
 
