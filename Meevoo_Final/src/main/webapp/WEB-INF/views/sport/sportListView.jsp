@@ -392,9 +392,9 @@
 												<%-- <li><a class="button primary" id="spickcancel" onclick="sPickCancelBtn(${sdto.sfno})">♥ 시설 찜하기 [ ${spickList.size()} ]</a></li> --%>
 											</c:if>
 									       </div>
-										<li><a href="/sportreport/sportReportWrite?sfno=${sdto.sfno}" class="button primary">시설 문의글 작성</a></li>
+										<li><a href="/sportreport/sportReportWrite?sfno=${sdto.sfno}&page=${page}" class="button primary">시설 문의글 작성</a></li>
 										<li><button onclick="openChildWindow()" class="button primary">모임 생성</button></li>
-										<li><a href="sportList?page=${page}&slist_word=${slist_word}" class="button primary">시설 목록으로</a></li>
+										<li><a href="sportList?page=${page}&slist_word=${slist_word}&sportDto=${sportDto}" class="button primary">시설 목록으로</a></li>
 									</ul>
 								</section>
 								

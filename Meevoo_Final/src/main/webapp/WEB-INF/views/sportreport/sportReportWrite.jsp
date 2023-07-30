@@ -109,6 +109,7 @@
 								<div style="text-align: right;">
 									<button type="button" class="button primary" id="srpwrite" onclick="srepwriteBtn()">저장</button>
 									<button type="button" class="button" onclick="javascript:location.href='sportReportList'">취소</button>
+									</if>
 								</div>
 							  </form>
 								

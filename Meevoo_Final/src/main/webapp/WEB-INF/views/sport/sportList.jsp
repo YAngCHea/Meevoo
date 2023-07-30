@@ -42,8 +42,8 @@
 								<!-- 검색필터 -->
 								<script>
 								function sportfilterBtn(){
-									if($("#slist_word").val().length<2){
-						    			alert("2글자 이상 입력하셔야 합니다.")
+									if($("#slist_word").val().length==0){
+						    			alert("1글자 이상 입력하셔야 합니다.")
 						    			$("#slist_word").focus();
 						    			return false;
 						    		}
@@ -152,7 +152,7 @@
 												<tr>
 													<td>${sport.sfno}</td>
 													<td>
-														<a href="/sport/sportListView?sfno=${sport.sfno}&page=${page}&slist_word=${slist_word}" class="lightgray">${sport.sfnm}</a>
+														<a href="/sport/sportListView?sfno=${sport.sfno}&page=${page}&slist_word=${slist_word}&sportDto=${sportDto}" class="lightgray">${sport.sfnm}</a>
 													</td>
 													<td>${sport.scate}</td>
 													<td>${sport.dongcate}</td>
@@ -168,14 +168,14 @@
 										<ul class="pagination" >
 											<!-- 첫 페이지 이동 -->
 									        <c:if test="${page != 1}">
-									         <a href="/sport/sportList?page=1&slist_word=${slist_word}" class="button"><li><<</li></a>
+									         <a href="/sport/sportList?page=1&slist_word=${slist_word}&sportDto=${sportDto}" class="button"><li><<</li></a>
 									        </c:if>
 									        <c:if test="${page == 1}">
 									         <a class="button disabled"><li><<</li></a>
 									        </c:if>
 									        <!-- 이전페이지 이동 -->
 									        <c:if test="${page>1}">
-									          <li><a href="/sport/sportList?page=${page-1}&slist_word=${slist_word}" class="button">Prev</a></li>
+									          <li><a href="/sport/sportList?page=${page-1}&slist_word=${slist_word}&sportDto=${sportDto}" class="button">Prev</a></li>
 									        </c:if>
 										    <c:if test="${page == 1}">
 									       	  <li><a class="button disabled">Prev</a></li>
@@ -185,7 +185,7 @@
 									        <c:forEach begin="${startPage}" end="${endPage}" step="1" var="num">
 									          <c:if test="${num != page }">
 										      	<a>
-										      	  <li><a href="/sport/sportList?page=${num}&slist_word=${slist_word}" class="page">${num}</a></li>
+										      	  <li><a href="/sport/sportList?page=${num}&slist_word=${slist_word}&sportDto=${sportDto}" class="page">${num}</a></li>
 										      	</a>
 									      	  </c:if>
 									      	  <c:if test="${num == page }">
@@ -195,14 +195,14 @@
 									        <!--  -->
 									        <!-- 다음페이지 이동 -->
 									        <c:if test="${page<maxPage}">
-									         <li><a href="/sport/sportList?page=${page+1}&slist_word=${slist_word}" class="button">Next</a></li>
+									         <li><a href="/sport/sportList?page=${page+1}&slist_word=${slist_word}&sportDto=${sportDto}" class="button">Next</a></li>
 									        </c:if>
 									        <c:if test="${page==maxPage}">
 									         <li><a class="button disabled">Next</a></li>
 									        </c:if>
 									        <!-- 끝페이지 이동 -->
 									        <c:if test="${page != maxPage}">
-									         <a href="/sport/sportList?page=${maxPage}&slist_word=${slist_word}" class="button"><li>>></li></a>
+									         <a href="/sport/sportList?page=${maxPage}&slist_word=${slist_word}&sportDto=${sportDto}" class="button"><li>>></li></a>
 									        </c:if>
 									        <c:if test="${page == maxPage}">
 									         <a class="button disabled"><li>>></li></a>
