@@ -308,7 +308,7 @@
 									  <c:forEach var="club" items="${list}">
 										  <article>
 										      <!-- 운동종목 별 아이콘 영역 -->
-										      <a href="/club/cView?cno=${club.cno}" style="text-decoration: none;">
+										      <a href="/club/cView?page=${pageDto.page}&cno=${club.cno}" style="text-decoration: none;">
 												<span style="margin: 25px;">
 												  <c:if test="${club.scate eq '스케이트'}">
 												    <img src="../images/sports/iceSkateIcon.png" style="width:150px;" />

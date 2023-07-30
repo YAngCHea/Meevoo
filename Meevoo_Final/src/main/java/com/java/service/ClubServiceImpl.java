@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.ClubDto;
+import com.java.dto.ClubJoinUserDto;
 import com.java.dto.PageDto;
 import com.java.mapper.ClubMapper;
 
@@ -78,9 +79,13 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 	@Override // 모임목록 1개 가져오기
-	public ClubDto selectClubOne(int cno) {
+	public HashMap<String, Object> selectClubOne(int cno) {
+		HashMap<String, Object> map = new HashMap<>();
+		
 		ClubDto cdto = clubMapper.selectClubOne(cno);
-		return cdto;
+		map.put("cdto", cdto);
+		
+		return map;
 	}
 	
 	@Override // 필터 input 반영해서 모임목록 가져오기 (필터검색)
@@ -98,6 +103,39 @@ public class ClubServiceImpl implements ClubService {
 		
 	}//모임목록 글 1개 저장
 
+	
+	
+	@Override
+	public int selectcjCount(int cno, String id) {
+		// 클럽 가입한 아이디 Count(cno,sessionId)
+		int cjoincount = clubMapper.selectcjCount(cno,id);
+		System.out.println(cjoincount);
+		return cjoincount;
+	}
+
+	@Override
+	public ArrayList<ClubJoinUserDto> selectcjAll(int cno) {
+		// 클럽 가입 목록 전체 가져오기
+		ArrayList<ClubJoinUserDto> cjoinList = clubMapper.selectcjAll(cno); 
+		return cjoinList;
+	}
+
+	@Override
+	public int updateClubAll(int cno) {
+		// 해당 클럽에 가입 한 총 인원수
+		int cnowTotal = clubMapper.updateClubAll(cno);
+		return cnowTotal;
+	}
+
+	@Override
+	public ClubJoinUserDto cjoinUser(ClubJoinUserDto cjoinuserDto) {
+		// 모임 신청하기
+		clubMapper.cjoinUser(cjoinuserDto);
+		
+		// 모임 신청한거 1개 가져오기
+		ClubJoinUserDto cjoindto = clubMapper.selectCjuOne(cjoinuserDto);
+		return cjoindto;
+	}
 
 	
 	  

@@ -68,6 +68,37 @@
     where cno = #{cno}
   </select>
   
+  
+  <!-- 클럽 가입한 아이디 Count(cno,sessionId) -->
+	<select id="selectcjCount" resultType="int">
+		select count(*) from clubjoinuser where id=#{id} and cno=#{cno}
+	</select>
+	
+	<!-- 클럽 가입 목록 전체 가져오기 -->
+	<select id="selectcjAll" resultType="com.java.dto.ClubJoinUserDto">
+		select * from clubjoinuser where cno=#{cno} order by cno desc
+	</select>
+	
+	<!-- 해당 클럽에 가입 한 총 인원수 -->
+	<update id="updateClubAll">
+		update clublist set cnowrecruit = coalesce(
+		(select count(cno) from clubjoinuser
+		where clublist.cno = clubjoinuser.cno
+		group by cno), 0)
+	</update>
+	
+	<!-- 모임 신청하기 -->
+	<insert id="cjoinUser">
+		insert into clubjoinuser values
+		(clubjoinuser_seq.nextval,#{id},#{cno})
+	</insert>
+	
+	<!-- 모임 신청한거 1개 가져오기 -->
+	<select id ="selectCjuOne" resultType="com.java.dto.ClubJoinUserDto">
+		select * from clubjoinuser where cjoinuserno=#{cjoinuserno}
+	</select>
+  
+  
   <!-- 필터 input 반영해서 모임목록 가져오기 (필터검색) -->
   <select id="selectClubFilter" resultType="com.java.dto.ClubDto">
        select * from 

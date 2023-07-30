@@ -259,6 +259,9 @@
 	 									  <div class="col-12" style="float: right; ">
 								            <a href="/sport/sportListView?sfno=${cdto.sfno}" class="button primary">모임장소 상세보기</a>
 								          </div>
+								          <div class="col-12" style="float: right; ">
+								            <a href="/club/club?page=${param.page}" class="button primary">모임목록 보기</a>
+								          </div>
 									</div>
 									<hr style="margin-top: 5em; ">
 									<div>
@@ -299,7 +302,7 @@
 									    #progress::-webkit-progress-value {border-radius:10px; background: #f56a6a; }
 									  </style>    
 									  <div class="progress" style="clear:both; margin-bottom: 2em ;">
-									    <progress id="progress" value="71.4" min="0" max="100" style="margin-bottom: 0.7em;"></progress>
+									    <progress id="progress" value="${(cdto.cnowrecruit/cdto.crecruitlimit)*100}" min="0" max="100" style="margin-bottom: 0.7em;"></progress>
 									      <div style="display: flex; justify-content: space-between; width: 100%; hight: 100%; font-weight: bold;">
 									        <div>
 									          <span style="color: #f56a6a;">${cdto.cnowrecruit}</span>
@@ -311,10 +314,81 @@
 									        </div>
 									      </div>
 									  </div>
+									  
+									<script>
+								   	// 1. 모인 신청 버튼
+								   	function clubJoinBtn(){
+								   		if(confirm("해당 모임을 신청하시겠습니까?")){
+								   			alert("신청이 완료되었습니다.")
+								   		}
+								   	}
 								   
+								   	// 2. 모임 평가 버튼
+								   	function clubReviewBtn(){
+								   		if(confirm("모임평가 페이지로 이동하시겠습니까?")){
+								   		location.href='/club/cMEvaluation';
+								   		}else{
+								   		alert("모임정보 페이지로 이동합니다.");
+								   		location.href='/club/cSRSuggestion';
+								   		}
+								   	}
+								   	
+								   	
+								 	// 3. 신청하기 버튼(insert)
+								 	
+				       				function clubJoinBtn(cno){
+				       					if("${sessionId}"==""){
+				    						alert("로그인을 하셔야 신청하기가 가능합니다.");
+				    						location.href="/member/login";
+				    						return false;
+				    					}
+				       					if(confirm("모임신청을 하시겠습니까?")){
+				                        	  $.ajax({
+				                        		  url:"/club/clubJoinUser",
+				                        		  type:"post",
+				                        		  data:{"id": "${sessionId}",
+				                        			  	"cno" : cno},
+				                        		  success:function(data){
+				                        			  alert("신청하기가 완료되었습니다.");
+				                        			  alert(cno)
+				                        			  var dataHtml="";
+				                        			  
+				                        			  dataHtml += "<button type='button' onclick='clubJoinBtn()' id='apply-btn' class='button primary disabled fit'>신청완료</button>";
+				                          			  $("#"+cno).html(dataHtml);
+				                          			  
+				                        		  },
+				                        		  error:function(){
+				                        			  alert("실패");
+				                        		  }
+				                        	  });//ajax
+				                    	  }//if
+				                      }//신청하기 버튼 끝
+				                      
+								   </script>
+								   
+								   <c:if test="${(cdto.cnowrecruit/cdto.crecruitlimit)*100 != 100}">
+									   <c:if test="${cjoincount == 0}">
+									   <div class="col-12">
+									     <button type="button" onclick="clubJoinBtn(${cdto.cno})" id="apply-btn" class="button primary fit">신청하기</button>
+									   </div>
+									   </c:if>
+								   </c:if>
+								   <c:if test="${cjoincount == 1}">
+								   	   <c:forEach var="cjoinDto" items="${cjoinList}">
+									   <c:if test="${sessionId == cjoinDto.id}">
+									     <c:if test="${cjoinDto.cno == cdto.cno}">
+									     	<div class="col-12" id="${cdto.cno}">
+									     	 <button type="button" onclick="clubJoinBtn()" id="apply-btn" class="button primary disabled fit">신청완료</button>
+									     	</div>
+									    </c:if>
+								   	  </c:if>
+								   	 </c:forEach>
+								   </c:if>
+								   <c:if test="${(cdto.cnowrecruit/cdto.crecruitlimit)*100 == 100}">
 								   <div class="col-12">
-								     <button type="button" onclick="javascript:location.href='/club/cMEvaluation'" id="apply-btn" class="button primary fit">신청하기</button>
+								     <button type="button" onclick="clubReviewBtn()" id="apply-btn" class="button primary fit">모임평가</button>
 								   </div>
+								   </c:if>
 								   
 								   <!-- 모임글 상태에 따른 버튼 적용
 								   <div class="col-12">

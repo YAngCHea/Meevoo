@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.ClubDto;
+import com.java.dto.ClubJoinUserDto;
 import com.java.dto.PageDto;
 import com.java.service.ClubService;
 import com.java.service.ClubWriteSearchSFService;
@@ -65,16 +66,45 @@ public class ClubController {
 	
 
 	@RequestMapping("/club/cView")
-	public String cView(int cno, Model model) {
+	public String cView(@RequestParam(defaultValue = "1")int cno, 
+			PageDto pageDto,Model model) {
 		
 		// 모임목록 1개 가져오기
-		ClubDto cdto = clubService.selectClubOne(cno);
-		model.addAttribute("cdto", cdto);
+		HashMap<String, Object> map = clubService.selectClubOne(cno);
+		model.addAttribute("cdto", map.get("cdto"));
+		// pageDto 설정
+		model.addAttribute("pageDto", map.get("pageDto"));
 		
-		 
+		// 클럽 가입 목록 전체 가져오기
+		ArrayList<ClubJoinUserDto> cjoinList = clubService.selectcjAll(cno); 
+		model.addAttribute("cjoinList", cjoinList);
+		
+		// 해당 클럽에 가입 한 총 인원수
+		int cnowTotal = clubService.updateClubAll(cno);
+		model.addAttribute("cnowTotal", cnowTotal);
+		
+		// 클럽 가입한 아이디 Count(cno,sessionId)
+		String id = (String)session.getAttribute("sessionId");
+		if(id != null) {
+			int cjoincount = clubService.selectcjCount(cno,id); 
+			model.addAttribute("cjoincount", cjoincount);
+		}
+		System.out.println("controller id :"+id);
+		System.out.println("controller cno :"+cno);
+		
 		 
 		return "club/cView";
 	}
+	
+	
+	@RequestMapping("/club/clubJoinUser")
+	@ResponseBody //데이터로 리턴해서 가져와라
+	public ClubJoinUserDto cjoinUser(ClubJoinUserDto cjoinuserDto,Model model) {
+		// 모임 신청하기
+		ClubJoinUserDto cjudto = clubService.cjoinUser(cjoinuserDto);
+		return cjudto;
+	}
+	
 
 	
 	@GetMapping("/club/cWrite")

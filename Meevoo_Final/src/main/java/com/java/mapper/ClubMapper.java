@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.ClubDto;
+import com.java.dto.ClubJoinUserDto;
 import com.java.dto.PageDto;
 
 @Repository
@@ -33,6 +34,19 @@ public interface ClubMapper {
 
 	//모임목록 글 1개 저장
 	void insertClub(ClubDto cdto);
+	
+	
+	// 클럽 가입한 아이디 Count(cno,sessionId)
+	public int selectcjCount(int cno, String id);
+	// 클럽 가입 목록 전체 가져오기
+	public ArrayList<ClubJoinUserDto> selectcjAll(int cno);
+	// 해당 클럽에 가입 한 총 인원수
+	public int updateClubAll(int cno);
+	
+	// 모임 신청하기
+	public void cjoinUser(ClubJoinUserDto cjoinuserDto);
+	// 모임 신청한거 1개 가져오기
+	public ClubJoinUserDto selectCjuOne(ClubJoinUserDto cjoinuserDto);
 	
 	
 	 
