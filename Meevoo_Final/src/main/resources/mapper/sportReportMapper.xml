@@ -59,8 +59,14 @@
 	<!-- 문의글 1개 수정하기 -->
 	<update id="updateOne">
 		update sportreport set
+		<if test="srepimg != null">
 		srepcontent=#{srepcontent}, srepdate=sysdate,
 		srepinput=#{srepinput},srepimg=#{srepimg},sreptitle=#{sreptitle} where srepno=#{srepno}
+		</if>
+		<if test="srepimg == null">
+		srepcontent=#{srepcontent}, srepdate=sysdate,
+		srepinput=#{srepinput},sreptitle=#{sreptitle} where srepno=#{srepno}
+		</if>
 	</update>
 	
 	<!-- 문의글 1개 삭제하기 -->

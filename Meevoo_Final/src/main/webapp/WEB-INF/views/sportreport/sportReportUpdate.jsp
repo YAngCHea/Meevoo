@@ -27,6 +27,11 @@
 
 							<script>
 								function srepupdateBtn(){
+									if($("#sreptitle").val() == ""){
+										alert("내용을 입력해주세요.");
+										$("#sreptitle").focus();
+										return false;
+									}
 									if($("#srepinput").val() == ""){
 										alert("내용을 입력해주세요.");
 										$("#srepinput").focus();
@@ -51,7 +56,7 @@
 										</div>
 										<div class="day">
 											<p class="txt">제목
-												<input style="width: 300px;"type="text" name="sretitle" value="${srdto.sreptitle}" placeholder="제목을 입력해주세요."/>
+												<input style="width: 300px;"type="text" id="sreptitle" name="sreptitle" value="${srdto.sreptitle}" placeholder="제목을 입력해주세요."/>
 											</p>
 										</div>
 										<div class="day">

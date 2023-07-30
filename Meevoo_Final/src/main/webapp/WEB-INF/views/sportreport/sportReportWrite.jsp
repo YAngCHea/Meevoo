@@ -31,14 +31,14 @@
 										location.href="/member/login";
 										return false;
 									}
-									if($("#srepinput").val() == ""){
-										alert("내용을 입력해주셔야 합니다.");
-										$("#srepinput").focus();
-										return false;
-									}
 									if($("#sreptitle").val() == ""){
 										alert("제목을 입력해주셔야 합니다.");
 										$("#sreptitle").focus();
+										return false;
+									}
+									if($("#srepinput").val() == ""){
+										alert("내용을 입력해주셔야 합니다.");
+										$("#srepinput").focus();
 										return false;
 									}
 									alert("작성한 문의글을 저장합니다.");
