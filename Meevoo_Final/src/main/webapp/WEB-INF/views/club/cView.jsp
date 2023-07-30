@@ -166,6 +166,7 @@
 	 									      <!-- 운동모임 모임 정보\d-day, 일자 -->
 										      <p style="margin-bottom: 1em;">모임일자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										        <span style="font-weight: bold; color: #f56a6a">
+										          <%-- 
 										          <jsp:useBean id="nowRecsLoginList" class="java.util.Date" />
 												    <fmt:parseNumber value="${nowRecsLoginList.time / (1000*60*60*24)}" integerOnly="true" var="nowfmtTime" scope="request"/>
 												    <fmt:parseNumber value="${cdto.cdodate_date.time / (1000*60*60*24)}" integerOnly="true" var="dbDtParse" scope="request"/>
@@ -185,13 +186,16 @@
 														    D-${nowfmtTime - dbDtParse}
 													      </span>
 												        </c:if>
+										         --%>
 										        </span>&nbsp;&nbsp;
+										        <%-- 
 										        <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
 										          <fmt:formatDate value="${cdto.cdodate_date}" type="both" dateStyle ="long" pattern="yyyy-MM-dd (E)" />
 										        </span>
 										        <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
 										          <fmt:formatDate value="${cdto.cdodate_time}" type="both" dateStyle ="short" pattern="a hh:mm" />
 										        </span>
+										      --%>
 										      </p>
 										      <!-- 운동모임 모임 정보\d-day, 일자 끝-->
 										      <p style="margin-bottom: 1em;">모임장소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cdto.sfnm}</p>

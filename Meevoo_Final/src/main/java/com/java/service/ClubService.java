@@ -26,7 +26,7 @@ public interface ClubService {
 	ArrayList<ClubDto> selectClubFilter(ClubDto clubDto);
 
 	//모임목록 글 1개 저장
-	void insertClub(ClubDto cdto, String id, String cnm, MultipartFile files);
+	void insertClub(ClubDto cdto);
 	
 	
 	 

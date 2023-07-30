@@ -23,9 +23,12 @@ public class ClubDto {
 	private int sfno;
 	//private String dongcate;
 	private String cloc;
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") private Date cdodate;
-	@DateTimeFormat(pattern = "yyyy-MM-dd") private Date cdodate_date;
-	@DateTimeFormat(pattern = "HH:mm") private Date cdodate_time;
+	private Date cdodate;
+	/*
+	 * @DateTimeFormat(pattern = "yyyy-MM-dd") private Date cdodate_date;
+	 * 
+	 * @DateTimeFormat(pattern = "HH24:mm") private Date cdodate_time;
+	 */
 	private String ccontent;
 	private int ctotalpick;
 	private int crecruitlimit;

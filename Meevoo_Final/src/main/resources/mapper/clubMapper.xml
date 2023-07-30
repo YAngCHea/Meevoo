@@ -86,9 +86,15 @@
    
   <insert id="insertClub">
 	  insert into clublist 
+(cno, id, cnm, cwrdate, cimg, sfno, dongcate,cloc,cdodate,ccontent,ctotalpick,crecruitlimit,cnowrecruit, cnowstatus, scate) 
+values 
+(clublist_seq.nextval,#{id},#{cnm},sysdate,#{cimg},1,#{dongcate},#{cloc}, sysdate, #{ccontent},#{ctotalpick},#{crecruitlimit},#{cnowrecruit},#{cnowstatus},#{scate} )
+	  <!-- 
+	  insert into clublist 
 (cno, id, cnm, cwrdate, cimg, sfno, dongcate,cloc,cdodate,ccontent,ctotalpick,crecruitlimit,cnowrecruit, cnowstatus, scate, cdodate_time, cdodate_date) 
 values 
-(clublist_seq.nextval,#{id},#{cnm},sysdate,#{cimg},#{sfno},#{dongcate},#{cloc}, #{cdodate}, #{ccontent},#{ctotalpick},#{crecruitlimit},#{cnowrecruit},#{cnowstatus},#{scate},TO_DATE(#{cdodate_time}, 'HH24:MI'), TO_DATE(#{cdodate_date}, 'YYYY-MM-DD'))
+(clublist_seq.nextval,#{id},#{cnm},sysdate,#{cimg},#{sfno},#{dongcate},#{cloc}, sysdate, #{ccontent},#{ctotalpick},#{crecruitlimit},#{cnowrecruit},#{cnowstatus},#{scate},TO_DATE(#{cdodate_time}, 'HH24:MI'), TO_DATE(#{cdodate_date}, 'YYYY-MM-DD') )
+   -->
   </insert>
 
 

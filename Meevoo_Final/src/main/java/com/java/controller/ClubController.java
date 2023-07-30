@@ -79,19 +79,14 @@ public class ClubController {
 	
 	@GetMapping("/club/cWrite")
 	public String cWrite() {
+		
 		return "club/cWrite";
 	}
 	
 	
 	@PostMapping("/club/cWrite") 
-	public String doCWrite(ClubDto cdto, String id, String cnm, @RequestPart MultipartFile file, Model model) throws Exception { 
-		id = (String)session.getAttribute("sessionId");
-		model.addAttribute("cnm",cnm);
-		model.addAttribute("cdto", cdto);
-		
-		
-		//System.out.println("ClubController cnm: " +cdto.getCnm());
-		System.out.println("ClubController cimg: " +cdto.getCimg());
+	public String doCWrite(ClubDto cdto, @RequestPart MultipartFile file, Model model) throws Exception { 
+		//String id = (String)session.getAttribute("sessionId");
 		
 		//사진 1개 저장
 		String fileName="";
@@ -104,15 +99,12 @@ public class ClubController {
 			String uploadUrl = "c:/upload/"; //파일업로드위치
 			File f = new File(uploadUrl+fileName);
 			file.transferTo(f); //파일저장시킴
-		}
-		System.out.println("doCWrite cimg :"+fileName);
-		cdto.setCimg(fileName);
+		}//if
 		
+		cdto.setCimg(fileName); //cdto에 fileName이름 저장
 		//모임목록 글 1개 저장
-		clubService.insertClub(cdto, id, cnm, file);
-	    String result="i_success"; //insert가 성공한다
-	 
-		return "redirect:/club/club?result="+result; 
+		clubService.insertClub(cdto);
+		return "redirect:/club/club"; 
 	}
 	 
 	

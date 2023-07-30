@@ -1,7 +1,10 @@
 package com.java.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -88,13 +91,10 @@ public class ClubServiceImpl implements ClubService {
 
 
 	@Override //모임목록 글 1개 저장
-	public void insertClub(ClubDto cdto, String id, String cnm, MultipartFile file) {
-		//System.out.println("ClubServiceImpl Id : "+cdto.getId());
-		//System.out.println("ClubServiceImpl cnm : "+cdto.getCnm());
-		System.out.println("ClubServiceImpl cimg : "+cdto.getCimg());
+	public void insertClub(ClubDto cdto) {
 		
 		//mapper로 전송 - 모임목록 글 1개 저장
-		clubMapper.insertClub(cdto, id, cnm, file);
+		clubMapper.insertClub(cdto);
 		
 	}//모임목록 글 1개 저장
 
