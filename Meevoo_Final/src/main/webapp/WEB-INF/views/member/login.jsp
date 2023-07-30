@@ -17,6 +17,9 @@
 		<link rel="stylesheet" href="../css/main.lee.css" />
 		<link rel="stylesheet" href="../css/login.lee.css" />
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<style>
+			.button{cursor:pointer;}
+		</style>
 	</head>
 	<script>
 	if("${loginCheck}"== "fail"){ //jstl 언어 
@@ -24,6 +27,19 @@
 		$(".idType").focus(); //java script 언어
 	}
 	
+    </script>
+    <script>
+    	function loginBtn(){
+    		if($(".idType").val().length<3){ //jquery 구문
+    			alert("아이디는 2자리 이상 입력하셔야 합니다.")
+    			$(".idtype").focus();
+    			return false;
+    		}else{
+	    		/* alert("환영합니다!!"); */
+    			
+    		}
+    		loginFrm.submit();
+    	}
     </script>
 	<body class="is-preload">
 
@@ -37,51 +53,29 @@
 						<!-- top.jsp -->
 						<%@ include file="../top.jsp" %>
 						
-
-
 							<!-- Content -->
 								<section>
 									
 								<p class="tip">Meevoo</p>
 								<div class="cont">
-								  <div class="form sign-in">
-								    <h1>환영합니다!</h1>
-								    
-								    <script>
-								    	function loginBtn(){
-								    		if($(".idType").val().length<3){ //jquery 구문
-								    			alert("아이디는 2자리 이상 입력하셔야 합니다.")
-								    			$(".idtype").focus();
-								    			return false;
-								    		}else{
-									    		/* alert("환영합니다!!"); */
-								    			
-								    		}
-								    		loginFrm.submit();
-								    	}
-								    </script>
-								    
-								    <form action="/member/login" method="post" name="loginFrm">
-									    <label>
-									      <span>아이디</span>
-									      <input type="text" name="id" class="idType"/>
-									    </label>
-									    <label>
-									      <span>비밀번호</span>
-									      <input type="password" name="pw" class="passType"/>
-									    </label>
-									    <p class="forgot-pass">아이디/비밀번호를 잊으셨나요?</p>
-									    <button type="button" style="cursor:pointer;" onclick="loginBtn()" class="button">로그인</button><br>
-									    <a href="/member/agree"><button type="button" class="button">회원가입</button></a><br>
-									    <button type="button" class="button primary">소셜로그인 <span>구글</span></button>
-								    </form>
-								  </div>
-								  
-								
+									<div class="form sign-in">
+									    <h1>환영합니다!</h1>
+									    <form action="/member/login" method="post" name="loginFrm">
+										    <label>
+											    <span>아이디</span>
+											    <input type="text" name="id" class="idType"/>
+										    </label>
+										    <label>
+											    <span>비밀번호</span>
+											    <input type="password" name="pw" class="passType"/>
+										    </label>
+										    <p class="forgot-pass">아이디/비밀번호를 잊으셨나요?</p>
+										    <button type="button" onclick="loginBtn()" class="button">로그인</button><br>
+										    <a href="/member/agree"><button type="button" class="button">회원가입</button></a><br>
+										    <button type="button" class="button primary">소셜로그인 <span>구글</span></button>
+									    </form>
+									</div>
 								</div>
-								
-
-
 								</section>
 								
 								<!-- //footer.jsp -->
@@ -89,7 +83,6 @@
 								
 						</div>
 					</div>
-
 
 				<!-- sidebar.jsp -->
 				<%@ include file="../sidebar.jsp" %>

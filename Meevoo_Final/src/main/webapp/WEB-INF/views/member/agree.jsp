@@ -436,6 +436,14 @@
 
 
 					<!-- Btn Area -->
+					<div class="btnArea" style="margin:100px 0 0; display: flex;">
+						<div class="bCenter" style="text-align: center; margin:0 auto;">
+							<ul style="margin:0 10px 0 0; padding:0 0 50px 0;">
+								<li style="margin:0 2px 0 0; float:left;"><a onclick="chkBtn()" style="cursor: pointer;" class="button small fit">동의완료</a></li>
+								<li style="float:left;"><a href="../main" class="button primary small fit">취소하기</a></li>
+							</ul>
+						</div>
+					</div>
 					<script>
 						function chkBtn(){
 							//alert("체크박스 총 개수 : "+$("input:checkbox[name=agree]").length);
@@ -447,21 +455,13 @@
 										this.checked = true;
 									});
 									alert("모두 동의 처리하였습니다.");
-									return false;
+									location.href="/member/join";
 								}
+									return false;
 								
 							}//if
-							location.href="/member/step03";
 						}
 					</script>
-					<div class="btnArea" style="margin:100px 0 0; display: flex;">
-						<div class="bCenter" style="text-align: center; margin:0 auto;">
-							<ul style="margin:0 10px 0 0; padding:0 0 50px 0;">
-								<li style="margin:0 2px 0 0; float:left;"><a href="join" onclick="chkBtn()" style="cursor: pointer;" class="button small fit">동의완료</a></li>
-								<li style="float:left;"><a href="../main" class="button primary small fit">취소하기</a></li>
-							</ul>
-						</div>
-					</div>
 					<!-- //Btn Area -->
 
 

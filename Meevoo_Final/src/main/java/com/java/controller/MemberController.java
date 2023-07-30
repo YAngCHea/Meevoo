@@ -78,7 +78,6 @@ public class MemberController {
 		String[] scate = memberService.selectscateAll();
 		String[] dongcate = memberService.selectdongcateAll();
 		
-		
 		for(int i=0;i<scate.length;i++) { 
 			//System.out.println("scate : "+scate[i]);
 		} 
@@ -96,18 +95,9 @@ public class MemberController {
 	//회원가입시 입력한 정보 저장
 	@PostMapping("/member/join")
 	public String join(MemberDto memberDto, MultipartFile file, Model model) throws Exception {
-		//System.out.println("MemberController usernm : "+memberDto.getUsernm());
 		//System.out.println("MemberController id : "+memberDto.getId());
-		//System.out.println("MemberController pw : "+memberDto.getPw());
-		//System.out.println("MemberController email : "+memberDto.getEmail());
-		//System.out.println("MemberController gender : "+memberDto.getGender());
-		//System.out.println("MemberController addr : "+memberDto.getAddr());
-		//System.out.println("MemberController birth : "+memberDto.getBirth());
-		//System.out.println("MemberController scate : "+memberDto.getScate());
-		//System.out.println("MemberController dongcate : "+memberDto.getDongcate());
-		
 		 
-		 //회원가입시 입력한 정보 저장
+		//회원가입시 입력한 정보 저장
 		memberService.insertMem(memberDto, file); 
 		String result = "mem_success";
 		
@@ -123,7 +113,6 @@ public class MemberController {
 		String result = "";
 		MemberDto mdto = memberService.selectIdOne(id);
 		if(mdto!=null) {
-			//System.out.println("idcheck : "+mdto);
 			result="fail";
 		}else {
 			result="success";
@@ -141,7 +130,7 @@ public class MemberController {
 	//회원 탈퇴하기
 	@RequestMapping("/member/deleteUser")
 	public String deleteUser(String id) {
-		//System.out.println("MemberController id : "+id);
+
 		//회원 탈퇴
 		memberService.deleteUser(id);
 		session.invalidate();

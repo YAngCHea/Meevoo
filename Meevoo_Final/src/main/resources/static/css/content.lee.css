@@ -407,7 +407,7 @@
 .memberbd{width:100%; margin:10px 0 0 0; border-bottom:1px #eaeaea solid; overflow:hidden;}
 .memberWrite{width:100%;border-color:#eaeaea;border-width:0;border-spacing:0;border-style:none;font-size:12px;}
 .memberWrite th{width:40%; border-color:#eaeaea;border-width:1px 0 0 0;color:#666;font-weight:bold;border-style:solid none none none;text-align:right;padding:13px 0 12px 0;vertical-align:top;font-size:14px; word-break:keep-all;}/*width:40%; 추가, 이전코드:text-align:left; */
-.memberWrite th span{display:block; padding:0 0 0 10px;line-height:1.2;}
+.memberWrite th span{display:block; padding:0 50px 0 10px;line-height:1.2;}/*원래코드 padding:0 0 0 10px; 수정-지원*/
 .memberWrite th label{padding:0 0 0 10px;}
 .memberWrite td{border-color:#eaeaea;border-width:1px 0 0 0;padding:10px 0 10px 10px;text-align:left;border-style:solid none none none;color:#444;vertical-align:middle; word-break:keep-all;}
 .memberWrite td label{font-size:11px; color:#666; cursor:pointer; line-height:18px;}

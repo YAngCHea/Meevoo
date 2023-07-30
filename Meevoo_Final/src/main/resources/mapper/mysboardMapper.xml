@@ -5,14 +5,6 @@
 
 	<!-- 체육시설 - 찜한 리스트 전체 가져오기 -->
 	<select id="selectSportPickAll" resultType="com.java.dto.SListPickDto">
-        <!-- select * from (select rownum rnum, c.* from
-		(select d.* from 
-        (select spickno, b.sfno sfno, id, spickdate, spickyn,
-        sfnm, dongcate from sportList a join 
-        (SELECT * FROM sportPick WHERE SPICKYN='YES') b
-        on a.sfno = b.sfno)d order by spickno desc) c)
-        where rnum between #{pageDto.startRow} and #{pageDto.endRow} and id=#{id} -->
-        
         select * from (select rownum rnum, c.* from
 		(select d.* from 
         (select spickno, b.sfno sfno, id, spickdate, spickyn,
@@ -57,13 +49,6 @@
 	
 	<!-- 체육시설 - 후기 작성한 리스트 전체 가져오기 -->
 	<select id="selectSportReviewAll" resultType="com.java.dto.SListReviewDto">
-		<!-- select * from (select rownum rnum, c.* from
-		(select d.* from 
-        (select sreno, b.sfno sfno, id, sfnm, dongcate, sredate
-        from sportList a join sportreview b
-        on a.sfno = b.sfno)d order by sreno desc) c) 
-        where rnum between #{startRow} and #{endRow} -->
-        
         select * from (select rownum rnum, c.* from
 		(select d.* from 
         (select sreno, b.sfno sfno, id, sfnm, dongcate, sredate

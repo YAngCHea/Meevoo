@@ -80,8 +80,7 @@ public class MypageController {
 	public String updateSaveUser(MemberDto memberDto,
 			MultipartFile file) throws Exception {
 		
-		
-		System.out.println("MypageController img1 : "+memberDto.getUserimg());
+		System.out.println("MypageController img11 : "+memberDto.getUserimg());
 		//이미지 파일 있을 경우 저장
 		String fileName = "";
 		if(!file.isEmpty()) {
@@ -95,13 +94,9 @@ public class MypageController {
 			memberDto.setUserimg(fileName);
 		}else {
 			
-			//수정하기전 이미지 저장
-			/* memberDto.setUserimg(req.getParameter("${mdto.userimg}")); */
-			/* memberDto.setUserimg(fileName); */
-			 
 		}
 		
-		System.out.println("MypageController img2 : "+memberDto.getUserimg());
+		System.out.println("MypageController img22 : "+memberDto.getUserimg());
 		
 		//회원정보 수정 저장
 		memberService.updateSaveUser(memberDto);

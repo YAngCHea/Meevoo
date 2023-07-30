@@ -14,6 +14,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main.lee.css" />
+		<link rel="stylesheet" href="../css/login.lee.css" /> 
+		<link rel="stylesheet" href="../css/content.lee.css" />
 		<link rel="stylesheet" href="../css/profil.lee.css">
 		<!-- 제이쿼리 최신 -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -22,20 +24,21 @@
 			.section1{color: black;}
 			.main1{width:200px; margin:0 auto;}
 			.main1 h2{margin: 35px 0 35px 0; text-align: center; border-bottom: 1px solid lightgray; font-size: 40px;}
-			.profile{height: 180px; text-align: center; margin:20px 0;}
+			.profile{border-bottom:1px dotted #f56a6a; height: 180px; text-align: center; margin:20px 0;}
 			#preview{margin:0 0 20px;}
 			#preview img{width:150px;}
-			#info1_1, #info1_2,#info1_3, #info1_4, #info1_5, #info1_6, #info1_7, #info1_8
-				{width:150px; margin:20px 100px 10px 100px; font-size:15px; float:left;}
-			#info1_11, #info1_12{display: flex; flex-direction: row;}
-			#info1_21, #info1_22{display: flex; flex-direction: row;}
-			#info1_31, #info1_32{display: flex; flex-direction: row;}
-			#info1_41, #info1_42{display: flex; flex-direction: row;}
-			.wrapper1{border-bottom:1px dotted #f56a6a; width:800px; height:500px; margin:0 auto;}
-			.wrapper2{width:800px; height:400px; margin:10px auto;}
-			.info2 .info3{width:370px; margin:10px 50px 10px 50px; font-size:15px; display: inline-block; font-size:15px;
-			 line-height: 40px;}
-			.info3 select{width:200px; float:right; font-size:15px;}
+			.info1{width:100%; height: 60%;}
+			#info11, #info12, #info13, #info14{width:100%; height:25%; bottom:0px; margin:0 auto;}
+			#info15, #info16{width:100%; height:80px; bottom:0px; margin:0 auto;}
+			#name1, #id1,#gender1,#pw1,#age1,#email1,#temp1,#join1,#nicknm1,#blank1,#dong1,#exercise1
+				{width:50%; height:100%; padding:0 0 0 50px; font-size:15px; float:left;}
+			#intro1{width:100%; height:100%; padding:0 0 0 25px; font-size:15px; float:left;}
+			#name2,#id2,#gender2,#pw2,#age2,#email2,#temp2,#join2,#nicknm2,#blank2,
+			#dong2,#exercise2,#intro2{width:100%; height:100%; padding:6%; }
+			
+			.wrapper1{width:800px; height:500px; margin:0 auto;}
+			.wrapper2{border-top:1px dotted #f56a6a; width:800px; height:400px; margin:10px auto;}
+			.info2 .info3{width:100%; height: 60%; margin:10px 50px 10px 50px; font-size:15px; display: inline-block; line-height: 40px;}
 			.nic2{width:700px; margin:10px 50px 10px 50px; font-size:15px; display: flex;}
 			.cell{margin:10px 50px 0 50px; font-size:15px;}
 			.subject{margin: 5px;}
@@ -72,7 +75,6 @@
 											<div class="profile">
 												<c:if test="${mdto.userimg == null }">
 			                                   		<img src="https://cdn-icons-png.flaticon.com/512/848/848043.png" width="150px"/>
-			                                   		
 			                                   	</c:if>
 												<c:if test="${mdto.userimg != null }">
 			                                   		<img src="/upload/${mdto.userimg }" width="150px"/>
@@ -87,59 +89,46 @@
 												<label for="profile-photo">프로필 사진 수정</label> -->
 											</div>
 											<div class="info1">
-												<div>
-													<div id="info1_1">
-														<div id="info1_11">이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-														<!-- </div>
-														<div id="info1_12" name="usernm"> -->
+												<div id="info11">
+													<div id="name1">
+														<div id="name2">이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														&nbsp;&nbsp;&nbsp;:
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.usernm }</div>
 													</div>
-													<div id="info1_2">	
-														<div id="info1_21">아이디&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-														<!-- </div>
-														<div id="info1_22" name="id"> -->
+													<div id="id1">	
+														<div id="id2">아이디&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.id }</div>
 													</div>
 												</div>
-												<div>
-													<div id="info1_3">
-														<div id="info1_31">성별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-														<!-- </div>
-														<div id="info1_32" name="gender"> -->
+												<div id="info12">
+													<div id="gender1">
+														<div id="gender2">성별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														&nbsp;&nbsp;&nbsp;:
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.gender }</div>
 													</div>
-													<div id="info1_4">	
-														<div id="info1_41">비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-														<!-- </div>
-														<div id="info1_42" name="pw"> -->
+													<div id="pw1">	
+														<div id="pw2">비밀번호&nbsp;&nbsp;&nbsp;&nbsp;:
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.pw }</div>
 													</div>
 												</div>
-												<div>
-													<div id="info1_5">
-														<div id="info1_51">나이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-														<!-- </div>
-														<div id="info1_52" name="birth"> -->
+												<div id="info13">
+													<div id="age1">
+														<div id="age2">나이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														&nbsp;&nbsp;&nbsp;:
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.birth } 년생</div>
 													</div>
-													<div id="info1_6">
-														<div id="info1_61">이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-														<!-- </div>
-														<div id="info1_62" name="email"> -->
+													<div id="email1">
+														<div id="email2">이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.email }</div>
 													</div>
 												</div>
-												<div>
-													<div id="info1_7">
-														<div id="info1_71">내 온도&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-														<!-- </div>
-														<div id="info1_72" name="totaltemp"> -->
+												<div id="info14">
+													<div id="temp1">
+														<div id="temp2">내 온도&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.totaltemp }℃</div>
 													</div>
-													<div id="info1_8">
-														<div id="info1_81">회원가입일자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-														<!--  </div>
-														<div id="info1_82"> -->
+													<div id="join1">
+														<div id="join2">가입일자&nbsp;&nbsp;&nbsp;&nbsp;:
 														<td>
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															<fmt:formatDate value="${mdto.joindate}" pattern="yyyy-MM-dd" />
@@ -148,46 +137,47 @@
 													</div>
 												</div>
 											</div>
-											
 										</div>
 										
 										<div class="wrapper2">
-											<div class="info2">
-												<div class="nic1">
-													<div class="nic2">
-														<div>닉네임&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.nicknm }</div>
-													</div>
+											<div id="info15">
+												<div id="nicknm1">
+													<div id="nicknm2">닉네임&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.nicknm }</div>
 												</div>
-												<div>
-													<div class="info2">
-														<div class="info3">관심지역&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.dongcate }
-														</div>
-													</div>
-													<div class="info2">
-														<div class="info3">관심운동&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.scate }
-														</div>
-													</div>
+												<div id="blank1">
+													<div id="blank2">&nbsp;</div>
 												</div>
-												<div class="cell">
-													<div class="subject">자기소개</div>
-													<div>
-														<textarea id="textbox" name="salfintro" value="${mdto.selfintro }" readonly>${mdto.selfintro }</textarea>
-													</div>
+											</div>
+											<div id="info16">
+												<div id="dong1">
+													<div id="dong2">관심지역&nbsp;&nbsp;&nbsp;&nbsp;:
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.dongcate }</div>
+												</div>
+												<div id="exercise1">
+													<div id="exercise2">관심운동&nbsp;&nbsp;&nbsp;&nbsp;:
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.scate }</div>
+												</div>
+											</div>
+											
+											<div id="info17">
+												<div id="intro1">
+													<div id="intro2">자기소개&nbsp;&nbsp;&nbsp;&nbsp;:
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${mdto.selfintro }</div>
 												</div>
 											</div>
 										</div>
 	
 									</div>
+									
+									
 									<!-- Btn Area -->
 									<div class="btnArea">
 										<div class="bCenter">
 											<ul>
 												<!-- form 을 사용했을때 button 에서 type=button 을 안넣으면 다시 이 페이지를 돌기때문에 href가 안먹힌다. -->
-												<li><button type="button" style="cursor:pointer;" onclick="EditBtn()" class="button small fit">수정</button></li>
-												<li><button type="button" style="cursor:pointer;" onclick="DeleteBtn()" class="button primary small fit">탈퇴</button></li>
+												<li><button type="button" style="cursor:pointer; margin: 0 auto;" onclick="EditBtn()" class="button small fit">수정</button></li>
+												<li><button type="button" style="cursor:pointer; margin: 0 auto;" onclick="DeleteBtn()" class="button primary small fit">탈퇴</button></li>
 											</ul>
 											<script type="text/javascript">
 												function EditBtn(){

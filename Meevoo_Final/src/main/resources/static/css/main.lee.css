@@ -1087,7 +1087,7 @@ input[type="tel"],
 input[type="search"],
 input[type="url"],
 select {
-  height: 2.55em; } /*2.75em; 원래 코드 수정-지원*/
+  height: 2.5em; } /*2.75em; 원래 코드 수정-지원*/
 
 textarea {
   padding: 0.75em 1em; }
@@ -2327,8 +2327,9 @@ button,
 }
 .tab .nav {
   display: table;
-  width: 100%;
+  width: 85%; /*원래코드 100% 수정-지원*/
   margin-bottom: 40px;
+  margin:0 auto;
 }
 .tab .nav>li {
   display: table-cell;

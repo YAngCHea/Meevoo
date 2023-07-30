@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="../css/login.lee.css" /> 
 <link rel="stylesheet" href="../css/content.lee.css" />
 <style>
+	.attention{text-align: center;}
 	#emailList{margin: 5px 0 0;}
 	#pta_email{height:80px;}
 	.addressType{text-align: left;}
@@ -27,8 +28,16 @@
 	#m{width:30px; margin:7px; font-size: 12px;}
 	#f{width:30px; margin:7px; font-size: 12px;}
 	#chk_e{width:100px; padding:8px 0 0 10px;}
-	#postcode1{height:50px;}
+	#postcode1{height:50px; padding: 0;}
 	#pta_email{display: none;}
+	#id{padding:10px 0 0 0;}
+	#korname{padding:10px 0 0 0;}
+	.inter{padding:10px 0 0 10px;}
+	#li_email{padding:0;}
+	#birth{height:30px;}
+	#dongcate{height:30px;}
+	#scate{height:30px;}
+	#btnA{padding:0 0 20px 0;}
 </style>
 <!-- 제이쿼리 최신 -->
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -142,36 +151,7 @@ function id_check() {
 </script> -->
 
 <!-- 사용할페이지 -->
-<script type="text/javascript">
-function idcheckBtn(){ //ajax은 페이지가 아닌 값으로 넘겨준다.
-		//alert("아이디 중복검사");
-	$.ajax({
-		url:"idcheck",
-		type:"get",
-		data:{"id" :$("#id").val()},
-		success:function(result){
-			//alert("아이디를 확인하였습니다.");
-			/* checkId = result; */
-			console.log("checkedId : "+result);
-			if($("#id").val()!=""){
-				if(result=="success"){
-					$("#idCheckText").html("<span class='mvalign orange'>* 사용가능한 아이디입니다.</span>")
-				}else{
-					$("#idCheckText").html("<span class='mvalign black'>* 아이디를 사용할 수 없습니다.</span>")
-					$("#id").val("");
-				}
-			}else{
-				alert("아이디를 입력 후 중복확인을 해주세요");
-				$("#id").focus();
-			}
-		},
-		error:function(){
-			alert("실패");
-			$("#id").focus();
-		}
-	});
-}
-</script>
+
 <script type="text/javascript"> /* 글자수, 입력 조건 스크립트 */
 	function joinform_check(){
 		let nameCheck = /^[ㄱ-ㅎ가-힣]{2,}$/ //^[ㄱ-ㅎ가-힣].{1,}$/ ; // ^ 는 시작 [모든 국문자] + 는 하나이상 $ 는 끝
@@ -191,15 +171,6 @@ function idcheckBtn(){ //ajax은 페이지가 아닌 값으로 넘겨준다.
 			$("#name").focus();
 			return false;
 		}
-		
-		//이름 입력, 두글자 이상 입력 가능
-		/* let name_len = $("#mem_name").val().length
-		if($("#mem_name").val() != ""){
-		}else{
-			alert("이름을 입력하세요.");
-			$("#mem_name").focus();
-		    return false;
-		} */
 		
 		//아이디 입력, 소문자 2자리 이상 입력 가능
 		if ($("#id").val()!="") {
@@ -297,60 +268,6 @@ function idcheckBtn(){ //ajax은 페이지가 아닌 값으로 넘겨준다.
 	}
 </script> <!-- 사용할페이지 -->
 
-
-
-
-<!-- <script type="text/javascript"> /* 글자수, 입력 조건 스크립트 */
-	function joinform_check(){
-		let nameCheck = /^[ㄱ-ㅎ가-힣]+$/ ; // ^ 는 시작 [모든 국문자] + 는 하나이상 $ 는 끝
-		let numCheck = /^[0-9]+$/ ;  //숫자인지
-		let alphaCheck = /^[a-zA-Z]+$/ ; //영문자인지
-		let etcCheck = /^[!@#$%^&*,.?_-]+$/ ; //특수문자인지
-		let idCheck = /^[a-z]{2,}$/ ; //영문자, 숫자, _ 만 가능 {} 는 자릿수
-		let idCheck1 = /^[a-zA-Z0-9_]{2,5}$/ ; //영문자, 숫자, _ 만 가능 {} 는 자릿수
-		let idCheck2 = /^[a-zA-Z]{1}[a-zA-Z0-9_]{2,5}$/ ; //1번째 무조건 영문자만 가능
-		let pwCheck = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{2,7}$/ ;  // ? 는 비교 . 은 한개씩 * 모든 것  즉 한개씩 모든 것을 가져와서 비교해라 한개라도 있으면 True 
-		let pwCheck2 = /^[0-9]{5}$/ ;
-		let phoneCheck = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/ ; 010-1111-1111
-		
-		//이름 입력
-		let name_len = $("#mem_name").val().length
-		//이름(한글만, 2글자 이상 입력 가능)
-		if(nameCheck.test($("#mem_name").val())){
-			if(name_len<2){
-				alert("두글자 이상 입력하셔야 합니다.");
-				$("#mem_name").focus();
-				return false;
-			}else{
-				alert("성공");
-			}
-		}else{
-			alert("한글만 입력가능합니다.");
-			$("#mem_name").focus();
-			return false;
-		}
-	
-		//아이디 입력, 소문자 2자리 이상 입력 가능
-		if(!idCheck.test($("#mem_id").val())){
-			alert("영문 소문자 2자리 이상 입력이 가능합니다.");
-			$("#mem_id").focus();
-			return false;
-		}else{
-			alert("성공!!!!");
-		}
-		
-		//패스워드 입력, 숫자 5자리만 입력 가능
-		if(!pwCheck2.test($("#mem_pw").val())){
-			alert("5자리 숫자만 입력이 가능합니다.");
-			$("#mem_pw").focus();
-			return false;
-		}else{
-			alert("성공!!!!");
-		}
-		alert("회원정보를 저장합니다.");
-	}
-</script> -->
-
 <!-- 우편번호찾기 스크립트 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript"> 
@@ -431,7 +348,6 @@ function addrBtn() {
 					
 										<form action="/member/join" id="memberFrm" name="memberFrm" method="post" onsubmit="check()">
 										
-										
 										<div class="memberbd">
 											<table summary="이름, 아이디, 비밀번호, 비밀번호 확인, 이메일, 이메일확인, 주소, 생년, 성별, 스포츠 종목 순으로 회원가입 정보를 등록할수 있습니다." class="memberWrite" border="1" cellspacing="0">
 												<caption display="none">회원가입 입력</caption>
@@ -444,8 +360,8 @@ function addrBtn() {
 														<th scope="row"><span>이름 *</span></th>
 														<td>
 															<ul class="pta">
-																<li class="r10"><input type="text" name="usernm" id="name" class="w134"  required/></li>
-																<li style="padding:10px 0 0 0;" ><span class="mvalign">※ 한글만 사용가능</span></li>
+																<li class="r10"><input type="text" name="usernm" id="name" class="w134"/></li>
+																<li id="korname"><span class="mvalign">※ 한글만 사용가능</span></li>
 															</ul>
 														</td>
 													</tr>
@@ -460,6 +376,36 @@ function addrBtn() {
 														</td>
 													</tr>
 													
+													<script type="text/javascript">
+														function idcheckBtn(){ //ajax은 페이지가 아닌 값으로 넘겨준다.
+																//alert("아이디 중복검사");
+															$.ajax({
+																url:"idcheck",
+																type:"get",
+																data:{"id" :$("#id").val()},
+																success:function(result){
+																	//alert("아이디를 확인하였습니다.");
+																	/* checkId = result; */
+																	console.log("checkedId : "+result);
+																	if($("#id").val()!=""){
+																		if(result=="success"){
+																			$("#idCheckText").html("<span class='mvalign blue'>* 사용가능한 아이디입니다.</span>")
+																		}else{
+																			$("#idCheckText").html("<span class='mvalign red'>* 아이디를 사용할 수 없습니다.</span>")
+																			$("#id").val("");
+																		}
+																	}else{
+																		alert("아이디를 입력 후 중복확인을 해주세요");
+																		$("#id").focus();
+																	}
+																},
+																error:function(){
+																	alert("실패");
+																	$("#id").focus();
+																}
+															});
+														}
+													</script>
 													<tr>
 														<th scope="row"><span>비밀번호 *</span></th>
 														<td>
@@ -473,9 +419,9 @@ function addrBtn() {
 														function pwKey(){
 															let pw1 = $("#pw").val();
 															if(pw1 == $("#pw2").val()){
-																$("#pwKeyText").html("<span class='mvalign black'>* 비밀번호가 일치합니다.</span>")
+																$("#pwKeyText").html("<span class='mvalign blue'>* 비밀번호가 일치합니다.</span>")
 															}else{
-																$("#pwKeyText").html("<span class='mvalign orange'>* 비밀번호가 일치하지 않습니다.</span>")
+																$("#pwKeyText").html("<span class='mvalign red'>* 비밀번호가 일치하지 않습니다.</span>")
 															}
 															
 															console.log($("#pw2").val());
@@ -497,7 +443,7 @@ function addrBtn() {
 														<th scope="row"><span>이메일</span></th>
 														<td>
 															<ul class="pta">
-																<li><input type="text" name="email" id="email1" class="w134" style="width:163px;"/></li>
+																<li id="li_email"><input type="text" name="email" id="email1" class="w134" style="width:163px;"/></li>
 																<!-- <li><input type="text" name="email1" id="email1" class="w134" style="width:163px;"/></li>
 																<li id=valign1><span id="middle" class="valign">&nbsp;@&nbsp;</span></li>
 																<li class="r10"><input type="text" name="email2" id="email2" class="w134" style="width:163px;"/></li> -->
@@ -553,11 +499,11 @@ function addrBtn() {
 																	}
 																}
 															</script> -->
-															<!-- <script> <사용할 스크립트>
+															<script> <!-- <사용할 스크립트>
 																let temp_code=""; //전역변수로 사용
 																
 																function emailBtn(){
-																	if($("#name").val()=="" || $("#email1").val()=="" || $("#email2").val()==""){
+																	if($("#name").val()=="" || $("#email1").val()==""/*  || $("#email2").val()=="" */){
 																		alert("이름과 이메일을 입력한 후 인증코드 발송 버튼을 클릭하세요");
 																	}else{
 																		$("#pta_email").css("display","block");
@@ -566,7 +512,7 @@ function addrBtn() {
 																	$.ajax({
 																		url:"/member/emailSend",
 																		type:"post",
-																		data:{"usernm":$("#name").val(),"email":$("#email1").val()+"@"+$("#email2").val()},
+																		data:{"usernm":$("#name").val(),"email":$("#email1").val()/* +"@"+$("#email2").val() */},
 																		success:function(data){
 																			alert("이메일이 발송되었습니다.");
 																			temp_code = data;
@@ -578,8 +524,6 @@ function addrBtn() {
 																		}
 																	});
 																}
-																
-																
 																
 																function authBtn(){
 																	if($("#temp_code").val().length==0){
@@ -597,11 +541,11 @@ function addrBtn() {
 																		alert("이메일 인증코드가 틀립니다. 다시 인증요청을 해주세요");
 																		$("#temp_code").val("");
 																	}
-																}
-															</script> <사용할 스크립트> -->
+																} -->
+															</script> <!-- <사용할 스크립트> -->
 															<ul id="pta_email" class="pta">
 																<li class="r10"><input type="email" id="temp_code" class="w134" /></li>
-																<li style="width:100px; padding:8px 0 0 0;"><a style="cursor: pointer;" onclick="authBtn()" class="button primary small fit">인증코드 확인</a></li>
+																<li style="width:100px; text-align:center; margin:0 auto; padding:8px 0 0 0;"><a style="cursor: pointer;" onclick="authBtn()" class="button primary small fit">인증코드 확인</a></li>
 																<li class="pt5"><span class="mvalign">※ 이메일을 확인해서 인증코드를 입력해주세요</span></li>
 															</ul>
 														</td>
@@ -662,7 +606,7 @@ function addrBtn() {
 																	<select id="birth" name="birth">
 																		<option value='' selected="selected">선택하세요</option>
 																		<script name="birth">
-																			for(var i=1940; i<=2023; i++){
+																			for(var i=1953; i<=2009; i++){
 																				document.write("<option value="+ i +">" + i + "년"+ "</option>");	
 																			};
 																		</script>
@@ -684,7 +628,7 @@ function addrBtn() {
 																		</c:forEach>																		
 																	</select>
 																</li>
-																<li style="padding:10px 0 0 0;"><span class="mvalign">※ 관심지역으로 운동모임을 추천해드립니다.</span></li>
+																<li class="inter"><span class="mvalign">※ 관심지역으로 운동모임을 추천해드립니다.</span></li>
 															</ul>
 														</td>
 													</tr>
@@ -700,7 +644,7 @@ function addrBtn() {
 																		</c:forEach>																		
 																	</select>
 																</li>
-																<li style="padding:10px 0 0 0;"><span class="mvalign">※ 관심운동으로 운동모임을 추천해드립니다.</span></li>
+																<li class="inter"><span class="mvalign">※ 관심운동으로 운동모임을 추천해드립니다.</span></li>
 															</ul>
 														</td>
 													</tr>
@@ -715,10 +659,10 @@ function addrBtn() {
 										
 										
 										<!-- Btn Area -->
-										<div class="btnArea" style="padding:0 0 20px 0;">
+										<div class="btnArea" id="btnA">
 											<div class="bCenter">
 												<ul>
-													<li><a style="cursor:pointer;"  onclick="joinform_check()" class="button small fit">가입하기</a></li>
+													<li><a style="cursor:pointer;" onclick="joinform_check()" class="button small fit">가입하기</a></li>
 													<li><a href="../main" class="button primary small fit">취소하기</a></li>
 												</ul>
 											</div>

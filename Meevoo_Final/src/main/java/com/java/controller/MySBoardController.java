@@ -29,11 +29,7 @@ public class MySBoardController {
 			return "member/login";
 		}
 		
-		
-		
 		HashMap<String, Object> map = mySBoardService.selectSportPickAll(pageDto);
-		
-		
 		
 		model.addAttribute("list", map.get("list"));
 		model.addAttribute("pageDto", map.get("pageDto"));

@@ -16,6 +16,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../css/main.lee.css" />
 		<style>
+			#exercise,#sport,#impage{text-align: center; font-size: 30px;}
+			#exercise_p,#sport_p,#impage_p{text-align: center;}
+			#exercise_li,#sport_li,#impage_li{margin:0 auto;}
 		</style>
 	</head>
 	<body class="is-preload">
@@ -25,8 +28,6 @@
 
 		<!-- Wrapper -->
 			<div id="wrapper">
-
-			
 			
 				<!-- Main -->
 					<div id="main">
@@ -34,7 +35,6 @@
 						
 						<!-- top.jsp -->
 						<%@ include file="top.jsp" %>
-
 
 							<!-- 메인 사진, 베너 -->
 								<section id="banner">
@@ -67,26 +67,26 @@
 									<div class="posts">
 										<article>
 											<a href="/club/club" class="image"><img src="images/club2.png" alt="" /></a>
-											<h3>운동모임</h3>
-											<p>똑같은 일상을 활기차게 바꿔줄<br> 관심사 기반 모임</p>
+											<h3 id="exercise">운동모임</h3>
+											<p id="exercise_p">똑같은 일상을 활기차게 바꿔줄<br> 관심사 기반 모임</p>
 											<ul class="actions">
-												<li><a href="/club/club" class="button">운동모임</a></li>
+												<li id="exercise_li"><a href="/club/club" class="button">운동모임</a></li>
 											</ul>
 										</article>
 										<article>
 											<a href="/sport/sportList" class="image"><img src="images/fclty2.png" alt="" /></a>
-											<h3>체육시설</h3>
-											<p>스포츠 시설 정보와 리뷰를 한눈에!<br> &nbsp;</p>
+											<h3 id="sport">체육시설</h3>
+											<p id="sport_p">스포츠 시설 정보와 리뷰를 한눈에!<br> &nbsp;</p>
 											<ul class="actions">
-												<li><a href="/sport/sportList" class="button">체육시설</a></li>
+												<li id="sport_li"><a href="/sport/sportList" class="button">체육시설</a></li>
 											</ul>
 										</article>
 										<article>
 											<a href="/mypage/myProfil" class="image"><img src="images/mypage2.png" alt="" /></a>
-											<h3>내 페이지</h3>
-											<p>모든 것을 관리하고 확인하는<br> 나만의 페이지</p>
+											<h3 id="impage">내 페이지</h3>
+											<p id="impage_p">모든 것을 관리하고 확인하는<br> 나만의 페이지</p>
 											<ul class="actions">
-												<li><a href="/mypage/myProfil" class="button">내 페이지</a></li>
+												<li id="impage_li"><a href="/mypage/myProfil" class="button">내 페이지</a></li>
 											</ul>
 										</article>
 										
@@ -101,7 +101,39 @@
 									<div class="features">
 										<c:forEach items="${list}" var="clist">
 											<article>
-												<span><img src="${clist.cimg }"/></span>
+												<%-- <span><img src="${clist.cimg }"/></span> --%>
+												<!-- 운동종목 별 아이콘 영역 -->
+											      <span><a href="/club/cView?cno=${clist.cno}" style="text-decoration: none;">
+													<span style="margin: 25px;">
+													  <c:if test="${clist.scate eq '스케이트'}">
+													    <img src="../images/sports/iceSkateIcon.png" style="width:150px;" />
+													  </c:if>
+													  <c:if test="${clist.scate eq '골프'}">
+													    <img src="../images/sports/golfIcon.png" style="width:150px;" />
+													  </c:if>
+													  <c:if test="${clist.scate eq '배드민턴'}">
+													    <img src="../images/sports/badmintonIcon.png" style="width:150px;" />
+													  </c:if>
+													  <c:if test="${clist.scate eq '테니스'}">
+													    <img src="../images/sports/tennisIcon.png" style="width:150px;" />
+													  </c:if>
+													  <c:if test="${clist.scate eq '탁구'}">
+													    <img src="../images/sports/tableTennisIcon.png" style="width:150px;" />
+													  </c:if>
+													  <c:if test="${clist.scate eq '풋살'}">
+													    <img src="../images/sports/futsalIcon.png" style="width:150px;" />
+													  </c:if>
+													  <c:if test="${clist.scate eq '클라이밍'}">
+													    <img src="../images/sports/climbingIcon.png" style="width:150px;" />
+													  </c:if>
+													  <c:if test="${clist.scate eq '볼링'}">
+													    <img src="../images/sports/bowlingIcon.png" style="width:150px;" />
+													  </c:if>
+													  <c:if test="${clist.scate eq '농구'}">
+													    <img src="../images/sports/basketballIcon.png" style="width:150px;" />
+													  </c:if>
+													</span>
+												  </a></span>
 												<div class="content">
 													<a href="/club/cView?cno=${clist.cno }&page=${page}"><h2>&nbsp;&nbsp;&nbsp;&nbsp;${clist.cnm }</h2></a>
 													<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${clist.dongcate }</p>
@@ -117,6 +149,7 @@
 										</article> -->
 									</div>
 								</section>
+								
 							<!-- Section -->
 								<section>
 									<header class="major">
@@ -155,14 +188,10 @@
 						</div>
 					</div>
 
-
 				<!-- sidebar.jsp -->
 				<%@ include file="sidebar.jsp" %>
 						
-				
-
 			</div>
-			
 
 		<!-- Scripts -->
 			<script src="../js/jquery.min.js"></script>
