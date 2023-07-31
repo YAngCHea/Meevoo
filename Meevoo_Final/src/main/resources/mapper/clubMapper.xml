@@ -129,4 +129,9 @@ values
   </insert>
 
 
+	<!-- 최근본 모임 게시물 데이터 기록하기 -->
+	<insert id="insertCCurr">
+		insert into clubcurr values (clubcurr_seq.nextval, #{id}, #{cno}, sysdate)
+	</insert>
+
 </mapper>

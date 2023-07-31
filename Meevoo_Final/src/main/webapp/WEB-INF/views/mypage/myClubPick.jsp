@@ -90,7 +90,7 @@
 															<tr class="tr1">
 																<td>${picklist.cno}</td>
 																<td>
-																	<a href="/club/cView?cno=${picklist.cno}&page=${page}">
+																	<a href="/club/cView?cno=${picklist.cno}&page=${pageDto.page}">
 																	${picklist.cnm}</a>
 																</td>
 																<td>${picklist.dongcate}</td>

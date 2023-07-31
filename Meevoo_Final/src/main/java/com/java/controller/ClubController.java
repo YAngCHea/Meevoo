@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.java.dto.CListCurrDto;
 import com.java.dto.ClubDto;
 import com.java.dto.ClubJoinUserDto;
 import com.java.dto.PageDto;
@@ -66,8 +68,11 @@ public class ClubController {
 	
 
 	@RequestMapping("/club/cView")
-	public String cView(@RequestParam(defaultValue = "1")int cno, 
-			PageDto pageDto,Model model) {
+	public String cView(@RequestParam(defaultValue = "1")int cno, @RequestParam(defaultValue = "1")int page,
+			CListCurrDto ccurrdto, PageDto pageDto,Model model) {
+		
+		System.out.println("page : "+page);
+		System.out.println("cno : "+cno);
 		
 		// 모임목록 1개 가져오기
 		HashMap<String, Object> map = clubService.selectClubOne(cno);
@@ -92,6 +97,16 @@ public class ClubController {
 		System.out.println("controller id :"+id);
 		System.out.println("controller cno :"+cno);
 		
+		//최근본 모임 게시물 데이터 기록하기
+		//아이디 있을때 Dto에 저장
+		if(id!=null) {
+			session.setAttribute("sessionId", id);
+			ccurrdto.setId(id);
+		}else {
+			return "club/cView";
+		}
+		
+		clubService.insertCCurr(ccurrdto);
 		 
 		return "club/cView";
 	}

@@ -410,7 +410,7 @@ function addrBtn() {
 														<th scope="row"><span>비밀번호 *</span></th>
 														<td>
 															<ul class="pta">
-																<li class="r10"><input type="text" name="pw" id="pw" class="w134" /></li>
+																<li class="r10"><input type="password" name="pw" id="pw" class="w134" /></li>
 																<li style="padding:10px 0 0 0;"><span class="mvalign">※ 숫자로 5자만 가능</span></li>
 															</ul>
 														</td>
@@ -433,7 +433,7 @@ function addrBtn() {
 														<th scope="row"><span>비밀번호 확인 *</span></th>
 														<td>
 															<ul class="pta">
-																<li class="r10"><input type="text" onkeyup="pwKey()" id="pw2" class="w134" /></li>
+																<li class="r10"><input type="password" onkeyup="pwKey()" id="pw2" class="w134" /></li>
 																<li id="pwKeyText">
 																</li>
 															</ul>

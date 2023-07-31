@@ -96,27 +96,6 @@
 				                                   	</c:if> --%>
 				                                   	</div>
 			                                   	</div>
-			                                   	
-												<%-- <div id="preview1" class="img">
-				                                   	<div id="preview2">
-				                                   	<c:if test="${mdto.userimg == null }">
-				                                   		<img src="https://cdn-icons-png.flaticon.com/512/848/848043.png" width="150px"/>
-				                                   		<input type="file" name="file" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg"/>
-														<label for="file">* 파일 선택을 눌러 프로필 사진을 수정해주세요</label>
-				                                   	</c:if>
-													<c:if test="${mdto.userimg != null }">
-				                                   		<img src="/upload/${mdto.userimg }" width="150px"/>
-				                                   		<input type="hidden" name="userimg" value="${mdto.userimg}" />
-				                                   		<input type="file" name="file" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg"/>
-														<label for="file">* 파일 선택을 눌러 프로필 사진을 수정해주세요</label>
-				                                   	</c:if>
-													<c:if test="${file == null}">
-				                                   		<img src="https://cdn-icons-png.flaticon.com/512/848/848043.png"/>
-				                                   		<input type="file" name="file" accept=".jpg, .png, .jpeg, .bmp, .tif, .gif, .svg"/>
-														<label for="file">* 파일 선택을 눌러 프로필 사진을 수정해주세요</label>
-				                                   	</c:if>
-				                                   	</div>
-			                                   	</div> --%>
 											</div>
 											<div class="info1">
 												<div id="info11">
