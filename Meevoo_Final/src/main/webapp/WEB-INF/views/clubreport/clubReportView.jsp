@@ -18,7 +18,7 @@
 		<script>
 		  function cReportDeleteBtn(){
 			  if(confirm("게시글을 삭제하시겠습니까?")){
-				  alert("${crepno}");
+				  //alert("${crepno}");
 				  location.href="clubReportDelete?crepno=${crepno}";
 			  }
 		  }
@@ -43,7 +43,7 @@
 					return false;
 				}
 				
-				alert("답변 등록이 완료되었습니다.");
+				//alert("답변 등록이 완료되었습니다.");
 				
 				//ajax구문
       	  	$.ajax({

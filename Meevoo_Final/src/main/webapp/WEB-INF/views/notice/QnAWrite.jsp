@@ -53,7 +53,7 @@
 					        		<div class="card card_border">
 					        			<!--card 맨 위 이름-->
 					        			<div class="card_title bottomline">
-					                        <h3>모임 생성하기
+					                        <h3>QnA 작성하기
 					                    	</h3>
 					                    </div>
 					        			<!--card_title-->
