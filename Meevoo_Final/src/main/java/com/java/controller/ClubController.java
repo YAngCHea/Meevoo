@@ -25,6 +25,7 @@ import com.java.dto.CListCurrDto;
 import com.java.dto.ClubDto;
 import com.java.dto.ClubDto2;
 import com.java.dto.ClubJoinUserDto;
+import com.java.dto.ClubPickDto;
 import com.java.dto.PageDto;
 import com.java.service.ClubService;
 import com.java.service.ClubWriteSearchSFService;
@@ -98,9 +99,11 @@ public class ClubController {
 		System.out.println("controller id :"+id);
 		System.out.println("controller cno :"+cno);
 		
+		//지원----------------------------------
+		
 		//최근본 모임 게시물 데이터 기록하기
 		//세션 아이디 저장
-		id = (String)session.getAttribute("sessionId");
+		//id = (String)session.getAttribute("sessionId");
 		System.out.println("ClubController id : "+id);
 		
 		//아이디 있을때 Dto에 저장
@@ -112,9 +115,49 @@ public class ClubController {
 		}
 		
 		clubService.insertCCurr(ccurrdto);
-		 
+		
+		//data_value 변수 값 가져오기 0:찜을 하지 않은 경우, 1:찜을 한경우
+		// 찜 변수 select count(*) as data_value from clubpick where id='born' and cno=500
+		if(id!=null) {
+			int data_value = clubService.countCPick(cno, id);
+			model.addAttribute("data_value", data_value);
+		}
+		//----------------------------------지원
+		
 		return "club/cView";
 	}
+	
+	//지원--------------------------------------------------
+	//운동모임 찜하기
+	@RequestMapping("/club/clubPick")
+	@ResponseBody
+	public int clubPick(ClubPickDto cpickdto, Model model) {
+		
+		clubService.clubPick(cpickdto);
+		
+		System.out.println("등록 ajax에서 넘어온 cpickno : "+cpickdto.getCpickno());
+		
+		return cpickdto.getCpickno();
+	}
+	
+	//운동모임 찜하기 취소(삭제)하기
+	@RequestMapping("/club/clubPickCancel")
+	@ResponseBody
+	public ClubPickDto clubPickCancel(@Param(value = "none") ClubPickDto cpickdto, int cno, String id) {
+		
+		//System.out.println("등록 ajax에서 넘어온 cpickno : "+cno);
+		clubService.clubPickCancel(cno,id);
+		
+		return cpickdto;
+	}
+	
+	//Clublist 총 찜 개수 수정
+	@RequestMapping("/club/updateCTotalPick")
+	public String updateCTotalPick() {
+		return "club/updateCTotalPick";
+	}
+	
+	//--------------------------------------------------지원
 	
 	
 	@RequestMapping("/club/clubJoinUser")

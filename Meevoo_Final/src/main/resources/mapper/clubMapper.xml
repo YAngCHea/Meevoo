@@ -161,9 +161,44 @@ values
   </delete>
 
 
+	<!-- @@@@@@@@지원@@@@@@@@ -->
 	<!-- 최근본 모임 게시물 데이터 기록하기 -->
 	<insert id="insertCCurr">
 		insert into clubcurr values (clubcurr_seq.nextval, #{id}, #{cno}, sysdate)
 	</insert>
+	
+	<!-- 모임 찜하기 -->
+	<insert id="clubPick">
+	   <selectKey resultType="int" keyProperty="cpickno" order="BEFORE">
+        SELECT clubpick_seq.nextval FROM dual        
+       </selectKey> 
+		insert into clubpick (cpickno, id, cno, cpickyn, cpickdate)
+		select #{cpickno}, #{id}, #{cno}, 'YES', sysdate
+		from dual
+		where not exists(
+		select 1 from clubpick where id=#{id} and cno=#{cno})
+	</insert>
 
+	<!-- 운동모임 찜하기 취소(삭제)하기 -->
+	<delete id="clubPickCancel">
+		delete clubpick where cno=#{cno} and id=#{id}
+	</delete>
+	
+	<!-- data_value 변수 값 가져오기 0:찜을 하지 않은 경우, 1:찜을 한경우 -->
+	<select id="countCPick" resultType="int">
+		select count(*) as data_value from clubpick where id=#{id} and cno=#{cno}
+	</select>
+	
+	<!-- 총 찜 Count -->
+	<select id="countCPCount" resultType="int">
+		select count(*) from clubpick where cno=#{cno}
+	</select>
+	
+	<!-- Clublist 총 찜 개수 수정 -->
+	<update id="updateCTotalPick">
+		update clublist set 
+		ctotalpick = (select count(*) as pick_count from clubpick where cno = #{cno}) 
+		where cno=#{cno}
+	</update>
+	<!-- @@@@@@@@지원@@@@@@@@ -->
 </mapper>

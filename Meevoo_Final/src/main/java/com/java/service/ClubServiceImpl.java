@@ -16,6 +16,7 @@ import com.java.dto.CListCurrDto;
 import com.java.dto.ClubDto;
 import com.java.dto.ClubDto2;
 import com.java.dto.ClubJoinUserDto;
+import com.java.dto.ClubPickDto;
 import com.java.dto.PageDto;
 import com.java.mapper.ClubMapper;
 
@@ -86,6 +87,11 @@ public class ClubServiceImpl implements ClubService {
 		
 		ClubDto2 cdto = clubMapper.selectClubOne(cno);
 		map.put("cdto", cdto);
+		
+		//지원---------------------------------------
+		//Clublist 총 찜 개수 수정
+		clubMapper.updateCTotalPick(cno);
+		//---------------------------------------지원
 		
 		return map;
 	}
@@ -158,12 +164,36 @@ public class ClubServiceImpl implements ClubService {
 		return cjoindto;
 	}
 
+	
+	//지원---------------------------------------
 	@Override //최근본 모임 게시물 데이터 기록하기
 	public void insertCCurr(CListCurrDto ccurrdto) {
 		clubMapper.insertCCurr(ccurrdto);
 		
 	}
-	  
+
+	@Override //운동모임 찜하기
+	public int clubPick(ClubPickDto cpickdto) {
+		clubMapper.clubPick(cpickdto);
+		System.out.println("ClubServiceImpl cpickdto.getCpickno() : "+cpickdto.getCpickno());
+		
+		return cpickdto.getCpickno();
+	}
+
+	@Override //운동모임 찜하기 취소(삭제)하기
+	public void clubPickCancel(int cno, String id) {
+		clubMapper.clubPickCancel(cno, id);
+		
+	}
+
+	@Override //data_value 변수 값 가져오기 0:찜을 하지 않은 경우, 1:찜을 한경우
+	public int countCPick(int cno, String id) {
+		int data_value = clubMapper.countCPick(cno, id);
+		
+		return data_value;
+	}
+	
+	//---------------------------------------지원
 	 
 
 	

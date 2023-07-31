@@ -11,6 +11,7 @@ import com.java.dto.ClubDto;
 import com.java.dto.ClubDto2;
 import com.java.dto.ClubDto2;
 import com.java.dto.ClubJoinUserDto;
+import com.java.dto.ClubPickDto;
 import com.java.dto.PageDto;
 
 @Repository
@@ -62,10 +63,23 @@ public interface ClubMapper {
 	// 모임 신청한거 1개 가져오기
 	public ClubJoinUserDto selectCjuOne(ClubJoinUserDto cjoinuserDto);
 	
+
+	//지원---------------------------------------
 	//최근본 모임 게시물 데이터 기록하기
 	public void insertCCurr(CListCurrDto ccurrdto);
 
+	//운동모임 찜하기
+	public void clubPick(ClubPickDto cpickdto);
 
+	//운동모임 찜하기 취소(삭제)하기
+	void clubPickCancel(int cno, String id);
+
+	//data_value 변수 값 가져오기 0:찜을 하지 않은 경우, 1:찜을 한경우
+	public int countCPick(int cno, String id);
+
+	//Clublist 총 찜 개수 수정
+	void updateCTotalPick(int cno);
+	//---------------------------------------지원
 
 
 

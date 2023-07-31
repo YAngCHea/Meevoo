@@ -9,14 +9,14 @@
 		(select d.* from 
         (select spickno, b.sfno sfno, id, spickdate, spickyn,
         sfnm, dongcate from sportList a join 
-        (select * from sportPick where spickyn='YES' and id=#{id}) b
+        (select * from sportPick where spickyn='YES' or spickyn='Yes' and id=#{id}) b
         on a.sfno = b.sfno)d order by spickno desc) c )
         where rnum between #{pageDto.startRow} and #{pageDto.endRow}
 	</select>
 	
 	<!-- 체육시설 - 찜한 리스트 전체 게시글 수 -->
 	<select id="selectListSPick" resultType="int">
-		select count(*) from sportPick where spickyn='YES' and id=#{id}
+		select count(*) from sportPick where (spickyn='YES' or spickyn='Yes') and id=#{id}
 	</select>
 	
 	<!-- 체육시설 - 찜하기 취소-->
