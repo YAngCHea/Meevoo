@@ -19,7 +19,6 @@ body.slider input[type="range"] {
 					cursor: pointer;}.slider input[type="range"]::-webkit-slider-thumb:hover {background: #f56a6a;} 
 </style>
 <!-- 운동모임\모임검색하기\모집기한 부분 css 끝-->
-
 <!-- Sidebar -->
 <div id="sidebar">
 	<div class="inner">
@@ -45,26 +44,17 @@ body.slider input[type="range"] {
 							<li>
 							  <span class="opener" style="pointer-events : none;">모임 검색하기</span>
 							  <div style="margin: 0.3em 0 0 0.7em; padding: 0.3em 0 0 0.7em; color: #9fa3a6; font-size: 0.8em;">
-							   <%-- 
 							    <!-- 모임 목록 검색 -->
 							    <section id="searchClub" class="alt">
 	                              <span style="margin-bottom: 1em; margin-top: 1em; pointer-events : none;">· 키워드 검색 </span>
-	                                <form action="club/club" name="search" method="post" >
-	                           	        <input type="text" name="s_word" id="s_word" value="${s_word}" placeholder="검색하세요" />
-	                           	        <button type="button" onclick="clubSearchBtn()"><i class="fas fa-search"></i></button>
+	                                <form method="post" action="#">
+	                           	      <input type="text" name="query" id="query" placeholder="검색하세요" "/>
+	                           	        <button type="button" style="float:right; " onclick="clubSearchBtn()">
+	                           	          <img src ="../images/general/magnifier.png" style="width: 2em;vertical-align: middle; "/>
+	                           	        </button>
 	                                </form>
                                 </section>
-                                <script>
-								  function clubSearchBtn(){
-									  if($("#_word").val().length<2){
-										  alert("2글자 이상 입력하셔야 합니다.");
-										  $("#s_word").focus();
-										  return false;
-									  }
-								  }
-								</script>
 							    <!-- 모임 목록 검색 끝 -->
-							     --%>
 							    <hr style="border: double 0.05em #9fa3a6; margin: 0 0 1em 0;">
 							    <!-- 모임 목록 필터 검색 -->
 							    <form action="/club/club" method="get" name="filter" style="heiht: auto;">
@@ -129,6 +119,9 @@ body.slider input[type="range"] {
 							    <!-- 모임 목록 필터 검색 끝-->
 							  </div>
 							</li>
+							
+							<li><a href="/clubreport/clubReportList">모임 신고 목록</a></li>
+							
 							<!-- 모임 검색하기 끝 -->
 						</ul>
 					</li>
