@@ -1,7 +1,9 @@
 package com.java.controller;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -21,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.CListCurrDto;
 import com.java.dto.ClubDto;
+import com.java.dto.ClubDto2;
 import com.java.dto.ClubJoinUserDto;
 import com.java.dto.PageDto;
 import com.java.service.ClubService;
@@ -35,8 +38,9 @@ public class ClubController {
 
 	@RequestMapping("/club/club")
 	public String club(@RequestParam(defaultValue = "none") String result,  //저장값이 없으면 none, 성공하면 1
-			PageDto pageDto, ClubDto clubDto, Model model) {
+			PageDto pageDto, ClubDto2 clubDto2, Model model) {
 		String id = (String) session.getAttribute("sessionId");
+		System.out.println("/club/club 페이지 방문");
 
 		// 모임목록 전체 가져오기
 		HashMap<String, Object> map = clubService.selectClubAll(pageDto);
@@ -45,11 +49,11 @@ public class ClubController {
 		model.addAttribute("result", result); //파일저장 결과변수
 		if (id == null) {
 			// 모임목록 추천 가져오기 1. 로그인 전, 찜하기 많고, 최근 게시글 중 모집중인 모임목록 2개
-			ArrayList<ClubDto> recsLogoutList = clubService.selectClubRecsLogout();
+			ArrayList<ClubDto2> recsLogoutList = clubService.selectClubRecsLogout();
 			model.addAttribute("recsList", recsLogoutList);
 		} else {
 			// 모임목록 추천 가져오기 2. 로그인한 사람의 관심지역, 관심종목과 일치하는 모집중인 모임목록 2개
-			ArrayList<ClubDto> recsLoginList = clubService.selectClubRecsLogin(id);
+			ArrayList<ClubDto2> recsLoginList = clubService.selectClubRecsLogin(id);
 			model.addAttribute("recsList", recsLoginList);
 		}
 		return "club/club";
@@ -57,10 +61,10 @@ public class ClubController {
 	
 	@PostMapping("/club/cFilterAjax")
 	@ResponseBody //데이터로 넘겨줌
-	public ArrayList<ClubDto>  cFilterAjax(ClubDto clubDto, PageDto pageDto, int dateDifference, Model model) {
+	public ArrayList<ClubDto2>  cFilterAjax(ClubDto2 clubDto2, PageDto pageDto, int dateDifference, Model model) {
 		
 		//필터 input 반영해서 모임목록 가져오기 (필터검색)
-		ArrayList<ClubDto> filterList = clubService.selectClubFilter(clubDto);
+		ArrayList<ClubDto2> filterList = clubService.selectClubFilter(clubDto2);
 		model.addAttribute("filteredClubList", filterList);
 		
 		return filterList;
@@ -70,9 +74,6 @@ public class ClubController {
 	@RequestMapping("/club/cView")
 	public String cView(@RequestParam(defaultValue = "1")int cno, @RequestParam(defaultValue = "1")int page,
 			CListCurrDto ccurrdto, PageDto pageDto,Model model) {
-		
-		System.out.println("page : "+page);
-		System.out.println("cno : "+cno);
 		
 		// 모임목록 1개 가져오기
 		HashMap<String, Object> map = clubService.selectClubOne(cno);
@@ -98,12 +99,16 @@ public class ClubController {
 		System.out.println("controller cno :"+cno);
 		
 		//최근본 모임 게시물 데이터 기록하기
+		//세션 아이디 저장
+		id = (String)session.getAttribute("sessionId");
+		System.out.println("ClubController id : "+id);
+		
 		//아이디 있을때 Dto에 저장
 		if(id!=null) {
 			session.setAttribute("sessionId", id);
 			ccurrdto.setId(id);
 		}else {
-			return "club/cView";
+			return "member/login";
 		}
 		
 		clubService.insertCCurr(ccurrdto);
@@ -130,11 +135,28 @@ public class ClubController {
 	
 	
 	@PostMapping("/club/cWrite") 
-	public String doCWrite(ClubDto cdto, @RequestPart MultipartFile file, Model model) throws Exception { 
+	public String doCWrite(ClubDto2 cdto, @RequestPart MultipartFile file, Model model) throws Exception { 
 		//String id = (String)session.getAttribute("sessionId");
 		
 		//사진 1개 저장
 		String fileName="";
+		
+		System.out.println("doCWrite getCdodate_date2 : "+cdto.getCdodate_date2());
+		System.out.println("doCWrite getCdodate_time2 : "+cdto.getCdodate_time2()); //String타입으로 받음.
+		
+		//String타입 -> 날짜타입으로 변경
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = formatter.parse(cdto.getCdodate_date2());
+		cdto.setCdodate_date(date);
+		System.out.println("doCWrite setCdodate_date : "+cdto.getCdodate_date()); //String타입으로 받음.
+		
+		//String타입 -> 날짜와 시간타입으로 변경
+		SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date dateTime = formatter2.parse(cdto.getCdodate_date2()+" "+cdto.getCdodate_time2()+":00");
+		cdto.setCdodate_time(dateTime); //String타입으로 받은 것을 Date 타입으로 변환 (yyyy-MM-dd HH:mm:ss)
+		System.out.println("doCWrite setCdodate_time : "+cdto.getCdodate_time()); //String타입으로 받음.
+		
+		System.out.println(date); //
 		
 		//파일이 있을경우 파일저장
 		if(!file.isEmpty()) {
@@ -164,9 +186,57 @@ public class ClubController {
 		return "club/cWriteSearchSF";
 	}
 	
-	@RequestMapping("/club/cWriteUpdate")
-	public String cWriteUpdate() {
-		return "club/cWriteUpdate";
+	@RequestMapping("/club/cWriteSearchSF_update")
+	public String cWriteSearchSF_update(PageDto pageDto, ClubDto clubDto, Model model) {
+		
+		//운동모임장소 찾기 체육시설 목록 전체 가져오기
+		HashMap<String,Object> map = clubWriteSearchSFService.selectClubSearchSFAll(pageDto);
+		model.addAttribute("list", map.get("list"));
+		model.addAttribute("pageDto", map.get("pageDto"));
+		
+		return "club/cWriteSearchSF_update";
+	}
+	
+	@PostMapping("/club/cUpdate2") //cUpdate 저장 
+	public String doCUpdate(ClubDto2 cdto, @RequestPart MultipartFile file,
+			Model model) throws Exception {
+		
+		System.out.println("aaaa doCUpdate cdto cno : "+cdto.getCno());
+		System.out.println("aaaa doCUpdate cdto cnm : "+cdto.getCnm());
+		//System.out.println("doCUpdate cdto cimg : "+cdto.getCimg());
+		//System.out.println("doCUpdate cdto file : "+file.getOriginalFilename());
+		
+		//모임글 1개 수정
+		String fileName="";
+		//파일이 있을경우 파일저장
+		if(!file.isEmpty()) {
+			String ori_fileName = file.getOriginalFilename();//실제파일이름
+			UUID uuid = UUID.randomUUID(); //랜덤숫자생성
+			fileName = uuid+"_"+ori_fileName; //변경파일이름 - 중복방지
+			String uploadUrl = "c:/upload/"; //파일업로드위치
+			File f = new File(uploadUrl+fileName);
+			file.transferTo(f); //파일저장시킴
+			cdto.setCimg(fileName); //cdto에 fileName이름 저장
+		}//if
+		
+		//모임목록 글 1개 저장 
+		clubService.updateClub(cdto);
+		return "redirect:/club/club"; 
+	}
+	
+	@GetMapping("/club/cUpdate") //cUpdate View
+	public String cUpdate(int cno, Model model) {
+		System.out.println("aaaa cUpdate cno : "+cno);
+		ClubDto2 cdto = clubService.selectOne(cno);
+		model.addAttribute("cdto",cdto);
+		return "club/cUpdate";
+	}
+	
+	@RequestMapping("/club/cDelete")
+	public String cDelete(int cno) {
+		System.out.println("cDelete : "+cno);
+		clubService.deletOne(cno);
+		return "redirect:/club/club";
 	}
 
 	@RequestMapping("/club/cMEvaluation")

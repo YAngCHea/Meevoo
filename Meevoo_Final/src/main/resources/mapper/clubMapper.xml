@@ -5,7 +5,7 @@
 <mapper namespace="com.java.mapper.ClubMapper">
 
   <!-- 모임목록 전체 가져오기 (페이지, 키워드 검색 포함) -->
-  <select id="selectClubAll" resultType="com.java.dto.ClubDto">
+  <select id="selectClubAll" resultType="com.java.dto.ClubDto2">
   select * from 
       (select rownum rnum, a.* from 
       (select * from 
@@ -24,7 +24,7 @@
   </select>
   
   <!-- 모임목록 추천 가져오기 1. 로그인 전, 찜하기 많고, 최근 게시글 중 모집중인 모임목록 2개 -->
-  <select id="selectClubRecsLogout" resultType="com.java.dto.ClubDto">
+  <select id="selectClubRecsLogout" resultType="com.java.dto.ClubDto2">
   	 select * from 
        (select rownum rnum, a.* from 
          (select * from 
@@ -39,7 +39,7 @@
   </select>
   
   <!-- 모임목록 추천 가져오기 2. 로그인한 사람의 관심지역, 관심종목과 일치하는 모집중인 모임목록 2개 -->
-  <select id="selectClubRecsLogin" resultType="com.java.dto.ClubDto">
+  <select id="selectClubRecsLogin" resultType="com.java.dto.ClubDto2">
      select * from 
       (select rownum rnum, a.* from 
         (select * from 
@@ -58,7 +58,18 @@
   </select>
   
   <!-- 모임목록 1개 가져오기 -->
-  <select id="selectClubOne" resultType="com.java.dto.ClubDto">
+  <select id="selectClubOne" resultType="com.java.dto.ClubDto2">
+    	select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate_date, a.cdodate_time, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus,
+       b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
+       c.sfno, c.sfnm, c.scate, c.dongcate, c.lat, c.lng, c.addr, c.telno, c.homepage, c.wifi, c.pet, c.parking, c.slope, c.stotalpick, c.savgstar, c.imgurl1
+  from clublist a
+    left join userlist b on a.id = b.id(+)
+    left join sportlist c on a.sfno = c.sfno
+    where cno = #{cno}
+  </select>
+  
+  <!-- 모임목록 1개 가져오기 (update) -->
+  <select id="selectOne" resultType="com.java.dto.ClubDto2">
     	select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate_date, a.cdodate_time, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus,
        b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
        c.sfno, c.sfnm, c.scate, c.dongcate, c.lat, c.lng, c.addr, c.telno, c.homepage, c.wifi, c.pet, c.parking, c.slope, c.stotalpick, c.savgstar, c.imgurl1
@@ -100,7 +111,7 @@
   
   
   <!-- 필터 input 반영해서 모임목록 가져오기 (필터검색) -->
-  <select id="selectClubFilter" resultType="com.java.dto.ClubDto">
+  <select id="selectClubFilter" resultType="com.java.dto.ClubDto2">
        select * from 
  	     (select a.cno, a.id, a.cnm, a.cwrdate, a.cimg, a.cdodate_date, a.cdodate_time, a.ccontent, a.ctotalpick, a.crecruitlimit, a.cnowrecruit, a.cnowstatus,
        b.usernm, b.nicknm, b.userimg, b.selfintro, b.totaltemp,
@@ -115,11 +126,12 @@
   
    
    
+  <!-- 모임글 1개 저장 -->
   <insert id="insertClub">
 	  insert into clublist 
-(cno, id, cnm, cwrdate, cimg, sfno, dongcate,cloc,cdodate,ccontent,ctotalpick,crecruitlimit,cnowrecruit, cnowstatus, scate) 
+(cno, id, cnm, cwrdate, cimg, sfno, dongcate,cloc,cdodate,ccontent,ctotalpick,crecruitlimit,cnowrecruit, cnowstatus, scate,cdodate_time, cdodate_date) 
 values 
-(clublist_seq.nextval,#{id},#{cnm},sysdate,#{cimg},1,#{dongcate},#{cloc}, sysdate, #{ccontent},#{ctotalpick},#{crecruitlimit},#{cnowrecruit},#{cnowstatus},#{scate} )
+(clublist_seq.nextval,#{id},#{cnm},sysdate,#{cimg},#{sfno},#{dongcate},#{cloc}, sysdate, #{ccontent},#{ctotalpick},#{crecruitlimit},1,#{cnowstatus},#{scate}, #{cdodate_time},#{cdodate_date})
 	  <!-- 
 	  insert into clublist 
 (cno, id, cnm, cwrdate, cimg, sfno, dongcate,cloc,cdodate,ccontent,ctotalpick,crecruitlimit,cnowrecruit, cnowstatus, scate, cdodate_time, cdodate_date) 
@@ -127,6 +139,26 @@ values
 (clublist_seq.nextval,#{id},#{cnm},sysdate,#{cimg},#{sfno},#{dongcate},#{cloc}, sysdate, #{ccontent},#{ctotalpick},#{crecruitlimit},#{cnowrecruit},#{cnowstatus},#{scate},TO_DATE(#{cdodate_time}, 'HH24:MI'), TO_DATE(#{cdodate_date}, 'YYYY-MM-DD') )
    -->
   </insert>
+  
+  <!-- 모임글 1개 수정 -->
+  <update id="updateClub">
+  update clublist set cnm=#{cnm}, 
+                    cimg=#{cimg}, 
+                    sfno=#{sfno}, 
+                    dongcate=#{dongcate}, 
+                    cloc=#{cloc}, 
+                    ccontent=#{ccontent}, 
+                    crecruitlimit=#{crecruitlimit}, 
+                    scate=#{scate}
+        where cno=#{cno}
+  
+  </update>
+  
+  <!-- 모임글 1개 삭제 -->
+  <delete id="deleteOne">
+    delete clublist where cno=#{cno}
+  
+  </delete>
 
 
 	<!-- 최근본 모임 게시물 데이터 기록하기 -->
