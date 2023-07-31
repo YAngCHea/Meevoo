@@ -32,10 +32,12 @@
    
    <!-- 공지사항 추가하기 -->
    <insert id="insertNotice">
-   insert into notice values 
+   insert into notice 
+
+   values 
 (
 notice_seq.nextval ,
-'MeeVoo',
+'admin',
 #{notititle},
 sysdate,
 #{noticontent},
@@ -142,7 +144,20 @@ sysdate,
    
    <!-- QnA 추가하기 -->
    <insert id="insertQnA">
-   INSERT INTO qna VALUES (
+   INSERT INTO qna 
+      (
+   qnano,
+   id,
+   qnatitle,
+   qnadate,
+   qnacontent,
+   qnastatus,
+   qstep,
+   qgroup,
+   qindent
+   )
+   
+   VALUES (
      qna_seq.nextval,
      #{id},
      #{qnatitle},
@@ -173,7 +188,19 @@ sysdate,
    
    <!-- QnA 답글 저장하기 -->
    <insert id="doQnAReply">
-   INSERT INTO qna VALUES (
+   INSERT INTO qna 
+         (
+   qnano,
+   id,
+   qnatitle,
+   qnadate,
+   qnacontent,
+   qnastatus,
+   qstep,
+   qgroup,
+   qindent
+   )
+   VALUES (
      qna_seq.nextval,
      #{id},
      #{qnatitle},

@@ -56,22 +56,16 @@
 					                    </div>
 					        			<!--card_title-->
 					        			
-					        			
-					        			
 					        			<script>
 										    	function clubSearchBtn(){
-										    		
 										    		if($("#search_input").val().length<2){
 										    			alert("2글자 이상 입력하셔야 합니다.")
 										    			$("#search_input").focus();
 										    			return false;
 										    		}
-										    		
 										    		userSearch.submit();
 										    	}
 										</script>
-					        			
-					        				
 										
 										<!--card-->
 										<div class="card card_border bg_lightblue">
@@ -92,9 +86,6 @@
 										    </div>
 										</div>
 										<!--card-->
-
-										
-										
 										
 										<!--회원 리스트-->
 										<div class="card card_border">
@@ -129,11 +120,11 @@
 						                                
 						                                <tbody>
 						                                <!-- clubList 가져오기!! -->
-						                               <c:forEach var="clublist" items="${clublist}">
+						                                <c:forEach var="clublist" items="${clublist}">
 						                                   <tr>
 															  <td>${clublist.cno}</td>
 															  <td>${clublist.id}</td>
-															  <td><a href="/club/cView?cno=${clublist.cno }" class="lightgray">${clublist.cnm}</a></td>
+															  <td><a href="/club/cView?cno=${clublist.cno}" class="lightgray">${clublist.cnm}</a></td>
 															  <td><fmt:formatDate value="${clublist.cwrdate}" pattern="yyyy-MM-dd"/></td>
 															  <td><fmt:formatDate value="${clublist.cdodate}" pattern="yyyy-MM-dd"/></td>
 															  <td>${clublist.cloc}</td>
@@ -142,18 +133,13 @@
 						                                          <!-- <button type="button" onclick="deleteClubBtn()" class="btn_simple btn_green">삭제</button> -->
 						                                      </td>
 														    </tr>
-						                                </c:forEach>
+						                                 </c:forEach>
 						                                
-						                                      
 						                                </tbody>
 						                            </table>
 												</div>
 												<!--table-->
 						        			</div>
-						        			
-						        			
-						        			
-						        			
 						        			
 						        			<!-- 하단 넘버링 버튼 -->
 											<div class="col-12" style="margin: 0px auto;">
@@ -252,7 +238,7 @@
 													<!-- Table -->
 													<div class="table-wrapper">
 														<div style="text-align: right;">
-															<a href="/admin/totalWriteWrite"><button type="button" class="button primary">회원 추가</button></a>
+															<a href="/admin/totalWriteWrite"><button type="button" class="button primary">모임 추가</button></a>
 														</div>
 													</div>
 												</section>

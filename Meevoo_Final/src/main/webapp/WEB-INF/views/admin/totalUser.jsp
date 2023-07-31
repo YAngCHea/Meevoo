@@ -11,7 +11,6 @@
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
       <link rel="stylesheet" href="../css/main_new_yang.css" />
-      
 	  <link rel="icon" href="../images/main/logo2.png">
 	  
    </head>
@@ -20,11 +19,10 @@
 
       <!-- Wrapper -->
          <div id="wrapper">
-
             <!-- Main -->
                <div id="main">
                   <div class="inner">
-
+                  
                      <!-- Header -->
 					 <%@ include file="../top.jsp" %>
 					 
@@ -35,7 +33,6 @@
 					        	<div class="content_Area">
 					        		<!--card 이거다!!!!!!!!!!!!!!!!!!!-->
 					        		<div class="card card_border">
-					        		
 					        			<!--card 맨 위 이름-->
 					        			<div class="card_title bottomline">
 					                        <h3>전체 회원 관리
@@ -43,27 +40,24 @@
 					                    </div>
 					        			<!--card_title-->
 					        			
-					        			
-					        			
 					        			<!-- 검색 클릭시 -->
 											<script>
 										    	function userSearchBtn(){
-										    		
 										    		if($("#search_input").val().length<2){
 										    			alert("2글자 이상 입력하셔야 합니다.")
 										    			$("#search_input").focus();
 										    			return false;
 										    		}
-										    		
 										    		userSearch.submit();
 										    	}
 										    </script>
-					        			
-					        			<%-- <!--card-->
-					        			<div class="card card_border bg_lightblue">
-					                        <div class="card_option ">
-					                            
-						                        <!-- 2차 구현에서 하자....
+										
+										
+										<!--card-->
+										<div class="card card_border bg_lightblue">
+										    <div class="card_option">
+										        
+										        <!-- 2차 구현에서 하자....
 						                        <div class="option_section" style="width:30%;">
 					                                <span class="first_tit" style="float:left;text-align : center" ><br>가입 날짜 :</span>
 					                                <input type="text" class="Datepicker cald_St hasDatepicker" id="dp1689135199476" style="width:100px; float:left;">
@@ -77,37 +71,7 @@
 					                                    <option>탈퇴</option>
 					                                </select>
 						                        </div> -->
-						                        
-					                            <form class='userSearchBtn' method="post" action="/admin/totalUser" name="userSearch" >    
-						                        
-						                        <select name="category" id="category" style="width:10%;padding:0 0 0 0;margin:0;">
-										          <option value="all">전체</option>
-										          <option value="btitle">제목</option>
-										          <option value="bcontent">내용</option>
-										        </select>
-						                        
-						                        <div class="option_section" style="width:60%; display:flex; align-items:center; place-content: center; ">
-					                            	<!-- <span style="float:left;"><br>회원 이름 검색 :</span> -->
-					                            	<!-- 이 부분이 원래 벝은
-					                            	<input type="text" style="width:120px; float:left;">
-					                                <button class="btn_small btn_blue" style="float:left;">검색</button> -->
-					                                <!-- 검색부분!! -->
-													<input type="search" style="width:400px; margin: 0 0 0 1px;" name="search_input" id="search_input" value="${search_input}" placeholder="검색어를 입력해주세요." />
-													<button type="button" class="btn_small btn_blue" onclick="userSearchBtn()" style="height: 40px; margin: 0 0 0 1px;float:left;">검색</button>
-						                        </div>
-												</form>
-						                        
-					                        </div>
-					        			</div>
-										<!--card--> --%>
-										
-										
-										
-										
-										
-										<!--card-->
-										<div class="card card_border bg_lightblue">
-										    <div class="card_option">
+										        
 										        <form class="userSearchBtn" method="post" action="/admin/totalUser" name="userSearch" style="display: flex; align-items: center; justify-content: center;">
 										            <select name="category" id="category" style="width: 10%; padding: 0 0 0 0; margin: 0;">
 										                <option value="all">전체</option>
@@ -115,7 +79,6 @@
 										                <option value="usernm">이름</option>
 										                <option value="nicknm">닉네임</option>
 										            </select>
-										
 										            <div class="option_section" style="width: 30%; display: flex; align-items: center;">
 										                <input type="search" style="width: 400px; margin: 0 0 0 1px;" name="search_input" id="search_input" value="${search_input}" placeholder="검색어를 입력해주세요." />
 										                <button type="button" class="btn_small btn_blue" onclick="userSearchBtn()" style="height: 40px; margin: 0 0 0 1px;">검색</button>
@@ -126,24 +89,8 @@
 										</div>
 										<!--card-->
 
-										
-										
-										
-										
-										
-										
-										
-										
 										<!--회원 리스트-->
 										<div class="card card_border">
-				        					<!-- <div class="drop_list" style="display: none;">
-				        						<ul>
-				        							<li><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">dropButton name1</a></li>
-				        							<li><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">dropButton name2</a></li>
-				        							<li><a href="http://diveinterface.com/preview/at/AdminTemplate_Light/html/dashboard/sales.html#">dropButton name3</a></li>
-				        						</ul>
-				        					</div> -->
-						                    
 						                    
 						        			<!--card_title-->
 						        			<div class="card paddingnone">
@@ -163,7 +110,7 @@
 						                                    <col width="*%">
 						                                </colgroup>
 						                                <thead>
-						                                    <!-- <tr> -->
+						                                    <tr>
 						                                        <th>아이디</th>
 						                                        <th>패스워드</th>
 						                                        <th>이름</th>
@@ -173,7 +120,7 @@
 						                                        <th>회원온도</th>
 						                                        <th>탈퇴여부</th>
 						                                        <th>Edit</th>
-						                                    <!-- </tr> -->
+						                                    </tr>
 						                                </thead>
 						                                <tbody>
 						                                <!-- userList 가져오기!! -->

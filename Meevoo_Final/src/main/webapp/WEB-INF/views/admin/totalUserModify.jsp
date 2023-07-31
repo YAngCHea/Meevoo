@@ -42,9 +42,6 @@
     		      });
     		  }
     	  
-    	  
-    	  
-    	  
       }
   </script>
    </head>
@@ -52,14 +49,12 @@
 
       <!-- Wrapper -->
          <div id="wrapper">
-
             <!-- Main -->
                <div id="main">
                   <div class="inner">
-
+                  
                      <!-- Header -->
                         <%@ include file="../top.jsp" %>
-
 
 					 <!-- 회원관리 리스트 나오게! Start -->
 						 <div class="Wrap">
@@ -68,16 +63,12 @@
 					        	<div class="content_Area">
 					        		<!--card 이거다!!!!!!!!!!!!!!!!!!!-->
 					        		<div class="card card_border">
-					        		
 					        			<!--card 맨 위 이름-->
 					        			<div class="card_title bottomline">
 					                        <h3>회원정보 수정하기
 					                    	</h3>
 					                    </div>
 					        			<!--card_title-->
-					        			
-					        			
-					        			
 					        			
 									  <div class="container body">
 									    <div class="main_container">
@@ -116,14 +107,15 @@
 									                        <input class="form-control" type="text" value="${mdto.nicknm }" name="nicknm" data-validate-linked="email">
 									                      </div>
 									                    </div>
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">ID<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" value="${mdto.id}" name="id" data-validate-length-range="5,15" type="id" readonly>
-									                        
 									                      </div>
 									                    </div>
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">PW<span
 									                          class="required">*</span></label>
@@ -131,6 +123,7 @@
 									                        <input class="form-control" value="${mdto.pw }" name="pw"  type="password" readonly>  <!-- required="required" -->
 									                      </div>
 									                    </div>
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">EMAIL<span
 									                          class="required"> </span></label>
@@ -138,6 +131,7 @@
 									                        <input class="form-control" value="${mdto.email }" name="email" required="required" type="email">
 									                      </div>
 									                    </div>
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">성별<span
 									                          class="required"> </span></label>
@@ -145,6 +139,7 @@
 									                        <input class="form-control" value="${mdto.gender }" type="text" name="gender" >
 									                      </div>
 									                    </div>
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">주소<span
 									                          class="required"> </span></label>
@@ -168,6 +163,7 @@
 															</select>
 									                      </div>
 									                    </div>
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심스포츠<span
 									                          class="required">*</span></label>
@@ -185,6 +181,7 @@
 															</select>
 									                      </div>
 									                    </div>
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">태어난 연도<span
 									                          class="required"> </span></label>
@@ -200,6 +197,7 @@
 										                        <input type="file" class="form-control" value="${mdto.userimg}" name="file">
 									                      </div>
 									                    </div>
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">가입날짜<span
 									                          class="required"> </span></label>
@@ -208,6 +206,7 @@
 									                        <!-- <input type="number" class="form-control"  name="joindate" readonly> -->
 									                      </div>
 									                    </div>
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">자기소개<span
 									                          class="required"> </span></label>
@@ -215,12 +214,12 @@
 									                        <textarea  name="selfintro">${mdto.selfintro }</textarea>
 									                      </div>
 									                    </div>
+									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">가입 상태(가입/탈퇴)<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                       
-									                       <select name="nowjoin">
+									                         <select name="nowjoin">
 																<c:if test="${mdto.nowjoin == '1'}">
 																	<option value="1" selected>가입되어있는 회원</option>
 																	<option value="0">탈퇴한 회원</option>
@@ -229,8 +228,7 @@
 																	<option value="1">가입되어있는 회원</option>
 																	<option value="0" selected>탈퇴한 회원</option>
 																</c:if>
-															</select> 
-									                      
+															 </select> 
 									                      </div>
 									                    </div>
 									                    
@@ -243,6 +241,7 @@
 									                          required="required">
 									                      </div>
 									                    </div> -->
+									                    
 									                    <div class="ln_solid">
 									                      <div class="form-group">
 									                        <div class="col-md-6 offset-md-3">
