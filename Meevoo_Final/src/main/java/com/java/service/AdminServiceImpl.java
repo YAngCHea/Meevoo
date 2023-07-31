@@ -38,6 +38,7 @@ public class AdminServiceImpl implements AdminService {
 	AdminMapper adminMapper;
 	
 	
+	
 	//전체 회원 하단 넘버링 =========================================================================================
 	@Override
 	public HashMap<String, Object> selectAll(int page, SearchDto search) {
@@ -123,7 +124,7 @@ public class AdminServiceImpl implements AdminService {
 		map1.put("category",search.getCategory());
 		map1.put("search_input",search.getSearch_input());
 		
-		System.out.println("Impl endPage : "+pageDto1.getEndPage());
+		//System.out.println("Impl endPage : "+pageDto1.getEndPage());
 		
 		return map1;
 	}
@@ -224,7 +225,7 @@ public class AdminServiceImpl implements AdminService {
 		memberDto.setUserimg(userimg);
 		
 		//파일이름 출력
-		System.out.println("파일이름 출력해보자 : " + userimg);
+		//System.out.println("파일이름 출력해보자 : " + userimg);
 		
 		//mapper에 전송
 		adminMapper.insertMember(memberDto);
@@ -265,7 +266,7 @@ public class AdminServiceImpl implements AdminService {
 		mdto.setUserimg(userimg);
 		
 		//파일이름 출력
-		System.out.println("파일이름 출력해보자 : " + userimg);
+		//System.out.println("파일이름 출력해보자 : " + userimg);
 		
 		
 		
@@ -275,7 +276,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void deleteTUMOne(MemberDto mdto) {
 		adminMapper.deleteTUMOne(mdto);
-		System.out.println("Impl에서도 탈퇴가 되었을껄?");
+		//System.out.println("Impl에서도 탈퇴가 되었을껄?");
 		
 	}
 
@@ -303,7 +304,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public ArrayList<DonutChartsClubDto> selectDonutChartClub() {
 		ArrayList<DonutChartsClubDto> dcclist = adminMapper.selectDonutChartClub();
-		System.out.println("Impl dcclist : "+dcclist);
+		//System.out.println("Impl dcclist : "+dcclist);
 		return dcclist;
 	}
 
@@ -329,7 +330,7 @@ public class AdminServiceImpl implements AdminService {
 		cdto.setCimg(cimg);
 		
 		//파일이름 출력
-		System.out.println("파일이름 출력해보자 : " + cimg);
+		//System.out.println("파일이름 출력해보자 : " + cimg);
 		
 		//mapper에 전송
 		adminMapper.insertClub(cdto);
@@ -393,7 +394,7 @@ public class AdminServiceImpl implements AdminService {
 		cdto.setCimg(cimg);
 		
 		//파일이름 출력
-		System.out.println("파일이름 출력해보자 : " + cimg);
+		//System.out.println("파일이름 출력해보자 : " + cimg);
 		
 	}
 
@@ -404,71 +405,7 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 
-
-	
-
-	
-
-	
-
-
-
-
-	
-
-
-	
-	
-
-
-
-
 			
-			
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-			
-		
-			
-			
-		
 
 		
 

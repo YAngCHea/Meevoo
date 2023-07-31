@@ -48,7 +48,7 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		//endPage가 최대페이지보다 더 크면 최대페이지까지만 노출
 		if(endPage>maxPage) endPage=maxPage;
-		System.out.println("endPage : "+endPage);
+		//System.out.println("endPage : "+endPage);
 		
 		//모임 전체 가져오기
 		ArrayList<NoticeDto> nlist = noticeMapper.selectNoticeAll(startRow,endRow);
@@ -117,7 +117,7 @@ public class NoticeServiceImpl implements NoticeService {
 		ndto.setNotiimg(notiimg);
 		
 		//파일이름 출력
-		System.out.println("파일이름 출력해보자 : " + notiimg);
+		//System.out.println("파일이름 출력해보자 : " + notiimg);
 		
 		//mapper에 전송
 		noticeMapper.insertNotice(ndto);
@@ -156,7 +156,7 @@ public class NoticeServiceImpl implements NoticeService {
 		ndto.setNotiimg(notiimg);
 		
 		//파일이름 출력
-		System.out.println("파일이름 출력해보자 : " + notiimg);
+		//System.out.println("파일이름 출력해보자 : " + notiimg);
 		
 	}
 
@@ -188,7 +188,7 @@ public class NoticeServiceImpl implements NoticeService {
 		map1.put("endPage",pageDto1.getEndPage());
 		map1.put("maxPage",pageDto1.getMaxPage());
 		
-		System.out.println("Impl endPage : "+pageDto1.getEndPage());
+		//System.out.println("Impl endPage : "+pageDto1.getEndPage());
 		
 		return map1;
 	}
@@ -316,7 +316,7 @@ public class NoticeServiceImpl implements NoticeService {
 			HashMap<String, Object> map3 = new HashMap<>();
 			// 조회수 1증가
 			//noticeMapper.updateBhitUp(bno);
-			System.out.println("impl qna: "+qnano);
+			//System.out.println("impl qna: "+qnano);
 			QnADto qdto = noticeMapper.selectQROne(qnano);
 			map3.put("qdto", qdto);
 			//System.out.println("impl qdto"+qdto.getQnano());
@@ -332,48 +332,6 @@ public class NoticeServiceImpl implements NoticeService {
 			
 		}
 		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

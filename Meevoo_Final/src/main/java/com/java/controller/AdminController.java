@@ -102,9 +102,9 @@ public class AdminController {
 		@PostMapping("/admin/totalUserModify")
 		public String dototalUserModify(MemberDto mdto, @RequestPart(required = false) MultipartFile file, String id, Model model) throws Exception{
 			
-			System.out.println("boardUpdate mdto :  " + mdto.getId());
-			System.out.println("boardUpdate mdto :  " + mdto.getUserimg());
-			System.out.println("boardUpdate file :  " + file.getOriginalFilename());
+			//System.out.println("boardUpdate mdto :  " + mdto.getId());
+			//System.out.println("boardUpdate mdto :  " + mdto.getUserimg());
+			//System.out.println("boardUpdate file :  " + file.getOriginalFilename());
 			
 			//게시글 1개 저장하기
 			String fileName = "";
@@ -130,7 +130,7 @@ public class AdminController {
 		public String totalUserModifyDelete(MemberDto mdto, Model model){
 			
 			adminService.deleteTUMOne(mdto);
-			System.out.println("회원탈퇴가 되었다");
+			//System.out.println("회원탈퇴가 되었다");
 			
 			return "redirect:/admin/totalUser"; 
 		}
@@ -174,7 +174,7 @@ public class AdminController {
 	// 2) 추가한 모임 저장하기
 		@PostMapping("/admin/totalWriteWrite")
 		public String totalWriteWrite(ClubDto cdto, @RequestPart(required = false) MultipartFile files, Model model) {
-			System.out.println("controller : modify 성공한거냐?");
+			//System.out.println("controller : modify 성공한거냐?");
 			//게시글 1개 저장
 			adminService.insertClub(cdto,files);
 			String result = "i_success";
@@ -200,9 +200,9 @@ public class AdminController {
 		@PostMapping("/admin/totalWriteModify")
 		public String dototalWriteModify(ClubDto cdto, @RequestPart(required = false) MultipartFile file, int cno, Model model) throws Exception{
 			
-			System.out.println("dototalWriteModify cdto :  " + cdto.getCno());
-			System.out.println("dototalWriteModify cdto :  " + cdto.getCimg());
-			System.out.println("dototalWriteModify file :  " + file.getOriginalFilename());
+			//System.out.println("dototalWriteModify cdto :  " + cdto.getCno());
+			//System.out.println("dototalWriteModify cdto :  " + cdto.getCimg());
+			//System.out.println("dototalWriteModify file :  " + file.getOriginalFilename());
 			
 			//게시글 1개 저장하기
 			String fileName = "";
@@ -228,7 +228,7 @@ public class AdminController {
 		public String totalWriteModifyDelete(ClubDto cdto, Model model){
 			
 			adminService.deleteTCMOne(cdto);
-			System.out.println("모임 삭제가 되었습니다");
+			//System.out.println("모임 삭제가 되었습니다");
 			
 			return "redirect:/admin/totalWrite"; 
 		}
@@ -339,19 +339,12 @@ public class AdminController {
 		ArrayList<StaticHeadTwoDto> shtlist = adminService.selectSHTwo();
 		
 		model.addAttribute("shtlist",shtlist);
-		System.out.println("controller shtlist:"+shtlist);
+		//System.out.println("controller shtlist:"+shtlist);
 		
 		
 
 		return "admin/adminStatic";
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -370,28 +363,6 @@ public class AdminController {
 		return dcclist;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

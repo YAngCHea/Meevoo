@@ -44,7 +44,7 @@ public class ClubReportController {
 		model.addAttribute("search_input",map.get("search_input"));
 		//model.addAttribute("pagedto",pagedto);    => 여기서 pagedto자체를 보냈으면  jsp에서 찍을때 pagedto.page이런식으로 찍어야한다.
 		
-		System.out.println("controller ListCount" + pagedto.getListCount());
+		//System.out.println("controller ListCount" + pagedto.getListCount());
 
 		return "clubreport/clubReportList";
 	}
@@ -94,10 +94,10 @@ public class ClubReportController {
 	@RequestMapping("/clubreport/answerInsert")
 	@ResponseBody //데이터로 리턴해서 가져와라
 	public ClubReportAnswerDto answerInsert(ClubReportAnswerDto crepanDto) {
-		System.out.println("controller 등록 ajax에서 넘어온 아이디 : "+crepanDto.getId());
-		System.out.println("controller 등록 ajax에서 넘어온 답변번호 : "+crepanDto.getCrepanno());
-		System.out.println("controller 등록 ajax에서 넘어온 문의글번호 : "+crepanDto.getCrepno());
-		System.out.println("controller 등록 ajax에서 넘어온 답변 데이터 : "+crepanDto.getCrepancontent());
+		//System.out.println("controller 등록 ajax에서 넘어온 아이디 : "+crepanDto.getId());
+		//System.out.println("controller 등록 ajax에서 넘어온 답변번호 : "+crepanDto.getCrepanno());
+		//System.out.println("controller 등록 ajax에서 넘어온 문의글번호 : "+crepanDto.getCrepno());
+		//System.out.println("controller 등록 ajax에서 넘어온 답변 데이터 : "+crepanDto.getCrepancontent());
 		
 		//답변 저장, 1개 가져오기
 		ClubReportAnswerDto crepandto = clubReportService.answerInsert(crepanDto);
@@ -109,11 +109,11 @@ public class ClubReportController {
 	@RequestMapping("/clubreport/answerDelete")
 	@ResponseBody 
 	public String answerDelete(int crepanno) {
-		System.out.println("ajax 넘어온 데이터 : "+crepanno);
+		//System.out.println("ajax 넘어온 데이터 : "+crepanno);
 		
 		//답변 1개 삭제하기
 		clubReportService.answerDelete(crepanno);
-		System.out.println(crepanno);
+		//System.out.println(crepanno);
 		
 		String result = "success";
 		return result;

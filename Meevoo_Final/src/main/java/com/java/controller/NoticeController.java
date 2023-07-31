@@ -94,9 +94,9 @@ public class NoticeController {
 		@PostMapping("/notice/noticeModify")
 		public String donoticeModify(NoticeDto ndto, @RequestPart(required = false) MultipartFile file, int notino, Model model) throws Exception{
 			
-			System.out.println("noticeModify ndto :  " + ndto.getNotino());
-			System.out.println("noticeModify ndto :  " + ndto.getNotiimg());
-			System.out.println("noticeModify file :  " + file.getOriginalFilename());
+			//System.out.println("noticeModify ndto :  " + ndto.getNotino());
+			//System.out.println("noticeModify ndto :  " + ndto.getNotiimg());
+			//System.out.println("noticeModify file :  " + file.getOriginalFilename());
 			
 			//게시글 1개 저장하기
 			String fileName = "";
@@ -140,7 +140,7 @@ public class NoticeController {
 		model.addAttribute("startPage",map1.get("startPage"));
 		model.addAttribute("endPage",map1.get("endPage"));
 		model.addAttribute("maxPage",map1.get("maxPage"));
-		System.out.println("controller endPage"+map1.get("endPage"));
+		//System.out.println("controller endPage"+map1.get("endPage"));
 		
 		return "notice/FAQ";
 	}	
@@ -244,7 +244,7 @@ public class NoticeController {
 		public String QnAReply(int qnano,Model model) {
 			HashMap<String, Object> map3 = noticeService.selectQROne(qnano);
 			model.addAttribute("qdto",map3.get("qdto"));
-			System.out.println("controller qgroup:"+map3.get("qgroup"));
+			//System.out.println("controller qgroup:"+map3.get("qgroup"));
 			return "notice/QnAReply";
 		}
 	

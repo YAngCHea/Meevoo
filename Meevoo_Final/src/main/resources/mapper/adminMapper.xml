@@ -10,27 +10,28 @@
 	   <!-- 1) 접속자수를 리스트에 채워서 데려오기 -->
 	   <!-- 데이터가 5000개임에도 불구하고 시간별로 자르면 5명 이런식으로 나와서 12시간 기준으로 잘라서 들고옴 -->
 	   <select id="selectSHTwo" resultType="com.java.dto.StaticHeadTwoDto">
-		   
 	            <![CDATA[
-	            SELECT 
-				  (SELECT COUNT(*) FROM loginpeople
-				   WHERE logDate = TRUNC(SYSDATE)
-				     AND (
-				       (SYSDATE < TO_DATE('12:00:00', 'HH24:MI:SS') AND loginTime >= TO_DATE('00:00:00', 'HH24:MI:SS') AND loginTime < TO_DATE('12:00:00', 'HH24:MI:SS')) OR
-				       (SYSDATE >= TO_DATE('12:00:00', 'HH24:MI:SS') AND loginTime >= TO_DATE('12:00:00', 'HH24:MI:SS') AND loginTime <= TO_DATE('23:59:59', 'HH24:MI:SS'))
-				     )
-				  ) AS totallogin
+	            SELECT (SELECT COUNT(*) FROM loginpeople WHERE logDate = TRUNC(SYSDATE)
+				     AND ((SYSDATE < TO_DATE('12:00:00', 'HH24:MI:SS') 
+				        AND loginTime >= TO_DATE('00:00:00', 'HH24:MI:SS') 
+				        AND loginTime < TO_DATE('12:00:00', 'HH24:MI:SS')
+				      ) OR
+				       (SYSDATE >= TO_DATE('12:00:00', 'HH24:MI:SS') 
+				        AND loginTime >= TO_DATE('12:00:00', 'HH24:MI:SS') 
+				        AND loginTime <= TO_DATE('23:59:59', 'HH24:MI:SS')))) AS totallogin
 				FROM dual
 	            ]]>
-	        
 		</select>
 		
 	   <!-- 2) 신규가입자, 최근 게시물, 최근리뷰 값을 리스트에 채워서 데려오기 -->
 	   <select id="selectSHOne" resultType="com.java.dto.StaticHeadOneDto">
 		    SELECT
-		        (SELECT COUNT(*) FROM userlist WHERE joinDate BETWEEN (TRUNC(SYSDATE, 'MM')) AND (LAST_DAY(SYSDATE))) AS newjoinuser,
-		        (SELECT COUNT(*) FROM clublist WHERE cWrDate BETWEEN (TRUNC(SYSDATE, 'MM')) AND (LAST_DAY(SYSDATE))) AS newclub,
-		        (SELECT COUNT(*) FROM sportreview WHERE sReDate BETWEEN (TRUNC(SYSDATE, 'MM')) AND (LAST_DAY(SYSDATE))) AS newreview
+		        (SELECT COUNT(*) FROM userlist WHERE joinDate 
+		         BETWEEN (TRUNC(SYSDATE, 'MM')) AND (LAST_DAY(SYSDATE))) AS newjoinuser,
+		        (SELECT COUNT(*) FROM clublist WHERE cWrDate 
+		         BETWEEN (TRUNC(SYSDATE, 'MM')) AND (LAST_DAY(SYSDATE))) AS newclub,
+		        (SELECT COUNT(*) FROM sportreview WHERE sReDate 
+		         BETWEEN (TRUNC(SYSDATE, 'MM')) AND (LAST_DAY(SYSDATE))) AS newreview
 		    FROM dual
 		</select>
    

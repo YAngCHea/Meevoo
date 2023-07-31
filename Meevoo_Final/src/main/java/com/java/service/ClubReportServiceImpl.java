@@ -132,13 +132,13 @@ public class ClubReportServiceImpl implements ClubReportService {
 		}//for
 		
 		//파일이름 출력
-		System.out.println("파일이름 1개로 묶은 이름 : "+crepimg);
+		//System.out.println("파일이름 1개로 묶은 이름 : "+crepimg);
 		
 		//파일이름 1개로 묶은 이름 String배열로 분리
 		crepimgs = crepimg.split(",");
 		
-		System.out.println("bfiles 배열 출력 : "+Arrays.toString(crepimgs));
-		System.out.println("bfiles 배열 개수 : "+crepimgs.length);
+		//System.out.println("bfiles 배열 출력 : "+Arrays.toString(crepimgs));
+		//System.out.println("bfiles 배열 개수 : "+crepimgs.length);
 		
 		//mapper 전송 - 문의글 1개 저장
 		clubReportMapper.insertOne(crdto);
@@ -150,10 +150,10 @@ public class ClubReportServiceImpl implements ClubReportService {
 	// 4-1.답글 저장하기
 	@Override
 	public ClubReportAnswerDto answerInsert(ClubReportAnswerDto crepanDto) {
-		System.out.println("impl 등록 ajax에서 넘어온 아이디 : "+crepanDto.getId());
-		System.out.println("impl 등록 ajax에서 넘어온 답변번호 : "+crepanDto.getCrepanno());
-		System.out.println("impl 등록 ajax에서 넘어온 문의글번호 : "+crepanDto.getCrepno());
-		System.out.println("impl 등록 ajax에서 넘어온 답변 데이터 : "+crepanDto.getCrepancontent());
+		//System.out.println("impl 등록 ajax에서 넘어온 아이디 : "+crepanDto.getId());
+		//System.out.println("impl 등록 ajax에서 넘어온 답변번호 : "+crepanDto.getCrepanno());
+		//System.out.println("impl 등록 ajax에서 넘어온 문의글번호 : "+crepanDto.getCrepno());
+		//System.out.println("impl 등록 ajax에서 넘어온 답변 데이터 : "+crepanDto.getCrepancontent());
 		
 		clubReportMapper.answerInsert(crepanDto);
 		return crepanDto;
