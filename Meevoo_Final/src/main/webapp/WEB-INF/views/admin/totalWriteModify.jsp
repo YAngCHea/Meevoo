@@ -63,7 +63,7 @@
 					        		
 					        			<!--card 맨 위 이름-->
 					        			<div class="card_title bottomline">
-					                        <h3>전체 게시글 관리
+					                        <h3>모임 수정하기
 					                    	</h3>
 					                    </div>
 					        			<!--card_title-->
@@ -85,14 +85,16 @@
 									                    novalidate="">
 									                    
 									                    <!-- <span class="section">Personal Info</span> -->
-									                    <div class="field item form-group">
+									                    <%-- <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">no<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" name="cno" value="${cdto.cno}" type="number">
+									                        <input class="form-control" name="cno" value="${cdto.cno}" type="number" >
 									                      </div>
-									                    </div>
+									                    </div> --%>
 									                    
+								                        <input class="form-control" name="cno" value="${cdto.cno}" type="hidden" >
+								                        
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성자<span
 									                          class="required">*</span></label>
@@ -125,14 +127,23 @@
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">시설 번호<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="number" value="${cdto.sfno}" name="sfno" >
+									                         <select name="sfno" >
+																<c:forEach var="sportlist" items="${sportlist}">
+																	<option value="${cdto.sfno}" selected>${sportlist.sfno}.${sportlist.sfnm}</option>
+																</c:forEach>
+															 </select>
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">모임 지역<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" value="${cdto.dongcate}" name="dongcate" >
+									                        <%-- <input class="form-control" type="text" value="${cdto.dongcate}" name="dongcate" > --%>
+									                        <select name="dongcate" >
+																<c:forEach var="sportlist" items="${sportlist}">
+																	<option value="${cdto.dongcate}" selected>${sportlist.sfno}.${sportlist.dongcate}</option>
+																</c:forEach>
+															 </select>
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">

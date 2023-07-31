@@ -232,7 +232,7 @@
    <!-- 3) 회원 추가하기 -->
 	   <insert id="insertMember">
 	      insert into userlist values(#{id},#{pw},#{usernm},#{nicknm},#{birth},#{email},#{gender},#{dongcate},#{scate},
-	      #{userimg},#{selfintro},sysdate,1,0,#{addr})
+	      #{userimg},#{selfintro},sysdate,1,36.5,#{addr})
 	   </insert>
    
    <!-- 4) 수정할 회원정보 가져오기 -->
@@ -242,14 +242,23 @@
    
    <!-- 5) 회원 수정사항 저장하기 -->
 	   <update id="updateTUMOne">
-	      update userlist set id=#{id},pw=#{pw}, usernm=#{usernm}, nicknm=#{nicknm}, birth=#{birth}, email=#{email}, gender=#{gender}, dongcate=#{dongcate}, 
-	      userimg=#{userimg},scate=#{scate}, selfintro=#{selfintro},addr=#{addr},nowjoin=#{nowjoin}
-	      where id=#{id}
+	      update userlist set 
+			  <if test="userimg != null">
+		      id=#{id},pw=#{pw}, usernm=#{usernm}, nicknm=#{nicknm}, birth=#{birth}, email=#{email}, gender=#{gender}, dongcate=#{dongcate}, 
+		      userimg=#{userimg},scate=#{scate}, selfintro=#{selfintro},addr=#{addr},nowjoin=#{nowjoin}
+		      where id=#{id}
+		      </if>
+		      <if test="userimg == null">
+		      id=#{id},pw=#{pw}, usernm=#{usernm}, nicknm=#{nicknm}, birth=#{birth}, email=#{email}, gender=#{gender}, dongcate=#{dongcate}, 
+		      scate=#{scate}, selfintro=#{selfintro},addr=#{addr},nowjoin=#{nowjoin}
+		      where id=#{id}
+		      </if>
 	   </update>
    
    <!-- 6) 회원 탈퇴처리하기 -->
 	   <update id="deleteTUMOne">
-	      update userlist set nowjoin=0 where id=#{id}
+	      update userlist set 
+	      nowjoin=0 where id=#{id}
 	   </update>
    
    
@@ -332,7 +341,10 @@
 			)
 	   </insert>
    
-
+<!-- 수정하기 - 시설번호 전체 가져오기 -->
+	  <select id="selectSportModifyList">
+	     select * from sportlist
+	  </select>
    
    
    <!-- 4) 수정할 모임 정보 가져오기 -->
@@ -342,9 +354,19 @@
    
    <!-- 5) 모임 수정사항 저장하기 -->
 	   <update id="updateTCMOne">
-	      update clublist set cno=#{cno},id=#{id}, cnm=#{cnm}, cwrdate=#{cwrdate}, cimg=#{cimg}, sfno=#{sfno}, dongcate=#{dongcate}, cloc=#{cloc}, 
+	      update clublist set 
+	   
+	      <if test="cimg != null">
+	      cno=#{cno},id=#{id}, cnm=#{cnm}, cwrdate=#{cwrdate}, cimg=#{cimg}, sfno=#{sfno}, dongcate=#{dongcate}, cloc=#{cloc}, 
 	      cdodate=#{cdodate},ccontent=#{ccontent}, crecruitlimit=#{crecruitlimit},cnowstatus=#{cnowstatus},scate=#{scate}
 	      where cno=#{cno}
+	      </if>
+	      <if test="cimg == null">
+	      cno=#{cno},id=#{id}, cnm=#{cnm}, cwrdate=#{cwrdate}, sfno=#{sfno}, dongcate=#{dongcate}, cloc=#{cloc}, 
+	      cdodate=#{cdodate},ccontent=#{ccontent}, crecruitlimit=#{crecruitlimit},cnowstatus=#{cnowstatus},scate=#{scate}
+	      where cno=#{cno}
+	      </if>
+	   
 	   </update> 
    
    <!-- 6) 모임 삭제하기 -->

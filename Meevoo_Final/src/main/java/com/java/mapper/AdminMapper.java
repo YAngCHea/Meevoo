@@ -90,12 +90,16 @@ public interface AdminMapper {
 
 	//수정할 모임 정보 가져오기
 	ClubDto selectTCMOne(int cno);
+	
+	// 수정하기 - 시설번호 전체 가져오기
+	ArrayList<SportDto> selectSportModifyList();
 
 	//수정한 모임 정보 저장하기
 	void updateTCMOne(ClubDto cdto);
 
 	//모임 삭제하기
 	void deleteTCMOne(ClubDto cdto);
+
 
 
 	

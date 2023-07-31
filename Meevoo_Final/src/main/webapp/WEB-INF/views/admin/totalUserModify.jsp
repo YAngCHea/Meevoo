@@ -19,29 +19,12 @@
      }
   </script>
   <script>
-/*       function deleteBtn(){
+  function deleteBtn(){
     	  if(confirm("회원 탈퇴처리 하시겠습니까?")){
-    		  update.submit(); //전송
-    		  //location.href="/admin/totalUserModify?id=${userList.id}";
-    	  } */
+    		  location.href="/admin/totalUserModifyDelete?id=${mdto.id}";
+    	  } 
     	  
-    	  //값을 0으로 만들게 탈퇴!!
-    	  function deleteBtn() {
-    		    var userId = '${mdto.id}';
-
-    		    fetch(`/admin/totalUserModify?id=${userId}&nowjoin=0`, {
-    		      method: 'POST', // Or 'GET' depending on your server handling
-    		    })
-    		      .then(response => {
-    		        // Handle the response if needed (e.g., show a success message)
-    		        console.log('User deleted successfully.');
-    		      })
-    		      .catch(error => {
-    		        // Handle errors if the request fails
-    		        console.error('Error deleting user:', error);
-    		      });
-    		  }
-    	  
+   	  
       }
   </script>
    </head>

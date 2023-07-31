@@ -362,6 +362,13 @@ public class AdminServiceImpl implements AdminService {
 		return cdto;
 	}
 
+	// 수정하기 - 시설번호 전체 가져오기
+	@Override
+	public ArrayList<SportDto> selectSportModifyList() {
+		ArrayList<SportDto> sportlist = adminMapper.selectSportModifyList();
+		return sportlist;
+	}
+
 	//수정한 모임 정보 저장하기
 	@Override
 	public void updateTCMOne(ClubDto cdto, MultipartFile file) {
@@ -397,6 +404,7 @@ public class AdminServiceImpl implements AdminService {
 		adminMapper.deleteTCMOne(cdto);
 		
 	}
+
 
 	
 

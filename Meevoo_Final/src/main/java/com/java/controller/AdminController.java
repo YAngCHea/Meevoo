@@ -188,6 +188,11 @@ public class AdminController {
 			ClubDto cdto = adminService.selectTCMOne(cno);
 			model.addAttribute("cdto",cdto);
 			
+			// 수정하기 - 시설번호 전체 가져오기
+			ArrayList<SportDto> sportlist = adminService.selectSportModifyList();
+			model.addAttribute("sportlist", sportlist);
+						
+			
 			return "admin/totalWriteModify";
 		}	
 		

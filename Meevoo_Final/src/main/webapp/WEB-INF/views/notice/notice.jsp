@@ -46,7 +46,7 @@
 							<col width="*" />
 							<col width="15%" />
 							<col width="15%" />
-							<col width="10%" />
+							<col width="*%" />
 						</colgroup>
 						<thead>
 							<tr>

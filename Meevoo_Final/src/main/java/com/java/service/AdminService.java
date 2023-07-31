@@ -79,9 +79,11 @@ public interface AdminService {
 	//모임 추가하기
 	void insertClub(ClubDto cdto, MultipartFile files);
 	
+	// 수정하기 - 시설번호 전체 가져오기
+	ArrayList<SportDto> selectSportModifyList();
+	
 	//새로 모임 추가할때 시설 리스트중에서 선택하게 리스트 가져오기
 	ArrayList<SportDto> selectSportList();
-	
 	
 	
 	//수정할 모임 정보 불러오기
@@ -92,6 +94,7 @@ public interface AdminService {
 
 	//모임 삭제하기
 	void deleteTCMOne(ClubDto cdto);
+
 
 	
 
