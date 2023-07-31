@@ -71,7 +71,7 @@
   //모임글 등록
   function cUpdateChkBtn(){
       if(confirm("모임글을 수정하시겠습니까?")){
-    	  cUpdateFrom.submit(); //전송
+    	  $("#cUpdateFrom").submit(); //전송
 		alert("모임글이 수정되었습니다.");
       }
 	}
@@ -103,7 +103,7 @@
 								    <li><span style="color: #f56a6a; font-weight: bold;">*</span> 표시된 항목은 필수 항목이므로 반드시 입력하셔야 모임수정이 진행됩니다.</li>
 								  </ul>
 								</div>
-								<form action="/club/cUpdate" method="post" name="cUpdateFrom" enctype="multipart/form-data" >
+								<form action="/club/cUpdate2" method="post" name="cUpdateFrom" id="cUpdateFrom" enctype="multipart/form-data" >
 								  <div class = "table-wrapper">
 								    <table>
 								    
@@ -117,7 +117,7 @@
 										  <th>모임장소</th>
 										  <td colspan="2">
 										    <ul>
-										      <li><input type="text" class="sfno" type="button" id="inputField" style="display:block; margin-bottom:0.5em;" value="${cdto.sfno }" readonly ></input></li>
+										      <li><input type="text" name="sfno" class="sfno" type="button" id="inputField" style="display:block; margin-bottom:0.5em;" value="${cdto.sfno }" readonly ></input></li>
 										      <li><input type="text" name="sfnm" class="sfnm" value="${cdto.sfnm }" style="margin-bottom:0.5em;" readonly></li>
 										      <li><input type="text" name="cloc" class="cloc" value="${cdto.addr }" style="margin-bottom:0.5em;" readonly></li>
 										    </ul>
@@ -143,12 +143,12 @@
 										  <th>모임일시 <span style="color: #f56a6a; font-weight: bold;">*</span></th>
 										  <td>
 										    <ul>
-										      <li><input type="date" name="cdodate_date" class="cdodate_date" id="cdodate_date" value="${cdto.cdodate_date }"  style="margin-bottom:1em;"  /></li>
+										      <li><input type="date" name="cdodate_date1" class="cdodate_date" id="cdodate_date" value="${cdto.cdodate_date }"  style="margin-bottom:1em;"  /></li>
 										    </ul>
 										  </td>
 										  <td>
 										    <ul>
-										      <li><input type="time" name="cdodate_time" class="cdodate_time" id="cdodate_time" value=""   /></li>
+										      <li><input type="time" name="cdodate_time1" class="cdodate_time" id="cdodate_time" value="${cdto.cdodate_time }"   /></li>
 										    </ul>
 										  </td>
 									    </tr>
@@ -170,7 +170,7 @@
 									    </tr>
 									    <tr>
 										  <th>파일</th>
-										  <td>
+										  <td colspan="2">
 										    <ul>
 										      <li>${cdto.cimg }</li>
 										    </ul>
@@ -205,8 +205,11 @@
 								    </table>
 								      <ul>
 								        <li><input type="hidden" name="id" id = "id" value="${sessionId }" ></li>
+								        <li><input type="hidden" name="cno" id = "cno" value="${cdto.cno }" ></li>
 								        <li><input type="hidden" name="dongcate" class="dongcate" value="${cdto.dongcate }" ></li>
 								        <li><input type="hidden" name="cimg" value="${cdto.cimg }" ></li>
+								        <li><input type="hidden" name="cdodate_date2" value="${cdto.cdodate_date }" ></li>
+								        <li><input type="hidden" name="cdodate_time2" value="${cdto.cdodate_time }" ></li>
 								      </ul>
 								  </div>
 								</form>
