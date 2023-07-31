@@ -19,22 +19,13 @@
 						<div class="inner">
 
 							<!-- Header -->
-								<header id="header">
-									<a href="main.jsp" class="logo"><strong>Meevoo</strong></a>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
-									</ul>
-								</header>
+							<%@ include file="../top.jsp" %>
 
 							<!-- Banner -->
 								<section id="banner">
 									<div class="content">
 										<header>
-											<h1>honghong111 님! 모임은 어떠셨나요?</h1>
+											<h1>최도윤 님! 모임은 어떠셨나요?</h1>
 											<h3>리뷰를 작성하시고 다른 참여자에게 도움을 주세요 </h3>
 											<h4>리뷰를 남겨주신 덕분에 다른 참여자들이 더 나은 모임을 할 수 있게 되었습니다. <br> 경험을 공유하여 다른 참여자들에게 도움을 주세요!</h4>
 										</header>
@@ -52,23 +43,23 @@
 										  <div style="width: 40%; padding: 1em;">
 									        <span class="sfinfo" style="width: 40%; ">
 									          <a href="#" class="image" style="width:100%;">
-									            <img src="../images/운동시설/고척근린공원 테니스장.jpg" style="width:100%;"/>
+									            <img src="../images/운동시설/하나골프존스크린.jpg" style="width:100%;"/>
 									          </a>
 									        </span>
 									       </div>
 	 									  <div class="content" style=" width: 55%; padding: 1.5em 0.5em 0.1em 3em;" >
 	 									    <div>
-										      <p style="margin-bottom: 1em;">모임장소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;고척근린공원 테니스장</p>
-										      <p style="margin-bottom: 1em;">모임주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서울특별시 구로구 고척로39길 48-11</p>
+										      <p style="margin-bottom: 1em;">모임장소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;하나골프존스크린</p>
+										      <p style="margin-bottom: 1em;">모임주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서울특별시 구로구 구로동 97-4 하나세인스톤2차</p>
 										      <p style="margin: 0;">편의시설</p>
 	 									    </div>
 	 									    <div>
 	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
-										          <figure><img src="../images/facilities/wifiIconX.png" style="width:70px;" /></figure>
+										          <figure><img src="../images/facilities/wifiIconO.png" style="width:70px;" /></figure>
 										          <p style="font-size: 10px;">와이파이</p>
 	 									        </div>
 	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
-										          <figure><img src="../images/facilities/petIconO.png" style="width:70px" /></figure>
+										          <figure><img src="../images/facilities/petIconX.png" style="width:70px" /></figure>
 										          <p style="font-size: 10px;">반려동물</p>
 	 									        </div>
 	 									        <div style="display: inline-block; margin: 10px; text-align: center;">
@@ -86,7 +77,7 @@
 	 									 <div class="col-12"; style="postion:flex; width: 100%;">
 										   <ul class="actions" style="justify-content: flex-end;">
 											 <li><input type="reset" onclick="javascript:location.href='/club/club'" value="다음에 작성" /></li>
-											 <li><input type="submit" onclick="javascript:location.href='/sport/sportListView?sfno=${sport.sfno}&page=${page}'" value="작성하러 가기" class="primary" /></li>
+											 <li><input type="submit" onclick="javascript:location.href='/sport/sportListView?sfno=1'" value="작성하러 가기" class="primary" /></li>
 										   </ul>
 									     </div>
 									  
