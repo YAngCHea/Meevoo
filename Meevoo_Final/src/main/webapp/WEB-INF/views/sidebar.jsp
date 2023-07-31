@@ -30,10 +30,18 @@ body.slider input[type="range"] {
 		<input type="text" name="query" id="query" placeholder="Search" />
 	</form>
 </section> -->
+<section style="margin: 0; padding: 0;">
+  <a href="/main">
+    <span>
+      <img src="../images/main/logo3.png" style="width: 16em; text-align: center; margin-left:2.3em;">
+    </span>
+  </a>
+</section>
+
 <!-- Menu -->
 			<nav id="menu">
 				<header class="major">
-					<h2>메뉴</h2>
+					<h2 style="margin-top: 2em;">메뉴</h2>
 				</header>
 				<ul>
 					<li>

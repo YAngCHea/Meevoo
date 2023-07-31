@@ -351,7 +351,7 @@
 									&nbsp;
 								    <div>
 								      <c:if test="${cdto.cimg != null}">
-								        <img src="${cdto.cimg}" style="width:10%;"/>
+								        <img src="/upload/${cdto.cimg}" style="width:20%;"/>
 								      </c:if>
 								      <c:if test="${cdto.cimg == null}">
 								       <p>업로드 된 파일 없습니다.</p>
