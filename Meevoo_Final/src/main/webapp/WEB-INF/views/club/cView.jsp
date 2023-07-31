@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -35,7 +36,15 @@
 		   alert ("로그인을 하셔야 모임글 상세 페이지에 접속이 가능합니다.");
 		   location.href="/member/login";
 		 </script>
-		</c:if>			
+		</c:if>	
+		
+		<script>
+		  function deleteBtn(){
+			  if(confirm("모임글을 삭제하시겠습니까?")){
+				  location.href="cDelete?cno=${cdto.cno}"
+			  }
+		  }		
+		</script>
 	</head>
 	<body class="is-preload">
 		<!-- Wrapper -->
@@ -50,16 +59,26 @@
 									<span class="content">
 										<header>
 										  <!-- 우상단 세부메뉴 점세개 -->
+										  <c:if test="${sessionId == cdto.id }">
+										  <div class="dropdown" style="position: relative; display: inline-block; float: right; ">
+										    <input type="image" src="../images/general/ellipsisVertical.png" style="width: 30px; display: flex; float:right;" >
+										      <div class="dropdown-content" style="top:-15px; left: -160px; background-color: #ffffff;">
+										         <div><span><a href="/club/club?page=${param.page}"><img src="../images/general/previousPage.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;목록 보기</a></span></div>
+										         <div><span><a href="/clubreport/clubReportWrite?cno=${cdto.cno}"><img src="../images/general/report.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;신고 하기</a></span></div>
+										         <div><span><a href="/club/cUpdate?cno=${cdto.cno }"><img src="../images/general/write.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;수정 하기</a></span></div>
+										         <div><span><a onclick="deleteBtn()"><img src="../images/general/delete.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;삭제 하기</a></span></div>
+										      </div>
+										  </div>
+										  </c:if>
+										  <c:if test="${sessionId != cdto.id }">
 										  <div class="dropdown" style="position: relative; display: inline-block; float: right; ">
 										    <input type="image" src="../images/general/ellipsisVertical.png" style="width: 30px; display: flex; float:right;" >
 										      <div class="dropdown-content" style="top:-15px; left: -160px; background-color: #ffffff;">
 										         <div><span><a href="/club/club"><img src="../images/general/previousPage.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;뒤로 가기</a></span></div>
-										         <div><span><a href="#"><img src="../images/general/index.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;저장 하기</a></span></div>
-										         <div><span><a href="#"><img src="../images/general/report.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;신고 하기</a></span></div>
-										         <div><span><a href="/club/cWriteUdate"><img src="../images/general/write.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;수정 하기</a></span></div>
-										         <div><span><a href="#"><img src="../images/general/delete.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;삭제 하기</a></span></div>
+										         <div><span><a href="/clubreport/clubReportWrite?cno=${cdto.cno}"><img src="../images/general/report.png" style="width:20px; vertical-align: middle;" />&nbsp;&nbsp;&nbsp;&nbsp;신고 하기</a></span></div>
 										      </div>
 										  </div>
+										  </c:if>
 										  <!-- 우상단 세부메뉴 점세개 끝-->
 										  <h1>${cdto.cnm}</h1>
 										    <div style="width:70%; margin: 0 0 2em 0; padding: 1em 0 0 0;">
@@ -166,7 +185,6 @@
 	 									      <!-- 운동모임 모임 정보\d-day, 일자 -->
 										      <p style="margin-bottom: 1em;">모임일자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										        <span style="font-weight: bold; color: #f56a6a">
-										          <%-- 
 										          <jsp:useBean id="nowRecsLoginList" class="java.util.Date" />
 												    <fmt:parseNumber value="${nowRecsLoginList.time / (1000*60*60*24)}" integerOnly="true" var="nowfmtTime" scope="request"/>
 												    <fmt:parseNumber value="${cdto.cdodate_date.time / (1000*60*60*24)}" integerOnly="true" var="dbDtParse" scope="request"/>
@@ -186,16 +204,13 @@
 														    D-${nowfmtTime - dbDtParse}
 													      </span>
 												        </c:if>
-										         --%>
 										        </span>&nbsp;&nbsp;
-										        <%-- 
 										        <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
 										          <fmt:formatDate value="${cdto.cdodate_date}" type="both" dateStyle ="long" pattern="yyyy-MM-dd (E)" />
 										        </span>
 										        <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
 										          <fmt:formatDate value="${cdto.cdodate_time}" type="both" dateStyle ="short" pattern="a hh:mm" />
 										        </span>
-										      --%>
 										      </p>
 										      <!-- 운동모임 모임 정보\d-day, 일자 끝-->
 										      <p style="margin-bottom: 1em;">모임장소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cdto.sfnm}</p>
@@ -259,9 +274,6 @@
 	 									  <div class="col-12" style="float: right; ">
 								            <a href="/sport/sportListView?sfno=${cdto.sfno}" class="button primary">모임장소 상세보기</a>
 								          </div>
-								          <div class="col-12" style="float: right; ">
-								            <a href="/club/club?page=${param.page}" class="button primary">모임목록 보기</a>
-								          </div>
 									</div>
 									<hr style="margin-top: 5em; ">
 									<div>
@@ -314,8 +326,7 @@
 									        </div>
 									      </div>
 									  </div>
-									  
-									<script>
+								   <script>
 								   	// 1. 모인 신청 버튼
 								   	function clubJoinBtn(){
 								   		if(confirm("해당 모임을 신청하시겠습니까?")){
@@ -411,8 +422,8 @@
 								   -->
 									
 								</section>
-								
-						<!-- Section -->
+						<!-- 		
+						Section
 						<section>
 							<header class="major">
 								<h2>댓글</h2>
@@ -473,7 +484,7 @@
 							
 							</div>
 						</section>
-						
+						 -->
 							<!-- Footer -->
 						    <%@ include file="../footer.jsp" %>
 						</div>

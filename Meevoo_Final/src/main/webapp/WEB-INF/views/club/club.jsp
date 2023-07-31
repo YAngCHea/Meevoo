@@ -13,7 +13,6 @@
 		<link rel="stylesheet" href="../css/main_kim.css" />
 		<link rel="icon" href="../images/main/logo2.png">
 	</head>
-	
 	<body class="is-preload">
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -90,7 +89,6 @@
 												 <div style="width:287px;">
 												    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(244, 244, 244, 0.5); font-weight: bold; ">${club.scate }</span>
 												    &nbsp;
-												    <%-- 
 												    <jsp:useBean id="nowRecsLoginList" class="java.util.Date" />
 												      <fmt:parseNumber value="${nowRecsLoginList.time / (1000*60*60*24)}" integerOnly="true" var="nowfmtTime" scope="request"/>
 												      <fmt:parseNumber value="${club.cdodate_date.time / (1000*60*60*24)}" integerOnly="true" var="dbDtParse" scope="request"/>
@@ -110,7 +108,6 @@
 														      D-${nowfmtTime - dbDtParse}
 													    </span>
 												    </c:if>
-												     --%>
 												    &nbsp;
 												    <c:if test="${club.cnowstatus eq '모집중'}">
 												      <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: #f56a6a; color: #ffffff; font-weight: bold; ">${club.cnowstatus }</span>
@@ -138,14 +135,12 @@
 													</span>
 													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">${club.dongcate }</span>
 													&nbsp;
-													<%-- 
 													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
 													  <fmt:formatDate value="${club.cdodate_date}" type="both" dateStyle ="long" pattern="yy-MM-dd (E)" />
 													</span>
 													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
 													  <fmt:formatDate value="${club.cdodate_time}" type="both" dateStyle ="short" pattern="a hh:mm" />
 													</span>
-													 --%>
 													<!-- 회원님을 위한 모임추천 내용 셋째줄 끝: 모임위치(동이름), 모임일시 -->
 												</div>
 												<!-- 회원님을 위한 모임추천 내용 끝-->
@@ -227,7 +222,6 @@
 												htmlData +='<div style="width:287px;">';
 												htmlData +='<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(244, 244, 244, 0.5); font-weight: bold; ">'+data[i].scate+'</span>';
 												htmlData +='&nbsp;';
-												/* 
 												<!-- 디데이 -->
 												var currentDate = moment(); // 현재 날짜와 시간
 												var targetDate = moment(data[i].cdodate_date); // 비교하려는 대상 날짜와 시간
@@ -249,7 +243,6 @@
 													  htmlData += '</span>';
 													}
 												<!-- 디데이 끝-->
-												 */
 												htmlData +='&nbsp;';
 												if(data[i].cnowstatus =='모집중'){
 													htmlData +='<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: #f56a6a; color: #ffffff; font-weight: bold; ">'+data[i].cnowstatus+'</span>';
@@ -277,14 +270,13 @@
 												htmlData +='</span>';
 												htmlData +='<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">'+data[i].dongcate+'</span>';
 												htmlData +='&nbsp;';
-												/* 
+												
 												htmlData +='<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">';
 												htmlData +=(moment(data[i].cdodate_date).format("YY-MM-DD ddd"));
 												htmlData +='</span>';
 												htmlData +='<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">';
 												htmlData +=(moment(data[i].cdodate_time).format("HH:mm a"));
 												htmlData +='</span>';
-												 */
 												<!-- 회원님을 기다리는 모임들 내용 셋째줄 끝: 모임위치(동이름), 모임일시 -->
 												htmlData +='</div>';
 												<!-- 회원님을 기다리는 모임들 내용 끝-->
@@ -346,7 +338,6 @@
 												 <div style="width:287px;">
 												    <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: rgba(244, 244, 244, 0.5); font-weight: bold; ">${club.scate }</span>
 												    &nbsp;
-												    <%-- 
 												    <jsp:useBean id="nowNow" class="java.util.Date" />
 												    <fmt:parseNumber value="${nowNow.time / (1000*60*60*24)}" integerOnly="true" var="nowfmtTime" scope="request"/>
 												    <fmt:parseNumber value="${club.cdodate_date.time / (1000*60*60*24)}" integerOnly="true" var="dbDtParse" scope="request"/>
@@ -366,7 +357,6 @@
 														      D-${nowfmtTime - dbDtParse}
 													    </span>
 												    </c:if>
-												    --%>
 												    &nbsp;
 												    <c:if test="${club.cnowstatus eq '모집중'}">
 												      <span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; background-color: #f56a6a; color: #ffffff; font-weight: bold; ">${club.cnowstatus }</span>
@@ -394,14 +384,12 @@
 													</span>
 													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">${club.dongcate }</span>
 													&nbsp;
-													<%-- 
 													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
 													  <fmt:formatDate value="${club.cdodate_date}" type="both" dateStyle ="long" pattern="yy-MM-dd (E)" />
 													</span>
 													<span style="display inline-block; padding: 3px; border: 1px; border-radius: 10%; font-weight: bold; ">
 													  <fmt:formatDate value="${club.cdodate_time}" type="both" dateStyle ="short" pattern="a hh:mm" />
 													</span>
-													 --%>
 													<!-- 회원님을 기다리는 모임들 내용 셋째줄 끝: 모임위치(동이름), 모임일시 -->
 												</div>
 												<!-- 회원님을 기다리는 모임들 내용 끝-->

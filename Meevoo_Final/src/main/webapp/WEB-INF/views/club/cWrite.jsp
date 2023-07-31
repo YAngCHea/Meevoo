@@ -7,7 +7,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<title>모집하기</title>
+		<title>모임글 작성</title>
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<link rel="stylesheet" href="../css/main_kim.css" />
 		<link rel="icon" href="../images/main/logo2.png">
@@ -68,8 +68,10 @@
   
   //모임글 등록
   function cWriteChkBtn(){
-		alert("모임글이 등록되었습니다.")
+	  if(confirm("모임글을 저장하시겠습니까?")){
 		cWriteFrom.submit(); //전송
+		alert("모임글이 등록되었습니다.")
+	  }
 	}
 </script>
 
@@ -113,7 +115,7 @@
 										  <th>모임장소 <span style="color: #f56a6a; font-weight: bold;">*</span></th>
 										  <td colspan="2">
 										    <ul>
-										      <li><input type="text" class="sfno" type="button" id="inputField" style="display:block; margin-bottom:0.5em;" placeholder="모임장소를 선택하기 위해 클릭해 주세요" readonly onclick="javascript:location.href='/club/cWriteSearchSF'"></input></li>
+										      <li><input type="text" name="sfno" class="sfno" type="button" id="inputField" style="display:block; margin-bottom:0.5em;" placeholder="모임장소를 선택하기 위해 클릭해 주세요" readonly onclick="javascript:location.href='/club/cWriteSearchSF'"></input></li>
 										      <li><input type="text" name="sfnm" class="sfnm" placeholder="시설 이름" style="margin-bottom:0.5em;" readonly ></li>
 										      <li></li>
 										      <li><input type="text" name="cloc" class="cloc" placeholder="주소" style="margin-bottom:0.5em;" readonly ></li>
@@ -136,21 +138,19 @@
 										    </ul>
 										  </td>
 									    </tr>
-									    <!-- 
 									    <tr>
 										  <th>모임일시 <span style="color: #f56a6a; font-weight: bold;">*</span></th>
 										  <td>
 										    <ul>
-										      <li><input type="date" name="cdodate_date" class="cdodate_date" id="cdodate_date" style="margin-bottom:1em;"  /></li>
+										      <li><input type="date" name="cdodate_date2" class="cdodate_date" id="cdodate_date" style="margin-bottom:1em;"  /></li>
 										    </ul>
 										  </td>
 										  <td>
 										    <ul>
-										      <li><input type="time" name="cdodate_time" class="cdodate_time" id="cdodate_time"   /></li>
+										      <li><input type="time" name="cdodate_time2" class="cdodate_time" id="cdodate_time"   /></li>
 										    </ul>
 										  </td>
 									    </tr>
-									     -->
 									    <tr>
 										  <th>모집인원 <span style="color: #f56a6a; font-weight: bold;">*</span></th>
 										  <td colspan="2">
