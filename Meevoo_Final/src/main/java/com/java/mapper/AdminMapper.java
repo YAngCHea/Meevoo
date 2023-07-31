@@ -24,6 +24,7 @@ import com.java.dto.WriteGraphDto;
 @Mapper
 public interface AdminMapper {
 	
+	
 	//회원 그래프 데이터 생성하기
 	List<UserGraphDto> selectUserGraphAll();
 	

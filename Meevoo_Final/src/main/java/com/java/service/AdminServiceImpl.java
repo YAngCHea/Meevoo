@@ -38,7 +38,6 @@ public class AdminServiceImpl implements AdminService {
 	AdminMapper adminMapper;
 	
 	
-	
 	//전체 회원 하단 넘버링 =========================================================================================
 	@Override
 	public HashMap<String, Object> selectAll(int page, SearchDto search) {

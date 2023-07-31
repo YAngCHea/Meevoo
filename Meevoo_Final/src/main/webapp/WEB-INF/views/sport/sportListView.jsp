@@ -124,9 +124,19 @@
                   			  var dataHtml="";
                   			  
                   			  //댓글화면 변경
-                  			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp&nbsp[ "+ moment(data.sredate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
+                  			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp;&nbsp;&nbsp;[ "+ moment(data.sredate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
 	                  		  dataHtml += "<span class='srestar' style='color: rgba(250, 208, 0, 0.99);'>";
-	       	      			  dataHtml += getStars(sstar);  
+		                  		if (data.sstar == 1) {
+		              			    dataHtml += "★";
+		              			} else if (data.sstar == 2) {
+		              			    dataHtml += "★ ★";
+		              			} else if (data.sstar == 3) {
+		              			    dataHtml += "★ ★ ★";
+		              			} else if (data.sstar == 4) {
+		              			    dataHtml += "★ ★ ★ ★";
+		              			} else if (data.sstar == 5) {
+		              			    dataHtml += "★ ★ ★ ★ ★";
+		              			}
 	       	      			  dataHtml += "</span>&nbsp;&nbsp;별점 "+data.sstar+"</li>";
                   			  dataHtml += "<li class='txt'>"+ data.srecontent +"</li>";
                   			  dataHtml += "<li class='btn'>";
