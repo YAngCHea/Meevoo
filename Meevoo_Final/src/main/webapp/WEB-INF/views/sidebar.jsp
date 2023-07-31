@@ -119,6 +119,9 @@ body.slider input[type="range"] {
 							    <!-- 모임 목록 필터 검색 끝-->
 							  </div>
 							</li>
+							
+							<li><a href="/clubreport/clubReportList">모임 신고 목록</a></li>
+							
 							<!-- 모임 검색하기 끝 -->
 						</ul>
 					</li>

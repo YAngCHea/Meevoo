@@ -74,12 +74,13 @@
 								                        <input type="hidden" name="qgroup" value="${qdto.qgroup }">
 													    <input type="hidden" name="qstep" value="${qdto.qstep }">
 													    <input type="hidden" name="qindent" value="${qdto.qindent }">
+									                    <input class="form-control" name="qnadate"  type="hidden" value="2023-07-01"> 
 									                    
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성자<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" name="id" value="MeeVoo">
+									                        <input class="form-control" type="text" name="id" value="${sessionId }">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
@@ -90,13 +91,13 @@
 									                      </div>
 									                    </div>
 									                    
-									                    <div class="field item form-group">
+									                    <!-- <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성일<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input class="form-control" name="qnadate"  type="date" value="sysdate"> 
 									                      </div>
-									                    </div>
+									                    </div> -->
 									                    
 									                     <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">답변현황<span
@@ -112,8 +113,11 @@
 									                      <div class="col-md-6 col-sm-6">
 									                        <textarea  name="qnacontent">
 									                        
+																<br>
+																<br>
+																<br>
+																<br>
 									                        	[답글]
-			
 																---------------------------
 																${qdto.qnacontent }
 									                        

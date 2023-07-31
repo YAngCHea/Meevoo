@@ -19,11 +19,32 @@
      }
   </script>
   <script>
-      function deleteBtn(){
-    	  if(confirm("게시글을 삭제하시겠습니까?")){
+/*       function deleteBtn(){
+    	  if(confirm("회원 탈퇴처리 하시겠습니까?")){
     		  update.submit(); //전송
     		  //location.href="/admin/totalUserModify?id=${userList.id}";
-    	  }
+    	  } */
+    	  
+    	  //값을 0으로 만들게 탈퇴!!
+    	  function deleteBtn() {
+    		    var userId = '${mdto.id}';
+
+    		    fetch(`/admin/totalUserModify?id=${userId}&nowjoin=0`, {
+    		      method: 'POST', // Or 'GET' depending on your server handling
+    		    })
+    		      .then(response => {
+    		        // Handle the response if needed (e.g., show a success message)
+    		        console.log('User deleted successfully.');
+    		      })
+    		      .catch(error => {
+    		        // Handle errors if the request fails
+    		        console.error('Error deleting user:', error);
+    		      });
+    		  }
+    	  
+    	  
+    	  
+    	  
       }
   </script>
    </head>
@@ -177,7 +198,6 @@
 									                          class="required"> </span></label>
 									                      <div class="col-md-6 col-sm-6">
 										                        <input type="file" class="form-control" value="${mdto.userimg}" name="file">
-										                        <input type="text" class="form-control" value="${mdto.userimg}" name="userimg">
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
@@ -215,28 +235,6 @@
 									                    </div>
 									                    
 									                    <!-- <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Time<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="time" name="time" required="required">
-									                      </div>
-									                    </div>
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Repeat password<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="password" name="password2" data-validate-linked="password"
-									                          required="required">
-									                      </div>
-									                    </div>
-									                    <div class="field item form-group">
-									                      <label class="col-form-label col-md-3 col-sm-3  label-align">Telephone<span
-									                          class="required">*</span></label>
-									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="tel" name="phone" required="required"
-									                          data-validate-length-range="8,20">
-									                      </div>
-									                    </div>
 									                   <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">관심온도<span
 									                          class="required">*</span></label>
@@ -265,11 +263,6 @@
 									    </div>
 									  </div>
 					        			
-					        			
-					        			
-					        			
-					        			
-										
 					        		</div>
 					        		<!--card-->
 					        	</div>
@@ -278,8 +271,6 @@
 						</div>
 						<!-- 회원관리 리스트 나오게! End -->			
 					 <%@ include file="../footer.jsp" %> 
-						
-							 
 					 
                   </div>
                </div>

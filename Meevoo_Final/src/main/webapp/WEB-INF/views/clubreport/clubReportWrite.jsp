@@ -14,6 +14,13 @@
 	</head>
 	<body class="is-preload">
 		
+		<c:if test="${sessionId == null}">
+			<script>
+			  alert("로그인을 하셔야 리뷰등록이 가능합니다.");
+			  location.href="/member/login";
+			</script>
+		</c:if>
+		
 		<!-- Wrapper -->
 			<div id="wrapper">
 

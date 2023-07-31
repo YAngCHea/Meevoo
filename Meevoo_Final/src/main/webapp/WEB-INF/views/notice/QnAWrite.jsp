@@ -26,7 +26,15 @@
    </head>
    <body class="is-preload">
 
-      <!-- Wrapper -->
+	<c:if test="${sessionId == null}">
+		<script>
+		  alert("로그인을 하셔야 리뷰등록이 가능합니다.");
+		  location.href="/member/login";
+		</script>
+	</c:if>
+
+
+	<!-- Wrapper -->
          <div id="wrapper">
 
             <!-- Main -->
@@ -75,7 +83,7 @@
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">작성자<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
-									                        <input class="form-control" type="text" name="id" >
+									                        <input class="form-control" type="text" name="id" value=${sessionId }>
 									                      </div>
 									                    </div>
 									                    <div class="field item form-group">
@@ -94,13 +102,14 @@
 									                      </div>
 									                    </div>
 									                    
-									                     <div class="field item form-group">
+									                     <!-- <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">답변현황<span
 									                          class="required">*</span></label>
 									                      <div class="col-md-6 col-sm-6">
 									                        <input type="text" class="form-control" name="qnastatus" value="답변대기">
 									                      </div>
-									                    </div>
+									                    </div> -->
+									                    <input type="hidden" class="form-control" name="qnastatus" value="답변대기">
 									                        
 									                    <div class="field item form-group">
 									                      <label class="col-form-label col-md-3 col-sm-3  label-align">내용<span

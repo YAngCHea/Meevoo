@@ -54,7 +54,7 @@
 								<th>제목</th>
 								<th>작성자</th>
 								<th>작성일</th>
-								<th>조회수</th>
+								<!-- <th>조회수</th> -->
 								<c:if test="${sessionId=='admin' }">
 									<th>Edit</th>
 								</c:if>
@@ -69,7 +69,7 @@
 									<td>${nlist.notiid}</td>
 									<td><fmt:formatDate value="${nlist.notidate}"
 											pattern="yyyy-MM-dd" /></td>
-									<td>${nlist.notihit}</td>
+									<%-- <td>${nlist.notihit}</td> --%>
 									
 									<c:if test="${sessionId=='admin' }">
 										<td><a href="/notice/noticeModify?notino=${nlist.notino }"><button class="btn_simple btn_blue">수정</button></a></td>

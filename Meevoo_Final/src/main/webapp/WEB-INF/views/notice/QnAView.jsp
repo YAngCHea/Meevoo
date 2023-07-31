@@ -71,11 +71,11 @@
 									<br>
 									<!-- Buttons 수정 ->  main.css (1294번째)-->
 									<ul class="actions">
+									  <c:if test="${sessionId=='admin' }">
 										<li><a href="/notice/QnAReply?qnano=${qdto.qnano}" class="button primary">답변하기</a></li>
-										<li><a onclick="deleteQnABtn()"><button type="button"  class="btn btn-delete" style="margin: 0 auto;float: right;">삭제하기</button></a></li>
-										<!-- 
-										<li><a href="sportList?page=${page}" class="button primary">삭제하기</a></li>
-										 -->
+										<li><a onclick="deleteQnABtn()"><button type="button"  class="button primary" style="margin: 0 auto;float: right;">삭제하기</button></a></li>
+									  </c:if>
+									    <li><a href="/notice/QnA?page=${page}" class="button primary">목록으로</a></li>
 									</ul>
 								
 								

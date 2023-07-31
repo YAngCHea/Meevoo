@@ -71,8 +71,10 @@
 									<br>
 									<!-- Buttons 수정 ->  main.css (1294번째)-->
 									<ul class="actions">
+									  <c:if test="${sessionId=='admin' }">
 										<li><a href="/notice/noticeModify?notino=${ndto.notino}" class="button primary">수정하기</a></li>
 										<li><a onclick="deleteBtn()"><button type="button"  class="button primary">삭제하기</button></a></li>
+									  </c:if>
 										<li><a href="/notice/notice?page=${page}" class="button primary">목록으로</a></li>
 									</ul>
 								

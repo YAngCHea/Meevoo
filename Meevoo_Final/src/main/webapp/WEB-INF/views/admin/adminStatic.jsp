@@ -161,7 +161,7 @@
 						                                <input class="form-check-input m-0" type="checkbox">
 						                                <div class="w-100 ms-3">
 						                                    <div class="d-flex w-100 align-items-center justify-content-between">
-						                                        <span><a href="/sportreport/sportListView?srepno=${sRelist.sfno}">${sRelist.sfno}</a></span>
+						                                        <span><a href="/sport/sportListView?sfno=${sRelist.sfno }">${sRelist.sfno}</a></span>
 						                                        <span><a href="/sportreport/sportReportListView?srepno=${sRelist.srepno}">${sRelist.srepcontent}</a></span>
 						                                        <span><a><fmt:formatDate pattern="yyyy-MM-dd" value="${sRelist.srepdate}"/></a></span>
 						                                        <!-- <button class="btn btn-sm"><i class="fa fa-times"></i></button> -->
@@ -179,7 +179,7 @@
 						                        <div class="h-100 bg-light rounded p-4">
 						                            <div class="d-flex align-items-center justify-content-between mb-4">
 						                                <h4 class="mb-0">모임 신고 게시물</h6>
-						                                <a href="">전체 보기</a>
+						                                <a href="/clubreport/clubReportList">전체 보기</a>
 						                            </div>
 						                            
 						                            <!-- 시설 신고 상위 5개 -->
@@ -188,8 +188,8 @@
 								                                <input class="form-check-input m-0" type="checkbox">
 								                                <div class="w-100 ms-3">
 								                                    <div class="d-flex w-100 align-items-center justify-content-between">
-								                                        <span>${cRelist.cno}</span>
-								                                        <span><a href="#">${cRelist.crepcontent}</a></span>
+								                                        <span><a href="/club/cView?cno=${cRelist.cno }">${cRelist.cno}</a></span>
+								                                        <span><a href="/clubreport/clubReportView?crepno=${cRelist.crepno}">${cRelist.crepcontent}</a></span>
 								                                        <span><a><fmt:formatDate pattern="yyyy-MM-dd" value="${cRelist.crepdate}"/></a></span>
 								                                        <!-- <button class="btn btn-sm"><i class="fa fa-times"></i></button> -->
 								                                    </div>
