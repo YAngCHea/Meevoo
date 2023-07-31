@@ -43,7 +43,7 @@
 								<script>
 								function sportfilterBtn(){
 									if($("#slist_word").val().length==0){
-						    			alert("1글자 이상 입력하셔야 합니다.")
+										alert("검색어 없이 검색을 진행합니다.");
 						    			$("#slist_word").focus();
 						    			return false;
 						    		}
@@ -62,9 +62,6 @@
 									var checkedValue = chkArray.join('|')
 									var checkedValue2 = chkArray2.join('|')
 									 
-							        alert(checkedValue);
-							        alert(checkedValue2);
-									
 							        $("#schksearch").submit();
 								}
 								</script>

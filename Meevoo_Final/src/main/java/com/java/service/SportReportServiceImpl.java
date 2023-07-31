@@ -33,12 +33,12 @@ public class SportReportServiceImpl implements SportReportService {
 		int listCount = sportReportMapper.selectListCount(category,srep_word);
 		
 		//최대페이지
-		int maxPage = (int)Math.ceil((double)listCount/20); // 최대페이지(전체 게시물/20 -> 15개page)
-		int startPage = (int)((page-1)/20)*20 + 1; // 시작페이지 1
-		int endPage = startPage+20-1; // 마지막페이지
+		int maxPage = (int)Math.ceil((double)listCount/10); // 최대페이지(전체 게시물/20 -> 15개page)
+		int startPage = (int)((page-1)/10)*10 + 1; // 시작페이지 1
+		int endPage = startPage+10-1; // 마지막페이지
 		
-		int startRow = (page-1)*20+1; //1page : 1-20, 2page : 21-40
-		int endRow = startRow+20-1;
+		int startRow = (page-1)*10+1; //1page : 1-20, 2page : 21-40
+		int endRow = startRow+10-1;
 		
 		//endPage가 maxPage보다 더 크면 maxPage만 노출
 		if(endPage>maxPage) endPage=maxPage;
