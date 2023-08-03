@@ -55,8 +55,8 @@
   		  },
   		  success:function(data){
   			  var dataHtml="";
-  			  alert("답변 등록 성공");
-  			  alert(crepno);
+  			  //alert("답변 등록 성공");
+  			  //alert(crepno);
   			  //하단리뷰 1개 가져오기
   			  console.log(data);
   			  //하단에 리뷰추가코드
@@ -95,7 +95,7 @@
          		  type:"post",
          		  data:{"crepanno":crepanno }, // 답변번호
          		  success:function(data){
-         			  alert(crepanno+"번 답변이 삭제되었습니다.");
+         			  //alert(crepanno+"번 답변이 삭제되었습니다.");
          			  $("#"+crepanno).remove();  // 삭제
          			  
          			//총개수 수정

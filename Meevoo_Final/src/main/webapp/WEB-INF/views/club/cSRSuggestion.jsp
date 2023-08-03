@@ -88,56 +88,6 @@
 						</div>
 					</div>
 
-				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
-
-							<!-- Search -->
-								<section id="search" class="alt">
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="Search" />
-									</form>
-								</section>
-						
-						    <!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>메뉴</h2>
-									</header>
-									<ul>
-										<li>
-											<span class="opener">운동 모임</span>
-											<ul>
-												<li><a href="#">모임 목록</a></li>
-												<li><a href="#">모임 검색하기</a></li>
-												<li><a href="#">모임 작성하기</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">체육 시설</span>
-											<ul>
-												<li><a href="#">시설 목록</a></li>
-												<li><a href="#">시설 검색하기</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">내 페이지</span>
-											<ul>
-												<li><a href="#">내 프로필</a></li>
-												<li><a href="#">운동 모임</a></li>
-												<li><a href="#">체육 시설</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">고객 센터</span>
-											<ul>
-												<li><a href="#">고객 센터</a></li>
-												<li><a href="#">공지 사항</a></li>
-												<li><a href="#">FQA/Q&A</a></li>
-											</ul>
-										</li>
-									</ul>
-								</nav>
 
 							<!-- Footer -->
 								<footer id="footer">
